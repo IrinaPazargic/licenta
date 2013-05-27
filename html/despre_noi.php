@@ -12,7 +12,7 @@
 	<span class="icon_hold">
 	<img id="images" src="images/Phone-Icon-cinema.png"/>
 	</span>
-	<h4>0236 466 962</h3>
+	<h4>0236 466 962</h4>
 	</div>
 <div id="nav" class="copyright">
 <ul id="mainNav">
