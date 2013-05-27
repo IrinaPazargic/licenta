@@ -1,57 +1,57 @@
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>MyCinema</title>
-
-<link href="main.css" rel="stylesheet" type="text/css"/>  
+<link href="main.css" rel="stylesheet" type="text/css"/>
 </head>
 <body id="feature">
 <div id="header">
 	<div id="contact" class="copyright">
-	<p>Bine ati venit<p>
-	<span class="icon_hold">
-	<img id="images" src="images/Phone-Icon-cinema.png">
-	</span>
-	<h4>0236 466 962</h3>
+		<p>Bine ati venit<p>
+		<span class="icon_hold">
+		<img id="images" src="images/Phone-Icon-cinema.png">
+		</span>
+		<h4>0236 466 962</h3>
 	</div>
-<div id="nav" class="copyright">
-<ul id="mainNav">
-	<li> <a href="" id="homeLink">Noutati</a></li>
-	<li><a href="" id="AboutUsLink">Despre Noi</a></li>
-	<li> <a href="" id="politicsLink">Politici</a></li>
-	<li><a href="" id="politicsLink">Preturi</a></li>
-	<li><a href="" id="contactUsLink">Contact</a></li>
-</ul>
-</div>
+	<div id="nav" class="copyright">
+		<ul id="mainNav">
+			<li> <a href="noutati.php" id="homeLink">Noutati</a></li>
+			<li><a href="despre_noi.php" id="AboutUsLink">Despre Noi</a></li>
+			<li> <a href="" id="politicsLink">Politici</a></li>
+			<li><a href="preturi.php" id="politicsLink">Preturi</a></li>
+			<li><a href="" id="contactUsLink">Contact</a></li>
+		</ul>
+	</div>
 	<a class="selectmap" style="background: none;margin-top:10px; float:right; margin-right:5px;" href="locatie.php">
 		<img  alt="" src="images/harta.png">
 	</a>
-</div><!--nav-->
-<div id="slideShow">
+	</div><!--nav-->
+	<div id="slideShow">
 </div>
 <div id="mainContent">
 	<form class="form-wrapper cf">
         <input type="text" placeholder="Search here..." required>
         <button type="submit">Search</button>
     </form> 
+	<h3 style="padding-top:10px; padding-left:10px; float:left;"><a href="index.html" style="text-decoration:none;"><strong>Acasa >></strong></a> <strong>Program</strong> </h3>
 	<div id="secondNav" class="copyright">
 		<span class="icon_hold">
 			<img id="images" src="images/home_32.png">
 		</span>
-		<h3><a href="index.html"><strong>Acasa</strong></a></h3>
+		<h3 ><a href="index.html"><strong>Acasa</strong></a></h3>
 		<ul>
-			<li><a href="mainprogram.php" class="homeLinks">Program</a></li>
-			<li><a href="" class="homeLinks">Filme</a></li>
-			<li><a href="" class="homeLinks">Rezervare</a></li>
+			<li><a href="" class="homeLinks">Program</a></li>
+			<li><a href="filme.php" class="homeLinks">Filme</a></li>
+			<li><a href="promotii.php" class="homeLinks">Promotii</a></li>
 			<li><a href="" class="homeLinks">Oferte</a></li>
-			<li><a href="optiuni.html" class="homeLinks">Optiuni</a></li>
 			
 		</ul>
 		<h3><strong>Cauta in program</strong></h3>
 		<div id="searchBody" >
-		<form id="searcFilmCategory" method="get" action="program.php" name="searchform">
-			<table width="100%" cellspacing="3" cellpadding="3" border="0" style="margin:0 auto">
-			<tbody>
+			<form id="searcFilmCategory" method="get" action="program.php" name="searchform">
+				<table width="100%" cellspacing="3" cellpadding="3" border="0" style="margin:0 auto">
+				<tbody>
 				<tr><td style="text-align:left;">Localitatea</td>
 					<td style="text-align:left;">
 					<select class="textbox" style="width:95px" name="cinemaId">
@@ -103,19 +103,19 @@
 				<tr><td style="text-align:left;"> </td>
 					<td style="text-align:center;">
 						<input class="submit" type="submit" value="CAUTA"></td></tr>
-			</tbody>
-			</table>
-		</form>
-		</div>
-	</div>
+				</tbody>
+				</table>
+			</form>
+		</div> <!--searchBody-->
+	</div> <!--secondNav-->
 	
 	<div id="thirdNav" class="copyright" >
 		<span class="icon_hold">
-		<img class="images" src="images/ico_promo.gif">
+			<img class="images" src="images/ico_promo.gif">
 		</span>
 		<h3><strong>Categorii Filme</strong></h3>
 		<ul id="film_list">
-			<li ><a href="" class="filmsLink">Actiune</a></li>
+			<li ><a href="program.php?gen=actiune" class="filmsLink">Actiune</a></li>
 			<li><a href="" class="filmsLink">Animatie</a></li>
 			<li><a href="" class="filmsLink">Aventura</a></li>
 			<li><a href="" class="filmsLink">Comedie</a></li>
@@ -134,60 +134,31 @@
 			<li><a href="" class="filmsLink">Western</a></li>
 			<li><a href="" class="filmsLink">Documentar</a></li>
 		</ul>
-	</div>
-	
+	</div> <!--thirdNav-->
 	<div id="news" class="copyright">
-		<span class="icon_hold">
-			<img id="image" src="images/newspaper.png">
-		</span>
-		<h3><strong>Acasa</strong></h3>
-		<div class="newsList">
-			<span class="icon_hold">
-				<img id="image" src="images/stand-up-guys-landscape_s.jpg">
-			</span>
-			<h4 >"Trei tipi duri-digital-N15"</h4>
-			<p><em>Titlu original:"Stand Up Guys"</em></p>
-			<p><strong>Gen: Comedie|Crima</strong></p>
-			<br/>
-			<hr class="copyright">
-			<p class="copyright">Regia: Fisher Stevens <br/>
-			In rolurile principale:Al Pacino, Christopher Walken, Alan Arkin Val (interpretat de Al Pacino) este proaspat iesit din puscarie, 
-			unde �si petrecuse ultimii 28 de ani, pedeapsa la care fusese condamnat pentru ``vina`` de a fi refuzat sa-si denunte complicele...<br/><a href="" class="detailsLink" >Detalii film</a></p>
-		</div>
-		<div class="newsList">
-			<span class="icon_hold">
-				<img id="image" src="images/killing-time-landscape_s.jpg">
-			</span>
-			<h4 >"Killing Time-digital-IM-18"</h4>
-			<p><em>Titlu original:"Killing Time"</em></p>
-			<p><strong>Gen: Actiune</strong></p>
-			<br/>
-			<hr class="copyright">
-			<p class="copyright">Regia: Florin Piersic Jr.<br/>In rolurile principale:Cristian Ioan Gutau, Florin Piersic Jr.Doi asasini platiti �si 
-			asteapta viitoarea victima �ntr-un apartament gol. Orele se scurg. Tensiunea creste...<br/><a href="" class="detailsLink" >Detalii film</a></p>
-		</div>
-			<div class="newsList">
-			<span class="icon_hold">
-				<img id="image" src="images/snitch-landscape_s.jpg">
-			</span>
-			<h4 >"Capcana-digital-N-15"</h4>
-			<p><em>Titlu original:"Snitch"</em></p>
-			<p><strong>Gen: Actiune</strong></p>
-			<br/>
-			<hr class="copyright">
-			<p class="copyright">Regia: Ric Roman Waugh<br/>In rolurile principale:Dwayne Johnson, Barry Pepper, Susan Sarandon, Jon Bernthal
-				Filmul este inspirat din fapte reale si spune povestea unui tata al carui fiu este acuzat pe nedrept de trafic de droguri, 
-				primind astfel o pedeapsa de 10 ani. Disperat sa-si salveze fiul, tatal face un pact cu politia, fiind de acord sa lucreze ca agent sub acoperire 
-				�ntr-un cartel de droguri....<br/><a href="" class="detailsLink" >Detalii film</a></p>
-		</div>
+	<div id="selectCinema">
+		Promotia de vara!!!
+		<h2>&#34; C. MYCINEMA  ROMÂNIA S.R.L. REGULAMENTUL CAMPANIEI PROMOTIONALE MYCINEMA  &#34;Fii Star de Cinema  si Castiga Premii ca in Filme&#34;</h2>
+		<p>PERIOADA CAMPANIEI: 7iulie 	&#45; 31august 2013</p><br/>
+		<p>CAPITOLUL 1: ORGANIZATORUL CAMPANIEI</p><br/>
+		<p>	1.1 Organizatorul campaniei promotionale &#34;Fii Star de CINEMA si Castiga Premii ca in Filme&#34; este S.C. MYCinema România S.R.L., cu sediul în str. Ana Davila nr. 13, Sector 5, Bucuresti, inregistrata la Registrul Comertului cu nr. J40/16742/2006, cod fiscal RO19123195, numita în continuare ORGANIZATORUL campaniei promotionale.
+			1.2 Campania promotionalt se va desfăsura in conformitate cu prevederile prezentului regulament, care se aplica tuturor participantilor. Participarea la campania promotionala reprezinta acordul cu regulile si dispozitiile stabilite in prezentul document. Orice neconformitate cu regulile din partea participantilor indreptateste ORGANIZATORUL sa refuze acordarea premiilor din promotia &#34;Fii Star de Cinema  si Castiga Premii ca in Filme&#34;.
+			1.3 ORGANIZATORUL isi rezerva dreptul de a schimba sau a modifica regulile si dispozitiile în orice moment, cu notificarea prealabila a participantilor.
+		</p><br/>
 		
+		<p>CAPITOLUL 2. LOCATIA CAMPANIEI PROMOTIONALE</p><br/>
+		<p>	2.1 Campania promotionala se va desfasura in toate cinematografele MYCinema Romania:<br/>
+			MYCINEMA GALATI, European Retail Park Galati &#45; Dunarea Mall, etaj 1, Str. Brailei nr. 4, Jud. Galati<br/>
+			MYCINEMA BUCURESTI, AFI-PALACE CONTROCENI Mall, etaj 1, Str. Dorobanti , Jud. Ilfov<br/>
+			2.2 Numai biletele achizitionate in cinematografele din reteaua MYCINEMA Romania enumerate mai sus sunt valide pentru Campania promotionala &#34;Fii Star de Cinema si Castiga Premii ca in Filme&#34;.
+			2.3 Produsele oferite la completarea secventei de campanie pot fi rascumparate si utilizate numai la cinematografele din reteaua MYCinema Romania enumerate mai sus. 
+		</p><br/>
+	</div><!--selectCinema-->
+	</div><!--news-->
+</div><!--mainContent-->
 
-	</div>
-	
-</div>
 <div id="footer" class="copyright">
 <h3>Copyright</h3>
 </div>
-
 </body>
 </html>

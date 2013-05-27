@@ -1,0 +1,7 @@
+#pret_tabel th {
+	text-align:left;
+}
+
+#pret_tabel tr, td, th {
+	border:1px solid black;
+}

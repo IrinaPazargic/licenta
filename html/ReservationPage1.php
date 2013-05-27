@@ -8,6 +8,7 @@
 		while($row=mysql_fetch_object($result)){
 			echo ''.$row->titlu.'  '.$row->data.' '. $row->ora.' ';
 			echo '<b>Cinematograful:</b> '.$row->nume.'';
+			
 		}
 	}
 ?>
@@ -77,13 +78,15 @@
 									Cantitate
 								</th>
 							</tr>
+							
+							
 							<tr>
 								<td style="border: 1px solid black;">&nbsp;</td>
 								<td style="border: 1px solid black;">
-								Copii 13
+								<?php require_once 'config.php'; $query="select tip from reduceri where idReducere=1"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['tip'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								13.00lei
+								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=1"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
 								<select>
@@ -104,10 +107,10 @@
 							<tr>
 									<td style="border: 1px solid black;">&nbsp;</td>
 								<td style="border: 1px solid black;">
-								Normal16.5
+								<?php require_once 'config.php'; $query="select tip from reduceri where idReducere=2"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['tip'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								16.50lei
+								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=2"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
 								<select>
@@ -127,10 +130,10 @@
 							<tr>
 								<td style="border: 1px solid black;">&nbsp;</td>
 								<td style="border: 1px solid black;">
-								Pensio13.5
+								<?php require_once 'config.php'; $query="select tip from reduceri where idReducere=3"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['tip'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								13.50lei
+								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=3"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
 								<select>
@@ -151,10 +154,10 @@
 							<tr>
 									<td style="border: 1px solid black;">&nbsp</td>
 								<td style="border: 1px solid black;">
-								Stud13.5
+								<?php require_once 'config.php'; $query="select tip from reduceri where idReducere=4"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['tip'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								13.50lei
+								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=4"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
 								<select>
@@ -171,6 +174,8 @@
 								</select>
 								</td>
 							</tr>
+							
+
 						</tbody>
 					</table>
 					</p>
@@ -185,7 +190,7 @@
 			<tr >
 				<td align="right" style="padding-top:10px;">
 					<input id="automat" style="border-width:0px; color:transparent;" type="image" src="images/NextNoSeats.jpg"/>
-					<input id="manual" style="border-width:0px;" type="image" src="images/NextSeat.jpg"/>
+					<a href="ReservationPage2.php?idProgram=<?php $link =$_GET['idProgram']; echo $link; ?>"><input id="manual" style="border-width:0px;" type="image" src="images/NextSeat.jpg"/></a>
 				</td>
 			</tr>
 	</table> 

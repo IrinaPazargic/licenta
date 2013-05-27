@@ -1,0 +1,125 @@
+/*Creat si publicat  de PixelAlb (www.pixelalb.ro)*/
+
+
+.graySwitch {left:10px; width:10px; height:10px; background: gray; font-size:1px; text-indent:-9999px; top:0;}
+.orangeSwitch {left:25px; width:10px; height:10px; background: orange;font-size:1px; text-indent:-9999px; top:0;}
+a {outline: none}
+
+
+
+/*romania map orange*/
+
+ul.mapRomania { list-style-type:none; font-family: Tahoma, Sans-serif; font-size:12px; line-height:12px;width:580px; height:409px; background: #fff url(img/romsania.gif) no-repeat 0 0; float: left; position: relative;  margin-left:70px; margin-top:50px;}
+a .effect{display: none; width:27px; height:25px; background: url(img/checked.gif) no-repeat 0 0; font-size:1px; float: left; text-indent:-9999px !important;  margin:0px 30px}
+a .acOrange{display: none; width:27px; height:25px; background: url(img/ac_orange.gif) no-repeat 0 0; font-size:1px; float: left; text-indent:-9999px !important;  margin:0px 30px}
+a .acBlue{display: none; width:27px; height:25px; background: url(img/ac_blue.gif) no-repeat 0 0; font-size:1px; float: left; text-indent:-9999px !important;  margin:0px 30px}
+a .snow{display: none; width:27px; height:25px; background: url(img/snow.gif) no-repeat 0 0; font-size:1px; float: left; text-indent:-9999px !important;  margin:0px 30px}
+.ocupat a .effect{display: block; }
+.ocupat a .acOrange{display: block; }
+.ocupat a .acBlue{display: block; }
+.ocupat a .snow{display: block; }
+.ocupat .galati .effect{display: block; margin:-50px 30px}
+.ocupat .ilfov .effect{display: block; margin:0px 0px}
+.ocupat a {color: black !important; }
+.mapRomania a{display: block; position: absolute; font-size:11px; color: #f49c65; text-align: center; text-decoration: none;  }
+a .effect{display: none; width:27px; height:25px; background: url(img/checked.gif) no-repeat 0 0; font-size:1px; float: left; text-indent:-9999px !important;  margin:0px 30px}
+a .acOrange{display: none; width:27px; height:25px; background: url(img/ac_orange.gif) no-repeat 0 0; font-size:1px; float: left; text-indent:-9999px !important;  margin:0px 30px}
+a .acBlue{display: none; width:27px; height:25px; background: url(img/ac_blue.gif) no-repeat 0 0; font-size:1px; float: left; text-indent:-9999px !important;  margin:0px 30px}
+a .snow{display: none; width:27px; height:25px; background: url(img/snow.gif) no-repeat 0 0; font-size:1px; float: left; text-indent:-9999px !important;  margin:0px 30px}
+.mapRomania a:hover {  color: red; }
+.mapRomania .satuMare{width:86px; height: 47px; top:16px; padding: 20px 0 0 0; left:121px; background: url(judete/satu_mare.gif) no-repeat 0 0;  z-index:2}
+.mapRomania .maramures{width:120px; height: 40px; top:26px;  padding: 16px 0 0 0; left:167px; background: url(judete/maramures.gif) no-repeat 0 0;}
+.mapRomania .suceava{width:105px; height: 55px;  padding: 20px 0 0 0; top:27px; left:281px; background: url(judete/suceava.gif) no-repeat 0 0;}
+.mapRomania .botosani{width:70px; height: 46px;  padding: 20px 0 0 0; top:2px; left:351px; background: url(judete/botosani.gif) no-repeat 0 0;}
+.mapRomania .bihor{width:80px; height: 65px;  padding: 40px 0 0 0; top:59px; left:76px; background: url(judete/bihor.gif) no-repeat 0 0;}
+.mapRomania .salaj{width:80px; height: 41px;  padding: 10px 0 0 0;top:70px; left:138px; background: url(judete/salaj.gif) no-repeat 0 0; z-index:2}
+.mapRomania .cluj{width:94px; height: 44px;  padding: 40px 0 0 0; top:78px; left:146px; background: url(judete/cluj.gif) no-repeat 0 0;}
+.mapRomania .bistritaNasaud{width:67px; height: 54px;  padding: 20px 0 0 0; top:57px; left:223px; background: url(judete/bistrita_nasaud.gif) no-repeat 0 0;}
+.mapRomania .mures{width:80px; height: 55px; padding: 40px 0 0 0; top:96px; left:225px; background: url(judete/mures.gif) no-repeat 0 0;}
+.mapRomania .harghita{width:84px; height: 52px;  padding: 40px 0 0 0; top:93px; left:280px; background: url(judete/harghita.gif) no-repeat 0 0;}
+.mapRomania .neamt{width:83px; height: 42px;  padding: 20px 10px 0 0; top:78px; left:326px; background: url(judete/neamt.gif) no-repeat 0 0;}
+.mapRomania .iasi{width:95px; height: 46px;  padding: 20px 0 0 0; top:55px; left:375px; background: url(judete/iasi.gif) no-repeat 0 0;}
+.mapRomania .arad{width:120px; height: 47px;  padding: 20px 0 0 0; top:136px; left:31px; background: url(judete/arad.gif) no-repeat 0 0;}
+.mapRomania .alba{width:93px; height: 77px;  padding: 20px 0 0 0; top:145px; left:147px; background: url(judete/alba.gif) no-repeat 0 0;  z-index:2}
+.mapRomania .sibiu{width:80px; height: 51px;   padding: 20px 0 0 0;top:172px; left:204px; background: url(judete/sibiu.gif) no-repeat 0 0;}
+.mapRomania .hunedoara{width:77px; height: 71px;  padding: 30px 0 0 0; top:164px; left:127px; background: url(judete/hunedoara.gif) no-repeat 0 0;}
+.mapRomania .brasov{width:79px; height: 49px;  padding: 20px 10px 0 0; top:179px; left:266px; background: url(judete/brasov.gif) no-repeat 0 0;}
+.mapRomania .covasna{width:63px; height: 43px; padding: 20px 0 0 0; top:169px; left:313px; background: url(judete/covasna.gif) no-repeat 0 0;}
+.mapRomania .bacau{width:82px; height: 51px;  padding: 20px 0 0 0; top:122px; left:346px; background: url(judete/bacau.gif) no-repeat 0 0;}
+.mapRomania .vaslui{width:65px; height: 66px;  padding: 20px 0 0 0; top:106px; left:416px; background: url(judete/vaslui.gif) no-repeat 0 0;}
+.mapRomania .galati{width:63px; height: 49px;  padding: 20px 0 0 0; top:176px; left:423px; background: url(judete/galati.gif) no-repeat 0 0;}
+.mapRomania .vrancea{width:75px; height: 49px;  padding: 20px 0 0 0; top:176px; left:372px; background: url(judete/vrancea.gif) no-repeat 0 0;}
+.mapRomania .timis{width:136px; height: 66px;  padding: 20px 0 0 0;top:180px; left:3px; background: url(judete/timis.gif) no-repeat 0 0;}
+.mapRomania .carasSeverin{width:81px; height: 53px;  padding: 40px 0 0 0; top:225px; left:67px; background: url(judete/caras_severin.gif) no-repeat 0 0;}
+.mapRomania .gorj{width:80px; height: 50px;  padding: 20px 0 0 0; top:251px; left:139px; background: url(judete/gorj.gif) no-repeat 0 0; z-index:2}
+.mapRomania .valcea{width:80px; height: 50px;  padding: 20px 0 0 0; top:232px; left:202px; background: url(judete/valcea.gif) no-repeat 0 0;}
+.mapRomania .arges{width:54px; height: 88px;  padding: 20px 0 0 0; top:229px; left:255px; background: url(judete/arges.gif) no-repeat 0 0;}
+.mapRomania .dambovita{width:54px; height: 32px;  padding: 60px 0 0 0; top:241px; left:297px; background: url(judete/dambovita.gif) no-repeat 0 0;}
+.mapRomania .prahova{width:64px; height: 45px;  padding: 25px 10px 0 0; top:235px; left:316px; background: url(judete/prahova.gif) no-repeat 0 0;}
+.mapRomania .buzau{width:74px; height: 50px;  padding: 20px 0 0 0; top:211px; left:354px; background: url(judete/buzau.gif) no-repeat 0 0;}
+.mapRomania .braila{width:71px; height: 50px;  padding: 20px 0 0 0; top:233px; left:416px; background: url(judete/braila.gif) no-repeat 0 0;}
+.mapRomania .mehedinti{width:92px; height: 40px;  padding: 50px 0 0 0; top:272px; left:105px; background: url(judete/mehedinti.gif) no-repeat 0 0;}
+.mapRomania .dolj{width:85px; height: 70px;  padding: 20px 0 0 0; top:307px; left:160px; background: url(judete/dolj.gif) no-repeat 0 0;}
+.mapRomania .olt{width:62px; height: 68px;  padding: 40px 0 0 0; top:291px; left:221px; background: url(judete/olt.gif) no-repeat 0 0;}
+.mapRomania .teleorman{width:70px; height: 58px;  padding: 20px 0 0 0; top:325px; left:266px; background: url(judete/teleorman.gif) no-repeat 0 0;}
+.mapRomania .giurgiu{width:66px; height: 57px;  padding: 20px 0 0 0; top:320px; left:318px; background: url(judete/giurgiu.gif) no-repeat 0 0;}
+.mapRomania .ilfov{width:28px; height: 32px; padding: 10px 0 0 0; top:301px; left:347px; background: url(judete/ilfov.gif) no-repeat 0 0;}
+.mapRomania .ialomita{width:118px; height: 30px; padding: 15px 0 0 0; top:292px; left:368px; background: url(judete/ialomita.gif) no-repeat 0 0;}
+.mapRomania .calarasi{width:115px; height: 22px; padding: 20px 0 0 0; top:321px; left:366px; background: url(judete/calarasi.gif) no-repeat 0 0;}
+.mapRomania .constanta{width:101px; height: 38px; padding: 57px 0 0 0; top:291px; left:432px; background: url(judete/constanta.gif) no-repeat 0 0;}
+.mapRomania .tulcea{width:102px; height: 47px; padding: 25px 0 0 0; top:235px; left:475px; background: url(judete/tulcea.gif) no-repeat 0 0;}
+
+
+
+
+/*romania map gray*/
+
+ul.mapRomaniaGray { list-style-type:none; font-family: Tahoma, Sans-serif; font-size:12px; line-height:12px;width:580px; height:409px; background: #fff url(../img/romsania.gif) no-repeat 0 0; float: left; position: relative; }
+
+.mapRomaniaGray a{display: block; position: absolute; font-size:11px; color: #d4d4d4; text-align: center; text-decoration: none;  }
+.mapRomaniaGray a:hover{ color: #666;   }
+.mapRomaniaGray .satuMare{width:86px; height: 47px; top:16px; padding: 20px 0 0 0; left:121px; background: url(judete_gray/satu_mare.gif) no-repeat 0 0;  z-index:2}
+.mapRomaniaGray .maramures{width:120px; height: 40px; top:26px;  padding: 16px 0 0 0; left:167px; background: url(judete_gray/maramures.gif) no-repeat 0 0;}
+.mapRomaniaGray .suceava{width:105px; height: 55px;  padding: 20px 0 0 0; top:27px; left:281px; background: url(judete_gray/suceava.gif) no-repeat 0 0;}
+.mapRomaniaGray .botosani{width:70px; height: 46px;  padding: 20px 0 0 0; top:2px; left:351px; background: url(judete_gray/botosani.gif) no-repeat 0 0;}
+.mapRomaniaGray .bihor{width:80px; height: 65px;  padding: 40px 0 0 0; top:59px; left:76px; background: url(judete_gray/bihor.gif) no-repeat 0 0;}
+.mapRomaniaGray .salaj{width:80px; height: 41px;  padding: 10px 0 0 0;top:70px; left:138px; background: url(judete_gray/salaj.gif) no-repeat 0 0; z-index:2}
+.mapRomaniaGray .cluj{width:94px; height: 44px;  padding: 40px 0 0 0; top:78px; left:146px; background: url(judete_gray/cluj.gif) no-repeat 0 0;}
+.mapRomaniaGray .bistritaNasaud{width:67px; height: 54px;  padding: 20px 0 0 0; top:57px; left:223px; background: url(judete_gray/bistrita_nasaud.gif) no-repeat 0 0;}
+.mapRomaniaGray .mures{width:80px; height: 55px; padding: 40px 0 0 0; top:96px; left:225px; background: url(judete_gray/mures.gif) no-repeat 0 0;}
+.mapRomaniaGray .harghita{width:84px; height: 52px;  padding: 40px 0 0 0; top:93px; left:280px; background: url(judete_gray/harghita.gif) no-repeat 0 0;}
+.mapRomaniaGray .neamt{width:83px; height: 42px;  padding: 20px 10px 0 0; top:78px; left:326px; background: url(judete_gray/neamt.gif) no-repeat 0 0;}
+.mapRomaniaGray .iasi{width:95px; height: 46px;  padding: 20px 0 0 0; top:55px; left:375px; background: url(judete_gray/iasi.gif) no-repeat 0 0;}
+.mapRomaniaGray .arad{width:120px; height: 47px;  padding: 20px 0 0 0; top:136px; left:31px; background: url(judete_gray/arad.gif) no-repeat 0 0;}
+.mapRomaniaGray .alba{width:93px; height: 77px;  padding: 20px 0 0 0; top:145px; left:147px; background: url(judete_gray/alba.gif) no-repeat 0 0;  z-index:2}
+.mapRomaniaGray .sibiu{width:80px; height: 51px;   padding: 20px 0 0 0;top:172px; left:204px; background: url(judete_gray/sibiu.gif) no-repeat 0 0;}
+.mapRomaniaGray .hunedoara{width:77px; height: 71px;  padding: 30px 0 0 0; top:164px; left:127px; background: url(judete_gray/hunedoara.gif) no-repeat 0 0;}
+.mapRomaniaGray .brasov{width:79px; height: 49px;  padding: 20px 10px 0 0; top:179px; left:266px; background: url(judete_gray/brasov.gif) no-repeat 0 0;}
+.mapRomaniaGray .covasna{width:63px; height: 43px; padding: 20px 0 0 0; top:169px; left:313px; background: url(judete_gray/covasna.gif) no-repeat 0 0;}
+.mapRomaniaGray .bacau{width:82px; height: 51px;  padding: 20px 0 0 0; top:122px; left:346px; background: url(judete_gray/bacau.gif) no-repeat 0 0;}
+.mapRomaniaGray .vaslui{width:65px; height: 66px;  padding: 20px 0 0 0; top:106px; left:416px; background: url(judete_gray/vaslui.gif) no-repeat 0 0;}
+.mapRomaniaGray .galati{width:63px; height: 49px;  padding: 20px 0 0 0; top:176px; left:423px; background: url(judete_gray/galati.gif) no-repeat 0 0;}
+.mapRomaniaGray .vrancea{width:75px; height: 49px;  padding: 20px 0 0 0; top:176px; left:372px; background: url(judete_gray/vrancea.gif) no-repeat 0 0;}
+.mapRomaniaGray .timis{width:136px; height: 66px;  padding: 20px 0 0 0;top:180px; left:3px; background: url(judete_gray/timis.gif) no-repeat 0 0;}
+.mapRomaniaGray .carasSeverin{width:81px; height: 53px;  padding: 40px 0 0 0; top:225px; left:67px; background: url(judete_gray/caras_severin.gif) no-repeat 0 0;}
+.mapRomaniaGray .gorj{width:80px; height: 50px;  padding: 20px 0 0 0; top:251px; left:139px; background: url(judete_gray/gorj.gif) no-repeat 0 0; z-index:2}
+.mapRomaniaGray .valcea{width:80px; height: 50px;  padding: 20px 0 0 0; top:232px; left:202px; background: url(judete_gray/valcea.gif) no-repeat 0 0;}
+.mapRomaniaGray .arges{width:54px; height: 88px;  padding: 20px 0 0 0; top:229px; left:255px; background: url(judete_gray/arges.gif) no-repeat 0 0;}
+.mapRomaniaGray .dambovita{width:54px; height: 32px;  padding: 60px 0 0 0; top:241px; left:297px; background: url(judete_gray/dambovita.gif) no-repeat 0 0;}
+.mapRomaniaGray .prahova{width:64px; height: 45px;  padding: 25px 10px 0 0; top:235px; left:316px; background: url(judete_gray/prahova.gif) no-repeat 0 0;}
+.mapRomaniaGray .buzau{width:74px; height: 50px;  padding: 20px 0 0 0; top:211px; left:354px; background: url(judete_gray/buzau.gif) no-repeat 0 0;}
+.mapRomaniaGray .braila{width:71px; height: 50px;  padding: 20px 0 0 0; top:233px; left:416px; background: url(judete_gray/braila.gif) no-repeat 0 0;}
+.mapRomaniaGray .mehedinti{width:92px; height: 40px;  padding: 50px 0 0 0; top:272px; left:105px; background: url(judete_gray/mehedinti.gif) no-repeat 0 0;}
+.mapRomaniaGray .dolj{width:85px; height: 70px;  padding: 20px 0 0 0; top:307px; left:160px; background: url(judete_gray/dolj.gif) no-repeat 0 0;}
+.mapRomaniaGray .olt{width:62px; height: 68px;  padding: 40px 0 0 0; top:291px; left:221px; background: url(judete_gray/olt.gif) no-repeat 0 0;}
+.mapRomaniaGray .teleorman{width:70px; height: 58px;  padding: 20px 0 0 0; top:325px; left:266px; background: url(judete_gray/teleorman.gif) no-repeat 0 0;}
+.mapRomaniaGray .giurgiu{width:66px; height: 57px;  padding: 20px 0 0 0; top:320px; left:318px; background: url(judete_gray/giurgiu.gif) no-repeat 0 0;}
+.mapRomaniaGray .ilfov{width:28px; height: 32px; padding: 10px 0 0 0; top:301px; left:347px; background: url(judete_gray/ilfov.gif) no-repeat 0 0;}
+.mapRomaniaGray .ialomita{width:118px; height: 30px; padding: 15px 0 0 0; top:292px; left:368px; background: url(judete_gray/ialomita.gif) no-repeat 0 0;}
+.mapRomaniaGray .calarasi{width:115px; height: 22px; padding: 20px 0 0 0; top:321px; left:366px; background: url(judete_gray/calarasi.gif) no-repeat 0 0;}
+.mapRomaniaGray .constanta{width:101px; height: 38px; padding: 57px 0 0 0; top:291px; left:432px; background: url(judete_gray/constanta.gif) no-repeat 0 0;}
+.mapRomaniaGray .tulcea{width:102px; height: 47px; padding: 25px 0 0 0; top:235px; left:475px; background: url(judete_gray/tulcea.gif) no-repeat 0 0;}
+
+
+
+

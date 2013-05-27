@@ -73,7 +73,7 @@ clear: both;
 	color:#454545;
 	margin:0 auto;
 	width:998px;
-	height:900px;
+	height:auto;
 	overflow:auto;
 	padding:0;
 }
@@ -345,7 +345,7 @@ clear: both;
 	margin:0 auto;
 	margin-top:5px;
 	width: 710px;
-	height:200px;
+	height:auto;
 	border: 0.1em solid green;
 	border-left:none;
 	border-right:none;
@@ -470,35 +470,7 @@ clear: both;
     background: #e54040;
 }  
    
-.form-wrapper button:active,
-.form-wrapper button:focus{  
-    background: #c42f2f;
-    outline: 0;  
-}
- 
- .form-wrapper button:before { /* left arrow */
-    content: '';
-    position: absolute;
-    border-width: 8px 8px 8px 0;
-    border-style: solid solid solid none;
-    border-color: transparent #d83c3c transparent;
-    top: 12px;
-    left: -6px;
-}
 
-.form-wrapper button:hover:before{
-    border-right-color: #e54040;
-}
-
-.form-wrapper button:focus:before,
-.form-wrapper button:active:before{
-        border-right-color: #c42f2f;
-}     
- 
-.form-wrapper button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
-    border: 0;
-    padding: 0;
-}  
 #contact p{
 	float:left;
 	margin-left:33px;
@@ -550,7 +522,64 @@ clear: both;
 }
 
 
+#noutati {
+	float:right;
+	height:auto;
+	width:75%;
+	margin-top:20px;
+	margin-right:10px;
+	background-color:white;
+	
+}
+
+#noutati h3{
+	text-transform: uppercase;
+	background-color:#197419;
+	letter-spacing: 1px;
+	height:2.5em;
+	font-size:1.1em;
+	margin-top:0px;
+}
+
+#noutati span{
+	margin-right:0px;
+	margin-top:-30px;
+
+}
+
+#noutati p{
+	font-size: 16px;
+    font-weight: bold;
+	margin-left:5px;
+}
+#mainNav #current a {
+	background-color: #B2F511; 
+	background-image: url(images/nav.png); 
+}
 
 
+#despre_noi {
+	float:right;
+	height:auto;
+	width:75%;
+	margin-top:20px;
+	margin-right:10px;
+	background-color:white;
+	
+}
+
+#despre_noi h3{
+	text-transform: uppercase;
+	background-color:#197419;
+	letter-spacing: 1px;
+	height:2.5em;
+	font-size:1.1em;
+	margin-top:0px;
+}
 
 
+#despre_noi span{
+	margin-right:0px;
+	margin-top:-30px;
+
+}

@@ -1,58 +1,83 @@
+<?php
+	require_once 'config.php';
+	
+	function all_films(){
+		$query= "select idFilm, titlu,gen, descriere, regia, imagine from filme";
+		$result=mysql_query($query);
+		while($row=mysql_fetch_array($result)){
+		echo '<div class="newsList">
+			<span class="icon_hold">
+				<img id="image" src='.$row['imagine'].'>
+			</span>
+			<h4 >Titlu: '.$row['titlu'].'</h4>
+			<p><strong>Gen: '.$row['gen'].'</strong></p>
+			<br/>
+			<hr class="copyright">
+			<p class="copyright">Regia: '.$row['regia'].' <br/>
+			'.$row['descriere'].' <br/><a id="check" href="?idFilm='.$row['idFilm'].'" class="detailsLink" >Detalii film</a></p>
+		</div>';
+			
+		}}
+		
+		
+	
+ ?>
+
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>MyCinema</title>
-<link href="main.css" rel="stylesheet" type="text/css"/>
+
+<link href="main.css" rel="stylesheet" type="text/css"/>  
 </head>
 <body id="feature">
 <div id="header">
 	<div id="contact" class="copyright">
-		<p>Bine ati venit<p>
-		<span class="icon_hold">
-		<img id="images" src="images/Phone-Icon-cinema.png">
-		</span>
-		<h4>0236 466 962</h3>
+	<p>Bine ati venit<p>
+	<span class="icon_hold">
+	<img id="images" src="images/Phone-Icon-cinema.png">
+	</span>
+	<h4>0236 466 962</h3>
 	</div>
-	<div id="nav" class="copyright">
-		<ul id="mainNav">
-			<li> <a href="noutati.php" id="homeLink">Noutati</a></li>
-			<li><a href="despre_noi.php" id="AboutUsLink">Despre Noi</a></li>
-			<li> <a href="" id="politicsLink">Politici</a></li>
-			<li><a href="preturi.php" id="politicsLink">Preturi</a></li>
-			<li><a href="" id="contactUsLink">Contact</a></li>
-		</ul>
-	</div>
+<div id="nav" class="copyright">
+<ul id="mainNav">
+	<li> <a href="noutati.php" id="homeLink">Noutati</a></li>
+	<li><a href="despre_noi.php" id="AboutUsLink">Despre Noi</a></li>
+	<li> <a href="" id="politicsLink">Politici</a></li>
+	<li><a href="preturi.php" id="politicsLink">Preturi</a></li>
+	<li><a href="" id="contactUsLink">Contact</a></li>
+</ul>
+</div>
 	<a class="selectmap" style="background: none;margin-top:10px; float:right; margin-right:5px;" href="map.php">
 		<img  alt="" src="images/harta.png">
 	</a>
-	</div><!--nav-->
-	<div id="slideShow">
+</div><!--nav-->
+<div id="slideShow">
 </div>
 <div id="mainContent">
 	<form class="form-wrapper cf">
         <input type="text" placeholder="Search here..." required>
         <button type="submit">Search</button>
     </form> 
-	<h3 style="padding-top:10px; padding-left:10px; float:left;"><a href="index.html" style="text-decoration:none;"><strong>Acasa >></strong></a> <strong>Program</strong> </h3>
+	<h3 style="padding-top:10px; padding-left:10px; float:left;"><strong><a href="index.php" style="text-decoration:none;">Acasa >></a></strong><strong>Filme </strong></h3>
 	<div id="secondNav" class="copyright">
 		<span class="icon_hold">
 			<img id="images" src="images/home_32.png">
 		</span>
-		<h3 ><a href="index.php"><strong>Acasa</strong></a></h3>
+		<h3><a href="index.php"><strong>Acasa</strong></a></h3>
 		<ul>
-			<li><a href="" class="homeLinks">Program</a></li>
-			<li><a href="filme.php" class="homeLinks">Filme</a></li>
-			<li><a href="" class="homeLinks">Rezervare</a></li>
+			<li><a href="mainprogram.php" class="homeLinks">Program</a></li>
+			<li><a href="" class="homeLinks">Filme</a></li>
+			<li><a href="" class="homeLinks">Promotii</a></li>
 			<li><a href="" class="homeLinks">Oferte</a></li>
-			<li><a href="optiuni.html" class="homeLinks">Optiuni</a></li>
 			
 		</ul>
 		<h3><strong>Cauta in program</strong></h3>
 		<div id="searchBody" >
-			<form id="searcFilmCategory" method="get" action="program.php" name="searchform">
-				<table width="100%" cellspacing="3" cellpadding="3" border="0" style="margin:0 auto">
-				<tbody>
+		<form id="searcFilmCategory" method="get" action="program.php" name="searchform">
+			<table width="100%" cellspacing="3" cellpadding="3" border="0" style="margin:0 auto">
+			<tbody>
 				<tr><td style="text-align:left;">Localitatea</td>
 					<td style="text-align:left;">
 					<select class="textbox" style="width:95px" name="cinemaId">
@@ -104,19 +129,19 @@
 				<tr><td style="text-align:left;"> </td>
 					<td style="text-align:center;">
 						<input class="submit" type="submit" value="CAUTA"></td></tr>
-				</tbody>
-				</table>
-			</form>
-		</div> <!--searchBody-->
-	</div> <!--secondNav-->
+			</tbody>
+			</table>
+		</form>
+		</div>
+	</div>
 	
 	<div id="thirdNav" class="copyright" >
 		<span class="icon_hold">
-			<img class="images" src="images/ico_promo.gif">
+		<img class="images" src="images/ico_promo.gif">
 		</span>
 		<h3><strong>Categorii Filme</strong></h3>
 		<ul id="film_list">
-			<li ><a href="program.php?gen=actiune" class="filmsLink">Actiune</a></li>
+			<li ><a href="" class="filmsLink">Actiune</a></li>
 			<li><a href="" class="filmsLink">Animatie</a></li>
 			<li><a href="" class="filmsLink">Aventura</a></li>
 			<li><a href="" class="filmsLink">Comedie</a></li>
@@ -135,27 +160,22 @@
 			<li><a href="" class="filmsLink">Western</a></li>
 			<li><a href="" class="filmsLink">Documentar</a></li>
 		</ul>
-	</div> <!--thirdNav-->
+	</div>
+	
 	<div id="news" class="copyright">
-	<div id="selectCinema">
+		<span class="icon_hold">
+			<img id="image" src="images/newspaper.png">
+		</span>
+		<h3><strong>Acasa</strong></h3>
+			<?php all_films(); ?>
 
-		<h2> Rezervarile trebuie ridicate cu cel putin 30 minute inainte de inceperea filmului, in caz contrar vor fi anulate.<br/>
-			Pentru a evita aglomeratia de la case, va rugam sa ridicati rezervarile anticipat.</h2>
-		<h3> <strong>Selectati cinematograful:</strong></h3>
-		<table>
-		<tbody>
-			<tr><td style="text-align:center;">
-				<a href="program.php?idCinema=100" style="text-decoration:none; "><strong>Galati</strong></a></td></tr>
-			<tr><td style="text-align:center;">
-				<a href="program.php?idCinema=101" style=""><strong>Bucuresti</strong></a></td></tr>
-		</tbody>
-		</table>
-	</div><!--selectCinema-->
-	</div><!--news-->
-</div><!--mainContent-->
 
+	</div>
+	
+</div>
 <div id="footer" class="copyright">
 <h3>Copyright</h3>
 </div>
+
 </body>
 </html>

@@ -21,31 +21,39 @@ require_once 'config.php';
 		}
 	
 	}
-	
-	function filme_cinema(){
-							$idCinema=$_GET['idCinema'];
-		
-							
-							$query="select p.idProgram, f.titlu, f.gen, p.ora, f.titlu from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm=f.idFilm and p.idCinema=c.idCinema and c.idCinema='".$idCinema."' and data=CURDATE() ";
-							$result = mysql_query($query);
-							while ($row = mysql_fetch_array($result))	{
-							
-								echo '<div class="det_prog"><div class="leadin">';
-								echo  '<div class="info" style="width:314px;"><p><b>'.$row['titlu'].'</b></p> <br/><em>'.$row['gen'].'</em><p><br/><a>Detalii Film..</a></p></div>';
-								echo '<div class="rez_info" style="width:190px;"><table ><tbody><tr>';
-								echo '<td style="padding:0;margin:0;">';
-							
-										
-										echo	'<a class="btn_r" href="ReservationPage1.php?idProgram='.$row['idProgram'].' "  style="cursor:pointer; margin-top:5px;"><span>R </span></a>'.$row['ora'].'';
-								
-										echo 	'</td>';
-									
-								echo '</tr></tbody></table></div>';
-							echo '</div> </div><hr/>';
-						
-						}
-						
+
+	function filme_data(){
+		$data=$_GET['data'];
+		$query="select p.idProgram, f.titlu, f.gen, GROUP_CONCAT(p.ora SEPARATOR ', ') as ora, f.titlu from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm = f.idFilm and p.idCinema = c.idCinema and c.idCinema='" .$_GET['idCinema'] . "' and data='$data' group by f.titlu";;
+		$result=mysql_query($query);
+		while ($row = mysql_fetch_array($result)) {
+			echo '<div class="det_prog"><div class="leadin">';
+			echo '<div class="info" style="width:314px;"><p><b>' . $row['titlu'] . '</b></p> <br/><em>' . $row['gen'] . '</em><p><br/><a>Detalii Film..</a></p></div>';
+			echo '<div class="rez_info" style="width:190px;"><table ><tbody><tr>';
+			echo '<td style="padding:0;margin:0;">';
+			echo '<a class="btn_r" href="ReservationPage1.php?idProgram=' . $row['idProgram'] . ' "  style="cursor:pointer; margin-top:5px;"><span>R </span></a>' . $row['ora'] . '';
+			echo '</td>';
+			echo '</tr></tbody></table></div>';
+			echo '</div> </div><hr/>';
 	}
+}
+function filme_cinema()
+{
+    $idCinema = $_GET['idCinema'];
+    $query = "select p.idProgram, f.titlu, f.gen, GROUP_CONCAT(p.ora SEPARATOR ', ') as ora, f.titlu from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm = f.idFilm and p.idCinema = c.idCinema and c.idCinema='" . $idCinema . "' and data=CURDATE() group by f.titlu";
+    $result = mysql_query($query);
+    while ($row = mysql_fetch_array($result)) {
+        echo '<div class="det_prog"><div class="leadin">';
+        echo '<div class="info" style="width:314px;"><p><b>' . $row['titlu'] . '</b></p> <br/><em>' . $row['gen'] . '</em><p><br/><a>Detalii Film..</a></p></div>';
+        echo '<div class="rez_info" style="width:190px;"><table ><tbody><tr>';
+        echo '<td style="padding:0;margin:0;">';
+        echo '<a class="btn_r" href="ReservationPage1.php?idProgram=' . $row['idProgram'] . ' "  style="cursor:pointer; margin-top:5px;"><span>R </span></a>' . $row['ora'] . '';
+        echo '</td>';
+        echo '</tr></tbody></table></div>';
+        echo '</div> </div><hr/>';
+    }
+
+}
 
 ?>
 
@@ -65,18 +73,18 @@ require_once 'config.php';
 		<span class="icon_hold">
 		<img id="images" src="images/Phone-Icon-cinema.png">
 		</span>
-		<h4>0236 466 962</h3>
+		<h4>0236 466 962</h4>
 	</div>
 	<div id="nav" class="copyright">
 		<ul id="mainNav">
-			<li> <a href="" id="homeLink">Noutati</a></li>
-			<li><a href="" id="AboutUsLink">Despre Noi</a></li>
+			<li> <a href="noutati.php" id="homeLink">Noutati</a></li>
+			<li><a href="despre_noi.php" id="AboutUsLink">Despre Noi</a></li>
 			<li> <a href="" id="politicsLink">Politici</a></li>
-			<li><a href="" id="politicsLink">Preturi</a></li>
+			<li><a href="preturi.php" id="politicsLink">Preturi</a></li>
 			<li><a href="" id="contactUsLink">Contact</a></li>
 		</ul>
 	</div>
-	<a class="selectmap" style="background: none;margin-top:10px; float:right; margin-right:5px;" href="locatie.php">
+	<a class="selectmap" style="background: none;margin-top:10px; float:right; margin-right:5px;" href="map.php">
 		<img  alt="" src="images/harta.png">
 	</a>
 	</div><!--nav-->
@@ -87,18 +95,17 @@ require_once 'config.php';
         <input type="text" placeholder="Search here..." required>
         <button type="submit">Search</button>
     </form> 
-	<h3 style="padding-top:10px; padding-left:10px; float:left;"><strong>Acasa >></strong><strong><a href="mainprogram.php" style="text-decoration:none;">Program >></strong></a><strong> Cinematograful Galati</strong></h3>
+	<h3 style="padding-top:10px; padding-left:10px; float:left;"><strong>Acasa >></strong><strong><a href="mainprogram.php" style="text-decoration:none;">Program >></strong></a><strong><?php $locatie=$_GET['idCinema']; $query="select nume from cinema where idCinema='$locatie'"; $rez=mysql_query($query); while($row=mysql_fetch_array($rez)){echo $row['nume'];} ?></strong></h3>
 	<div id="secondNav" class="copyright">
 		<span class="icon_hold">
 			<img id="images" src="images/home_32.png">
 		</span>
-		<h3 ><a href="index.html"><strong>Acasa</strong></a></h3>
+		<h3 ><a href="index.php"><strong>Acasa</strong></a></h3>
 		<ul>
 			<li><a href="mainprogram.php" class="homeLinks">Program</a></li>
-			<li><a href="" class="homeLinks">Filme</a></li>
-			<li><a href="" class="homeLinks">Rezervare</a></li>
+			<li><a href="filme.php" class="homeLinks">Filme</a></li>
+			<li><a href="" class="homeLinks">Promotii</a></li>
 			<li><a href="" class="homeLinks">Oferte</a></li>
-			<li><a href="optiuni.html" class="homeLinks">Optiuni</a></li>
 			
 		</ul>
 		<h3><strong>Cauta in program</strong></h3>
@@ -108,10 +115,10 @@ require_once 'config.php';
 				<tbody>
 				<tr><td style="text-align:left;">Localitatea</td>
 					<td style="text-align:left;">
-					<select class="textbox" style="width:95px" name="cinemaId">
+					<select class="textbox" style="width:95px" name="loc">
 							<option class="textbox" value="">selecteaza</option>
-							<option class="textbox" value="1808">Galati</option>
-							<option class="textbox" value="1809">Bucuresti</option>
+							<option class="textbox" value="100">Galati</option>
+							<option class="textbox" value="101">Bucuresti</option>
 					</select></td></tr>
 				<tr><td style="text-align:left;">Categorie</td>
 					<td style="text-align:left;">
@@ -196,25 +203,25 @@ require_once 'config.php';
 		<div id="menu_program">
 			<ul>
 			<li id="current_program">
-				<a href=""><span> <?php echo "Sa ".date("Y/m/d", $today); ?> </span></a></li>
+				<a href="?data=<?php echo date("Y/m/d", $today); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span> <?php echo  'Sa'.date("Y/m/d", $today); ?> </span></a></li>
+			<li >
+				<a href="?data=<?php echo date("Y/m/d", $tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Du ".date("m/d", $tomorrow); ?> </span></a></li>
+			<li> 
+				<a href="?data=<?php echo date("Y/m/d", $day_after_tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Lu ".date("m/d", $day_after_tomorrow); ?> </span></a></li>
 			<li>
-				<a href=""><span><?php  echo "Du ".date("m/d", $tomorrow); ?> </span></a></li>
+				<a href="?data=<?php echo date("Y/m/d", $other_day); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Ma ".date("m/d", $other_day); ?> </span></a></li>
 			<li>
-				<a href=""><span><?php  echo "Lu ".date("m/d", $day_after_tomorrow); ?> </span></a></li>
+				<a href="?data=<?php echo date("Y/m/d", $other_day_1); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Mi ".date("m/d", $other_day_1); ?></span></a></li>
 			<li>
-				<a href=""><span><?php  echo "Ma ".date("m/d", $other_day); ?> </span></a></li>
+				<a href="?data=<?php echo date("Y/m/d", $other_day_2); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Jo ".date("m/d", $other_day_2); ?></span></a></li>
 			<li>
-				<a href=""><span><?php  echo "Mi ".date("m/d", $other_day_1); ?></span></a></li>
-			<li>
-				<a href=""><span><?php  echo "Jo ".date("m/d", $other_day_2); ?></span></a></li>
-			<li>
-				<a href=""><span><?php  echo "Vi ".date("m/d", $other_day_3); ?></span></a></li>
+				<a href="?data=<?php echo date("Y/m/d", $other_day_3); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Vi ".date("m/d", $other_day_3); ?></span></a></li>
 			</ul>
 			
 		</div>
 				
 				<?php
-					if (isset($_GET['gen'])) 
+					if (isset($_GET['gen']))
 								$linkchoice=$_GET['gen'];
 						else $linkchoice='';
 
@@ -241,9 +248,10 @@ require_once 'config.php';
 					
 					}
 					?>
-					<?php
+		
+								<?php
 					
-					   if (isset($_GET['idCinema'])) 
+					   if (isset($_GET['idCinema']) && !isset($_GET['data'])) 
 								$linkchoice=$_GET['idCinema'];
 						else $linkchoice='';
 
@@ -259,7 +267,34 @@ require_once 'config.php';
 					default :
 					echo '';
 					}
+					?>
+				
+				<?php
 					
+					if (isset($_GET['data']) &&isset($_GET['idCinema'])) 
+							$link=$_GET['data'];
+						
+					else 
+						$link='';
+					
+					switch($link) {
+					case '2013/05/20':
+						filme_data();
+						break;
+					case '2013/05/21':
+						filme_data();
+						break;	
+						
+					case '2013/05/22':
+						filme_data();
+						break;	
+					
+					case '2013/05/23':
+						filme_data();
+						break;	
+					default:
+					echo '';
+					}
 					
 				?>
 				
