@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Data Source" product="MySQL" version="5.5.31-0ubuntu0.13.04.1" jdbc-version="4.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.22 ( Revision: ${bzr.revision-id} )" uuid="52a42a96-417c-4452-b2c5-8869fbaae2b2">
+    <extra-name-characters>#@</extra-name-characters>
+    <identifier-quote-string>`</identifier-quote-string>
+    <synchronize>true</synchronize>
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://localhost/cinemadb</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>dfd8dfc5dfc5dfde</user-password>
+    <schema-pattern>cinemadb.*</schema-pattern>
+    <default-schemas>cinemadb.*</default-schemas>
+    <default-dialect>MySQL</default-dialect>
+    <libraries>
+      <library>
+        <url>jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.22-bin.jar!/</url>
+      </library>
+      <library>
+        <url>file://$PROJECT_DIR$/lib/mysql-connector-license.txt</url>
+      </library>
+    </libraries>
+    <schema name="" catalog="cinemadb"/>
+    <table name="cinema" schema="" catalog="cinemadb" type="TABLE">
+      <column name="idCinema" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nume" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idCinema"/>
+      <exported-key name="program_ibfk_2" table="program" schema="" catalog="cinemadb" columns="idCinema"/>
+    </table>
+    <table name="filme" schema="" catalog="cinemadb" type="TABLE">
+      <column name="idFilm" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="titlu" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12"/>
+      <column name="gen" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="an" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="timp_desf" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="descriere" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="idFilm"/>
+      <exported-key name="program_ibfk_1" table="program" schema="" catalog="cinemadb" columns="idFilm"/>
+    </table>
+    <table name="program" schema="" catalog="cinemadb" type="TABLE">
+      <column name="idProgram" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="idFilm" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="idCinema" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="data" sqlType="DATE" length="10" precision="0" nullable="true" jdbcType="91"/>
+      <column name="ora" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idProgram"/>
+      <foreign-key name="program_ibfk_1" columns="idFilm" ref-table="filme" ref-schema="" ref-catalog="cinemadb" ref-columns="idFilm" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="program_ibfk_2" columns="idCinema" ref-table="cinema" ref-schema="" ref-catalog="cinemadb" ref-columns="idCinema" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+  </data-source>
+</component>
