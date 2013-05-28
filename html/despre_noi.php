@@ -23,7 +23,7 @@
 	<li><a href="" id="contactUsLink">Contact</a></li>
 </ul>
 </div>
-	<a class="selectmap" style="background: none;margin-top:10px; float:right; margin-right:5px;" href="locatie.php">
+	<a class="selectmap" style="background: none;margin-top:10px; float:right; margin-right:5px;" href="map.php">
 		<img  alt="" src="images/harta.png">
 	</a>
 </div><!--nav-->
@@ -42,9 +42,9 @@
 		<h3><a href="index.php"><strong>Acasa</strong></a></h3>
 		<ul>
 			<li><a href="mainprogram.php" class="homeLinks">Program</a></li>
-			<li><a href="" class="homeLinks">Filme</a></li>
-			<li><a href="" class="homeLinks">Promotii</a></li>
-			<li><a href="" class="homeLinks">Oferte</a></li>
+			<li><a href="filme.php" class="homeLinks">Filme</a></li>
+			<li><a href="promotii.php" class="homeLinks">Promotii</a></li>
+			<li><a href="oferte.php" class="homeLinks">Oferte</a></li>
 			
 		</ul>
 		

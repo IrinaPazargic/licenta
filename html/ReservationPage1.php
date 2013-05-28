@@ -17,6 +17,30 @@
 <head>
 <link href="reservation.css" rel="stylesheet" type="text/css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    function CheckTicketsQty(SelectBoxIds,Message)
+    {
+        var qty = 0;
+        var Ids = SelectBoxIds.split(",");
+        for(var i=0;i<Ids.length;i++)
+        {
+            var SelectObj = document.getElementById(Ids[i]);
+            qty += parseInt(SelectObj.options[SelectObj.selectedIndex].value);
+        }
+
+        if(qty > 0)
+        {
+            return true;
+        }
+        alert(Message);
+        return false;
+    }
+
+    function Validate(){
+            switch(document.getElementById('none').value) {
+                 case "":case "0":return CheckTicketsQty("numbers","Nu au fost selectate bilete.Va rugam selectati biletele");
+            }
+     }
+
 </script>
 </head>
 <body>
@@ -76,8 +100,8 @@
 								</th>
 								<th style=" border: 1px solid black;color: red;font-family: Verdana,Arial,Helvetica,sans-serif;text-shadow: 0.01em 0.01em 0.01em #000000;text-align:left;" >
 									Cantitate
-								</th>
-							</tr>
+						   		</th>
+				            </tr>
 							
 							
 							<tr>
@@ -89,7 +113,8 @@
 								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=1"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								<select>
+								<select class="numbers">
+                                        <option id="none" value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -113,7 +138,8 @@
 								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=2"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								<select>
+								<select class="numbers">
+                                        <option id="none" value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -136,7 +162,8 @@
 								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=3"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								<select>
+								<select class="numbers">
+                                        <option  id="none"  value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -154,13 +181,15 @@
 							<tr>
 									<td style="border: 1px solid black;">&nbsp</td>
 								<td style="border: 1px solid black;">
-								<?php require_once 'config.php'; $query="select tip from reduceri where idReducere=4"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['tip'];?>
+								<?php require_once 'config.php'; $query="select tip from reduceri
+								where idReducere=4"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['tip'];?>
 								</td>
 								<td style="border: 1px solid black;">
 								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=4"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								<select>
+								<select class="numbers">
+                                        <option  id="none"  value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -179,7 +208,7 @@
 						</tbody>
 					</table>
 					</p>
-				<td>
+				</td>
 			</tr>
 			<tr>
 				<td>
@@ -190,7 +219,8 @@
 			<tr >
 				<td align="right" style="padding-top:10px;">
 					<input id="automat" style="border-width:0px; color:transparent;" type="image" src="images/NextNoSeats.jpg"/>
-					<a href="ReservationPage2.php?idProgram=<?php $link =$_GET['idProgram']; echo $link; ?>"><input id="manual" style="border-width:0px;" type="image" src="images/NextSeat.jpg"/></a>
+					<a href="ReservationPage2.php?idProgram=<?php $link =$_GET['idProgram']; echo $link; ?>">
+                        <input id="manual" style="border-width:0px;" type="image" src="images/NextSeat.jpg"/></a>
 				</td>
 			</tr>
 	</table> 

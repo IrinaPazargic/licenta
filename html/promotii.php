@@ -12,7 +12,7 @@
 		<span class="icon_hold">
 		<img id="images" src="images/Phone-Icon-cinema.png">
 		</span>
-		<h4>0236 466 962</h3>
+		<h4>0236 466 962</h4>
 	</div>
 	<div id="nav" class="copyright">
 		<ul id="mainNav">
@@ -34,17 +34,17 @@
         <input type="text" placeholder="Search here..." required>
         <button type="submit">Search</button>
     </form> 
-	<h3 style="padding-top:10px; padding-left:10px; float:left;"><a href="index.html" style="text-decoration:none;"><strong>Acasa >></strong></a> <strong>Program</strong> </h3>
+	<h3 style="padding-top:10px; padding-left:10px; float:left;"><a href="index.php" style="text-decoration:none;"><strong>Acasa >></strong></a> <strong>Program</strong> </h3>
 	<div id="secondNav" class="copyright">
 		<span class="icon_hold">
 			<img id="images" src="images/home_32.png">
 		</span>
-		<h3 ><a href="index.html"><strong>Acasa</strong></a></h3>
+		<h3 ><a href="index.php"><strong>Acasa</strong></a></h3>
 		<ul>
-			<li><a href="" class="homeLinks">Program</a></li>
+			<li><a href="mainprogram.php" class="homeLinks">Program</a></li>
 			<li><a href="filme.php" class="homeLinks">Filme</a></li>
 			<li><a href="promotii.php" class="homeLinks">Promotii</a></li>
-			<li><a href="" class="homeLinks">Oferte</a></li>
+			<li><a href="oferte.php" class="homeLinks">Oferte</a></li>
 			
 		</ul>
 		<h3><strong>Cauta in program</strong></h3>
@@ -108,33 +108,7 @@
 			</form>
 		</div> <!--searchBody-->
 	</div> <!--secondNav-->
-	
-	<div id="thirdNav" class="copyright" >
-		<span class="icon_hold">
-			<img class="images" src="images/ico_promo.gif">
-		</span>
-		<h3><strong>Categorii Filme</strong></h3>
-		<ul id="film_list">
-			<li ><a href="program.php?gen=actiune" class="filmsLink">Actiune</a></li>
-			<li><a href="" class="filmsLink">Animatie</a></li>
-			<li><a href="" class="filmsLink">Aventura</a></li>
-			<li><a href="" class="filmsLink">Comedie</a></li>
-			<li><a href="" class="filmsLink">Crima</a></li>
-			<li><a href="" class="filmsLink">Drama</a></li>
-			<li><a href="" class="filmsLink">Familie</a></li>
-			<li><a href="" class="filmsLink">Fantastic</a></li>
-			<li><a href="" class="filmsLink">Horror</a></li>
-			<li><a href="" class="filmsLink">Istoric</a></li>
-			<li><a href="" class="filmsLink">Mister</a></li>
-			<li><a href="" class="filmsLink">Muzical</a></li>
-			<li><a href="" class="filmsLink">Razboi</a></li>
-			<li><a href="" class="filmsLink">Romantic</a></li>
-			<li><a href="" class="filmsLink">SF</a></li>
-			<li><a href="" class="filmsLink">Thriller</a></li>
-			<li><a href="" class="filmsLink">Western</a></li>
-			<li><a href="" class="filmsLink">Documentar</a></li>
-		</ul>
-	</div> <!--thirdNav-->
+
 	<div id="news" class="copyright">
 	<div id="selectCinema">
 		Promotia de vara!!!

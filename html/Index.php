@@ -28,7 +28,7 @@ require_once 'config.php';
 	<span class="icon_hold">
 	<img id="images" src="images/Phone-Icon-cinema.png">
 	</span>
-	<h4>0236 466 962</h3>
+	<h4>0236 466 962</h4>
 	</div>
 <div id="nav" class="copyright">
 <ul id="mainNav">
@@ -124,32 +124,7 @@ require_once 'config.php';
 		</div>
 	</div>
 	
-	<div id="thirdNav" class="copyright" >
-		<span class="icon_hold">
-		<img class="images" src="images/ico_promo.gif">
-		</span>
-		<h3><strong>Categorii Filme</strong></h3>
-		<ul id="film_list">
-			<li ><a href="" class="filmsLink">Actiune</a></li>
-			<li><a href="" class="filmsLink">Animatie</a></li>
-			<li><a href="" class="filmsLink">Aventura</a></li>
-			<li><a href="" class="filmsLink">Comedie</a></li>
-			<li><a href="" class="filmsLink">Crima</a></li>
-			<li><a href="" class="filmsLink">Drama</a></li>
-			<li><a href="" class="filmsLink">Familie</a></li>
-			<li><a href="" class="filmsLink">Fantastic</a></li>
-			<li><a href="" class="filmsLink">Horror</a></li>
-			<li><a href="" class="filmsLink">Istoric</a></li>
-			<li><a href="" class="filmsLink">Mister</a></li>
-			<li><a href="" class="filmsLink">Muzical</a></li>
-			<li><a href="" class="filmsLink">Razboi</a></li>
-			<li><a href="" class="filmsLink">Romantic</a></li>
-			<li><a href="" class="filmsLink">SF</a></li>
-			<li><a href="" class="filmsLink">Thriller</a></li>
-			<li><a href="" class="filmsLink">Western</a></li>
-			<li><a href="" class="filmsLink">Documentar</a></li>
-		</ul>
-	</div>
+
 	
 	<div id="news" class="copyright">
 		<span class="icon_hold">
@@ -166,8 +141,8 @@ require_once 'config.php';
 			<p><strong>Gen: Actiune</strong></p>
 			<br/>
 			<hr class="copyright">
-			<p class="copyright">Regia: Florin Piersic Jr.<br/>In rolurile principale:Cristian Ioan Gutau, Florin Piersic Jr.Doi asasini platiti îsi 
-			asteapta viitoarea victima într-un apartament gol. Orele se scurg. Tensiunea creste...<br/><a href="" class="detailsLink" >Detalii film</a></p>
+			<p class="copyright">Regia: Florin Piersic Jr.<br/>In rolurile principale:Cristian Ioan Gutau, Florin Piersic Jr.Doi asasini platiti ï¿½si 
+			asteapta viitoarea victima ï¿½ntr-un apartament gol. Orele se scurg. Tensiunea creste...<br/><a href="" class="detailsLink" >Detalii film</a></p>
 		</div>
 			<div class="newsList">
 			<span class="icon_hold">
@@ -181,7 +156,7 @@ require_once 'config.php';
 			<p class="copyright">Regia: Ric Roman Waugh<br/>In rolurile principale:Dwayne Johnson, Barry Pepper, Susan Sarandon, Jon Bernthal
 				Filmul este inspirat din fapte reale si spune povestea unui tata al carui fiu este acuzat pe nedrept de trafic de droguri, 
 				primind astfel o pedeapsa de 10 ani. Disperat sa-si salveze fiul, tatal face un pact cu politia, fiind de acord sa lucreze ca agent sub acoperire 
-				într-un cartel de droguri....<br/><a href="" class="detailsLink" >Detalii film</a></p>
+				ï¿½ntr-un cartel de droguri....<br/><a href="" class="detailsLink" >Detalii film</a></p>
 		</div>
 		
 

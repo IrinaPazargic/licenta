@@ -54,21 +54,16 @@
 		<span class="icon_hold">
 			<img id="images" src="images/ico_noutati.gif">
 		</span>
-		<h3><strong>Noutati</strong></h3>
-		<p>Din data de 7 decembrie, te asteptam in cel mai nou multiplex din reteaua <strong>Cinema City, Cinema City Ploiesti</strong> din cadrul Ploiesti Shopping City!<p><br/>
+		<h3><strong>Oferte</strong></h3>
+        <div>
+            <ul style="padding:10px;list-style-type: none; width:90%;">
+                <li style="float:left; text-decoration: none; padding-right:10px;"><a href="meniuri.php">Meniuri</a> </li>
+                <li style="float:left; padding-right:10px;"><a href="inchirieri.php">Inchirieri</a></li>
+                <li style="float:left;"><a href="grupuri.php">Grupuri</a></li>
+            </ul>
 
-		<p>Ti-am pregatit:</p><br>
+        </div>
 
-		<p> - 12 sali, toate digitale, din care 7 sali 3D;</p> <br/>
-
-		<p> - 2087 locuri;</p><br/>
-
-		<p> - cafenea de incinta unde poti savura cele mai bune produse din cafea, racoritoare si o selectie delicioasa de prajituri;</p><br/>
-
-		<p> - cele mai noi filme si blockbustere, lansate in acelasi timp cu premiera lor nationala. </p>
-		
-		
-	
 	</div>
 	
 </div>

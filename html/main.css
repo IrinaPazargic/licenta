@@ -86,7 +86,7 @@ clear: both;
 	clear:none;
 	background-color:#FFFFFF;
 	overflow:auto;
-	margin-top:-300px;
+	margin-top: 20px;
 	margin-right:10px;
 }
 
@@ -496,7 +496,7 @@ clear: both;
 #selectCinema{
 	height:auto;
 	width:95%;
-	margin:10px auto;
+	margin:10px ;
 }
 #selectCinema h2{
 	margin: 10px auto;

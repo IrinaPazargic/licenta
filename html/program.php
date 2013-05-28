@@ -11,16 +11,7 @@ require_once 'config.php';
 		$other_day_3= mktime(0,0,0,date("m"),date("d") + 6 ,date("Y"));
 	
 	
-	function filme(){
-	$gen=$_GET['gen'];
-	$query="select titlu, gen from cinemadb.filme where gen='$gen'";
-	$result=mysql_query($query);
-	
-	while ($row=mysql_fetch_array($result)){
-			echo "<p><b>$row[titlu]</b> </p><br/> <em>$row[gen]</em> </br><hr/>";
-		}
-	
-	}
+
 
 	function filme_data(){
 		$data=$_GET['data'];
@@ -169,6 +160,81 @@ function filme_cinema()
 			</form>
 		</div> <!--searchBody-->
 	</div> <!--secondNav-->
+
+    <div id="news" class="copyright">
+   	<div id="program_film">
+
+   		<h3><strong> Program - <?php require_once 'config.php'; $link=$_GET['idCinema']; $query="select nume from cinema where idCinema='$link'"; $rez=mysql_query($query); $row=mysql_fetch_assoc($rez); echo $row['nume']; ?> </strong></h3>
+   		<div id="menu_program">
+   			<ul>
+   			<li id="current_program">
+   				<a href="?data=<?php echo date("Y/m/d", $today); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span> <?php echo  'Sa'.date("Y/m/d", $today); ?> </span></a></li>
+   			<li >
+   				<a href="?data=<?php echo date("Y/m/d", $tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Du ".date("m/d", $tomorrow); ?> </span></a></li>
+   			<li>
+   				<a href="?data=<?php echo date("Y/m/d", $day_after_tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Lu ".date("m/d", $day_after_tomorrow); ?> </span></a></li>
+   			<li>
+   				<a href="?data=<?php echo date("Y/m/d", $other_day); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Ma ".date("m/d", $other_day); ?> </span></a></li>
+   			<li>
+   				<a href="?data=<?php echo date("Y/m/d", $other_day_1); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Mi ".date("m/d", $other_day_1); ?></span></a></li>
+   			<li>
+   				<a href="?data=<?php echo date("Y/m/d", $other_day_2); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Jo ".date("m/d", $other_day_2); ?></span></a></li>
+   			<li>
+   				<a href="?data=<?php echo date("Y/m/d", $other_day_3); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Vi ".date("m/d", $other_day_3); ?></span></a></li>
+   			</ul>
+
+   		</div>
+
+        <?php
+            if (isset($_GET['idCinema']) && !isset($_GET['data']))
+   					$linkchoice=$_GET['idCinema'];
+   					else $linkchoice='';
+
+   					switch($linkchoice){
+
+   					case '100' :
+   						filme_cinema();
+   						break;
+   					case '101' :
+   						filme_cinema();
+   						break;
+
+   					default :
+   					echo '';
+   					}
+   					?>
+
+   				<?php
+
+   					if (isset($_GET['data']) &&isset($_GET['idCinema']))
+   							$link=$_GET['data'];
+
+   					else
+   						$link='';
+
+   					switch($link) {
+   					case '2013/05/20':
+   						filme_data();
+   						break;
+   					case '2013/05/21':
+   						filme_data();
+   						break;
+
+   					case '2013/05/22':
+   						filme_data();
+   						break;
+
+   					case '2013/05/23':
+   						filme_data();
+   						break;
+   					default:
+   					echo '';
+   					}
+
+   				?>
+
+   	</div><!--programFilm-->
+   	</div><!--news-->
 	
 	<div id="thirdNav" class="copyright" >
 		<span class="icon_hold">
@@ -176,130 +242,27 @@ function filme_cinema()
 		</span>
 		<h3><strong>Categorii Filme</strong></h3>
 		<ul id="film_list">
-			<li ><a href="?gen=actiune" class="filmsLink">Actiune</a></li>
-			<li><a href="?gen=animatie" class="filmsLink">Animatie</a></li>
-			<li><a href="?gen=aventura" class="filmsLink">Aventura</a></li>
-			<li><a href="?gen=comedie" class="filmsLink">Comedie</a></li>
-			<li><a href="?gen=crima" class="filmsLink">Crima</a></li>
-			<li><a href="?gen=drama" class="filmsLink">Drama</a></li>
-			<li><a href="?gen=familie" class="filmsLink">Familie</a></li>
-			<li><a href="?gen=fantastic" class="filmsLink">Fantastic</a></li>
-			<li><a href="?gen=horror" class="filmsLink">Horror</a></li>
-			<li><a href="?gen=istoric" class="filmsLink">Istoric</a></li>
-			<li><a href="?gen=mister" class="filmsLink">Mister</a></li>
-			<li><a href="?gen=muzical" class="filmsLink">Muzical</a></li>
-			<li><a href="?gen=razboi" class="filmsLink">Razboi</a></li>
-			<li><a href="?gen=romantic" class="filmsLink">Romantic</a></li>
-			<li><a href="?gen=sf" class="filmsLink">SF</a></li>
-			<li><a href="?gen=thriller" class="filmsLink">Thriller</a></li>
-			<li><a href="?gen=western" class="filmsLink">Western</a></li>
-			<li><a href="?gen=documentar" class="filmsLink">Documentar</a></li>
+			<li ><a href="filme.php?gen=actiune" class="filmsLink">Actiune</a></li>
+			<li><a href="filme.php?gen=animatie" class="filmsLink">Animatie</a></li>
+			<li><a href="filme.php?gen=aventura" class="filmsLink">Aventura</a></li>
+			<li><a href="filme.php?gen=comedie" class="filmsLink">Comedie</a></li>
+			<li><a href="filme.php?gen=crima" class="filmsLink">Crima</a></li>
+			<li><a href="filme.php?gen=drama" class="filmsLink">Drama</a></li>
+			<li><a href="filme.php?gen=familie" class="filmsLink">Familie</a></li>
+			<li><a href="filme.php?gen=fantastic" class="filmsLink">Fantastic</a></li>
+			<li><a href="filme.php?gen=horror" class="filmsLink">Horror</a></li>
+			<li><a href="filme.php?gen=istoric" class="filmsLink">Istoric</a></li>
+			<li><a href="filme.php?gen=mister" class="filmsLink">Mister</a></li>
+			<li><a href="filme.php?gen=muzical" class="filmsLink">Muzical</a></li>
+			<li><a href="filme.php?gen=razboi" class="filmsLink">Razboi</a></li>
+			<li><a href="filme.php?gen=romantic" class="filmsLink">Romantic</a></li>
+			<li><a href="filme.php?gen=sf" class="filmsLink">SF</a></li>
+			<li><a href="filme.php?gen=thriller" class="filmsLink">Thriller</a></li>
+			<li><a href="filme.php?gen=western" class="filmsLink">Western</a></li>
+			<li><a href="filme.php?gen=documentar" class="filmsLink">Documentar</a></li>
 		</ul>
 	</div> <!--thirdNav-->
-	<div id="news" class="copyright">
-	<div id="program_film">
-		
-		<h3><strong> Program - Galati </strong></h3>
-		<div id="menu_program">
-			<ul>
-			<li id="current_program">
-				<a href="?data=<?php echo date("Y/m/d", $today); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span> <?php echo  'Sa'.date("Y/m/d", $today); ?> </span></a></li>
-			<li >
-				<a href="?data=<?php echo date("Y/m/d", $tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Du ".date("m/d", $tomorrow); ?> </span></a></li>
-			<li> 
-				<a href="?data=<?php echo date("Y/m/d", $day_after_tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Lu ".date("m/d", $day_after_tomorrow); ?> </span></a></li>
-			<li>
-				<a href="?data=<?php echo date("Y/m/d", $other_day); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Ma ".date("m/d", $other_day); ?> </span></a></li>
-			<li>
-				<a href="?data=<?php echo date("Y/m/d", $other_day_1); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Mi ".date("m/d", $other_day_1); ?></span></a></li>
-			<li>
-				<a href="?data=<?php echo date("Y/m/d", $other_day_2); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Jo ".date("m/d", $other_day_2); ?></span></a></li>
-			<li>
-				<a href="?data=<?php echo date("Y/m/d", $other_day_3); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Vi ".date("m/d", $other_day_3); ?></span></a></li>
-			</ul>
-			
-		</div>
-				
-				<?php
-					if (isset($_GET['gen']))
-								$linkchoice=$_GET['gen'];
-						else $linkchoice='';
 
-					switch($linkchoice){
-
-					case 'actiune' :
-						filme();
-						break;
-						
-					case 'drama' :
-						filme();
-						break;
-						
-					case 'comedie' :
-						filme();
-						break;
-						
-					case 'familie' :
-						filme();
-						break;
-						
-					default :
-					echo '';
-					
-					}
-					?>
-		
-								<?php
-					
-					   if (isset($_GET['idCinema']) && !isset($_GET['data'])) 
-								$linkchoice=$_GET['idCinema'];
-						else $linkchoice='';
-
-					switch($linkchoice){
-
-					case '100' :
-						filme_cinema();
-						break;
-					case '101' :
-						filme_cinema();
-						break;
-
-					default :
-					echo '';
-					}
-					?>
-				
-				<?php
-					
-					if (isset($_GET['data']) &&isset($_GET['idCinema'])) 
-							$link=$_GET['data'];
-						
-					else 
-						$link='';
-					
-					switch($link) {
-					case '2013/05/20':
-						filme_data();
-						break;
-					case '2013/05/21':
-						filme_data();
-						break;	
-						
-					case '2013/05/22':
-						filme_data();
-						break;	
-					
-					case '2013/05/23':
-						filme_data();
-						break;	
-					default:
-					echo '';
-					}
-					
-				?>
-				
-	</div><!--selectCinema-->
-	</div><!--news-->
 </div><!--mainContent-->
 
 <div id="footer" class="copyright">
