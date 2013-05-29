@@ -1,3 +1,19 @@
+<?php
+require_once 'config.php';
+
+
+		$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
+		$tomorrow= mktime(0,0,0,date("m"),date("d") + 1 ,date("Y"));
+		$day_after_tomorrow=mktime(0,0,0,date("m"),date("d") + 2 ,date("Y"));
+		$other_day= mktime(0,0,0,date("m"),date("d") + 3 ,date("Y"));
+		$other_day_1= mktime(0,0,0,date("m"),date("d") + 4 ,date("Y"));
+		$other_day_2= mktime(0,0,0,date("m"),date("d") + 5 ,date("Y"));
+		$other_day_3= mktime(0,0,0,date("m"),date("d") + 6 ,date("Y"));
+
+?>
+
+
+
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -91,15 +107,13 @@
 				<tr><td style="text-align:left;">Data</td>
 					<td style="text-align:left;">
 					<select class="textbox" style="width:95px" name="zi">
-						<option value="28.02">Joi 28.02</option>
-						<option value="01.03">Vineri 01.03</option>
-						<option value="02.03">Sambata 02.03</option>
-						<option value="03.03">Duminica 03.03</option>
-						<option value="04.03">Luni 04.03</option>
-						<option value="05.03">Marti 05.03</option>
-						<option value="06.03">Miercuri 06.03</option>
-						<option value="07.03">Joi 07.03</option>
-						<option value="08.03">Vineri 08.03</option>
+						<option value="<?php echo date("Y/m/d", $today); ?>"> <?php echo  date("Y/m/d", $today); ?></option>
+						<option value="<?php echo date("Y/m/d", $tomorrow); ?>"><?php echo  date("Y/m/d", $tomorrow); ?></option>
+						<option value="<?php echo date("Y/m/d", $day_after_tomorrow); ?>"><?php echo date("Y/m/d", $day_after_tomorrow); ?></option>
+						<option value="<?php echo date("Y/m/d", $other_day); ?>"><?php echo date("Y/m/d", $other_day); ?></option>
+						<option value="<?php echo date("Y/m/d", $other_day_1); ?>"><?php echo date("Y/m/d", $other_day_1); ?></option>
+						<option value="<?php echo date("Y/m/d", $other_day_2); ?>"><?php echo date("Y/m/d", $other_day_2); ?></option>
+						<option value="<?php echo date("Y/m/d", $other_day_3); ?>"><?php echo date("Y/m/d", $other_day_3); ?></option>
 					</select></td></tr>
 				<tr><td style="text-align:left;"> </td>
 					<td style="text-align:center;">

@@ -1,50 +1,58 @@
 <?php
 	require_once 'config.php';
 
+    $query="select tip, pret from reduceri where idReducere=1";
+    $rez=mysql_query($query);
+    $row= mysql_fetch_array($rez);
+
+    $query1="select tip, pret from reduceri where idReducere=2";
+    $rez1=mysql_query($query1);
+    $row1= mysql_fetch_array($rez1);
+
+    $query2="select tip, pret from reduceri where idReducere=3";
+    $rez2=mysql_query($query2);
+    $row2= mysql_fetch_array($rez2);
+
+    $query3="select tip, pret from reduceri where idReducere=4";
+    $rez3=mysql_query($query3);
+    $row3= mysql_fetch_array($rez3);
+
+    $rezervare = detalii_rezervare();
+
+    $_SESSION['rezervare'] = $rezervare;
+
 	function detalii_rezervare(){
 		$idProgram=$_GET['idProgram'];
-		$query="select f.titlu, p.data, p.ora, c.nume from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm=f.idFilm and c.idCinema=p.idCinema and  p.idProgram='".$idProgram."'";
+		$query="select
+		            f.titlu, p.data, p.ora, c.nume
+                from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c
+                where p.idFilm=f.idFilm and c.idCinema=p.idCinema and  p.idProgram='" . $idProgram . "'";
 		$result=mysql_query($query);
-		while($row=mysql_fetch_object($result)){
-			echo ''.$row->titlu.'  '.$row->data.' '. $row->ora.' ';
-			echo '<b>Cinematograful:</b> '.$row->nume.'';
-			
-		}
-	}
+        $row = mysql_fetch_object($result);
+        $rezervare = new Rezervare();
+        $rezervare->film = $row->titlu . ' ' . $row->data . ' ' . $row->ora;
+        $rezervare->cinema = $row->nume;
+        return $rezervare;
+    }
 ?>
 
 <html>
 <head>
 <link href="reservation.css" rel="stylesheet" type="text/css"/>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-    function CheckTicketsQty(SelectBoxIds,Message)
-    {
-        var qty = 0;
-        var Ids = SelectBoxIds.split(",");
-        for(var i=0;i<Ids.length;i++)
-        {
-            var SelectObj = document.getElementById(Ids[i]);
-            qty += parseInt(SelectObj.options[SelectObj.selectedIndex].value);
-        }
-
-        if(qty > 0)
-        {
-            return true;
-        }
-        alert(Message);
-        return false;
-    }
-
-    function Validate(){
-            switch(document.getElementById('none').value) {
-                 case "":case "0":return CheckTicketsQty("numbers","Nu au fost selectate bilete.Va rugam selectati biletele");
-            }
-     }
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("button").click(function () {
+            $("#content").load("ReservationPage2.php");
+        });
+    });
 </script>
+
 </head>
 <body>
-	<div>
+
+
+	<div id="content">
 	<table cellspacing="0" cellpadding="0" style="width:100%; border-width:0px;">
 			<tr>
 				<td>
@@ -69,11 +77,8 @@
 								<tr>
 									<td align="left">
 										<div id="results">
-										<?php detalii_rezervare();?>
-										<span id="movie"><a href=""> </a></span>
-										<span id="data"><a href=""> </a></span>
-										<span id="ora"><a href=""> </a></span>
-										<span id="cinema"><a href=""> </a></span>
+                                            <p><?= $rezervare->film;?></p>
+                                            <p>Cinema: <?= $rezervare->cinema;?></p>
 										</div>
 									</td>
 								</tr>
@@ -107,14 +112,14 @@
 							<tr>
 								<td style="border: 1px solid black;">&nbsp;</td>
 								<td style="border: 1px solid black;">
-								<?php require_once 'config.php'; $query="select tip from reduceri where idReducere=1"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['tip'];?>
+								<span id="tip"><?= $row['tip'];?></span>
 								</td>
 								<td style="border: 1px solid black;">
-								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=1"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
+								<span id="pret"><?= $row['pret'];?></span>
 								</td>
 								<td style="border: 1px solid black;">
-								<select class="numbers">
-                                        <option id="none" value="0">0</option>
+								<select id="nr_bilete">
+                                        <option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
@@ -132,10 +137,10 @@
 							<tr>
 									<td style="border: 1px solid black;">&nbsp;</td>
 								<td style="border: 1px solid black;">
-								<?php require_once 'config.php'; $query="select tip from reduceri where idReducere=2"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['tip'];?>
+								<?= $row1['tip'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=2"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
+								<?= $row1['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
 								<select class="numbers">
@@ -156,10 +161,10 @@
 							<tr>
 								<td style="border: 1px solid black;">&nbsp;</td>
 								<td style="border: 1px solid black;">
-								<?php require_once 'config.php'; $query="select tip from reduceri where idReducere=3"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['tip'];?>
+								<?= $row2['tip'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=3"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
+								<?= $row2['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
 								<select class="numbers">
@@ -181,11 +186,10 @@
 							<tr>
 									<td style="border: 1px solid black;">&nbsp</td>
 								<td style="border: 1px solid black;">
-								<?php require_once 'config.php'; $query="select tip from reduceri
-								where idReducere=4"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['tip'];?>
+								<?= $row3['tip'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								<?php require_once 'config.php'; $query="select pret from reduceri where idReducere=4"; $rez=mysql_query($query);$row    = mysql_fetch_assoc($rez); echo $row['pret'];?>
+								<?= $row3['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
 								<select class="numbers">
@@ -219,8 +223,8 @@
 			<tr >
 				<td align="right" style="padding-top:10px;">
 					<input id="automat" style="border-width:0px; color:transparent;" type="image" src="images/NextNoSeats.jpg"/>
-					<a href="ReservationPage2.php?idProgram=<?php $link =$_GET['idProgram']; echo $link; ?>">
-                        <input id="manual" style="border-width:0px;" type="image" src="images/NextSeat.jpg"/></a>
+					<button >
+                        <input  style="border-width:0px;" type="image" src="images/NextSeat.jpg" /></button>
 				</td>
 			</tr>
 	</table> 

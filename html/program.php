@@ -46,6 +46,31 @@ function filme_cinema()
 
 }
 
+function detalii_film(){
+
+    $idFilm=$_GET['idFilm'];
+    $query="select p.idProgram, f.imagine, f.titlu, f.gen, f.regia, f.roluri_principale, f.timp_desf, f.descriere from cinemadb.filme f, cinemadb.program p, cinemadb.cinema c where  p.idFilm=f.idFilm and p.idCinema=c.idCinema and f.idFilm='$idFilm'";
+    $result= mysql_query($query);
+    while($row=mysql_fetch_array($result)){
+        echo '<div class="newsList">
+                <span class="icon_hold">
+               		<img id="image" src='.$row['imagine'].'>
+               	</span>
+               	<h4 >Titlu: '.$row['titlu'].'</h4>
+               	<p><strong>Gen: '.$row['gen'].'</strong></p><br/>
+               	<hr class="copyright">
+               	<p class="copyright">Regia: '.$row['regia'].' <br/>
+               	Detalii: '.$row['descriere'].'<br/>
+               	Timp desfasurare: '.$row['timp_desf'].' minute<br/>
+               	Roluri principale: '.$row['roluri_principale'].'
+               	</p>
+               	<a  href="ReservationPage1.php?idProgram='.$row['idProgram'].'">Rezerva Galati</a><br/>
+               	<a href="">Rezerva Bucuresti</a>
+              </div>';
+
+    }
+}
+
 ?>
 
 
@@ -142,15 +167,13 @@ function filme_cinema()
 				<tr><td style="text-align:left;">Data</td>
 					<td style="text-align:left;">
 					<select class="textbox" style="width:95px" name="zi">
-						<option value="28.02">Joi 28.02</option>
-						<option value="01.03">Vineri 01.03</option>
-						<option value="02.03">Sambata 02.03</option>
-						<option value="03.03">Duminica 03.03</option>
-						<option value="04.03">Luni 04.03</option>
-						<option value="05.03">Marti 05.03</option>
-						<option value="06.03">Miercuri 06.03</option>
-						<option value="07.03">Joi 07.03</option>
-						<option value="08.03">Vineri 08.03</option>
+						<option value="<?php echo date("Y/m/d", $today); ?>"><?php echo date("Y/m/d", $today); ?></option>
+						<option value="<?php echo date("Y/m/d", $tomorrow); ?>"><?php echo date("Y/m/d", $tomorrow); ?></option>
+						<option value="<?php echo date("Y/m/d", $day_after_tomorrow); ?>"><?php echo date("Y/m/d", $day_after_tomorrow); ?></option>
+						<option value="<?php echo date("Y/m/d", $other_day); ?>"><?php echo date("Y/m/d", $other_day); ?></option>
+						<option value="<?php echo date("Y/m/d", $other_day_1); ?>"><?php echo date("Y/m/d", $other_day_1); ?></option>
+						<option value="<?php echo date("Y/m/d", $other_day_2); ?>"><?php echo date("Y/m/d", $other_day_2); ?></option>
+						<option value="<?php echo date("Y/m/d", $other_day_3); ?>"><?php echo date("Y/m/d", $other_day_3); ?></option>
 					</select></td></tr>
 				<tr><td style="text-align:left;"> </td>
 					<td style="text-align:center;">
@@ -164,7 +187,7 @@ function filme_cinema()
     <div id="news" class="copyright">
    	<div id="program_film">
 
-   		<h3><strong> Program - <?php require_once 'config.php'; $link=$_GET['idCinema']; $query="select nume from cinema where idCinema='$link'"; $rez=mysql_query($query); $row=mysql_fetch_assoc($rez); echo $row['nume']; ?> </strong></h3>
+   		<h3><strong> Program - <?php  $link=$_GET['idCinema']; $query="select nume from cinema where idCinema='$link'"; $rez=mysql_query($query); $row=mysql_fetch_assoc($rez); echo $row['nume']; ?> </strong></h3>
    		<div id="menu_program">
    			<ul>
    			<li id="current_program">
