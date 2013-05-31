@@ -53,7 +53,7 @@
                    	Timp desfasurare: '.$row['timp_desf'].' minute<br/>
                    	Roluri principale: '.$row['roluri_principale'].'
                    	</p>
-                   	<a  href="ReservationPage1.php?idProgram='.$row['idProgram'].'">Rezerva Galati</a><br/>
+                   	<a  href="ReservationPage.php?idProgram='.$row['idProgram'].'">Rezerva Galati</a><br/>
                    	<a href="">Rezerva Bucuresti</a>
                   </div>';
 

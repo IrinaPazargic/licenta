@@ -1,6 +1,27 @@
 <?php
+require_once 'model.php';
 require_once 'config.php';
+
 $rezervare = $_SESSION['rezervare'];
+
+$red1 = $_GET['red1'];
+$red2 = $_GET['red2'];
+$red3 = $_GET['red3'];
+$red4 = $_GET['red4'];
+
+$locuri = array('red1'=>$_GET['red1'], 'red2'=>$_GET['red2'], 'red3'=>$_GET['red3'], 'red4'=>$_GET['red4']);
+
+$rezervare->locuri = $locuri;
+$_SESSION['rezervare'] = $rezervare;
+
+
+$nrBilete = 0;
+
+foreach ($locuri as $key => $value) {
+    $nrBilete += $value;
+}
+
+
 ?>
 
 <html>
@@ -67,15 +88,15 @@ $rezervare = $_SESSION['rezervare'];
             <tr>
                 <td>
                     <div align="center">
-											<span>
-												<a href="ReservationPage1.php?idProgram=<?php $link = $_GET['idProgram'];
-                                                echo $link; ?>">
-                                                    <img border="0" src="images/BackButton.jpg"></a>
-											</span>
-												<span>
-												<button>
-                                                    <img border="0" src="images/NextButton.jpg"></button>
-											</span>
+                <span>
+                    <a href="ReservationPage.php?idProgram=<?php $link = $_GET['idProgram'];
+                    echo $link; ?>">
+                        <img border="0" src="images/BackButton.jpg"></a>
+                </span>
+                    <span>
+                    <button>
+                        <img border="0" src="images/NextButton.jpg"></button>
+                </span>
                     </div>
                 </td>
             </tr>
@@ -96,7 +117,7 @@ $rezervare = $_SESSION['rezervare'];
                             </tr>
                             <tr>
                                 <td style="border:1px solid white;" align="center">
-                                    <div id="ticket"></div>
+                                    <div id="ticket"><?=  $nrBilete;?></div>`
                                 </td>
                                 <td style="border:1px solid white;" align="center">
                                     <div id="pret"></div>

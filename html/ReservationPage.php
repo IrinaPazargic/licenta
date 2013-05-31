@@ -1,4 +1,5 @@
 <?php
+	require_once 'model.php';
 	require_once 'config.php';
 
     $query="select tip, pret from reduceri where idReducere=1";
@@ -30,8 +31,11 @@
 		$result=mysql_query($query);
         $row = mysql_fetch_object($result);
         $rezervare = new Rezervare();
+        $rezervare->idProgram = $idProgram;
+
         $rezervare->film = $row->titlu . ' ' . $row->data . ' ' . $row->ora;
         $rezervare->cinema = $row->nume;
+
         return $rezervare;
     }
 ?>
@@ -42,8 +46,14 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
-        $("button").click(function () {
-            $("#content").load("ReservationPage2.php");
+        $("#next").click(function () {
+            var red1 = $('#redurecere_1 :selected').text();
+            var red2 = $('#redurecere_2 :selected').text();
+            var red3 = $('#redurecere_3 :selected').text();
+            var red4 = $('#redurecere_4 :selected').text();
+            var nextPageUrl = "ReservationPage2.php?red1=" + red1 + "&red2=" + red2 + "&red3=" + red3 + "&red4=" + red4;
+            console.log(nextPageUrl);
+            $("#content").load(nextPageUrl);
         });
     });
 </script>
@@ -118,7 +128,7 @@
 								<span id="pret"><?= $row['pret'];?></span>
 								</td>
 								<td style="border: 1px solid black;">
-								<select id="nr_bilete">
+								<select id="redurecere_1"  class="numbers">
                                         <option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -143,7 +153,7 @@
 								<?= $row1['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								<select class="numbers">
+								<select  id="redurecere_2" class="numbers">
                                         <option id="none" value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -167,7 +177,7 @@
 								<?= $row2['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								<select class="numbers">
+								<select  id="redurecere_3" class="numbers">
                                         <option  id="none"  value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -192,7 +202,7 @@
 								<?= $row3['pret'];?>
 								</td>
 								<td style="border: 1px solid black;">
-								<select class="numbers">
+								<select  id="redurecere_4" class="numbers">
                                         <option  id="none"  value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -223,7 +233,7 @@
 			<tr >
 				<td align="right" style="padding-top:10px;">
 					<input id="automat" style="border-width:0px; color:transparent;" type="image" src="images/NextNoSeats.jpg"/>
-					<button >
+					<button id="next">
                         <input  style="border-width:0px;" type="image" src="images/NextSeat.jpg" /></button>
 				</td>
 			</tr>

@@ -22,7 +22,7 @@ require_once 'config.php';
 			echo '<div class="info" style="width:314px;"><p><b>' . $row['titlu'] . '</b></p> <br/><em>' . $row['gen'] . '</em><p><br/><a>Detalii Film..</a></p></div>';
 			echo '<div class="rez_info" style="width:190px;"><table ><tbody><tr>';
 			echo '<td style="padding:0;margin:0;">';
-			echo '<a class="btn_r" href="ReservationPage1.php?idProgram=' . $row['idProgram'] . ' "  style="cursor:pointer; margin-top:5px;"><span>R </span></a>' . $row['ora'] . '';
+			echo '<a class="btn_r" href="ReservationPage.php?idProgram=' . $row['idProgram'] . ' "  style="cursor:pointer; margin-top:5px;"><span>R </span></a>' . $row['ora'] . '';
 			echo '</td>';
 			echo '</tr></tbody></table></div>';
 			echo '</div> </div><hr/>';
@@ -38,7 +38,7 @@ function filme_cinema()
         echo '<div class="info" style="width:314px;"><p><b>' . $row['titlu'] . '</b></p> <br/><em>' . $row['gen'] . '</em><p><br/><a>Detalii Film..</a></p></div>';
         echo '<div class="rez_info" style="width:190px;"><table ><tbody><tr>';
         echo '<td style="padding:0;margin:0;">';
-        echo '<a class="btn_r" href="ReservationPage1.php?idProgram=' . $row['idProgram'] . ' "  style="cursor:pointer; margin-top:5px;"><span>R </span></a>' . $row['ora'] . '';
+        echo '<a class="btn_r" href="ReservationPage.php?idProgram=' . $row['idProgram'] . ' "  style="cursor:pointer; margin-top:5px;"><span>R </span></a>' . $row['ora'] . '';
         echo '</td>';
         echo '</tr></tbody></table></div>';
         echo '</div> </div><hr/>';
@@ -64,7 +64,7 @@ function detalii_film(){
                	Timp desfasurare: '.$row['timp_desf'].' minute<br/>
                	Roluri principale: '.$row['roluri_principale'].'
                	</p>
-               	<a  href="ReservationPage1.php?idProgram='.$row['idProgram'].'">Rezerva Galati</a><br/>
+               	<a  href="ReservationPage.php?idProgram='.$row['idProgram'].'">Rezerva Galati</a><br/>
                	<a href="">Rezerva Bucuresti</a>
               </div>';
 

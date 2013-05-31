@@ -1,16 +1,6 @@
 <?php
+    require_once 'model.php';
 	require_once 'config.php';
-
-	function detalii_rezervare(){
-		$idProgram=$_GET['idProgram'];
-		$query="select f.titlu, p.data, p.ora, c.nume from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm=f.idFilm and c.idCinema=p.idCinema and  p.idProgram='".$idProgram."'";
-		$result=mysql_query($query);
-		while($row=mysql_fetch_object($result)){
-			echo ''.$row->titlu.'  '.$row->data.' '. $row->ora.' ';
-			echo '<b>Cinematograful:</b> '.$row->nume.'';
-			
-		}
-	}
 ?>
 
 <html>
@@ -18,9 +8,33 @@
 <link href="reservation.css" rel="stylesheet" type="text/css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 </script>
+    <script>
+        $(document).ready(function () {
+            $("#next").click(function () {
+                var nume=$("#nume").val();
+                var prenume=$("#prenume").val();
+                var email=$("#email").val();
+                var telefon=$("#telefon").val();
+
+                $.ajax({
+                    type: "GET",
+                    url: "sumar.php",
+                    data: "nume=" + nume + "&prenume=" + prenume + "&email=" + email + "&telefon=" + telefon,
+                    success: function(result) {
+                        console.log('success: ' + result);
+                        $("#content1").html(result);
+                    },
+                    error: function(error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-	<div>
+	<div id="content1"/>
+	<div id="content">
 	<table cellspacing="0" cellpadding="0" style="width:100%; border-width:0px;">
 			<tr>
 				<td>
@@ -61,20 +75,20 @@
 						</tr>
 						<tr>
 							<td><div>Prenume</div><span>*</span></td>
-							<td ><input type="text" name="prenume"> </td>
+							<td ><input type="text" name="prenume" id="prenume"> </td>
 						</tr>
 						<tr>
 							<td><div >Nume</div><span>*</span></td>
-							<td ><input type="text" name="nume"> </td>
+							<td ><input type="text" name="nume" id="nume"> </td>
 						</tr>
 						<tr>
 							<td><div>Telefon</div><span>*</span></td>
-							<td ><input type="text" name="telefon"> </td>
+							<td ><input type="text" name="telefon" id="telefon"> </td>
 						</tr>
 						
 						<tr>
 							<td><div>E-mail</div><span>*</span></td>
-							<td ><input type="text" name="email"> </td>
+							<td ><input type="text" name="email" id="email"> </td>
 						</tr>
 					</table>
 				</form>
@@ -85,7 +99,7 @@
 			<tr >
 				<td align="right" style="padding-top:10px;">
 					<a href="ReservationPage2.php"><input style="border-width:0px; color:transparent;" type="image" src="images/BackButton.jpg"/></a>
-					<a href=""><input  style="border-width:0px;" type="image" src="images/NextButton.jpg"/></a>
+					<button id="next"><input style="border-width:0px;" type="image"/> </button>
 				</td>
 			</tr>
 	</table> 
