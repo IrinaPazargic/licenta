@@ -4,23 +4,31 @@ require_once 'config.php';
 
 $rezervare = $_SESSION['rezervare'];
 
-$red1 = $_GET['red1'];
-$red2 = $_GET['red2'];
-$red3 = $_GET['red3'];
-$red4 = $_GET['red4'];
+$nrLocuriRed1 = $_GET['red1'];
+$nrLocuriRed2 = $_GET['red2'];
+$nrLocuriRed3 = $_GET['red3'];
+$nrLocuriRed4 = $_GET['red4'];
 
-$locuri = array('red1'=>$_GET['red1'], 'red2'=>$_GET['red2'], 'red3'=>$_GET['red3'], 'red4'=>$_GET['red4']);
+$tipReduceri = $_SESSION['tipReduceri'];
+
+$locuriRed1 = new Locuri($tipReduceri['red1']->tip, $nrLocuriRed1, $tipReduceri['red1']->pret);
+$locuriRed2 = new Locuri($tipReduceri['red2']->tip, $nrLocuriRed2, $tipReduceri['red2']->pret);
+$locuriRed3 = new Locuri($tipReduceri['red3']->tip, $nrLocuriRed3, $tipReduceri['red3']->pret);
+$locuriRed4 = new Locuri($tipReduceri['red4']->tip, $nrLocuriRed4, $tipReduceri['red4']->pret);
+
+$locuri = array('red1'=> $locuriRed1, 'red2'=> $locuriRed2, 'red3'=>$locuriRed3, 'red4'=>$locuriRed4);
 
 $rezervare->locuri = $locuri;
+
 $_SESSION['rezervare'] = $rezervare;
 
+var_dump($_SESSION['rezervare']);
 
 $nrBilete = 0;
 
 foreach ($locuri as $key => $value) {
-    $nrBilete += $value;
+    $nrBilete += $value->nrLocuri;
 }
-
 
 ?>
 
@@ -79,8 +87,10 @@ foreach ($locuri as $key => $value) {
                     <h3 style="margin-bottom:0px;"><span><b>Alegerea dumeavoastra curenta</b></span></h3>
 
                     <div id="results">
-                        <p><?= $rezervare->film;?></p>
-                        <p>Cinema: <?= $rezervare->cinema;?></p>
+                        <span>Filmul: <?= $rezervare->film;?></span><br/>
+                        <span> Data: <?= $rezervare->data;?></span></br>
+                        <span>Ora : <?= $rezervare->ora;?></span></br>
+                        <span>Cinematograful: <?= $rezervare->cinema;?></span></br>
                     </div>
                 </td>
             </tr>
@@ -109,18 +119,17 @@ foreach ($locuri as $key => $value) {
                         <table cellspacing="0" cellpadding="5" border="0" align="center" style="margin-top:10px;">
                             <tbody>
                             <tr>
-                                <td style="border:1px solid white;" align="center"><input type="submit"
-                                                                                          id="buton"><span>Bilete </span></input>
+                                <td style="border:1px solid white;" align="center"><span>Bilete </span>
                                 </td>
                                 <td style="border:1px solid white;" align="center"><span>Pret </span></td>
                                 <td style="border:1px solid white;" align="center"><span>Locuri selectate</span></td>
                             </tr>
                             <tr>
                                 <td style="border:1px solid white;" align="center">
-                                    <div id="ticket"><?=  $nrBilete;?></div>`
+                                    <div id="ticket"><?=  $nrBilete;?></div>
                                 </td>
                                 <td style="border:1px solid white;" align="center">
-                                    <div id="pret"></div>
+                                    <div id="pret"> <?= $pret?></div>
                                 </td>
                                 <td style="border:1px solid white;" align="center">
                                     <div></div>
@@ -128,7 +137,7 @@ foreach ($locuri as $key => $value) {
                             </tr>
                             </tbody>
                         </table>
-                        <div style="margin-left:200px;margin-top:20px;">Sala 1</div>
+                        <div style="margin-left:200px;margin-top:20px;">Sala: <?= $rezervare->sala;?></div>
                     </div>
                 </td>
             </tr>

@@ -11,6 +11,7 @@ class Rezervare {
     public $idProgram;
 
     public $persoana;
+    public $locuri;
 
     public $film;
     public $cinema;
@@ -18,6 +19,39 @@ class Rezervare {
     public $data;
     public $ora;
 
-    public $locuri; // associative array (key=id_tip_reducere, value=numar de locuri);
+
 }
+
+class TipRedurecere{
+    public $tip;
+    public $pret;
+
+    function __construct($tip, $pret)
+    {
+        $this->pret = $pret;
+        $this->tip = $tip;
+    }
+
+    function __toString()
+    {
+        return $this->tip . ' ' . $this->pret;
+    }
+
+}
+
+class Locuri{
+    public $nrLocuri;
+    public $tip;
+    public $pret;
+
+    function __construct($tip, $nrLocuri, $pret)
+    {
+        $this->tip = $tip;
+        $this->nrLocuri = $nrLocuri;
+        $this->pret = $pret;
+    }
+
+
+}
+
 

@@ -22,7 +22,7 @@
                     data: "nume=" + nume + "&prenume=" + prenume + "&email=" + email + "&telefon=" + telefon,
                     success: function(result) {
                         console.log('success: ' + result);
-                        $("#content1").html(result);
+                        $("#content").html(result);
                     },
                     error: function(error) {
                         console.error(error);
@@ -33,7 +33,6 @@
     </script>
 </head>
 <body>
-	<div id="content1"/>
 	<div id="content">
 	<table cellspacing="0" cellpadding="0" style="width:100%; border-width:0px;">
 			<tr>
@@ -98,8 +97,8 @@
 			
 			<tr >
 				<td align="right" style="padding-top:10px;">
-					<a href="ReservationPage2.php"><input style="border-width:0px; color:transparent;" type="image" src="images/BackButton.jpg"/></a>
-					<button id="next"><input style="border-width:0px;" type="image"/> </button>
+					<input type="submit" id="previous" value="Inapoi">
+					<input type="submit" id="next" value="Next"/>
 				</td>
 			</tr>
 	</table> 

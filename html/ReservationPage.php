@@ -2,42 +2,60 @@
 	require_once 'model.php';
 	require_once 'config.php';
 
-    $query="select tip, pret from reduceri where idReducere=1";
-    $rez=mysql_query($query);
-    $row= mysql_fetch_array($rez);
+    $query1 = "SELECT tip, pret FROM reduceri WHERE idReducere=1";
+    $rez1 = mysql_query($query1);
+    $row1 = mysql_fetch_array($rez1);
 
-    $query1="select tip, pret from reduceri where idReducere=2";
-    $rez1=mysql_query($query1);
-    $row1= mysql_fetch_array($rez1);
+    $query2 = "SELECT tip, pret FROM reduceri WHERE idReducere=2";
+    $rez2 = mysql_query($query2);
+    $row2 = mysql_fetch_array($rez2);
 
-    $query2="select tip, pret from reduceri where idReducere=3";
-    $rez2=mysql_query($query2);
-    $row2= mysql_fetch_array($rez2);
+    $query3 = "SELECT tip, pret FROM reduceri WHERE idReducere=3";
+    $rez3 = mysql_query($query3);
+    $row3 = mysql_fetch_array($rez3);
 
-    $query3="select tip, pret from reduceri where idReducere=4";
-    $rez3=mysql_query($query3);
-    $row3= mysql_fetch_array($rez3);
+    $query4 = "SELECT tip, pret FROM reduceri WHERE idReducere=4";
+    $rez4 = mysql_query($query4);
+    $row4 = mysql_fetch_array($rez4);
+
+    $tipReduceri = array(
+                            'red1' => new TipRedurecere($row1['tip'], $row1['pret']),
+                            'red2' => new TipRedurecere($row2['tip'], $row2['pret']),
+                            'red3' => new TipRedurecere($row3['tip'], $row3['pret']),
+                            'red4' => new TipRedurecere($row4['tip'], $row4['pret'])
+                        );
+
+
+
+
 
     $rezervare = detalii_rezervare();
 
     $_SESSION['rezervare'] = $rezervare;
 
+    $_SESSION['tipReduceri'] = $tipReduceri;
+
 	function detalii_rezervare(){
 		$idProgram=$_GET['idProgram'];
 		$query="select
-		            f.titlu, p.data, p.ora, c.nume
-                from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c
-                where p.idFilm=f.idFilm and c.idCinema=p.idCinema and  p.idProgram='" . $idProgram . "'";
+		            f.titlu, p.data, p.ora, c.nume, s.nr_sala
+                from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c, cinemadb.sali s
+                where p.idFilm=f.idFilm and c.idCinema=p.idCinema and p.idSala=s.idSala and p.idProgram='" . $idProgram . "'";
 		$result=mysql_query($query);
         $row = mysql_fetch_object($result);
         $rezervare = new Rezervare();
         $rezervare->idProgram = $idProgram;
 
-        $rezervare->film = $row->titlu . ' ' . $row->data . ' ' . $row->ora;
+        $rezervare->film = $row->titlu;
         $rezervare->cinema = $row->nume;
+        $rezervare->data = $row->data;
+        $rezervare->ora=$row->ora;
+        $rezervare->sala=$row->nr_sala;
 
         return $rezervare;
     }
+
+
 ?>
 
 <html>
@@ -87,8 +105,12 @@
 								<tr>
 									<td align="left">
 										<div id="results">
-                                            <p><?= $rezervare->film;?></p>
-                                            <p>Cinema: <?= $rezervare->cinema;?></p>
+                                           <span>Filmul: <?= $rezervare->film;?></span><br/>
+                                            <span> Data: <?= $rezervare->data;?></span></br>
+                                            <span>Ora : <?= $rezervare->ora;?></span></br>
+                                            <span>Cinematograful: <?= $rezervare->cinema;?></span></br>
+                                            <span>Sala : <?= $rezervare->sala ?></span>
+
 										</div>
 									</td>
 								</tr>
@@ -121,11 +143,11 @@
 							
 							<tr>
 								<td style="border: 1px solid black;">&nbsp;</td>
-								<td style="border: 1px solid black;">
-								<span id="tip"><?= $row['tip'];?></span>
+								<td id="tip1" style="border: 1px solid black;">
+								<span ><?= $row1['tip'] ?></span>
 								</td>
-								<td style="border: 1px solid black;">
-								<span id="pret"><?= $row['pret'];?></span>
+								<td id="pret1" style="border: 1px solid black;">
+								<span ><?= $row1['pret']?> Lei</span>
 								</td>
 								<td style="border: 1px solid black;">
 								<select id="redurecere_1"  class="numbers">
@@ -134,86 +156,86 @@
 										<option value="2">2</option>
 										<option value="3">3</option>
 										<option value="4">4</option>
-										<option value="1">5</option>
-										<option value="2">6</option>
-										<option value="3">7</option>
-										<option value="4">8</option>
-										<option value="3">9</option>
-										<option value="4">10</option>	
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
 								</select>
 								</td>
 							</tr>
 								
 							<tr>
-									<td style="border: 1px solid black;">&nbsp;</td>
-								<td style="border: 1px solid black;">
-								<?= $row1['tip'];?>
+							    <td style="border: 1px solid black;">&nbsp;</td>
+								<td id="tip2" style="border: 1px solid black;">
+								<span><?= $row2['tip'];?></span>
 								</td>
-								<td style="border: 1px solid black;">
-								<?= $row1['pret'];?>
+								<td id="pret2" style="border: 1px solid black;">
+								<span><?= $row2['pret'];?> Lei</span>
 								</td>
 								<td style="border: 1px solid black;">
 								<select  id="redurecere_2" class="numbers">
-                                        <option id="none" value="0">0</option>
+                                        <option  value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
 										<option value="4">4</option>
-										<option value="1">5</option>
-										<option value="2">6</option>
-										<option value="3">7</option>
-										<option value="4">8</option>
-										<option value="3">9</option>
-										<option value="4">10</option>	
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
 								</select>
 								</td>
 							</tr>
 							<tr>
 								<td style="border: 1px solid black;">&nbsp;</td>
-								<td style="border: 1px solid black;">
-								<?= $row2['tip'];?>
+								<td id="tip3" style="border: 1px solid black;">
+								<span><?= $row3['tip'];?></span>
 								</td>
-								<td style="border: 1px solid black;">
-								<?= $row2['pret'];?>
+								<td  id="pret3" style="border: 1px solid black;">
+								<span><?= $row3['pret'];?> Lei</span>
 								</td>
 								<td style="border: 1px solid black;">
 								<select  id="redurecere_3" class="numbers">
-                                        <option  id="none"  value="0">0</option>
+                                        <option  value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
 										<option value="4">4</option>
-										<option value="1">5</option>
-										<option value="2">6</option>
-										<option value="3">7</option>
-										<option value="4">8</option>
-										<option value="3">9</option>
-										<option value="4">10</option>	
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
 								</select>
 								</td>
 							</tr>
 							
 							<tr>
 									<td style="border: 1px solid black;">&nbsp</td>
-								<td style="border: 1px solid black;">
-								<?= $row3['tip'];?>
+								<td id="tip4" style="border: 1px solid black;">
+								<span><?= $row4['tip'];?></span>
 								</td>
-								<td style="border: 1px solid black;">
-								<?= $row3['pret'];?>
+								<td id="pret4" style="border: 1px solid black;">
+								<span><?= $row4['pret'];?> Lei</span>
 								</td>
 								<td style="border: 1px solid black;">
 								<select  id="redurecere_4" class="numbers">
-                                        <option  id="none"  value="0">0</option>
+                                        <option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
 										<option value="4">4</option>
-										<option value="1">5</option>
-										<option value="2">6</option>
-										<option value="3">7</option>
-										<option value="4">8</option>
-										<option value="3">9</option>
-										<option value="4">10</option>	
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
 								</select>
 								</td>
 							</tr>
