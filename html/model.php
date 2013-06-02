@@ -1,12 +1,5 @@
 <?php
 
-class Persoana {
-    public $nume;
-    public $prenume;
-    public $email;
-    public $telefon;
-}
-
 class Rezervare {
     public $idProgram;
 
@@ -18,7 +11,37 @@ class Rezervare {
     public $sala;
     public $data;
     public $ora;
+}
 
+class Persoana {
+    public $nume;
+    public $prenume;
+    public $email;
+    public $telefon;
+
+    function __construct($nume = null, $prenume = null, $email = null, $telefon = null)
+    {
+        $this->nume = $nume;
+        $this->prenume = $prenume;
+        $this->email = $email;
+        $this->telefon = $telefon;
+    }
+
+}
+
+class Locuri{
+    public $nrLocuri;
+    public $tip;
+    public $pret;
+    public $locuri; // this is a concatenated list of sits. E.g: 1_1|1_2|2_1|2_2
+
+    function __construct($tip, $nrLocuri, $pret, $locuri)
+    {
+        $this->tip = $tip;
+        $this->nrLocuri = $nrLocuri;
+        $this->pret = $pret;
+        $this->locuri = $locuri;
+    }
 
 }
 
@@ -36,21 +59,6 @@ class TipRedurecere{
     {
         return $this->tip . ' ' . $this->pret;
     }
-
-}
-
-class Locuri{
-    public $nrLocuri;
-    public $tip;
-    public $pret;
-
-    function __construct($tip, $nrLocuri, $pret)
-    {
-        $this->tip = $tip;
-        $this->nrLocuri = $nrLocuri;
-        $this->pret = $pret;
-    }
-
 
 }
 
