@@ -19,13 +19,36 @@ var_dump($_SESSION['rezervare']);
 
 $nrBilete = 0;
 
+$pretBilete=0;
+
 
 foreach ($rezervare->locuri as $key => $value) {
     $nrBilete += $value->nrLocuri;
 }
-;
+
+foreach ($rezervare->locuri as $key => $value) {
+    $pretBilete += $value->pret;
+}
+
+
+
+
+
 ?>
-<div>	<img style="border-width:0px;" src="images/Step1.jpg">
+<html>
+<head>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+          $("#submit").click(function () {
+
+              $("#rezerva").load("rezerva.php");
+          });
+      });
+</script>
+</head>
+<body>
+<div id="rezerva">	<img style="border-width:0px;" src="images/Step1.jpg">
 	    <img style="border-width:0px;" src="images/Step2.jpg">
 		<img style="border-width:0px;" src="images/Step3.jpg">
 		<img style="border-width:0px;" src="images/OnStep4.jpg"></div>
@@ -71,7 +94,7 @@ foreach ($rezervare->locuri as $key => $value) {
             <td></td>
             <td><?= $value->tip;?></td>
             <td><?= $value->nrLocuri;?></td>
-            <td><?= $value->pret;?> </td>
+            <td><?= $value->pret;?> Lei </td>
         </tr>
    <?php }}?>
 
@@ -79,7 +102,7 @@ foreach ($rezervare->locuri as $key => $value) {
             <td>Total bilete</td>
             <td></td>
             <td><?= $nrBilete?> </td>
-            <td></td>
+            <td>Total: <?= $pretBilete ?> Lei</td>
 
         </tr>
         <tr style="padding:3px;">
@@ -107,7 +130,15 @@ foreach ($rezervare->locuri as $key => $value) {
                <td>E-mail</td>
                <td><?= $persoana->email?></td>
         </tr>
-
+        <tr style="text-align: right;">
+            <td ></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><input type="submit" value="Rezerva" id="submit"></td>
+        </tr>
     </tbody>
 </table>
 </div>
+</body>
+</html>

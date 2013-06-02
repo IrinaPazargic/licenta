@@ -35,7 +35,7 @@ class Locuri{
     public $pret;
     public $locuri; // this is a concatenated list of sits. E.g: 1_1|1_2|2_1|2_2
 
-    function __construct($tip, $nrLocuri, $pret, $locuri)
+    function __construct($tip, $nrLocuri, $pret, $locuri = "1_1")
     {
         $this->tip = $tip;
         $this->nrLocuri = $nrLocuri;
