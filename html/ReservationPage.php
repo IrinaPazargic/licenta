@@ -70,8 +70,14 @@
             var red3 = $('#redurecere_3 :selected').text();
             var red4 = $('#redurecere_4 :selected').text();
             var nextPageUrl = "ReservationPage2.php?red1=" + red1 + "&red2=" + red2 + "&red3=" + red3 + "&red4=" + red4;
-            console.log(nextPageUrl);
-            $("#content").load(nextPageUrl);
+            if( red1==0 && red2==0 && red3==0 && red4==0 ){
+                alert("Nu ati selectat biletele.Va rugam alegeti biletele!");
+            }
+            else {
+                console.log(nextPageUrl);
+                $("#content").load(nextPageUrl);
+            }
+
         });
     });
 </script>

@@ -1,6 +1,5 @@
 .seat { 
- background-repeat: no-repeat;
-    color: #FFFFFF;
+    background-repeat: no-repeat;
     cursor: pointer;
     font-family: arial;
     font-size: 9px;
@@ -13,3 +12,4 @@
     width: 30px;
 	
 }
+

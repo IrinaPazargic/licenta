@@ -34,12 +34,18 @@ $rezervare->tipLocuri = $locuri;
 
 $_SESSION['rezervare'] = $rezervare;
 
-var_dump($_SESSION['rezervare']);
+//var_dump($_SESSION['rezervare']);
 
 $nrBilete = 0;
+$pret = 0;
+
+
 
 foreach ($locuri as $key => $value) {
     $nrBilete += $value->nrLocuri;
+    foreach ($tipReduceri as $key=>$value){
+        $pret =$nrBilete * $value->pret;
+    }
 }
 
 ?>
@@ -58,14 +64,27 @@ foreach ($locuri as $key => $value) {
                 console.log(locuri);
                 $("#content").load("detalii_rezervare.php?locuri=" + locuri);
             });
-            $(".seat").click(function () {
+            $(".seat").click(function (event) {
                 var id = $(this).attr('id');
+
+                var img='images/YellowSeat.png';
+                event.target.setAttribute('src', img);
+
                 if (array.indexOf(id) == -1) {
                     array.push(id);
+
                 } else {
                     array.splice(array.indexOf(id), 1);
                 }
                 console.log(array);
+
+                if(array.length > <?= $nrBilete?>){
+                  array.pop();
+                  alert("nr delocuri selectate este mai mare decat nr de bilete");
+
+                }
+
+
             });
         });
     </script>
@@ -73,7 +92,7 @@ foreach ($locuri as $key => $value) {
 
 
 </head>
-<body>
+<body >
 <div id="content">
 <table cellspacing="0" cellpadding="0" style="width:100%; border-width:0px;">
 <tr>
@@ -135,7 +154,7 @@ foreach ($locuri as $key => $value) {
                             <tr>
                                 <td style="border:1px solid white;" align="center"><span>Bilete </span>
                                 </td>
-                                <td style="border:1px solid white;" align="center"><span>Pret </span></td>
+                                <td style="border:1px solid white;" align="center"><span>Pret total </span></td>
                                 <td style="border:1px solid white;" align="center"><span>Locuri selectate</span></td>
                             </tr>
                             <tr>
@@ -143,7 +162,7 @@ foreach ($locuri as $key => $value) {
                                     <div id="ticket"><?=  $nrBilete;?></div>
                                 </td>
                                 <td style="border:1px solid white;" align="center">
-                                    <div id="pret"> <?= $pret?></div>
+                                    <div id="pret"> <?= $pret?> Lei</div>
                                 </td>
                                 <td style="border:1px solid white;" align="center">
                                     <div></div>
@@ -169,10 +188,10 @@ foreach ($locuri as $key => $value) {
 <tr>
 <td>
 <div align="center" style="height:600px; width:100%;">
-<div align="left" style="background-color:white; color:black; float:left; height:400px; width:550px; position:relative; margin-left: 240px; margin-top:50px;">
+<div align="left" style=" color:black; float:left; height:400px; width:550px; position:relative; margin-left: 240px; margin-top:50px;">
     <span style="position:absolute; top:15; left:7;">1 </span>
 
-    <div id="1_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:50px;" ></div>
+    <div id="1_1" class="seat" style="top:10px; left:50px;" src="images/SeatGreen.png"></div>
     <div id="1_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:80px;" ></div>
     <div id="1_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:110px;"></div>
     <div id="1_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:140px;"></div>
