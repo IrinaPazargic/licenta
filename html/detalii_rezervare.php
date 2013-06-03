@@ -3,13 +3,12 @@
 	require_once 'config.php';
 
     $rezervare=$_SESSION['rezervare'];
-    $locuri= new Locuri();
-    $locuri->locuri= $_GET['locuri'];
 
+    $locuri= $_GET['locuri'];
     $rezervare->locuri = $locuri;
-    $_SESSION['rezervare'] = $rezervare;
 
-    var_dump($rezervare);
+$_SESSION['rezervare'] = $rezervare;
+
 ?>
 
 <html>

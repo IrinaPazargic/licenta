@@ -72,8 +72,8 @@ function salveazaRezervare($rezervare, $idPersoana)
     $mysqli = new mysqli(DbConfig::$host, DbConfig::$user, DbConfig::$pass, DbConfig::$db);
     $mysqli->autocommit(false);
 
-    $stat2 = $mysqli->prepare("INSERT INTO rezervare (id_persoana, id_program) VALUES (?, ?)");
-    $stat2->bind_param("ii", $idPersoana, $idProgram);
+    $stat2 = $mysqli->prepare("INSERT INTO rezervare (id_persoana, id_program, locuri) VALUES (?, ?, ?)");
+    $stat2->bind_param("iis", $idPersoana, $idProgram, $rezervare->locuri);
     $success = $stat2->execute();
     if (!$success) {
         $mysqli->rollback();
@@ -91,7 +91,10 @@ function salveazaLocurileRezervate($rezervare, $idRezervare)
 {
     $mysqli = new mysqli(DbConfig::$host, DbConfig::$user, DbConfig::$pass, DbConfig::$db);
     $mysqli->autocommit(false);
-    foreach ($rezervare->locuri as $loc) {
+    foreach ($rezervare->tipLocuri as $loc) {
+        if ($loc->nrLocuri == 0) {
+            continue;
+        }
         $stat1 = $mysqli->prepare("SELECT idReducere FROM reduceri WHERE tip = ?");
         $stat1->bind_param("s", $loc->tip);
         $stat1->execute();
@@ -99,12 +102,12 @@ function salveazaLocurileRezervate($rezervare, $idRezervare)
         $stat1->fetch();
         $stat1->close();
 
-        $stat2 = $mysqli->prepare("INSERT INTO locuri_rezervate (idReducere, id_rezervare, nr_locuri, locuri) VALUES (?, ?, ?, ?)");
+        $stat2 = $mysqli->prepare("INSERT INTO locuri_rezervate (idReducere, id_rezervare, nr_locuri) VALUES (?, ?, ?)");
         if (!$stat2) {
             printf("Errorcode: %d\n", $mysqli->errno);
             die("Cannot prepare statement for inser into locuri_rezervate");
         }
-        $stat2->bind_param("iiis", $idReducere, $idRezervare, $loc->nrLocuri, $loc->locuri);
+        $stat2->bind_param("iii", $idReducere, $idRezervare, $loc->nrLocuri);
         $success = $stat2->execute();
         if (!$success) {
             $mysqli->rollback();

@@ -2,15 +2,17 @@
 
 class Rezervare {
     public $idProgram;
+    public $tipLocuri;
 
     public $persoana;
-    public $locuri;
+
 
     public $film;
     public $cinema;
     public $sala;
     public $data;
     public $ora;
+    public $locuri;
 }
 
 class Persoana {
@@ -29,18 +31,17 @@ class Persoana {
 
 }
 
-class Locuri{
+class TipLocuri{
     public $nrLocuri;
     public $tip;
     public $pret;
-    public $locuri; // this is a concatenated list of sits. E.g: 1_1|1_2|2_1|2_2
 
-    function __construct($tip, $nrLocuri, $pret, $locuri)
+
+    function __construct($tip, $nrLocuri, $pret)
     {
         $this->tip = $tip;
         $this->nrLocuri = $nrLocuri;
         $this->pret = $pret;
-        $this->locuri = $locuri;
     }
 
 }

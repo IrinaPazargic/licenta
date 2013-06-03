@@ -23,14 +23,14 @@ $nrLocuriRed4 = $_GET['red4'];
 
 $tipReduceri = $_SESSION['tipReduceri'];
 
-$locuriRed1 = new Locuri($tipReduceri['red1']->tip, $nrLocuriRed1, $tipReduceri['red1']->pret);
-$locuriRed2 = new Locuri($tipReduceri['red2']->tip, $nrLocuriRed2, $tipReduceri['red2']->pret);
-$locuriRed3 = new Locuri($tipReduceri['red3']->tip, $nrLocuriRed3, $tipReduceri['red3']->pret);
-$locuriRed4 = new Locuri($tipReduceri['red4']->tip, $nrLocuriRed4, $tipReduceri['red4']->pret);
+$locuriRed1 = new TipLocuri($tipReduceri['red1']->tip, $nrLocuriRed1, $tipReduceri['red1']->pret);
+$locuriRed2 = new TipLocuri($tipReduceri['red2']->tip, $nrLocuriRed2, $tipReduceri['red2']->pret);
+$locuriRed3 = new TipLocuri($tipReduceri['red3']->tip, $nrLocuriRed3, $tipReduceri['red3']->pret);
+$locuriRed4 = new TipLocuri($tipReduceri['red4']->tip, $nrLocuriRed4, $tipReduceri['red4']->pret);
 
 $locuri = array('red1'=> $locuriRed1, 'red2'=> $locuriRed2, 'red3'=>$locuriRed3, 'red4'=>$locuriRed4);
 
-$rezervare->locuri = $locuri;
+$rezervare->tipLocuri = $locuri;
 
 $_SESSION['rezervare'] = $rezervare;
 

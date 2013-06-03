@@ -15,18 +15,17 @@ $rezervare->persoana = $persoana;
 
 $_SESSION['rezervare'] = $rezervare;
 
-var_dump($_SESSION['rezervare']);
 
 $nrBilete = 0;
 
 $pretBilete=0;
 
 
-foreach ($rezervare->locuri as $key => $value) {
+foreach ($rezervare->tipLocuri as $key => $value) {
     $nrBilete += $value->nrLocuri;
 }
 
-foreach ($rezervare->locuri as $key => $value) {
+foreach ($rezervare->tipLocuri as $key => $value) {
     $pretBilete += $value->pret;
 }
 
@@ -88,7 +87,7 @@ foreach ($rezervare->locuri as $key => $value) {
                <td>Pret Bilet</td>
 
         </tr>
-    <?php foreach ($rezervare->locuri as $key => $value) {
+    <?php foreach ($rezervare->tipLocuri as $key => $value) {
         if($value->nrLocuri != 0) {?>
         <tr style="padding:3px;">
             <td></td>
@@ -112,12 +111,12 @@ foreach ($rezervare->locuri as $key => $value) {
         <tr style="padding:3px;">
             <td>Eveniment</td>
             <td>Sala</td>
-            <td>Locuri</td>
+            <td>Locuri(rand_loc)</td>
         </tr>
         <tr style="padding:3px;">
                  <td></td>
                  <td><?=  $rezervare->sala?></td>
-                 <td></td>
+                 <td><?=  $rezervare->locuri?></td>
          </tr>
         <tr style="padding:3px;">
                <td><strong><em>Informatii despre dumneavoastra</em></strong></td>
