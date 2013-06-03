@@ -1,52 +1,42 @@
--- phpMyAdmin SQL Dump
--- version 3.5.2.2
--- http://www.phpmyadmin.net
+-- MySQL dump 10.13  Distrib 5.5.31, for debian-linux-gnu (i686)
 --
--- Host: 127.0.0.1
--- Generation Time: May 28, 2013 at 08:03 AM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: cinemadb
+-- ------------------------------------------------------
+-- Server version	5.5.31-0ubuntu0.13.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-
---
--- Database: `cinemadb`
---
-
--- --------------------------------------------------------
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
 -- Table structure for table `cinema`
 --
 
-CREATE TABLE IF NOT EXISTS `cinema` (
+DROP TABLE IF EXISTS `cinema`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cinema` (
   `idCinema` int(11) NOT NULL AUTO_INCREMENT,
   `nume` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`idCinema`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
-
---
--- Dumping data for table `cinema`
---
-
-INSERT INTO `cinema` (`idCinema`, `nume`) VALUES
-(100, 'Galati'),
-(101, 'Bucuresti');
-
--- --------------------------------------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `filme`
 --
 
-CREATE TABLE IF NOT EXISTS `filme` (
+DROP TABLE IF EXISTS `filme`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `filme` (
   `idFilm` int(11) NOT NULL AUTO_INCREMENT,
   `titlu` varchar(40) NOT NULL,
   `gen` varchar(30) DEFAULT NULL,
@@ -57,25 +47,54 @@ CREATE TABLE IF NOT EXISTS `filme` (
   `imagine` varchar(50) DEFAULT NULL,
   `roluri_principale` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`idFilm`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `filme`
+-- Table structure for table `locuri_rezervate`
 --
 
-INSERT INTO `filme` (`idFilm`, `titlu`, `gen`, `an`, `timp_desf`, `descriere`, `regia`, `imagine`, `roluri_principale`) VALUES
-(1, 'Admis pe Pile', 'comedie', 2013, 110, 'razi in hohote\n', 'Will Smith', 'images/killing-time-landscape_s.jpg', NULL),
-(2, 'The Hobbit', 'actiune', 2012, 170, 'Cel mai tare film', NULL, NULL, NULL),
-(4, 'King Kong', 'actiune', 2012, 150, 'Vechi dar bun', NULL, NULL, NULL),
-(5, 'Friends with benefits', 'romance', 2011, 120, 'They just wanna have fun!', NULL, NULL, NULL);
+DROP TABLE IF EXISTS `locuri_rezervate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `locuri_rezervate` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idReducere` int(11) NOT NULL,
+  `id_rezervare` int(11) NOT NULL,
+  `nr_locuri` int(2) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_rezervare` (`id_rezervare`),
+  KEY `idReducere` (`idReducere`),
+  CONSTRAINT `locuri_rezervate_ibfk_1` FOREIGN KEY (`id_rezervare`) REFERENCES `rezervare` (`id`),
+  CONSTRAINT `locuri_rezervate_ibfk_2` FOREIGN KEY (`idReducere`) REFERENCES `reduceri` (`idReducere`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- --------------------------------------------------------
+--
+-- Table structure for table `persoane`
+--
+
+DROP TABLE IF EXISTS `persoane`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `persoane` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nume` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `prenume` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `telefon` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `program`
 --
 
-CREATE TABLE IF NOT EXISTS `program` (
+DROP TABLE IF EXISTS `program`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `program` (
   `idProgram` int(11) NOT NULL AUTO_INCREMENT,
   `idFilm` int(11) NOT NULL,
   `idCinema` int(11) NOT NULL,
@@ -84,104 +103,88 @@ CREATE TABLE IF NOT EXISTS `program` (
   `idSala` int(11) NOT NULL,
   PRIMARY KEY (`idProgram`),
   KEY `idFilm` (`idFilm`),
-  KEY `idCinema` (`idCinema`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=221 ;
-
---
--- Dumping data for table `program`
---
-
-INSERT INTO `program` (`idProgram`, `idFilm`, `idCinema`, `data`, `ora`, `idSala`) VALUES
-(10, 4, 100, '2013-05-13', '20:20', 3),
-(212, 4, 100, '2013-05-13', '11:30', 0),
-(213, 4, 100, '2013-05-13', '12:40', 0),
-(214, 4, 100, '2013-05-14', '12:40', 0),
-(215, 4, 100, '2013-05-14', '20:20', 0),
-(216, 4, 100, '2013-05-20', '20:40', 0),
-(217, 2, 100, '2013-05-21', '20:40', 0),
-(218, 4, 100, '2013-05-22', '10:40', 0),
-(219, 2, 100, '2013-05-23', '10:40', 0),
-(220, 4, 100, '2013-05-27', '12:40', 2);
-
--- --------------------------------------------------------
+  KEY `idCinema` (`idCinema`),
+  KEY `program_ibfk_3` (`idSala`),
+  CONSTRAINT `program_ibfk_1` FOREIGN KEY (`idFilm`) REFERENCES `filme` (`idFilm`),
+  CONSTRAINT `program_ibfk_2` FOREIGN KEY (`idCinema`) REFERENCES `cinema` (`idCinema`),
+  CONSTRAINT `program_ibfk_3` FOREIGN KEY (`idSala`) REFERENCES `sali` (`idSala`)
+) ENGINE=InnoDB AUTO_INCREMENT=226 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `reduceri`
 --
 
-CREATE TABLE IF NOT EXISTS `reduceri` (
+DROP TABLE IF EXISTS `reduceri`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `reduceri` (
   `idReducere` int(11) NOT NULL AUTO_INCREMENT,
   `tip` varchar(55) NOT NULL,
-  `pret` varchar(20) NOT NULL,
+  `pret` double DEFAULT NULL,
   PRIMARY KEY (`idReducere`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `reduceri`
+-- Table structure for table `rezervare`
 --
 
-INSERT INTO `reduceri` (`idReducere`, `tip`, `pret`) VALUES
-(1, 'Copii', '13 Lei'),
-(2, 'Normal', '16.5 Lei'),
-(3, 'Pensionari', '13.50 Lei'),
-(4, 'Studenti', '13.50 Lei');
-
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `rezervare`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `rezervare` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_persoana` int(11) NOT NULL,
+  `id_program` int(11) NOT NULL,
+  `locuri` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_persoana` (`id_persoana`),
+  KEY `id_program` (`id_program`),
+  CONSTRAINT `rezervare_ibfk_1` FOREIGN KEY (`id_persoana`) REFERENCES `persoane` (`id`),
+  CONSTRAINT `rezervare_ibfk_2` FOREIGN KEY (`id_program`) REFERENCES `program` (`idProgram`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `sali`
 --
 
-CREATE TABLE IF NOT EXISTS `sali` (
+DROP TABLE IF EXISTS `sali`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sali` (
   `idSala` int(11) NOT NULL AUTO_INCREMENT,
   `nr_sala` int(11) NOT NULL,
   `randuri` int(11) NOT NULL,
   `locuri` int(11) NOT NULL,
   PRIMARY KEY (`idSala`),
   UNIQUE KEY `nr_sala` (`nr_sala`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `sali`
---
-
-INSERT INTO `sali` (`idSala`, `nr_sala`, `randuri`, `locuri`) VALUES
-(1, 1, 15, 200),
-(3, 2, 15, 200);
-
--- --------------------------------------------------------
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `status_seats`
 --
 
-CREATE TABLE IF NOT EXISTS `status_seats` (
+DROP TABLE IF EXISTS `status_seats`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `status_seats` (
   `idSeats` int(11) NOT NULL AUTO_INCREMENT,
   `imagine` varchar(60) NOT NULL,
   `tip_loc` varchar(75) NOT NULL,
   PRIMARY KEY (`idSeats`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Dumping data for table `status_seats`
---
-
-INSERT INTO `status_seats` (`idSeats`, `imagine`, `tip_loc`) VALUES
-(1, 'images/SeatGreen.png', 'Locuri disponibile'),
-(2, 'images/GraySeat.png', 'Locuri indisponibile'),
-(3, 'images/YellowSeat.png', 'Locuri selectate');
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `program`
---
-ALTER TABLE `program`
-  ADD CONSTRAINT `program_ibfk_1` FOREIGN KEY (`idFilm`) REFERENCES `filme` (`idFilm`),
-  ADD CONSTRAINT `program_ibfk_2` FOREIGN KEY (`idCinema`) REFERENCES `cinema` (`idCinema`);
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-06-03 18:35:33
