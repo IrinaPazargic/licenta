@@ -2,6 +2,18 @@
 require_once 'model.php';
 require_once 'config.php';
 
+    $query1 = "select imagine, tip_loc from cinemadb.status_seats where idSeats=1";
+    $rez1 = mysql_query($query1);
+    $row1 = mysql_fetch_assoc($rez1);
+
+    $query2 = "select imagine, tip_loc from cinemadb.status_seats where idSeats=2";
+    $rez2 = mysql_query($query2);
+    $row2 = mysql_fetch_assoc($rez2);
+
+    $query3 = "select imagine, tip_loc from cinemadb.status_seats where idSeats=3";
+    $rez3 = mysql_query($query3);
+    $row3 = mysql_fetch_assoc($rez3);
+
 $rezervare = $_SESSION['rezervare'];
 
 $nrLocuriRed1 = $_GET['red1'];
@@ -40,23 +52,25 @@ foreach ($locuri as $key => $value) {
     </script>
     <script>
         $(document).ready(function () {
+            var array = [];
             $("button").click(function () {
-                $("#content").load("detalii_rezervare.php");
+                var locuri = array.join('|');
+                console.log(locuri);
+                $("#content").load("detalii_rezervare.php?locuri=" + locuri);
+            });
+            $(".seat").click(function () {
+                var id = $(this).attr('id');
+                if (array.indexOf(id) == -1) {
+                    array.push(id);
+                } else {
+                    array.splice(array.indexOf(id), 1);
+                }
+                console.log(array);
             });
         });
     </script>
 
-    <script>
-        $(document).ready(function () {
-            bilete = {};
-            bilete.nr_bilete = 0;
-            bilete.pret = "13 Lei";
-            $("#buton").click(function () {
-                $("#ticket").text($.param(nr_bilete));
-                $("#pret").text($.param(pret));
-            });
-        });
-    </script>
+
 
 </head>
 <body>
@@ -155,256 +169,235 @@ foreach ($locuri as $key => $value) {
 <tr>
 <td>
 <div align="center" style="height:600px; width:100%;">
-<div align="left"
-     style="background-color:white; color:black; float:left; height:400px; width:550px; position:relative; margin-left: 240px; margin-top:50px;">
+<div align="left" style="background-color:white; color:black; float:left; height:400px; width:550px; position:relative; margin-left: 240px; margin-top:50px;">
     <span style="position:absolute; top:15; left:7;">1 </span>
 
-    <div id="seat_1_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:50px;"></div>
-    <div id="seat_1_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:80px;"></div>
-    <div id="seat_1_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:110px;"></div>
-    <div id="seat_1_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:140px;"></div>
-    <div id="seat_1_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:170px;"></div>
-    <div id="seat_1_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:330px;"></div>
-    <div id="seat_1_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:360px;"></div>
-    <div id="seat_1_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:390px;"></div>
-    <div id="seat_1_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:420px;"></div>
-    <div id="seat_1_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:450px;"></div>
-    <div id="seat_1_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:480px;"></div>
+    <div id="1_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:50px;" ></div>
+    <div id="1_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:80px;" ></div>
+    <div id="1_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:110px;"></div>
+    <div id="1_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:140px;"></div>
+    <div id="1_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:170px;"></div>
+    <div id="1_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:330px;"></div>
+    <div id="1_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:360px;"></div>
+    <div id="1_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:390px;"></div>
+    <div id="1_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:420px;"></div>
+    <div id="1_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:450px;"></div>
+    <div id="1_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:480px;"></div>
     <span style="position:absolute; top:10; right:7;">1 </span>
+
     <span style="position:absolute; top:45; left:7;">2 </span>
-
-    <div id="seat_2_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:50px;"></div>
-    <div id="seat_2_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:80px;"></div>
-    <div id="seat_2_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:110px;"></div>
-    <div id="seat_2_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:140px;"></div>
-    <div id="seat_2_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:170px;"></div>
-    <div id="seat_2_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:330px;"></div>
-    <div id="seat_2_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:360px;"></div>
-    <div id="seat_2_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:390px;"></div>
-    <div id="seat_2_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:420px;"></div>
-    <div id="seat_2_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:450px;"></div>
-    <div id="seat_2_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:480px;"></div>
+    <div id="2_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:50px;"></div>
+    <div id="2_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:80px;"></div>
+    <div id="2_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:110px;"></div>
+    <div id="2_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:140px;"></div>
+    <div id="2_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:170px;"></div>
+    <div id="2_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:330px;"></div>
+    <div id="2_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:360px;"></div>
+    <div id="2_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:390px;"></div>
+    <div id="2_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:420px;"></div>
+    <div id="2_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:450px;"></div>
+    <div id="2_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:40px; left:480px;"></div>
     <span style="position:absolute; top:45; right:7;">2 </span>
+
     <span style="position:absolute; top:75; left:7;">3 </span>
-
-    <div id="seat_3_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:50px;"></div>
-    <div id="seat_3_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:80px;"></div>
-    <div id="seat_3_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:110px;"></div>
-    <div id="seat_3_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:140px;"></div>
-    <div id="seat_3_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:170px;"></div>
-    <div id="seat_3_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:330px;"></div>
-    <div id="seat_3_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:360px;"></div>
-    <div id="seat_3_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:390px;"></div>
-    <div id="seat_3_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:420px;"></div>
-    <div id="seat_3_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:450px;"></div>
-    <div id="seat_3_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:480px;"></div>
+    <div id="3_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:50px;"></div>
+    <div id="3_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:80px;"></div>
+    <div id="3_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:110px;"></div>
+    <div id="3_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:140px;"></div>
+    <div id="3_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:170px;"></div>
+    <div id="3_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:330px;"></div>
+    <div id="3_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:360px;"></div>
+    <div id="3_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:390px;"></div>
+    <div id="3_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:420px;"></div>
+    <div id="3_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:450px;"></div>
+    <div id="3_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:70px; left:480px;"></div>
     <span style="position:absolute; top:75; right:7;">3</span>
+
     <span style="position:absolute; top:105; left:7;">4</span>
+    <div id="4_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:50px;"></div>
+    <div id="4_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:80px;"></div>
+    <div id="4_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:110px;"></div>
+    <div id="4_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:140px;"></div>
+    <div id="4_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:170px;"></div>
+    <div id="4_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:200px;"></div>
 
-    <div id="seat_4_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:50px;"></div>
-    <div id="seat_4_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:80px;"></div>
-    <div id="seat_4_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:110px;"></div>
-    <div id="seat_4_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:140px;"></div>
-    <div id="seat_4_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:170px;"></div>
-    <div id="seat_4_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:200px;"></div>
-
-    <div id="seat_4_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:300px;"></div>
-    <div id="seat_4_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:330px;"></div>
-    <div id="seat_4_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:360px;"></div>
-    <div id="seat_4_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:390px;"></div>
-    <div id="seat_4_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:420px;"></div>
-    <div id="seat_4_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:450px;"></div>
-    <div id="seat_4_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:480px;"></div>
+    <div id="4_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:300px;"></div>
+    <div id="4_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:330px;"></div>
+    <div id="4_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:360px;"></div>
+    <div id="4_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:390px;"></div>
+    <div id="4_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:420px;"></div>
+    <div id="4_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:450px;"></div>
+    <div id="4_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:100px; left:480px;"></div>
     <span style="position:absolute; top:105; right:7;">4</span>
 
     <span style="position:absolute; top:135; left:7;">5</span>
 
-    <div id="seat_5_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:50px;"></div>
-    <div id="seat_5_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:80px;"></div>
-    <div id="seat_5_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:110px;"></div>
-    <div id="seat_5_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:140px;"></div>
-    <div id="seat_5_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:170px;"></div>
-    <div id="seat_5_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:200px;"></div>
+    <div id="5_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:50px;"></div>
+    <div id="5_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:80px;"></div>
+    <div id="5_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:110px;"></div>
+    <div id="5_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:140px;"></div>
+    <div id="5_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:170px;"></div>
+    <div id="5_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:200px;"></div>
 
-    <div id="seat_5_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:300px;"></div>
-    <div id="seat_5_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:330px;"></div>
-    <div id="seat_5_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:360px;"></div>
-    <div id="seat_5_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:390px;"></div>
-    <div id="seat_5_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:420px;"></div>
-    <div id="seat_5_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:450px;"></div>
-    <div id="seat_5_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:480px;"></div>
+    <div id="5_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:300px;"></div>
+    <div id="5_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:330px;"></div>
+    <div id="5_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:360px;"></div>
+    <div id="5_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:390px;"></div>
+    <div id="5_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:420px;"></div>
+    <div id="5_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:450px;"></div>
+    <div id="5_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:130px; left:480px;"></div>
     <span style="position:absolute; top:135; right:7;">5</span>
 
     <span style="position:absolute; top:165; left:7;">6 </span>
 
-    <div id="seat_6_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:50px;"></div>
-    <div id="seat_6_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:80px;"></div>
-    <div id="seat_6_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:110px;"></div>
-    <div id="seat_6_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:140px;"></div>
-    <div id="seat_6_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:170px;"></div>
-    <div id="seat_6_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:200px;"></div>
+    <div id="6_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:50px;"></div>
+    <div id="6_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:80px;"></div>
+    <div id="6_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:110px;"></div>
+    <div id="6_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:140px;"></div>
+    <div id="6_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:170px;"></div>
+    <div id="6_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:200px;"></div>
 
-    <div id="seat_6_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:300px;"></div>
-    <div id="seat_6_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:330px;"></div>
-    <div id="seat_6_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:360px;"></div>
-    <div id="seat_6_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:390px;"></div>
-    <div id="seat_6_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:420px;"></div>
-    <div id="seat_6_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:450px;"></div>
-    <div id="seat_6_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:480px;"></div>
+    <div id="6_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:300px;"></div>
+    <div id="6_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:330px;"></div>
+    <div id="6_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:360px;"></div>
+    <div id="6_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:390px;"></div>
+    <div id="6_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:420px;"></div>
+    <div id="6_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:450px;"></div>
+    <div id="6_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:160px; left:480px;"></div>
     <span style="position:absolute; top:165; right:7;">6 </span>
 
     <span style="position:absolute; top:195; left:7;">7</span>
 
-    <div id="seat_7_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:50px;"></div>
-    <div id="seat_7_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:80px;"></div>
-    <div id="seat_7_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:110px;"></div>
-    <div id="seat_7_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:140px;"></div>
-    <div id="seat_7_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:170px;"></div>
-    <div id="seat_7_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:200px;"></div>
+    <div id="7_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:50px;"></div>
+    <div id="7_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:80px;"></div>
+    <div id="7_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:110px;"></div>
+    <div id="7_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:140px;"></div>
+    <div id="7_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:170px;"></div>
+    <div id="7_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:200px;"></div>
 
-    <div id="seat_7_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:300px;"></div>
-    <div id="seat_7_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:330px;"></div>
-    <div id="seat_7_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:360px;"></div>
-    <div id="seat_7_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:390px;"></div>
-    <div id="seat_7_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:420px;"></div>
-    <div id="seat_7_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:450px;"></div>
-    <div id="seat_7_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:480px;"></div>
+    <div id="7_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:300px;"></div>
+    <div id="7_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:330px;"></div>
+    <div id="7_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:360px;"></div>
+    <div id="7_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:390px;"></div>
+    <div id="7_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:420px;"></div>
+    <div id="7_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:450px;"></div>
+    <div id="7_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:190px; left:480px;"></div>
     <span style="position:absolute; top:195; right:7;">7</span>
 
     <span style="position:absolute; top:225; left:7;">8</span>
 
-    <div id="seat_8_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:50px;"></div>
-    <div id="seat_8_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:80px;"></div>
-    <div id="seat_8_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:110px;"></div>
-    <div id="seat_8_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:140px;"></div>
-    <div id="seat_8_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:170px;"></div>
-    <div id="seat_8_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:200px;"></div>
+    <div id="8_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:50px;"></div>
+    <div id="8_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:80px;"></div>
+    <div id="8_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:110px;"></div>
+    <div id="8_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:140px;"></div>
+    <div id="8_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:170px;"></div>
+    <div id="8_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:200px;"></div>
 
-    <div id="seat_8_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:300px;"></div>
-    <div id="seat_8_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:330px;"></div>
-    <div id="seat_8_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:360px;"></div>
-    <div id="seat_8_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:390px;"></div>
-    <div id="seat_8_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:420px;"></div>
-    <div id="seat_8_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:450px;"></div>
-    <div id="seat_8_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:480px;"></div>
+    <div id="8_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:300px;"></div>
+    <div id="8_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:330px;"></div>
+    <div id="8_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:360px;"></div>
+    <div id="8_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:390px;"></div>
+    <div id="8_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:420px;"></div>
+    <div id="8_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:450px;"></div>
+    <div id="8_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:220px; left:480px;"></div>
     <span style="position:absolute; top:225; right:7;">8</span>
 
     <span style="position:absolute; top:255; left:7;">9</span>
 
-    <div id="seat_9_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:50px;"></div>
-    <div id="seat_9_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:80px;"></div>
-    <div id="seat_9_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:110px;"></div>
-    <div id="seat_9_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:140px;"></div>
-    <div id="seat_9_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:170px;"></div>
-    <div id="seat_9_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:200px;"></div>
+    <div id="9_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:50px;"></div>
+    <div id="9_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:80px;"></div>
+    <div id="9_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:110px;"></div>
+    <div id="9_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:140px;"></div>
+    <div id="9_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:170px;"></div>
+    <div id="9_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:200px;"></div>
 
-    <div id="seat_9_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:300px;"></div>
-    <div id="seat_9_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:330px;"></div>
-    <div id="seat_9_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:360px;"></div>
-    <div id="seat_9_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:390px;"></div>
-    <div id="seat_9_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:420px;"></div>
-    <div id="seat_9_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:450px;"></div>
-    <div id="seat_9_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:480px;"></div>
+    <div id="9_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:300px;"></div>
+    <div id="9_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:330px;"></div>
+    <div id="9_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:360px;"></div>
+    <div id="9_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:390px;"></div>
+    <div id="9_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:420px;"></div>
+    <div id="9_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:450px;"></div>
+    <div id="9_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:250px; left:480px;"></div>
     <span style="position:absolute; top:255; right:7;">9</span>
 
     <span style="position:absolute; top:285; left:7;">10</span>
 
-    <div id="seat_10_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:50px;"></div>
-    <div id="seat_10_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:80px;"></div>
-    <div id="seat_10_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:110px;"></div>
-    <div id="seat_10_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:140px;"></div>
-    <div id="seat_10_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:170px;"></div>
-    <div id="seat_10_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:200px;"></div>
+    <div id="10_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:50px;"></div>
+    <div id="10_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:80px;"></div>
+    <div id="10_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:110px;"></div>
+    <div id="10_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:140px;"></div>
+    <div id="10_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:170px;"></div>
+    <div id="10_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:200px;"></div>
 
-    <div id="seat_10_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:300px;"></div>
-    <div id="seat_10_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:330px;"></div>
-    <div id="seat_10_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:360px;"></div>
-    <div id="seat_10_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:390px;"></div>
-    <div id="seat_10_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:420px;"></div>
-    <div id="seat_10_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:450px;"></div>
-    <div id="seat_10_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:480px;"></div>
+    <div id="10_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:300px;"></div>
+    <div id="10_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:330px;"></div>
+    <div id="10_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:360px;"></div>
+    <div id="10_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:390px;"></div>
+    <div id="10_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:420px;"></div>
+    <div id="10_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:450px;"></div>
+    <div id="10_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:280px; left:480px;"></div>
     <span style="position:absolute; top:285; right:7;">10</span>
 
     <span style="position:absolute; top:315; left:7;">11</span>
 
-    <div id="seat_11_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:50px;"></div>
-    <div id="seat_11_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:80px;"></div>
-    <div id="seat_11_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:110px;"></div>
-    <div id="seat_11_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:140px;"></div>
-    <div id="seat_11_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:170px;"></div>
-    <div id="seat_11_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:200px;"></div>
+    <div id="11_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:50px;"></div>
+    <div id="11_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:80px;"></div>
+    <div id="11_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:110px;"></div>
+    <div id="11_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:140px;"></div>
+    <div id="11_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:170px;"></div>
+    <div id="11_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:200px;"></div>
 
-    <div id="seat_11_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:300px;"></div>
-    <div id="seat_11_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:330px;"></div>
-    <div id="seat_11_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:360px;"></div>
-    <div id="seat_11_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:390px;"></div>
-    <div id="seat_11_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:420px;"></div>
-    <div id="seat_11_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:450px;"></div>
-    <div id="seat_11_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:480px;"></div>
+    <div id="11_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:300px;"></div>
+    <div id="11_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:330px;"></div>
+    <div id="11_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:360px;"></div>
+    <div id="11_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:390px;"></div>
+    <div id="11_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:420px;"></div>
+    <div id="11_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:450px;"></div>
+    <div id="11_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:310px; left:480px;"></div>
     <span style="position:absolute; top:315; right:7;">11</span>
 
     <span style="position:absolute; top:345; left:7;">12</span>
 
-    <div id="seat_12_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:50px;"></div>
-    <div id="seat_12_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:80px;"></div>
-    <div id="seat_12_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:110px;"></div>
-    <div id="seat_12_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:140px;"></div>
-    <div id="seat_12_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:170px;"></div>
-    <div id="seat_12_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:200px;"></div>
+    <div id="12_1" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:50px;"></div>
+    <div id="12_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:80px;"></div>
+    <div id="12_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:110px;"></div>
+    <div id="12_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:140px;"></div>
+    <div id="12_5" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:170px;"></div>
+    <div id="12_6" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:200px;"></div>
 
-    <div id="seat_12_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:300px;"></div>
-    <div id="seat_12_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:330px;"></div>
-    <div id="seat_12_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:360px;"></div>
-    <div id="seat_12_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:390px;"></div>
-    <div id="seat_12_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:420px;"></div>
-    <div id="seat_12_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:450px;"></div>
-    <div id="seat_12_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:480px;"></div>
+    <div id="12_7" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:300px;"></div>
+    <div id="12_8" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:330px;"></div>
+    <div id="12_9" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:360px;"></div>
+    <div id="12_10" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:390px;"></div>
+    <div id="12_11" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:420px;"></div>
+    <div id="12_12" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:450px;"></div>
+    <div id="12_13" class="seat" style=" background-image:url(images/SeatGreen.png); top:340px; left:480px;"></div>
     <span style="position:absolute; top:345; right:7;">12</span>
 </div>
 
 <div style="width:200px; height:400px; float:right; margin-top:50px; background-color:red; margin-right:100px;">
-    <?php
-    require_once 'config.php';
-    $query = "select imagine, tip_loc from cinemadb.status_seats where idSeats=1";
-    $rez = mysql_query($query);
-    $row = mysql_fetch_assoc($rez);
-    $query1 = "select imagine, tip_loc from cinemadb.status_seats where idSeats=2";
-    $rez1 = mysql_query($query1);
-    $row1 = mysql_fetch_assoc($rez1);
-    $query2 = "select imagine, tip_loc from cinemadb.status_seats where idSeats=3";
-    $rez2 = mysql_query($query2);
-    $row2 = mysql_fetch_assoc($rez2);
-    echo '<table style="margin-top:100px;">
-									<tr>
-										<td><img src=' . $row['imagine'] . '></td>
-										<td>' . $row['tip_loc'] . '</td>
-									</tr>
-									<tr>
-										<td><img src=' . $row1['imagine'] . '></td>
-										<td>' . $row1['tip_loc'] . '</td>
-									</tr>
-									<tr>
-										<td><img src=' . $row2['imagine'] . '></td>
-										<td>' . $row2['tip_loc'] . '</td>
-									</tr>
-								</table>';
 
-    ?>
+    <table style="margin-top:100px;">
+        <tr>
+            <td><img src='<?= $row1['imagine'] ?>'</td>
+            <td><?= $row1['tip_loc']?></td>
+        </tr>
+        <tr>
+            <td><img src='<?= $row2['imagine'] ?>'</td>
+            <td><?= $row2['tip_loc'] ?></td>
+        </tr>
+        <tr>
+            <td><img src='<?=  $row3['imagine'] ?>'</td>
+            <td><?= $row3['tip_loc']?> </td>
+        </tr>
+    </table>
 </div>
 
 
 </div>
 </td>
-
-
 </tr>
-<tr>
-    <td align="right" style="padding-top:10px;">
-        <input id="automat" style="border-width:0px; color:transparent;" type="image" src="images/BackButton.jpg"/>
-        <a href="ReservationPage2.php"><input id="manual" style="border-width:0px;" type="image"
-                                              src="images/NextButton.jpg"/></a>
-    </td>
-</tr>
+
 </table>
 
 
