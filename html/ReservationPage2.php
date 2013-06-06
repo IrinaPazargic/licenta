@@ -58,13 +58,21 @@ foreach ($locuri as $key => $value) {
     <script>
         $(document).ready(function () {
             var array = [];
+            var original_image= 'url(images/YellowSeat.png)';
+            var second_image='url(images/SeatGreen.png)';
+
             $("button").click(function () {
                 var locuri = array.join('|');
                 console.log(locuri);
                 $("#content").load("detalii_rezervare.php?locuri=" + locuri);
             });
-            $(".seat").click(function () {
+
+
+           $(".seat").click(function (event) {
                 var id = $(this).attr('id');
+
+            event.target.style.backgroundImage=second_image;
+
 
                 if (array.indexOf(id) == -1) {
                     array.push(id);
@@ -79,8 +87,8 @@ foreach ($locuri as $key => $value) {
 
                 }
 
-
             });
+
         });
     </script>
 
@@ -186,7 +194,7 @@ foreach ($locuri as $key => $value) {
 <div align="left" style=" color:black; float:left; height:400px; width:550px; position:relative; margin-left: 240px; margin-top:50px;">
     <span style="position:absolute; top:15; left:7;">1 </span>
 
-    <div id="1_1" class="seat" style="top:10px; left:50px;"><img  src="images/SeatGreen.png"/></div>
+    <div id="1_1" class="seat" style="top:10px; left:50px; background-image:url(images/SeatGreen.png);"></div>
     <div id="1_2" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:80px;" ></div>
     <div id="1_3" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:110px;"></div>
     <div id="1_4" class="seat" style=" background-image:url(images/SeatGreen.png); top:10px; left:140px;"></div>
