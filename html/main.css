@@ -1,6 +1,6 @@
 
 /* reset styles */
-html, body, h1, h2, h3, h4, h5, h6, p, ol, ul, li, pre, code, address, variable, form, fieldset, blockquote {
+html, body, h1, h2, h3, h4, h5, h6, p, ol, ul, li, pre, code, address, form, fieldset, blockquote {
  padding: 0;
  margin: 0;
  font-size: 100%;
@@ -164,7 +164,11 @@ clear: both;
 	background-color:#197419;
 	height:2.4em;
 	padding-top:4px;
+}
 
+#left #secondNav h3 {
+
+    margin-left: 0;
 }
 
 
@@ -270,8 +274,8 @@ clear: both;
 	margin-top:20px;
 	border-radius: 10px 10px 10px 10px;
 	float:left;
-	margin-left:10px;
-	width:20%;
+	margin-left:0;
+	width:200px;
 	padding:0;
 }
 
@@ -295,6 +299,7 @@ clear: both;
 	text-align:left;
 	overflow: hidden; 
 	zoom: 1;
+    width:200px;
 }
 
 
@@ -380,7 +385,7 @@ clear: both;
 }
 
 .newsList p strong{
-	color:none;
+
 	color:#136CB2;
 	margin-left:-2px;
 }
@@ -490,13 +495,13 @@ clear: both;
 #secondNav h3 > a{
 	text-decoration:none;
 	background-image:none;
-	color:none;
+
 }
 
 #selectCinema{
 	height:auto;
-	width:95%;
-	margin:10px ;
+	width:700px;
+	margin:0 auto ;
 }
 #selectCinema h2{
 	margin: 10px auto;
@@ -507,7 +512,7 @@ clear: both;
 
 #selectCinema h3{
 	background-color:white;
-	font-size:1.3el;
+	font-size:1.3em;
 }
 
 #selectCinema input{

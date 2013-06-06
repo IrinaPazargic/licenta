@@ -100,7 +100,8 @@
         <button type="submit">Search</button>
     </form> 
 	<h3 style="padding-top:10px; padding-left:10px; float:left;"><strong><a href="index.php" style="text-decoration:none;">Acasa >></a></strong><strong>Filme </strong></h3>
-	<div id="secondNav" class="copyright">
+	<div id="left">
+    <div id="secondNav" class="copyright">
 		<span class="icon_hold">
 			<img id="images" src="images/home_32.png">
 		</span>
@@ -172,40 +173,36 @@
 			    </table>
 		     </form>
 		 </div>
-	</div>
-
-
-	
-	<div id="thirdNav" class="copyright" >
-		<span class="icon_hold">
+     <div id="thirdNav">
+        <span class="icon_hold">
 		<img class="images" src="images/ico_promo.gif">
 		</span>
-		<h3><strong>Categorii Filme</strong></h3>
-		<ul id="film_list">
-			<li ><a href="?gen=actiune" class="filmsLink">Actiune</a></li>
-			<li><a href="?gen=animatie" class="filmsLink">Animatie</a></li>
-			<li><a href="?gen=aventura" class="filmsLink">Aventura</a></li>
-			<li><a href="?gen=comedie" class="filmsLink">Comedie</a></li>
-			<li><a href="?gen=crima" class="filmsLink">Crima</a></li>
-			<li><a href="?gen=drama" class="filmsLink">Drama</a></li>
-			<li><a href="?gen=familie" class="filmsLink">Familie</a></li>
+            <h3><strong>Categorii Filme</strong></h3>
+            <ul id="film_list">
+                <li ><a href="?gen=actiune" class="filmsLink">Actiune</a></li>
+                <li><a href="?gen=animatie" class="filmsLink">Animatie</a></li>
+                <li><a href="?gen=aventura" class="filmsLink">Aventura</a></li>
+                <li><a href="?gen=comedie" class="filmsLink">Comedie</a></li>
+                <li><a href="?gen=crima" class="filmsLink">Crima</a></li>
+                <li><a href="?gen=drama" class="filmsLink">Drama</a></li>
+                <li><a href="?gen=familie" class="filmsLink">Familie</a></li>
 
-			<li><a href="?gen=fantastic" class="filmsLink">Fantastic</a></li>
-			<li><a href="?gen=horror" class="filmsLink">Horror</a></li>
-			<li><a href="?gen=istoric" class="filmsLink">Istoric</a></li>
-			<li><a href="?gen=mister" class="filmsLink">Mister</a></li>
-			<li><a href="?gen=muzical" class="filmsLink">Muzical</a></li>
-			<li><a href="?gen=razboi" class="filmsLink">Razboi</a></li>
-			<li><a href="?gen=romantic" class="filmsLink">Romantic</a></li>
-			<li><a href="?gen=sf" class="filmsLink">SF</a></li>
-			<li><a href="?gen=thriller" class="filmsLink">Thriller</a></li>
-			<li><a href="?gen=western" class="filmsLink">Western</a></li>
-			<li><a href="?gen=documentar" class="filmsLink">Documentar</a></li>
-		</ul>
-	</div>
+                <li><a href="?gen=fantastic" class="filmsLink">Fantastic</a></li>
+                <li><a href="?gen=horror" class="filmsLink">Horror</a></li>
+                <li><a href="?gen=istoric" class="filmsLink">Istoric</a></li>
+                <li><a href="?gen=mister" class="filmsLink">Mister</a></li>
+                <li><a href="?gen=muzical" class="filmsLink">Muzical</a></li>
+                <li><a href="?gen=razboi" class="filmsLink">Razboi</a></li>
+                <li><a href="?gen=romantic" class="filmsLink">Romantic</a></li>
+                <li><a href="?gen=sf" class="filmsLink">SF</a></li>
+                <li><a href="?gen=thriller" class="filmsLink">Thriller</a></li>
+                <li><a href="?gen=western" class="filmsLink">Western</a></li>
+                <li><a href="?gen=documentar" class="filmsLink">Documentar</a></li>
+            </ul>
+        </div>
+     </div> <!--left-->
 
-
-    <div id="news" class="copyright">
+        <div id="news">
    		<span class="icon_hold">
    			<img id="image" src="images/newspaper.png">
    		</span>
@@ -295,7 +292,8 @@
 
 
    	</div>
-	
+
+
 </div>
 <div id="footer" class="copyright">
 <h3>Copyright</h3>

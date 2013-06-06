@@ -13,13 +13,12 @@ require_once 'config.php';
 ?>
 
 
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>MyCinema</title>
 <link href="main.css" rel="stylesheet" type="text/css"/>
+>
 </head>
 <body id="feature">
 <div id="header">
@@ -34,7 +33,7 @@ require_once 'config.php';
 		<ul id="mainNav">
 			<li> <a href="noutati.php" id="homeLink">Noutati</a></li>
 			<li><a href="despre_noi.php" id="AboutUsLink">Despre Noi</a></li>
-			<li> <a href="" id="politicsLink">Politici</a></li>
+			<li> <a href="politici.php" id="politicsLink">Politici</a></li>
 			<li><a href="preturi.php" id="politicsLink">Preturi</a></li>
 			<li><a href="" id="contactUsLink">Contact</a></li>
 		</ul>
@@ -124,48 +123,50 @@ require_once 'config.php';
 		</div> <!--searchBody-->
 	</div> <!--secondNav-->
 
-	<div id="thirdNav" class="copyright" >
-		<span class="icon_hold">
-			<img class="images" src="images/ico_promo.gif">
-		</span>
-		<h3><strong>Categorii Filme</strong></h3>
-		<ul id="film_list">
-			<li ><a href="filme.php?gen=actiune" class="filmsLink">Actiune</a></li>
-			<li><a href="filme.php?gen=animatie" class="filmsLink">Animatie</a></li>
-			<li><a href="filme.php?gen=aventura" class="filmsLink">Aventura</a></li>
-			<li><a href="filme.php?gen=comedie" class="filmsLink">Comedie</a></li>
-			<li><a href="filme.php?gen=crima" class="filmsLink">Crima</a></li>
-			<li><a href="filme.php?gen=drama" class="filmsLink">Drama</a></li>
-			<li><a href="filme.php?gen=familie" class="filmsLink">Familie</a></li>
-			<li><a href="filme.php?gen=fantastic" class="filmsLink">Fantastic</a></li>
-			<li><a href="filme.php?gen=horror" class="filmsLink">Horror</a></li>
-			<li><a href="filme.php?gen=istoric" class="filmsLink">Istoric</a></li>
-			<li><a href="filme.php?gen=mister" class="filmsLink">Mister</a></li>
-			<li><a href="filme.php?gen=muzical" class="filmsLink">Muzical</a></li>
-			<li><a href="filme.php?gen=razboi" class="filmsLink">Razboi</a></li>
-			<li><a href="filme.php?gen=romantic" class="filmsLink">Romantic</a></li>
-			<li><a href="filme.php?gen=sf" class="filmsLink">SF</a></li>
-			<li><a href="filme.php?gen=thriller" class="filmsLink">Thriller</a></li>
-			<li><a href="filme.php?gen=western" class="filmsLink">Western</a></li>
-			<li><a href="filme.php?gen=documentar" class="filmsLink">Documentar</a></li>
-		</ul>
-	</div> <!--thirdNav-->
-    <div id="news" >
+    <div id="news">
        	<div id="selectCinema">
 
-       		<h2> Rezervarile trebuie ridicate cu cel putin 30 minute inainte de inceperea filmului, in caz contrar vor fi anulate.<br/>
+       		<h2 style="background-color: orange; text-align: center;"> Rezervarile trebuie ridicate cu cel putin 30 minute inainte de inceperea filmului, in caz contrar vor fi anulate.<br/>
        			Pentru a evita aglomeratia de la case, va rugam sa ridicati rezervarile anticipat.</h2>
        		<h3> <strong>Selectati cinematograful:</strong></h3>
-       		<table>
+       		<table style="width:100%">
        		<tbody>
-       			<tr><td style="text-align:center;">
-       				<a href="program.php?idCinema=100" style="text-decoration:none; "><strong>Galati</strong></a></td></tr>
-       			<tr><td style="text-align:center;">
-       				<a href="program.php?idCinema=101" style=""><strong>Bucuresti</strong></a></td></tr>
+       			<tr>
+                     <td style="text-align:left;width:200px;  padding: 5px;">
+       				    <a href="program.php?idCinema=100" style="width: 150px; font-size:1.3em; text-decoration:none;text-transform: uppercase; border:1px solid black;"><strong>Galati</strong></a></td></tr>
+       			<tr>
+                    <td style="text-align:left; width:100px; padding: 5px; ">
+       				    <a href="program.php?idCinema=101" style="width: 150px; font-size:1.3em; text-decoration: none; text-transform: uppercase; border:1px solid black; "><strong>Bucuresti</strong></a></td></tr>
        		</tbody>
        		</table>
        	</div><!--selectCinema-->
        	</div><!--news-->
+    <div id="thirdNav" class="copyright">
+		<span class="icon_hold">
+			<img class="images" src="images/ico_promo.gif">
+		</span>
+        <h3><strong>Categorii Filme</strong></h3>
+        <ul id="film_list">
+            <li ><a href="filme.php?gen=actiune" class="filmsLink">Actiune</a></li>
+            <li><a href="filme.php?gen=animatie" class="filmsLink">Animatie</a></li>
+            <li><a href="filme.php?gen=aventura" class="filmsLink">Aventura</a></li>
+            <li><a href="filme.php?gen=comedie" class="filmsLink">Comedie</a></li>
+            <li><a href="filme.php?gen=crima" class="filmsLink">Crima</a></li>
+            <li><a href="filme.php?gen=drama" class="filmsLink">Drama</a></li>
+            <li><a href="filme.php?gen=familie" class="filmsLink">Familie</a></li>
+            <li><a href="filme.php?gen=fantastic" class="filmsLink">Fantastic</a></li>
+            <li><a href="filme.php?gen=horror" class="filmsLink">Horror</a></li>
+            <li><a href="filme.php?gen=istoric" class="filmsLink">Istoric</a></li>
+            <li><a href="filme.php?gen=mister" class="filmsLink">Mister</a></li>
+            <li><a href="filme.php?gen=muzical" class="filmsLink">Muzical</a></li>
+            <li><a href="filme.php?gen=razboi" class="filmsLink">Razboi</a></li>
+            <li><a href="filme.php?gen=romantic" class="filmsLink">Romantic</a></li>
+            <li><a href="filme.php?gen=sf" class="filmsLink">SF</a></li>
+            <li><a href="filme.php?gen=thriller" class="filmsLink">Thriller</a></li>
+            <li><a href="filme.php?gen=western" class="filmsLink">Western</a></li>
+            <li><a href="filme.php?gen=documentar" class="filmsLink">Documentar</a></li>
+        </ul>
+    </div> <!--thirdNav-->
 
 </div><!--mainContent-->
 

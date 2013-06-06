@@ -60,7 +60,7 @@
 	clear: both;
     content: ".";
     display: block;
-    height: 0 auto;
+    height: auto;
     visibility: hidden;
 }
 

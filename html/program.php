@@ -95,7 +95,7 @@ function detalii_film(){
 		<ul id="mainNav">
 			<li> <a href="noutati.php" id="homeLink">Noutati</a></li>
 			<li><a href="despre_noi.php" id="AboutUsLink">Despre Noi</a></li>
-			<li> <a href="" id="politicsLink">Politici</a></li>
+			<li> <a href="politici.php" id="politicsLink">Politici</a></li>
 			<li><a href="preturi.php" id="politicsLink">Preturi</a></li>
 			<li><a href="" id="contactUsLink">Contact</a></li>
 		</ul>
@@ -191,19 +191,19 @@ function detalii_film(){
    		<div id="menu_program">
    			<ul>
    			<li id="current_program">
-   				<a href="?data=<?php echo date("Y/m/d", $today); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span> <?php echo  'Sa'.date("Y/m/d", $today); ?> </span></a></li>
+   				<a href="?data=<?php echo date("Y/m/d", $today); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span> <?php echo  date("Y/m/d", $today); ?> </span></a></li>
    			<li >
-   				<a href="?data=<?php echo date("Y/m/d", $tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Du ".date("m/d", $tomorrow); ?> </span></a></li>
+   				<a href="?data=<?php echo date("Y/m/d", $tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $tomorrow); ?> </span></a></li>
    			<li>
-   				<a href="?data=<?php echo date("Y/m/d", $day_after_tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Lu ".date("m/d", $day_after_tomorrow); ?> </span></a></li>
+   				<a href="?data=<?php echo date("Y/m/d", $day_after_tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $day_after_tomorrow); ?> </span></a></li>
    			<li>
-   				<a href="?data=<?php echo date("Y/m/d", $other_day); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Ma ".date("m/d", $other_day); ?> </span></a></li>
+   				<a href="?data=<?php echo date("Y/m/d", $other_day); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $other_day); ?> </span></a></li>
    			<li>
-   				<a href="?data=<?php echo date("Y/m/d", $other_day_1); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Mi ".date("m/d", $other_day_1); ?></span></a></li>
+   				<a href="?data=<?php echo date("Y/m/d", $other_day_1); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $other_day_1); ?></span></a></li>
    			<li>
-   				<a href="?data=<?php echo date("Y/m/d", $other_day_2); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Jo ".date("m/d", $other_day_2); ?></span></a></li>
+   				<a href="?data=<?php echo date("Y/m/d", $other_day_2); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $other_day_2); ?></span></a></li>
    			<li>
-   				<a href="?data=<?php echo date("Y/m/d", $other_day_3); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo "Vi ".date("m/d", $other_day_3); ?></span></a></li>
+   				<a href="?data=<?php echo date("Y/m/d", $other_day_3); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $other_day_3); ?></span></a></li>
    			</ul>
 
    		</div>
