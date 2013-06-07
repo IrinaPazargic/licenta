@@ -92,8 +92,6 @@ foreach ($locuri as $key => $value) {
         });
     </script>
 
-
-
 </head>
 <body >
 <div id="content">
