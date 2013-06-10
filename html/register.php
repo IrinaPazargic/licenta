@@ -1,11 +1,12 @@
 <?php
-/**
- * Created by JetBrains PhpStorm.
- * User: irina
- * Date: 6/10/13
- * Time: 10:30 AM
- * To change this template use File | Settings | File Templates.
- */
+    require_once 'config.php';
+$nume=$_POST['nume'];
+$prenume=$_POST['prenume'];
+$email=$_POST['email'];
+$telefon=$_POST['tel'];
+$adresa=$_POST['adresa'];
+$username=$_POST['username'];
+$password=$_POST['password'];
 ?>
 
 <html>
@@ -43,7 +44,7 @@
                 <input type="text" name="username"></p>
                 <p><label for="password">Password: </label>
                 <input type="password" name="password"></p>
-                <input type="submit" value="Send"/>
+                <input type="submit" id="button" value="Register"/>
             </fieldset>
     </form>
 </div>

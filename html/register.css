@@ -15,7 +15,6 @@ label
 
 fieldset
 {
-    border: 1px solid #781351;
     width: 30em;
     margin:5px auto;
 }
@@ -24,11 +23,38 @@ legend
 {
     color: #fff;
     background: #ffa20c;
-    border: 1px solid #781351;
     padding: 2px 6px
 }
+#button{
+    background-color: #444444;
+    color: #DFDFDF;
+    cursor: pointer;
+    border: 1px solid #000000;
+    border-radius: 3px 3px 3px 3px;
+    font-size: 12px;
+    height: 30px;
+}
+
+#form {background-color: #fff;
+    border: 1px solid #dedede;}
 
 ul {list-style-type:none; padding: 5px; }
 li {float:left; padding:3px;}
 .content { margin:20px auto; width:600px; height:auto;}
-a{text-decoration: none; font-family: Arial SANS-SERIF; font-size: 1em;}
+a {
+    display: block;
+    float: right;
+    color: #FFF;
+    text-decoration: none;
+    font: bold 14px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    padding: 5px 25px;
+    background-image: url(images/bg_nav.png);
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    border-style: none;
+}
+
+a:hover {
+    background-position: center top;
+    color: #325C38;
+}
