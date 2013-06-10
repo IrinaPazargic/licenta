@@ -26,6 +26,17 @@
       <primary-key name="PRIMARY" columns="idCinema"/>
       <exported-key name="program_ibfk_2" table="program" schema="" catalog="cinemadb" columns="idCinema"/>
     </table>
+    <table name="detalii_membri" schema="" catalog="cinemadb" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nume" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12"/>
+      <column name="prenume" sqlType="VARCHAR" length="30" precision="0" nullable="false" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
+      <column name="adresa" sqlType="VARCHAR" length="100" precision="0" nullable="false" jdbcType="12"/>
+      <column name="telefon" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <column name="id_users" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="users_ibfk_1" columns="id_users" ref-table="users" ref-schema="" ref-catalog="cinemadb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
     <table name="filme" schema="" catalog="cinemadb" type="TABLE">
       <column name="idFilm" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="titlu" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12"/>
@@ -101,6 +112,13 @@
       <column name="imagine" sqlType="VARCHAR" length="60" precision="0" nullable="false" jdbcType="12"/>
       <column name="tip_loc" sqlType="VARCHAR" length="75" precision="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="idSeats"/>
+    </table>
+    <table name="users" schema="" catalog="cinemadb" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="username" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="users_ibfk_1" table="detalii_membri" schema="" catalog="cinemadb" columns="id_users"/>
     </table>
   </data-source>
 </component>

@@ -1,5 +1,30 @@
 <?php
 
+class Inregistrare{
+    public $nume;
+    public $prenume;
+    public $email;
+    public $telefon;
+    public $adresa;
+    public $idUser;
+
+}
+
+class Users{
+    public $username;
+    public $password;
+
+    function __construct($username = null, $password = null)
+    {
+        $this->username = $username;
+        $this->password = $password;
+
+    }
+}
+
+
+
+
 class Rezervare {
     public $idProgram;
     public $tipLocuri;
