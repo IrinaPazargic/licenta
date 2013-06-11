@@ -2,15 +2,8 @@
 require_once 'model.php';
 require_once 'config.php';
 
-class DbConfig
-{
-    public static $host = "localhost";
-    public static $user = "root";
-    public static $pass = "root";
-    public static $db = "cinemadb";
-}
-    $inregistrare= new Inregistrare();
-    $users= new Users();
+$inregistrare= new Inregistrare();
+$users= new Users();
 
 
 
