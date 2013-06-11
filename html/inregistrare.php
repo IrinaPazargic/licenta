@@ -12,31 +12,24 @@ class DbConfig
     $inregistrare= new Inregistrare();
     $users= new Users();
 
-$nume=$_POST['nume'];
-$inregistrare->nume=$nume;
-$prenume=$_POST['prenume'];
-$inregistrare->prenume=$prenume;
-$email=$_POST['email'];
-$inregistrare->email=$email;
-$telefon=$_POST['tel'];
-$inregistrare->telefon=$telefon;
-$adresa=$_POST['adresa'];
-$inregistrare->adresa=$adresa;
-$username = $_POST['username'];
-$users->username=$username;
-$password= $_POST['password'];
-$users->password=$password;
+
+
+
+inregistrare($inregistrare);
+
 
 function inregistrare($inregistrare)
 {
-    $idUser = salveazaSauCitesteUser($inregistrare->id_users);
+    $idUser = salveazaSauCitesteUser();
 //    printf("Id persoana: %d\n", $idPersoana);
-    salveazaLocurileRezervate($inregistrare, $idUser);
+    salveazaInregistrare($idUser);
     print("Inregistrare salvata cu succes!");
 }
 
-function salveazaSauCitesteUser($user)
+function salveazaSauCitesteUser()
 {
+    $username = $_POST['username'];
+    $password= $_POST['password'];
     $mysqli = new mysqli(DbConfig::$host, DbConfig::$user, DbConfig::$pass, DbConfig::$db);
 
     $mysqli->autocommit(false);
@@ -45,8 +38,7 @@ function salveazaSauCitesteUser($user)
         die ("Nu se poate conecta...");
     }
 
-    $stat1 = $mysqli->prepare("SELECT id FROM users WHERE username = ? AND password = ?");
-    $stat1->bind_param("ss", $user->username, $user->password);
+    $stat1 = $mysqli->prepare("SELECT id FROM users WHERE username = '$username' AND password = '$password'");
     $stat1->execute();
     $stat1->bind_result($res);
     $stat1->fetch();
@@ -54,8 +46,7 @@ function salveazaSauCitesteUser($user)
     if ($res > 0) {
         $idUser = $res;
     } else {
-        $stat2 = $mysqli->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
-        $stat2->bind_param("ss", $user->username,$user->password);
+        $stat2 = $mysqli->prepare("INSERT INTO users (username, password) VALUES ('$username', '$password')");
         $success = $stat2->execute();
         if (!$success) {
             $mysqli->rollback();
@@ -70,8 +61,14 @@ function salveazaSauCitesteUser($user)
     return $idUser;
 }
 
-function salveazaInregistrare($inregistrare, $idUser)
+function salveazaInregistrare($idUser)
 {
+    $nume=$_POST['nume'];
+    $prenume=$_POST['prenume'];
+    $email=$_POST['email'];
+    $telefon=$_POST['tel'];
+    $adresa=$_POST['adresa'];
+
     $mysqli = new mysqli(DbConfig::$host, DbConfig::$user, DbConfig::$pass, DbConfig::$db);
     $mysqli->autocommit(false);
 
@@ -80,7 +77,7 @@ function salveazaInregistrare($inregistrare, $idUser)
             printf("Errorcode: %d\n", $mysqli->errno);
             die("Cannot prepare statement for inser into locuri_rezervate");
         }
-        $stat1->bind_param("ssssii", $inregistrare->nume, $inregistrare->prenume, $inregistrare->email, $inregistrare->adresa, $inregistrare->telefon, $idUser);
+        $stat1->bind_param("ssssii", $nume, $prenume, $email, $adresa, $telefon, $idUser);
         $success = $stat1->execute();
         if (!$success) {
             $mysqli->rollback();

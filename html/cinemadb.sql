@@ -30,6 +30,27 @@ CREATE TABLE `cinema` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `detalii_membri`
+--
+
+DROP TABLE IF EXISTS `detalii_membri`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `detalii_membri` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nume` varchar(40) NOT NULL,
+  `prenume` varchar(30) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `adresa` varchar(100) NOT NULL,
+  `telefon` int(15) DEFAULT NULL,
+  `id_users` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_users` (`id_users`),
+  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `filme`
 --
 
@@ -67,7 +88,7 @@ CREATE TABLE `locuri_rezervate` (
   KEY `idReducere` (`idReducere`),
   CONSTRAINT `locuri_rezervate_ibfk_1` FOREIGN KEY (`id_rezervare`) REFERENCES `rezervare` (`id`),
   CONSTRAINT `locuri_rezervate_ibfk_2` FOREIGN KEY (`idReducere`) REFERENCES `reduceri` (`idReducere`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,7 +105,7 @@ CREATE TABLE `persoane` (
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `telefon` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +164,7 @@ CREATE TABLE `rezervare` (
   KEY `id_program` (`id_program`),
   CONSTRAINT `rezervare_ibfk_1` FOREIGN KEY (`id_persoana`) REFERENCES `persoane` (`id`),
   CONSTRAINT `rezervare_ibfk_2` FOREIGN KEY (`id_program`) REFERENCES `program` (`idProgram`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,6 +198,21 @@ CREATE TABLE `status_seats` (
   PRIMARY KEY (`idSeats`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(40) NOT NULL,
+  `password` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -187,4 +223,4 @@ CREATE TABLE `status_seats` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-06 16:56:36
+-- Dump completed on 2013-06-11 13:19:10

@@ -40,7 +40,7 @@ legend
 
 ul {list-style-type:none; padding: 5px; }
 li {float:left; padding:3px;}
-.content { margin:20px auto; width:600px; height:auto;}
+#content { margin:20px auto; width:600px; height:auto;}
 a {
     display: block;
     float: right;

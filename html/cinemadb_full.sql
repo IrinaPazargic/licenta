@@ -40,6 +40,37 @@ INSERT INTO `cinema` VALUES (100,'Galati'),(101,'Bucuresti');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `detalii_membri`
+--
+
+DROP TABLE IF EXISTS `detalii_membri`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `detalii_membri` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nume` varchar(40) NOT NULL,
+  `prenume` varchar(30) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `adresa` varchar(100) NOT NULL,
+  `telefon` int(15) DEFAULT NULL,
+  `id_users` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_users` (`id_users`),
+  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `detalii_membri`
+--
+
+LOCK TABLES `detalii_membri` WRITE;
+/*!40000 ALTER TABLE `detalii_membri` DISABLE KEYS */;
+INSERT INTO `detalii_membri` VALUES (10,'','','','',0,12),(11,'irina','PAZARGIC','chitbulitza2005@yahoo.com','micro 17, barbu 1',743032157,13);
+/*!40000 ALTER TABLE `detalii_membri` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `filme`
 --
 
@@ -87,7 +118,7 @@ CREATE TABLE `locuri_rezervate` (
   KEY `idReducere` (`idReducere`),
   CONSTRAINT `locuri_rezervate_ibfk_1` FOREIGN KEY (`id_rezervare`) REFERENCES `rezervare` (`id`),
   CONSTRAINT `locuri_rezervate_ibfk_2` FOREIGN KEY (`idReducere`) REFERENCES `reduceri` (`idReducere`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +127,7 @@ CREATE TABLE `locuri_rezervate` (
 
 LOCK TABLES `locuri_rezervate` WRITE;
 /*!40000 ALTER TABLE `locuri_rezervate` DISABLE KEYS */;
-INSERT INTO `locuri_rezervate` VALUES (1,1,1,3);
+INSERT INTO `locuri_rezervate` VALUES (1,1,1,3),(2,1,2,2);
 /*!40000 ALTER TABLE `locuri_rezervate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +145,7 @@ CREATE TABLE `persoane` (
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `telefon` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +154,7 @@ CREATE TABLE `persoane` (
 
 LOCK TABLES `persoane` WRITE;
 /*!40000 ALTER TABLE `persoane` DISABLE KEYS */;
-INSERT INTO `persoane` VALUES (1,'pazargic','irina','chitbulitza2005@yahoo.com','0743032157');
+INSERT INTO `persoane` VALUES (1,'pazargic','irina','chitbulitza2005@yahoo.com','0743032157'),(2,'paza','iri','chitbulitza2005@yahoo.com','466778');
 /*!40000 ALTER TABLE `persoane` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,7 +188,7 @@ CREATE TABLE `program` (
 
 LOCK TABLES `program` WRITE;
 /*!40000 ALTER TABLE `program` DISABLE KEYS */;
-INSERT INTO `program` VALUES (1,1,100,'2013-06-03','12:40',1),(2,1,100,'2013-06-04','12:40',1),(3,1,100,'2013-06-04','15:40',2),(4,2,100,'2013-06-04','15:50',1),(5,3,101,'2013-06-04','10:20',1),(6,3,101,'2013-06-04','14:40',1);
+INSERT INTO `program` VALUES (1,1,100,'2013-06-03','12:40',1),(2,1,100,'2013-06-04','12:40',1),(3,1,100,'2013-06-04','15:40',2),(4,2,100,'2013-06-06','15:50',1),(5,3,101,'2013-06-06','10:20',1),(6,3,101,'2013-06-06','14:40',1);
 /*!40000 ALTER TABLE `program` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -203,7 +234,7 @@ CREATE TABLE `rezervare` (
   KEY `id_program` (`id_program`),
   CONSTRAINT `rezervare_ibfk_1` FOREIGN KEY (`id_persoana`) REFERENCES `persoane` (`id`),
   CONSTRAINT `rezervare_ibfk_2` FOREIGN KEY (`id_program`) REFERENCES `program` (`idProgram`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -212,7 +243,7 @@ CREATE TABLE `rezervare` (
 
 LOCK TABLES `rezervare` WRITE;
 /*!40000 ALTER TABLE `rezervare` DISABLE KEYS */;
-INSERT INTO `rezervare` VALUES (1,1,4,'1_1|1_2|1_3');
+INSERT INTO `rezervare` VALUES (1,1,4,'1_1|1_2|1_3'),(2,2,4,'1_1|1_2');
 /*!40000 ALTER TABLE `rezervare` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -267,6 +298,31 @@ LOCK TABLES `status_seats` WRITE;
 INSERT INTO `status_seats` VALUES (1,'images/YellowSeat.png','Locuri disponibile'),(2,'','Locuri indisponibile'),(3,'','Locuri selectate');
 /*!40000 ALTER TABLE `status_seats` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(40) NOT NULL,
+  `password` varchar(30) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (12,'',''),(13,'rubita','gigiiarba');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -277,4 +333,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-06 16:57:26
+-- Dump completed on 2013-06-11 13:19:59
