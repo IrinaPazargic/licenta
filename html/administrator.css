@@ -1,5 +1,5 @@
 body { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; background-color: #FDFCD2;}
-#content {margin:0 auto; width:100%;height:400px;}
+#content {margin:0 auto; width:100%;height:1000px;}
 #content p { float:right;}
 #left{float:left; width:215px; background: url(images/sidebar_bg.png) no-repeat;padding: 10px 10px;
 }
@@ -56,6 +56,11 @@ body { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; background-col
     background-repeat: repeat-x;
     background-position: center bottom;
     border-style: none;
+}
+
+#content #right ul li {
+    float: left;
+
 }
 
 

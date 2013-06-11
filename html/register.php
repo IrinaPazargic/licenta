@@ -26,7 +26,7 @@ $password=$_POST['password'];
     <li><a id="login" href="login.php">Log in</a></li>
 
 </ul>
-<div style="clear:both;" class="form">
+<div style="clear:both;" id="form">
     <form action="inregistrare.php" method="post">
             <fieldset>
                 <legend>Pagina de inregistrare</legend>
