@@ -18,7 +18,7 @@ $server = new \WebSocket\Server('127.0.0.1', 8000, false);
 // server settings:
 $server->setMaxClients(100);
 $server->setCheckOrigin(true);
-$server->setAllowedOrigin('auction.dmatei.ro');
+$server->setAllowedOrigin('licenta.irina.ro');
 $server->setMaxConnectionsPerIp(100);
 $server->setMaxRequestsPerMinute(2000);
 
