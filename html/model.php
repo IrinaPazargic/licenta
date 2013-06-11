@@ -7,14 +7,6 @@ class Inregistrare{
     public $telefon;
     public $adresa;
     public $user;
-    function __construct($nume=null, $prenume=null, $email=null, $telefon=0, $adresa=null, $user=null){
-        $this->nume=$nume;
-        $this->prenume=$prenume;
-        $this->email=$email;
-        $this->telefon=$telefon;
-        $this->adresa=$adresa;
-        $this->user=$user;
-}
 
 }
 

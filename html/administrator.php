@@ -1,8 +1,11 @@
 <?php
     require_once 'model.php';
     require_once 'config.php';
-?>
 
+if(!isset($_SESSION['username'])){
+    header("location:login.php");
+}
+?>
 <html>
 <head>
     <link href="administrator.css" rel="stylesheet" type="text/css"/>
@@ -12,7 +15,11 @@
     <script>
      $(document).ready(function(){
          $("#inserari").click(function(){
-             var nextPageUrl = "inserari.php";
+             var nextPageUrl = "operatii_filme.php";
+             $("#right").load(nextPageUrl);
+         });
+         $("#detalii").click(function(){
+             var nextPageUrl = "detalii_cont.php";
              $("#right").load(nextPageUrl);
          });
      });
@@ -23,17 +30,17 @@
     <div>
         <em>MyCinema City</em>
     </div>
-    <p><span>Administrator: </span></p>
+    <p><span>Administrator: <?= $_SESSION['username'] ?> </span></p>
     <div id="nav" style="clear:right;">
         <ul>
-            <li><a href=""> Detalii cont </a></li>
+            <li><a id="detalii"> Detalii cont </a></li>
+
         </ul></div>
     <div id="left" style="clear:both">
         <ul>
-            <li><a id="inserari" class="action">Inregistrari</a></li>
-            <li><a class="action" href="">Stergeri</a></li>
+            <li><a id="inserari" class="action">Operatii</a></li>
             <li><a class="action" href="">Rezervari</a></li>
-            <li><a class="action" href="">Log Out</a></li>
+            <li><a class="action" href="logout.php">Log Out</a></li>
         </ul>
     </div>
     <div id="right">
