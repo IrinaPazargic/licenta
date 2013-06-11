@@ -57,7 +57,7 @@ CREATE TABLE `detalii_membri` (
   PRIMARY KEY (`id`),
   KEY `id_users` (`id_users`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `detalii_membri` (
 
 LOCK TABLES `detalii_membri` WRITE;
 /*!40000 ALTER TABLE `detalii_membri` DISABLE KEYS */;
-INSERT INTO `detalii_membri` VALUES (10,'','','','',0,12),(11,'irina','PAZARGIC','chitbulitza2005@yahoo.com','micro 17, barbu 1',743032157,13);
+INSERT INTO `detalii_membri` VALUES (10,'','','','',0,12),(11,'irina','PAZARGIC','chitbulitza2005@yahoo.com','micro 17, barbu 1',743032157,13),(12,'dana','matei','chinesse_dana@yahoo.com','c34dfgvgf',73435343,14);
 /*!40000 ALTER TABLE `detalii_membri` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -311,7 +311,7 @@ CREATE TABLE `users` (
   `username` varchar(40) NOT NULL,
   `password` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -320,7 +320,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (12,'',''),(13,'rubita','gigiiarba');
+INSERT INTO `users` VALUES (12,'',''),(13,'rubita','gigiiarba'),(14,'dana','123');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -333,4 +333,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-11 13:19:59
+-- Dump completed on 2013-06-11 21:58:20
