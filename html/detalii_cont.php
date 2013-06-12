@@ -11,6 +11,7 @@
 
 <div id="inserts">
     <fieldset>
+    <legend>Detalii cont</legend>
     <table>
         <tbody>
             <tr><th>Nume:</th>

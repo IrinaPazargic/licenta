@@ -58,8 +58,8 @@ foreach ($locuri as $key => $value) {
     <script>
         $(document).ready(function () {
             var array = [];
-            var original_image= 'url(images/YellowSeat.png)';
-            var second_image='url(images/SeatGreen.png)';
+            var original_image= 'url(images/SeatGreen.png)';
+            var second_image='url(images/YellowSeat.png)';
 
             $("button").click(function () {
                 var locuri = array.join('|');
@@ -71,10 +71,10 @@ foreach ($locuri as $key => $value) {
            $(".seat").click(function (event) {
                 var id = $(this).attr('id');
 
-            event.target.style.backgroundImage=second_image;
+               if(event.target.style.backgroundImage=original_image)
+                    event.target.style.backgroundImage=second_image;
 
-
-                if (array.indexOf(id) == -1) {
+               if (array.indexOf(id) == -1) {
                     array.push(id);
                 } else {
                     array.splice(array.indexOf(id), 1);

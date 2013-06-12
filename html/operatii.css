@@ -1,11 +1,13 @@
 #inserts #inserts_menu{width:950px; margin-top:5px; height:50px;}
 #inserts li {list-style-type: none; padding:3px; margin-right:3px;}
-#inserts li a{text-decoration:none; color:#47847D;}
+#inserts li a{text-decoration:none; color:#47847D; cursor: pointer;}
+#inserts a{cursor: pointer;}
 
 #inserts li a:hover{color:#FF9933;}
 
 .right_menu {
     background-color: #B2C09C;
+
 }
 
 #current{
@@ -17,5 +19,14 @@
     background-color: #d4d4d4;
     color:#d83c3c;
 }
+
+.active{
+    background-color: red;
+    color:#000000;
+}
+#rezultat table th{
+    padding: 5px;
+}
+
 
 

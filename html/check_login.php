@@ -23,7 +23,10 @@ if($row==1){
     header("location: administrator.php");
 }
 else {
-    echo "Wrong Username or Password";
+    $_SESSION['username']=$username;
+    $_SESSION['password']=$password;
+   echo "Wrong password or email";
+
 }
 ob_end_flush();
 

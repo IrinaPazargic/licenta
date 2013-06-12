@@ -9,7 +9,7 @@ if(!isset($_SESSION['username'])){
 <html>
 <head>
     <link href="administrator.css" rel="stylesheet" type="text/css"/>
-    <link href="inserari.css" rel="stylesheet" type="text/css"/>
+    <link href="operatii.css" rel="stylesheet" type="text/css"/>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
@@ -20,6 +20,10 @@ if(!isset($_SESSION['username'])){
          });
          $("#detalii").click(function(){
              var nextPageUrl = "detalii_cont.php";
+             $("#right").load(nextPageUrl);
+         });
+         $("#rezervari").click(function(){
+             var nextPageUrl = "rezervari.php";
              $("#right").load(nextPageUrl);
          });
      });
@@ -39,7 +43,7 @@ if(!isset($_SESSION['username'])){
     <div id="left" style="clear:both">
         <ul>
             <li><a id="inserari" class="action">Operatii</a></li>
-            <li><a class="action" href="">Rezervari</a></li>
+            <li><a  id="rezervari" class="action">Rezervari</a></li>
             <li><a class="action" href="logout.php">Log Out</a></li>
         </ul>
     </div>

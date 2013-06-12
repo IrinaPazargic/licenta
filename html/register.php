@@ -8,7 +8,7 @@
 <body>
 <div id="content">
 <ul>
-    <li><a id="logon" href="register.php">Log on</a></li>
+    <li><a id="logon" class="current" href="register.php">Log on</a></li>
     <li><a id="login" href="login.php">Log in</a></li>
 
 </ul>

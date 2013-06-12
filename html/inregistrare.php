@@ -4,10 +4,6 @@ require_once 'config.php';
 
 $inregistrare= new Inregistrare();
 $users= new Users();
-
-
-
-
 inregistrare($inregistrare);
 
 
