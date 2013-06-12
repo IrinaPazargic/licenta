@@ -10,6 +10,7 @@ $persoana->prenume = $_GET['prenume'];
 $persoana->email = $_GET['email'];
 $persoana->telefon = $_GET['telefon'];
 
+
 $rezervare->persoana = $persoana;
 
 
