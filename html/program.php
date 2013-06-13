@@ -15,11 +15,11 @@ require_once 'config.php';
 
 	function filme_data(){
 		$data=$_GET['data'];
-		$query="select p.idProgram, f.titlu, f.gen, GROUP_CONCAT(p.ora SEPARATOR ', ') as ora, f.titlu from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm = f.idFilm and p.idCinema = c.idCinema and c.idCinema='" .$_GET['idCinema'] . "' and data='$data' group by f.titlu";;
+		$query="select p.idProgram,f.idFilm, f.titlu, f.gen, GROUP_CONCAT(p.ora SEPARATOR ', ') as ora, f.titlu from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm = f.idFilm and p.idCinema = c.idCinema and c.idCinema='" .$_GET['idCinema'] . "' and data='$data' group by f.titlu";;
 		$result=mysql_query($query);
 		while ($row = mysql_fetch_array($result)) {
 			echo '<div class="det_prog"><div class="leadin">';
-			echo '<div class="info" style="width:314px;"><p><b>' . $row['titlu'] . '</b></p> <br/><em>' . $row['gen'] . '</em><p><br/><a>Detalii Film..</a></p></div>';
+			echo '<div class="info" style="width:314px;"><p><b>' . $row['titlu'] . '</b></p> <br/><em>' . $row['gen'] . '</em><p><br/><a href="filme.php?idFilm='.$row['idFilm'].'">Detalii Film..</a></p></div>';
 			echo '<div class="rez_info" style="width:190px;"><table ><tbody><tr>';
 			echo '<td style="padding:0;margin:0;">';
 			echo '<a class="btn_r" href="ReservationPage.php?idProgram=' . $row['idProgram'] . ' "  style="cursor:pointer; margin-top:5px;"><span>R </span></a>' . $row['ora'] . '';
@@ -31,11 +31,11 @@ require_once 'config.php';
 function filme_cinema()
 {
     $idCinema = $_GET['idCinema'];
-    $query = "select p.idProgram, f.titlu, f.gen, GROUP_CONCAT(p.ora SEPARATOR ', ') as ora, f.titlu from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm = f.idFilm and p.idCinema = c.idCinema and c.idCinema='" . $idCinema . "' and data=CURDATE() group by f.titlu";
+    $query = "select p.idProgram, f.titlu, f.idFilm, f.gen, GROUP_CONCAT(p.ora SEPARATOR ', ') as ora, f.titlu from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm = f.idFilm and p.idCinema = c.idCinema and c.idCinema='" . $idCinema . "' and data=CURDATE() group by f.titlu";
     $result = mysql_query($query);
     while ($row = mysql_fetch_array($result)) {
         echo '<div class="det_prog"><div class="leadin">';
-        echo '<div class="info" style="width:314px;"><p><b>' . $row['titlu'] . '</b></p> <br/><em>' . $row['gen'] . '</em><p><br/><a>Detalii Film..</a></p></div>';
+        echo '<div class="info" style="width:314px;"><p><b>' . $row['titlu'] . '</b></p> <br/><em>' . $row['gen'] . '</em><p><br/><a href="filme.php?idFilm='.$row['idFilm'].'">Detalii Film..</a></p></div>';
         echo '<div class="rez_info" style="width:190px;"><table ><tbody><tr>';
         echo '<td style="padding:0;margin:0;">';
         echo '<a class="btn_r" href="ReservationPage.php?idProgram=' . $row['idProgram'] . ' "  style="cursor:pointer; margin-top:5px;"><span>R </span></a>' . $row['ora'] . '';

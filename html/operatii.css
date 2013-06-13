@@ -25,8 +25,30 @@
     color:#000000;
 }
 #rezultat table th{
-    padding: 5px;
+    padding: 5px;}
+#rez_persoana
+{
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+    width:100%;
+    border-collapse:collapse;
 }
+#rez_persoana td, #rez_persoana th
+{
+    font-size:.5em;
+    border:1px solid #98bf21;
+    padding:3px 7px 2px 7px;
+}
+#rez_persoana th
+{
+    font-size:.6em;
+    text-align:left;
+    padding-top:5px;
+    padding-bottom:4px;
+    background-color:#A7C942;
+    color:#ffffff;
+}
+
+
 
 
 

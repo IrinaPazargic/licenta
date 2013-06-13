@@ -2,25 +2,77 @@
 require_once 'model.php';
 require_once 'config.php';
 
-
-$query="select p.nume, p.prenume, p.email, f.titlu, d.data, d.ora,  s.nr_sala, r.locuri, e.tip, l.nr_locuri, e.pret, r.id
-            from persoane p,filme f, program d, cinema c, rezervare r, reduceri e, locuri_rezervate l, sali s
-            where c.idCinema=d.idCinema and f.idFilm=d.idFilm and p.id=r.id_persoana
-            and d.idProgram=r.id_program and r.id=l.id_rezervare and s.idSala=d.idSala and e.idReducere=l.idReducere and p.email='".$_POST['email']."'";
-$rezultat=mysql_query($query);
-
-
 ?>
+<html>
+<head>
+    <link href="administrator.css" rel="stylesheet" type="text/css"/>
+    <link href="operatii.css" rel="stylesheet" type="text/css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-    $("#cauta_rezervare").click(function(){
-        var nextPageUrl = "rezervari.php";
-        $("#right").load(nextPageUrl);
-    });
+
 </script>
+<script>
+    function ajaxFunction(){
+        var ajaxRequest;  // The variable that makes Ajax possible!
+
+        try{
+            // Opera 8.0+, Firefox, Safari
+            ajaxRequest = new XMLHttpRequest();
+        }catch (e){
+            // Internet Explorer Browsers
+            try{
+                ajaxRequest = new ActiveXObject("Msxml2.XMLHTTP");
+            }catch (e) {
+                try{
+                    ajaxRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                }catch (e){
+                    // Something went wrong
+                    alert("Your browser broke!");
+                    return false;
+                }
+            }
+        }
+        // Create a function that will receive data
+        // sent from the server and will update
+        // div section in the same page.
+        ajaxRequest.onreadystatechange = function(){
+            if(ajaxRequest.readyState == 4){
+                var ajaxDisplay = document.getElementById('rezultat');
+                ajaxDisplay.innerHTML = ajaxRequest.responseText;
+            }
+        }
+        // Now get the value from user and pass it to
+        // server script.
+        var email = document.getElementById('email').value;
+        var queryString = "?email=" + email ;
+        ajaxRequest.open("GET", "viz_rez_functii.php" +
+            queryString, true);
+        ajaxRequest.send(null);
+    }
+</script>
+</head>
+<body>
+<div id="content">
+    <div>
+        <em>MyCinema City</em>
+    </div>
+    <p><span>Administrator: <?= $_SESSION['username'] ?> </span></p>
+    <div id="nav" style="clear:right;">
+        <ul>
+            <li><a id="detalii"> Detalii cont </a></li>
+
+        </ul></div>
+    <div id="left" style="clear:both">
+        <ul>
+            <li><a id="inserari" class="action" href="operatii_filme.php">Operatii</a></li>
+            <li><a  id="rezervari" class="action" href="rezervari.php">Rezervari</a></li>
+            <li><a class="action" href="logout.php">Log Out</a></li>
+        </ul>
+    </div>
+<div id="right">
 <div id="inserts">
     <ul id="inserts_menu">
-        <li class="right_menu"><a  id="cauta_rezervare" style="background-color:  #B2C09C;">Cauta rezervare</a></li>
+        <li class="right_menu"><a  id="cauta_rezervare" style="background-color:  #B2C09C;" href="rezervari.php">Cauta rezervare</a></li>
         <li class="right_menu"><a  id="vizualizare_rezervare" style="background-color:#d4d4d4;">Vizualizare rezervari</a></li>
     </ul>
     <div id="change" style="width: 500px; float:left;">
@@ -29,10 +81,11 @@ $rezultat=mysql_query($query);
                 <table><tbody>
                     <tr>
                         <td><label for="email">E-mail: </label></td>
-                        <td><input type="text" name="email"></td></tr>
+                        <td><input type="text" id="email" name="email"></td></tr>
                     <tr>
                         <td></td>
-                        <td></td><td><input type="submit" name="rezervare"  value="Vizualizare"/></td>
+                        <td></td><td><input type="submit" name="rezervare"  onclick='ajaxFunction()'
+                             value="Vizualizare"/></td>
                     </tr> </tbody></table>
 
             </fieldset>
@@ -40,42 +93,9 @@ $rezultat=mysql_query($query);
 
     </div>
     <div id="rezultat" style="clear:both;">
-
-        <legend>Rezultat</legend><hr>
-        <table>
-            <tbody>
-            <tr><th>Nume</th>
-                <th>Prenume</th>
-                <th>E-mail</th>
-                <th>Telefon</th>
-                <th>Titlu</th>
-                <th>Data</th>
-                <th>Ora</th>
-                <th>Tip Bilet</th>
-                <th>Pret</th>
-                <th>Locuri</th>
-                <th>Sala</th>
-                <th>Cod</th>
-                <th>Pret Total</th>
-            </tr>
-            <?php $row=mysql_fetch_array($rezultat)?>
-                <tr><td><?= $row['nume'] ?> </td>
-                    <td><?= $row['prenume'] ?> </td>
-                    <td><?= $row['email']?></td>
-                    <td><?=  $row['titlu']?> </td>
-                    <td><?= $row['data'] ?> </td>
-                    <td><?=  $row['ora'] ?> </td>
-                    <td><?= $row['tip'] ?> </td>
-                    <td><?= $row['pret'] ?> </td>
-                    <td><?= $row['locuri'] ?> </td>
-                    <td><?= $row ['nr_sala'] ?> </td>
-                    <td><?= $row['id'] ?> </td>
-                    <td></td>
-                </tr>
-            <?php ?>
-            </tbody>
-        </table>
-
+        <b>Rezervarile vor fi afisate aici</b>
     </div>
-
  </div>
+</div>
+</body>
+</html>

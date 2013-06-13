@@ -10,7 +10,6 @@ inregistrare($inregistrare);
 function inregistrare($inregistrare)
 {
     $idUser = salveazaSauCitesteUser();
-//    printf("Id persoana: %d\n", $idPersoana);
     salveazaInregistrare($idUser);
     print("Inregistrare salvata cu succes!");
 }

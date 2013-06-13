@@ -9,27 +9,16 @@
 
 
 ?>
-
+<html>
+<head>
+<link href="administrator.css" rel="stylesheet" type="text/css"/>
 <link href="operatii.css" rel="stylesheet" type="text/css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $("#rezultat").hide();
-        $("#program").click(function(){
-            var nextPageUrl = "operatii_program.php";
-            $("#inserts").load(nextPageUrl);
-        });
-        $("#reduceri").click(function(){
-            var nextPageUrl = "operatii_reduceri.php";
-            $("#inserts").load(nextPageUrl);
-        });
-        $("#sali").click(function(){
-            var nextPageUrl = "operatii_sali.php";
-            $("#inserts").load(nextPageUrl);
-        });
-    });
+
 </script>
 <script>
+    $(document).ready(function(){
     $("#cauta").click(function(){
         $("#rezultat").show();
         document.getElementById("table_films").innerHTML= '<tbody><tr><td><label for="titlu">Titlu: </label></td><td><input type="text" id="titlu"></td></tr>' +
@@ -41,7 +30,6 @@
         }
     });
     $("#inregistrare").click(function(){
-        $("#inserts").load("operatii_filme.php");
         document.getElementById('inregistrare').style.backgroundColor='red';
         if((document.getElementById('sterge').style.backgroundColor='red') && (document.getElementById('cauta').style.backgroundColor='red') ){
             document.getElementById('sterge').style.backgroundColor='gray';
@@ -58,19 +46,40 @@
             document.getElementById('inregistrare').style.backgroundColor='gray';
         }
     });
+    });
 
 </script>
+</head>
+<body>
+<div id="content">
+    <div>
+        <em>MyCinema City</em>
+    </div>
+    <p><span>Administrator: <?= $_SESSION['username'] ?> </span></p>
+    <div id="nav" style="clear:right;">
+        <ul>
+            <li><a id="detalii"> Detalii cont </a></li>
+
+        </ul></div>
+    <div id="left" style="clear:both">
+        <ul>
+            <li><a  class="action" href="operatii_filme.php">Operatii</a></li>
+            <li><a  id="rezervari" class="action" href="rezervari.php">Rezervari</a></li>
+            <li><a class="action" href="logout.php">Log Out</a></li>
+        </ul>
+    </div>
+    <div id="right">
 <div id="inserts">
         <ul id="inserts_menu">
-            <li id="current"  class="right_menu"><a  id="filme">Filme</a></li>
-            <li class="right_menu"><a  id="program">Programe</a></li>
-            <li class="right_menu"><a id="reduceri" >Reduceri</a></li>
-            <li  class="right_menu"><a id="sali">Sali</a></li>
+            <li id="current"  class="right_menu"><a  id="filme" href="operatii_filme.php">Filme</a></li>
+            <li class="right_menu"><a  id="program" href="operatii_program.php">Programe</a></li>
+            <li class="right_menu"><a id="reduceri" href="operatii_reduceri.php" >Reduceri</a></li>
+            <li  class="right_menu"><a id="sali" href="operatii_sali.php">Sali</a></li>
         </ul>
 <div id="films" style="width: 500px; float:left;">
         <form enctype="multipart/form-data" action="filme_functions.php" method="POST">
         <fieldset>
-            <legend><a id="inregistrare" style="background-color: red;" ><span>Inregistrare film</span></a>
+            <legend><a id="inregistrare" href="operatii_filme.php" style="background-color: red; text-decoration: none; color:black;" ><span>Inregistrare film</span></a>
                     <a id="cauta" style="background-color: gray;"><span>Cauta Film</span></a>
                     <a id="sterge" style="background-color: gray;" ><span>Sterge Film</span></a></legend>
             <table id="table_films">
@@ -104,27 +113,9 @@
     </div>
     <div id="rezultat" style="clear:both;">
 
-        <legend>Rezultat</legend><hr>
-        <table ><tbody>
-        <tr >
-            <th>Titlu</th>
-            <th>Gen</th>
-            <th>Anul aparitiei</th>
-            <th>Durata</th>
-            <th>Descriere</th>
-            <th>Regia</th>
-            <th>Roluri Principale</th>
-        </tr>
-         <tr>
-             <td><?= $row_cauta['titlu'] ?></td>
-             <td><?= $row_cauta['gen'] ?></td>
-             <td><?= $row_cauta['an'] ?></td>
-             <td><?= $row_cauta['durata'] ?></td>
-             <td><?= $row_cauta['descriere'] ?></td>
-             <td><?= $row_cauta['regia'] ?></td>
-             <td><?= $row_cauta['roluri_principale'] ?></td>
-         </tr><tbody></table>
-
    </div>
 
 </div>
+</div>
+</body>
+<html>

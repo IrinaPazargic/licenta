@@ -14,16 +14,8 @@ if(!isset($_SESSION['username'])){
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
      $(document).ready(function(){
-         $("#inserari").click(function(){
-             var nextPageUrl = "operatii_filme.php";
-             $("#right").load(nextPageUrl);
-         });
          $("#detalii").click(function(){
              var nextPageUrl = "detalii_cont.php";
-             $("#right").load(nextPageUrl);
-         });
-         $("#rezervari").click(function(){
-             var nextPageUrl = "rezervari.php";
              $("#right").load(nextPageUrl);
          });
      });
@@ -42,8 +34,8 @@ if(!isset($_SESSION['username'])){
         </ul></div>
     <div id="left" style="clear:both">
         <ul>
-            <li><a id="inserari" class="action">Operatii</a></li>
-            <li><a  id="rezervari" class="action">Rezervari</a></li>
+            <li><a id="inserari" class="action" href="operatii_filme.php">Operatii</a></li>
+            <li><a  id="rezervari" class="action" href="rezervari.php">Rezervari</a></li>
             <li><a class="action" href="logout.php">Log Out</a></li>
         </ul>
     </div>

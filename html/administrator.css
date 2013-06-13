@@ -11,6 +11,7 @@ body { font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; background-col
 #left ul li a:hover {
     color: #F93;
 }
+
 #right{float:right; width:1000px;margin-right:10px;}
 
 .action {

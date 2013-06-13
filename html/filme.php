@@ -40,6 +40,7 @@
         $idFilm=$_GET['idFilm'];
         $query="select p.idProgram, f.imagine, f.titlu, f.gen, f.regia, f.roluri_principale, f.timp_desf, f.descriere from cinemadb.filme f, cinemadb.program p, cinemadb.cinema c where  p.idFilm=f.idFilm and p.idCinema=c.idCinema and f.idFilm='$idFilm'";
         $result= mysql_query($query);
+
         while($row=mysql_fetch_array($result)){
             echo '<div class="newsList">
                     <span class="icon_hold">
@@ -53,8 +54,8 @@
                    	Timp desfasurare: '.$row['timp_desf'].' minute<br/>
                    	Roluri principale: '.$row['roluri_principale'].'
                    	</p>
-                   	<a  href="ReservationPage.php?idProgram='.$row['idProgram'].'">Rezerva Galati</a><br/>
-                   	<a href="">Rezerva Bucuresti</a>
+                   	<a  href="program.php?idCinema=100">Rezerva Galati</a><br/>
+                   	<a href="program.php?idCinema=101">Rezerva Bucuresti</a>
                   </div>';
 
         }
