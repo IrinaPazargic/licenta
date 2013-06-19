@@ -1,5 +1,12 @@
 <?php
 require_once 'config.php';
+        $query1="select idCinema from cinema where nume='Galati'";
+        $rez1=mysql_query($query1);
+        $row1=mysql_fetch_assoc($rez1);
+
+        $query2="select idCinema from cinema where nume='Bucuresti'";
+        $rez2=mysql_query($query2);
+        $row2=mysql_fetch_assoc($rez2);
 
 
 		$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
@@ -106,13 +113,13 @@ require_once 'config.php';
 				<tr><td style="text-align:left;">Data</td>
 					<td style="text-align:left;">
 					<select class="textbox" style="width:95px" name="zi">
-						<option value="<?php echo date("Y/m/d", $today); ?>"> <?php echo  date("Y/m/d", $today); ?></option>
-						<option value="<?php echo date("Y/m/d", $tomorrow); ?>"><?php echo  date("Y/m/d", $tomorrow); ?></option>
-						<option value="<?php echo date("Y/m/d", $day_after_tomorrow); ?>"><?php echo date("Y/m/d", $day_after_tomorrow); ?></option>
-						<option value="<?php echo date("Y/m/d", $other_day); ?>"><?php echo date("Y/m/d", $other_day); ?></option>
-						<option value="<?php echo date("Y/m/d", $other_day_1); ?>"><?php echo date("Y/m/d", $other_day_1); ?></option>
-						<option value="<?php echo date("Y/m/d", $other_day_2); ?>"><?php echo date("Y/m/d", $other_day_2); ?></option>
-						<option value="<?php echo date("Y/m/d", $other_day_3); ?>"><?php echo date("Y/m/d", $other_day_3); ?></option>
+						<option value="<?= date("Y/m/d", $today);?>"> <?= date("d/m/Y", $today);?></option>
+						<option value="<?= date("Y/m/d", $tomorrow);?>"><?= date("d/m/Y", $tomorrow); ?></option>
+						<option value="<?= date("Y/m/d", $day_after_tomorrow); ?>"><?= date("d/m/Y", $day_after_tomorrow); ?></option>
+						<option value="<?= date("Y/m/d", $other_day);?>"><?= date("d/m/Y", $other_day); ?></option>
+						<option value="<?= date("Y/m/d", $other_day_1); ?>"><?= date("d/m/Y", $other_day_1); ?></option>
+						<option value="<?= date("Y/m/d", $other_day_2); ?>"><?= date("d/m/Y", $other_day_2); ?></option>
+						<option value="<?= date("Y/m/d", $other_day_3);?>"><?= date("d/m/Y", $other_day_3); ?></option>
 					</select></td></tr>
 				<tr><td style="text-align:left;"> </td>
 					<td style="text-align:center;">
@@ -133,10 +140,10 @@ require_once 'config.php';
        		<tbody>
        			<tr>
                      <td style="text-align:left;width:200px;  padding: 5px;">
-       				    <a href="program.php?idCinema=100" style="width: 150px; font-size:1.3em; text-decoration:none;text-transform: uppercase; border:1px solid black;"><strong>Galati</strong></a></td></tr>
+       				    <a href="program.php?idCinema=<?= $row1['idCinema']?>" style="width: 150px; font-size:1.3em; text-decoration:none;text-transform: uppercase; border:1px solid black;"><strong>Galati</strong></a></td></tr>
        			<tr>
                     <td style="text-align:left; width:100px; padding: 5px; ">
-       				    <a href="program.php?idCinema=101" style="width: 150px; font-size:1.3em; text-decoration: none; text-transform: uppercase; border:1px solid black; "><strong>Bucuresti</strong></a></td></tr>
+       				    <a href="program.php?idCinema=<?= $row2['idCinema']?>" style="width: 150px; font-size:1.3em; text-decoration: none; text-transform: uppercase; border:1px solid black; "><strong>Bucuresti</strong></a></td></tr>
        		</tbody>
        		</table>
        	</div><!--selectCinema-->

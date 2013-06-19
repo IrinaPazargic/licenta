@@ -1,16 +1,24 @@
-<?php 
+<?php
+require_once 'model.php';
 require_once 'config.php';
-		
 
-		$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
-		$tomorrow= mktime(0,0,0,date("m"),date("d") + 1 ,date("Y"));
-		$day_after_tomorrow=mktime(0,0,0,date("m"),date("d") + 2 ,date("Y"));
-		$other_day= mktime(0,0,0,date("m"),date("d") + 3 ,date("Y"));
-		$other_day_1= mktime(0,0,0,date("m"),date("d") + 4 ,date("Y"));
-		$other_day_2= mktime(0,0,0,date("m"),date("d") + 5 ,date("Y"));
-		$other_day_3= mktime(0,0,0,date("m"),date("d") + 6 ,date("Y"));
-	
-	
+$today = mktime(0,0,0,date("m"),date("d"),date("Y"));
+$tomorrow= mktime(0,0,0,date("m"),date("d") + 1 ,date("Y"));
+$day_after_tomorrow=mktime(0,0,0,date("m"),date("d") + 2 ,date("Y"));
+$other_day= mktime(0,0,0,date("m"),date("d") + 3 ,date("Y"));
+$other_day_1= mktime(0,0,0,date("m"),date("d") + 4 ,date("Y"));
+$other_day_2= mktime(0,0,0,date("m"),date("d") + 5 ,date("Y"));
+$other_day_3= mktime(0,0,0,date("m"),date("d") + 6 ,date("Y"));
+
+
+$idCinema = $_GET['idCinema'];
+
+$nume="select nume from cinema where idCinema='$idCinema'";
+$rez_nume=mysql_query($nume);
+$row_nume=mysql_fetch_assoc($rez_nume);
+
+$filme= new Filme();
+
 
 
 	function filme_data(){
@@ -28,23 +36,9 @@ require_once 'config.php';
 			echo '</div> </div><hr/>';
 	}
 }
-function filme_cinema()
-{
-    $idCinema = $_GET['idCinema'];
-    $query = "select p.idProgram, f.titlu, f.idFilm, f.gen, GROUP_CONCAT(p.ora SEPARATOR ', ') as ora, f.titlu from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm = f.idFilm and p.idCinema = c.idCinema and c.idCinema='" . $idCinema . "' and data=CURDATE() group by f.titlu";
-    $result = mysql_query($query);
-    while ($row = mysql_fetch_array($result)) {
-        echo '<div class="det_prog"><div class="leadin">';
-        echo '<div class="info" style="width:314px;"><p><b>' . $row['titlu'] . '</b></p> <br/><em>' . $row['gen'] . '</em><p><br/><a href="filme.php?idFilm='.$row['idFilm'].'">Detalii Film..</a></p></div>';
-        echo '<div class="rez_info" style="width:190px;"><table ><tbody><tr>';
-        echo '<td style="padding:0;margin:0;">';
-        echo '<a class="btn_r" href="ReservationPage.php?idProgram=' . $row['idProgram'] . ' "  style="cursor:pointer; margin-top:5px;"><span>R </span></a>' . $row['ora'] . '';
-        echo '</td>';
-        echo '</tr></tbody></table></div>';
-        echo '</div> </div><hr/>';
-    }
 
-}
+
+
 
 function detalii_film(){
 
@@ -71,6 +65,12 @@ function detalii_film(){
     }
 }
 
+
+    $query = "select p.idProgram, f.titlu, f.idFilm, f.gen, p.ora from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm = f.idFilm and p.idCinema = c.idCinema and c.idCinema='" . $idCinema . "' and data=CURDATE()";
+    $result = mysql_query($query);
+
+
+
 ?>
 
 
@@ -80,7 +80,18 @@ function detalii_film(){
 <title>MyCinema</title>
 <link href="main.css" rel="stylesheet" type="text/css"/>
 <link href="program.css" rel="stylesheet" type="text/css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
 
+        $("#maine").click( function(){
+            document.getElementById('maine').style.backgroundColor='red';
+
+        }
+    });
+
+
+</script>
 </head>
 <body id="feature">
 <div id="header">
@@ -167,13 +178,13 @@ function detalii_film(){
 				<tr><td style="text-align:left;">Data</td>
 					<td style="text-align:left;">
 					<select class="textbox" style="width:95px" name="zi">
-						<option value="<?php echo date("Y/m/d", $today); ?>"><?php echo date("Y/m/d", $today); ?></option>
-						<option value="<?php echo date("Y/m/d", $tomorrow); ?>"><?php echo date("Y/m/d", $tomorrow); ?></option>
-						<option value="<?php echo date("Y/m/d", $day_after_tomorrow); ?>"><?php echo date("Y/m/d", $day_after_tomorrow); ?></option>
-						<option value="<?php echo date("Y/m/d", $other_day); ?>"><?php echo date("Y/m/d", $other_day); ?></option>
-						<option value="<?php echo date("Y/m/d", $other_day_1); ?>"><?php echo date("Y/m/d", $other_day_1); ?></option>
-						<option value="<?php echo date("Y/m/d", $other_day_2); ?>"><?php echo date("Y/m/d", $other_day_2); ?></option>
-						<option value="<?php echo date("Y/m/d", $other_day_3); ?>"><?php echo date("Y/m/d", $other_day_3); ?></option>
+						<option value="<?= date("Y/m/d", $today); ?>"><?= date("d/m/Y", $today); ?></option>
+						<option value="<?= date("Y/m/d", $tomorrow); ?>"><?= date("d/m/Y", $tomorrow); ?></option>
+						<option value="<?= date("Y/m/d", $day_after_tomorrow); ?>"><?= date("d/m/Y", $day_after_tomorrow); ?></option>
+						<option value="<?= date("Y/m/d", $other_day); ?>"><?= date("d/m/Y", $other_day); ?></option>
+						<option value="<?= date("Y/m/d", $other_day_1); ?>"><?= date("d/m/Y", $other_day_1); ?></option>
+						<option value="<?= date("Y/m/d", $other_day_2); ?>"><?= date("d/m/Y", $other_day_2); ?></option>
+						<option value="<?= date("Y/m/d", $other_day_3); ?>"><?= date("d/m/Y", $other_day_3); ?></option>
 					</select></td></tr>
 				<tr><td style="text-align:left;"> </td>
 					<td style="text-align:center;">
@@ -187,45 +198,39 @@ function detalii_film(){
     <div id="news" class="copyright">
    	<div id="program_film">
 
-   		<h3><strong> Program - <?php  $link=$_GET['idCinema']; $query="select nume from cinema where idCinema='$link'"; $rez=mysql_query($query); $row=mysql_fetch_assoc($rez); echo $row['nume']; ?> </strong></h3>
+   		<h3><strong> Program - <?= $row_nume['nume']; ?> </strong></h3>
    		<div id="menu_program">
    			<ul>
    			<li id="current_program">
-   				<a href="?data=<?php echo date("Y/m/d", $today); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span> <?php echo  date("Y/m/d", $today); ?> </span></a></li>
-   			<li >
-   				<a href="?data=<?php echo date("Y/m/d", $tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $tomorrow); ?> </span></a></li>
-   			<li>
-   				<a href="?data=<?php echo date("Y/m/d", $day_after_tomorrow); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $day_after_tomorrow); ?> </span></a></li>
-   			<li>
-   				<a href="?data=<?php echo date("Y/m/d", $other_day); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $other_day); ?> </span></a></li>
-   			<li>
-   				<a href="?data=<?php echo date("Y/m/d", $other_day_1); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $other_day_1); ?></span></a></li>
-   			<li>
-   				<a href="?data=<?php echo date("Y/m/d", $other_day_2); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $other_day_2); ?></span></a></li>
-   			<li>
-   				<a href="?data=<?php echo date("Y/m/d", $other_day_3); ?>&idCinema=<?php echo $_GET['idCinema'];?>"><span><?php  echo date("m/d", $other_day_3); ?></span></a></li>
+   				<a id="azi" href="?data=<?=  date("Y/m/d", $today)?>&idCinema=<?= $idCinema ?>"><span> <?= date("d/m/Y", $today); ?> </span></a></li>
+   			<li id="li_maine" >
+   				<a id="maine" href="?data=<?= date("Y/m/d", $tomorrow) ?>&idCinema=<?= $idCinema ?>"><span><?= date("d/m/Y", $tomorrow);  ?> </span></a></li>
+   			<li id="li_maine">
+   				<a id="alta_zi" href="?data=<?= date("Y/m/d", $day_after_tomorrow); ?>&idCinema=<?= $idCinema ?>"><span><?= date("d/m/Y", $day_after_tomorrow); ?> </span></a></li>
+   			<li id="li_alta_zi">
+   				<a id="alta_zi_1" href="?data=<?= date("Y/m/d", $other_day);?>&idCinema=<?= $idCinema ?>"><span><?= date("d/m/Y", $other_day); ?> </span></a></li>
+   			<li id="li_alta_zi_2">
+   				<a id="alta_zi_2" href="?data=<?= date("Y/m/d", $other_day_1);?>&idCinema=<?= $idCinema ?>"><span><?= date("d/m/Y", $other_day_1); ?></span></a></li>
+   			<li id="li_alta_zi_3">
+   				<a id="alta_zi_3" href="?data=<?= date("Y/m/d", $other_day_2); ?>&idCinema=<?= $idCinema ?>"><span><?= date("d/m/Y", $other_day_2); ?></span></a></li>
+   			<li id="li_alta_zi_4">
+   				<a id="alta_zi_4" href="?data=<?= date("Y/m/d", $other_day_3); ?>&idCinema=<?= $idCinema ?>"><span><?= date("d/m/Y", $other_day_3); ?></span></a></li>
    			</ul>
 
    		</div>
-
-        <?php
-            if (isset($_GET['idCinema']) && !isset($_GET['data']))
-   					$linkchoice=$_GET['idCinema'];
-   					else $linkchoice='';
-
-   					switch($linkchoice){
-
-   					case '100' :
-   						filme_cinema();
-   						break;
-   					case '101' :
-   						filme_cinema();
-   						break;
-
-   					default :
-   					echo '';
-   					}
-   					?>
+        <?php  while ($row = mysql_fetch_array($result)) {?>
+        <div class="det_prog"><div class="leadin">
+            <div class="info" style="width:314px;"><p><b><?= $row['titlu'] ?></b></p> <br/><p><em><?= $row['gen']?></em></p><br/><p><a href="filme.php?idFilm=<?= $row['idFilm']?>">Detalii Film..</a></p></div>
+            <div class="rez_info" style="width:190px;">
+                <table><tbody><tr>
+                    <td style="padding:0;margin:0;">
+                         <a style="text-decoration: none;" class="btn_r" href="ReservationPage.php?idProgram=<?= $row['idProgram']?>"  style="cursor:pointer; margin-top:5px;"><p style="color:white; margin-left: 20px;"><?= $row['ora']?></p></a>
+                    </td></tr>
+                </tbody>
+                 </table>
+            </div>
+        </div> </div><hr/>
+       <?php  } ?>
 
    				<?php
 

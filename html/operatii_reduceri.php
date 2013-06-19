@@ -7,12 +7,16 @@
     <link href="administrator.css" rel="stylesheet" type="text/css"/>
     <link href="operatii.css" rel="stylesheet" type="text/css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="script/inserts.js" type="text/javascript"></script>
 
 <script>
     $(document).ready(function(){
+
     $("#vizualizare").click(function(){
-        document.getElementById("table_reduceri").innerHTML='<tbody><tr><td><label for="tip">Tip: </label></td><td><input type="text" id="tip"></td></tr>' +
-            '<tr><td></td><td></td><td><input type="submit" id="cauta" value="Cauta"/></td></tr> </tbody>';
+        document.getElementById("forms_div").innerHTML='<form id="form" action="viz_reducere.php" method="get">'+
+            '<table id="table_reduceri">' +
+            '<tbody><tr><td><label for="tip">Tip: </label></td><td><input type="text" name="tip" required=""></td></tr>' +
+            '<tr><td></td><td></td><td><input type="submit" id="cauta" value="Cauta"/></td></tr> </tbody></table></form>';
         document.getElementById('vizualizare').style.backgroundColor='red';
         if((document.getElementById('sterge').style.backgroundColor='red') && (document.getElementById('inregistrare').style.backgroundColor='red')){
             document.getElementById('sterge').style.backgroundColor='gray';
@@ -26,14 +30,16 @@
         }
     });
     $("#sterge").click(function(){
-        document.getElementById("table_reduceri").innerHTML='<tbody><tr><td><label for="tip">Tip: </label></td><td><input type="text" id="tip"></td></tr>' +
-            '<tr><td></td><td></td><td><input type="submit" id="Sterge" value="Sterge"/></td></tr> </tbody>';
+        document.getElementById("forms_div").innerHTML=' <form id="form" action="stergere_reducere.php" method="post"><tbody><tr><td><label for="tip">Tip: </label></td><td><input type="text" name="tip" required=""></td></tr>' +
+            '<tr><td></td><td></td><td><input type="submit" id="sterge" value="Sterge"/></td></tr> </tbody></table></form>';
         document.getElementById('sterge').style.backgroundColor='red';
         if((document.getElementById('vizualizare').style.backgroundColor='red') && ((document.getElementById('inregistrare').style.backgroundColor='red'))){
             document.getElementById('vizualizare').style.backgroundColor='gray';
             document.getElementById('inregistrare').style.backgroundColor='gray';
         }
     });
+
+
     });
 </script>
 </head>
@@ -69,18 +75,23 @@
         <legend><a id="inregistrare" href="operatii_reduceri.php"  style="background-color: red; text-decoration: none; color:black;"><span>Inregistrare reducere</span></a>
             <a id="vizualizare" style="background-color: gray;"><span>Vizualizare reducere</span></a>
             <a id="sterge" style="background-color: gray;"><span>Sterge reducere</span></a></legend>
+        <div id="forms_div">
+        <form id="form" action="inregistrare_reducere.php" method="post">
         <table id="table_reduceri">
             <tbody>
             <tr><td><label for="tip">Tip: </label></td>
-                <td><input type="text" id="tip"></td></tr>
+                <td><input type="text" name="tip" required=""></td></tr>
             <tr><td><label for="pret">Pret: </label></td>
-                <td><input type="text" id="pret"></td></tr>
-            <tr> <td><input type="submit" id="salveaza" value="Salveaza"/></td></tr>
+                <td><input type="text" name="pret" required=""></td></tr>
+            <tr> <td><input type="submit" id="sub" value="Salveaza"/> </td></tr>
             </tbody>
         </table>
-
+          </form>
+            </div>
     </fieldset>
 </div>
+
+    <div id="rezultat"> Hei</div>
 </div>
  </div>
 </body>

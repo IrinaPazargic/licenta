@@ -1,5 +1,13 @@
 <?php
 
+class Filme{
+    public $ora;
+}
+
+
+class Sali{
+    public $nr_sala;
+}
 class Inregistrare{
     public $nume;
     public $prenume;

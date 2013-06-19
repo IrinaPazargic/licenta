@@ -16,6 +16,17 @@ $_SESSION['rezervare'] = $rezervare;
 <link href="reservation.css" rel="stylesheet" type="text/css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 </script>
+<script src="validate_functions.js" ></script>
+    <script>
+        function validate(form) {
+            fail = validateNume(form.nume.value)
+            fail += validatePrenume(form.prenume.value)
+            fail += validateTelefon(form.telefon.value)
+            fail += validateEmail(form.email.value)
+            if (fail == "") return true
+            else { alert(fail); return false }
+        }
+    </script>
     <script>
         $(document).ready(function () {
             $("#next").click(function () {
@@ -23,7 +34,6 @@ $_SESSION['rezervare'] = $rezervare;
                 var prenume=$("#prenume").val();
                 var email=$("#email").val();
                 var telefon=$("#telefon").val();
-
                 $.ajax({
                     type: "GET",
                     url: "sumar.php",
@@ -75,40 +85,40 @@ $_SESSION['rezervare'] = $rezervare;
 			</tr>
 			<tr>
 				<td>
-				<form	method="post" name="detailsForm">
+				<form	method="post" name="detailsForm" onSubmit="return validate(this)>
 					<table width="35%">
 						<tr>
 							<td width="100%;"><span>Detaliile dumneavoastra</span></td>
 						</tr>
 						<tr>
 							<td><div>Prenume</div><span>*</span></td>
-							<td ><input type="text" name="prenume" id="prenume"> </td>
+							<td ><input type="text" name="prenume" id="prenume" required=""> </td>
 						</tr>
 						<tr>
 							<td><div >Nume</div><span>*</span></td>
-							<td ><input type="text" name="nume" id="nume"> </td>
+							<td ><input type="text" name="nume" id="nume" required=""> </td>
 						</tr>
 						<tr>
 							<td><div>Telefon</div><span>*</span></td>
-							<td ><input type="text" name="telefon" id="telefon"> </td>
+							<td ><input type="text" name="telefon" id="telefon" required=""> </td>
 						</tr>
 						
 						<tr>
 							<td><div>E-mail</div><span>*</span></td>
-							<td ><input type="text" name="email" id="email"> </td>
+							<td ><input type="text" name="email" id="email" required=""> </td>
 						</tr>
+                        <tr >
+                            <td align="right" style="padding-top:10px;">
+                                <input type="submit" id="previous" value="Inapoi">
+                                <input type="submit" id="next" value="Next"/>
+                            </td>
+                        </tr>
 					</table>
-				</form>
+                </form>
 				<span> * = Camp obligatoriu!</span>
 				</td>
 			</tr>
-			
-			<tr >
-				<td align="right" style="padding-top:10px;">
-					<input type="submit" id="previous" value="Inapoi">
-					<input type="submit" id="next" value="Next"/>
-				</td>
-			</tr>
+
 	</table> 
 	</div>
 </div>
