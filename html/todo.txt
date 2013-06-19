@@ -1,2 +1,5 @@
-
 Add websocket js client in wizard-ul de rezervare
+
+Ongoing work under the uploadfiles folder.
+    currently only POST based upload images works;
+    fix AJAX based upload files
