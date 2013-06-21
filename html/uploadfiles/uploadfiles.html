@@ -3,9 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Upload files</title>
+</head>
+<body>
 
-    <script type="text/javascript">
-        function UploadFile(file) {
+<form id="upload" action="upload.php" method="POST" enctype="multipart/form-data" onsubmit="FileSelectHandler">
+    <fieldset>
+        <legend>HTML File Upload</legend>
+        <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="10000000"/>
+
+        <div>
+            <label for="fileselect">Files to upload:</label>
+            <input type="file" id="fileselect" name="fileselect[]" multiple="multiple"/>
+
+            <div id="filedrag">or drop files here</div>
+        </div>
+        <div id="submitbutton">
+            <button type="submit">Upload Files</button>
+        </div>
+    </fieldset>
+</form>
+<script type="text/javascript">
+	var $id = function(a) {
+		return document.getElementById(a);
+	}
+	document.getElementById('upload').addEventListener('submit', function(evt) {
+            evt.preventDefault();
+            var files = evt.target.fileselect.files;
+            for(var i=0, l = files.length; i < l; i++) {
+                //ParseFile(f);
+                UploadFile(files[i])
+            }
+        });
+	        
+	function UploadFile(file) {
             var xhr = new XMLHttpRequest();
             if (xhr.upload && file.type == "image/jpeg" && file.size <= $id("MAX_FILE_SIZE").value) {
                 console.log("Uploading through js");
@@ -23,8 +53,9 @@
 
         }
         function FileSelectHandler(e) {
-            // cancel event and hover styling
-            FileDragHover(e);
+        console.log(e);
+	// cancel event and hover styling
+            //FileDragHover(e);
             // fetch FileList object
             var files = e.target.files || e.dataTransfer.files;
             // process all File objects
@@ -34,24 +65,5 @@
             }
         }
     </script>
-</head>
-<body>
-
-<form id="upload" action="upload.php" method="POST" enctype="multipart/form-data">
-    <fieldset>
-        <legend>HTML File Upload</legend>
-        <input type="hidden" id="MAX_FILE_SIZE" name="MAX_FILE_SIZE" value="10000000"/>
-
-        <div>
-            <label for="fileselect">Files to upload:</label>
-            <input type="file" id="fileselect" name="fileselect[]" multiple="multiple"/>
-
-            <div id="filedrag">or drop files here</div>
-        </div>
-        <div id="submitbutton">
-            <button type="submit">Upload Files</button>
-        </div>
-    </fieldset>
-</form>
 </body>
 </html>
