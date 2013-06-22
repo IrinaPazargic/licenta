@@ -40,10 +40,32 @@ PhpStorm useful shortcuts:
 Ctrl+Shift+C to copy the path of the selected file in project tool window (left side of the IDE)
 
 ========================================================================================================================
+What need to be done to allow web application to access the file system with full rights (example: upload files)
+========================================================================================================================
+Because the web application uses the www-data user we need to allow access to the files/folders for www-data.
+One way of doing that is make it the owner of the files/folders:
+
+    Example:
+
+        $ sudo chown www-data:www-data -R /opt/ui/irina/licenta/html/uploads
+            where: -R option stands for recursively apply
+
+        With this command the web application can access (with full rights) the folders,
+        subfolders and contained files:
+        Rights: read, write, execute
+
+        If do not want to change the owner of the files/folders, then provide rwx rights to other:
+        In order to see the information about a file/folder use stat command:
+
+        $ sudo stat /opt/ui/irina/licenta/html/uploads
+
+========================================================================================================================
 Hints:
 ========================================================================================================================
 I usually push in run configuration in github, so whoever have this IDE can run these from the combo in IDE toolbar
 (upper side of the IDE)
+
+
 
 
 
