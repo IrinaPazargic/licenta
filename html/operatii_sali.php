@@ -14,10 +14,15 @@ require_once 'config.php';
 
 
 <script>
-    $("#sub").click(function(){
-
-        $.post($("#myForm").attr("action"), $("#myForm :input").serializeArray(), function(info) { $("#rezultat").empty();$("#rezultat").html(info)});
-
+    $("#sub").click(function () {
+        $.post(
+            $("#myForm").attr("action"),
+            $("#myForm :input").serializeArray(),
+            function (info) {
+                $("#rezultat").empty();
+                $("#rezultat").html(info)
+            }
+        );
     });
 
     $("#myForm").submit(function (){
