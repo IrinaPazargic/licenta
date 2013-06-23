@@ -1,6 +1,7 @@
 <?php
     require_once 'model.php';
     require_once 'config.php';
+
 ?>
 <html>
 <head>
@@ -8,15 +9,32 @@
     <link href="operatii.css" rel="stylesheet" type="text/css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="script/inserts.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+</script>
 
 <script>
     $(document).ready(function(){
 
+
+
     $("#vizualizare").click(function(){
-        document.getElementById("forms_div").innerHTML='<form id="form" action="viz_reducere.php" method="get">'+
-            '<table id="table_reduceri">' +
-            '<tbody><tr><td><label for="tip">Tip: </label></td><td><input type="text" name="tip" required=""></td></tr>' +
-            '<tr><td></td><td></td><td><input type="submit" id="cauta" value="Cauta"/></td></tr> </tbody></table></form>';
+        $(function (){
+
+            $.ajax({ //Make the Ajax Request
+                type: "GET",
+                url: "viz_reducere.php", //file name
+                data: "",
+               // datatype: 'json',
+                success: function(data){
+
+                    $('#forms_div').html(data);
+
+                }
+            });
+
+        });
+        document.getElementById("forms_div").innerHTML='';
         document.getElementById('vizualizare').style.backgroundColor='red';
         if((document.getElementById('sterge').style.backgroundColor='red') && (document.getElementById('inregistrare').style.backgroundColor='red')){
             document.getElementById('sterge').style.backgroundColor='gray';
@@ -73,7 +91,7 @@
 
     <fieldset>
         <legend><a id="inregistrare" href="operatii_reduceri.php"  style="background-color: red; text-decoration: none; color:black;"><span>Inregistrare reducere</span></a>
-            <a id="vizualizare" style="background-color: gray;"><span>Vizualizare reducere</span></a>
+            <a id="vizualizare" type="submit"  style="background-color: gray;"/><span>Vizualizare reducere</span></a>
             <a id="sterge" style="background-color: gray;"><span>Sterge reducere</span></a></legend>
         <div id="forms_div">
         <form id="form" action="inregistrare_reducere.php" method="post">
@@ -91,7 +109,7 @@
     </fieldset>
 </div>
 
-    <div id="rezultat"> Hei</div>
+    <div id="rezultat"> </div>
 </div>
  </div>
 </body>

@@ -66,8 +66,8 @@
                     dataType: "html",
                     success: function(result)
                     {
-                        if(result == "Ok") alert("The comment is successfuly deleted");
-                        else alert("The following error is occurred: "+result);
+                        if(result == "Ok") alert("Filmul a fost sters cu succes!");
+                        else alert("Eroare: "+result);
                     }
                 });
 

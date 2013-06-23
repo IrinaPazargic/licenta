@@ -13,7 +13,7 @@ mysql_select_db($dbname) or die(mysql_error());
 //$tip = mysql_real_escape_string($tip);
 
 //build query
-$query="select idReducere, tip, pret from reduceri";
+$query="select idSala, nr_sala, randuri, locuri from sali";
 
 $qry_result = mysql_query($query) or die(mysql_error());
 
@@ -21,8 +21,10 @@ $qry_result = mysql_query($query) or die(mysql_error());
 echo  "<table border='1'>";
 echo  "<tr>";
 echo  "<th bgcolor='black' style='color:white'>ID</th>";
-echo  "<th bgcolor='black' style='color:white'>TIP</th>";
-echo  "<th bgcolor='black' style='color:white'>PRET</th>";
+echo  "<th bgcolor='black' style='color:white'>Sala</th>";
+echo  "<th bgcolor='black' style='color:white'>Randuri</th>";
+echo  "<th bgcolor='black' style='color:white'>Locuri</th>";
+
 echo  "</tr>";
 
 while($result=mysql_fetch_object($qry_result)){
@@ -33,7 +35,6 @@ while($result=mysql_fetch_object($qry_result)){
     echo "<td><a href=''>Edit</a></td>";
     echo "</tr>";
 }
-echo json_encode($result);
 //echo json_encode($result);
 echo "</table>";
 

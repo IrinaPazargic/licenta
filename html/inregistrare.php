@@ -34,7 +34,7 @@ function salveazaSauCitesteUser()
     if ($res > 0) {
         $idUser = $res;
     } else {
-        $stat2 = $mysqli->prepare("INSERT INTO users (username, password) VALUES ('$username', '$password')");
+        $stat2 = $mysqli->prepare("INSERT INTO users (username, password) VALUES ('$username', md5('$password'))");
         $success = $stat2->execute();
         if (!$success) {
             $mysqli->rollback();
@@ -54,7 +54,7 @@ function salveazaInregistrare($idUser)
     $nume=$_POST['nume'];
     $prenume=$_POST['prenume'];
     $email=$_POST['email'];
-    $telefon=$_POST['tel'];
+    $telefon=$_POST['telefon'];
     $adresa=$_POST['adresa'];
 
     $mysqli = new mysqli(DbConfig::$host, DbConfig::$user, DbConfig::$pass, DbConfig::$db);

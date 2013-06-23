@@ -9,7 +9,25 @@ require_once 'config.php';
     <link href="operatii.css" rel="stylesheet" type="text/css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
+    $(document).ready(function(){
 
+        $(function (){
+
+            $.ajax({ //Make the Ajax Request
+                type: "GET",
+                url: "viz_rez.php", //file name
+                data: "",
+                // datatype: 'json',
+                success: function(data){
+
+                    $('#rezultat').html(data);
+
+                }
+            });
+
+        });
+    
+    });
 </script>
 <script>
     function ajaxFunction(){
@@ -73,7 +91,7 @@ require_once 'config.php';
 <div id="inserts">
     <ul id="inserts_menu">
         <li class="right_menu"><a  id="cauta_rezervare" style="background-color:  #B2C09C;" href="rezervari.php">Cauta rezervare</a></li>
-        <li class="right_menu"><a  id="vizualizare_rezervare" style="background-color:#d4d4d4;">Vizualizare rezervari</a></li>
+        <li class="right_menu"><a  id="vizualizare" style="background-color:#d4d4d4;">Vizualizare rezervari</a></li>
     </ul>
     <div id="change" style="width: 500px; float:left;">
             <fieldset>
@@ -93,7 +111,7 @@ require_once 'config.php';
 
     </div>
     <div id="rezultat" style="clear:both;">
-        <b>Rezervarile vor fi afisate aici</b>
+
     </div>
  </div>
 </div>
