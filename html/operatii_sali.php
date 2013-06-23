@@ -1,22 +1,49 @@
 <?php
 require_once 'model.php';
 require_once 'config.php';
+
+
+
+
 ?>
 <html>
 <head>
     <link href="administrator.css" rel="stylesheet" type="text/css"/>
     <link href="operatii.css" rel="stylesheet" type="text/css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
 <script>
+    $("#sub").click(function(){
+
+        $.post($("#myForm").attr("action"), $("#myForm :input").serializeArray(), function(info) { $("#rezultat").empty();$("#rezultat").html(info)});
+
+    });
+
+    $("#myForm").submit(function (){
+        return false;
+    });
 
 </script>
 <script>
     $(document).ready(function(){
     $("#vizualizare").click(function(){
-        document.getElementById("table_sali").innerHTML='<tbody><tr><td><label for="sala">Sala: </label></td>' +
-            '<td><input type="text" id="sala"></td></tr><tr>' +
-            '<td></td><td></td><td><input type="submit" id="vizualizare" value="Vizualizeaza"/></td></tr>'+
-            '</tbody>';
+        $(function (){
+
+            $.ajax({ //Make the Ajax Request
+                type: "GET",
+                url: "viz_sali.php", //file name
+                data: "",
+                // datatype: 'json',
+                success: function(data){
+
+                    $('#forms_div').html(data);
+
+                }
+            });
+
+        });
+        document.getElementById("table_sali").innerHTML='';
         document.getElementById('vizualizare').style.backgroundColor='red';
     if((document.getElementById('sterge').style.backgroundColor='red') && (document.getElementById('inregistrare').style.backgroundColor='red')){
         document.getElementById('sterge').style.backgroundColor='gray';
@@ -76,20 +103,25 @@ require_once 'config.php';
         <legend><a id="inregistrare" href="operatii_sali.php"  style="background-color: red; text-decoration: none; color:black;"><span>Inregistrare sala</span></a>
             <a id="vizualizare" style="background-color: gray;"><span>Vizualizare sala</span></a>
             <a id="sterge" style="background-color: gray;"><span>Stergere sala</span></a></legend>
+        <div id="forms_div">
+         <form id="myForm" action="inregistrare_sala.php" method="POST">
         <table id="table_sali">
             <tbody>
             <tr><td><label for="sala">Sala: </label></td>
-                <td><input type="text" id="sala"></td></tr>
+                <td><input type="text" name="nr_sala" id="nr_sala"></td></tr>
             <tr><td><label for="randuri">Randuri: </label></td>
-                <td><input type="text" id="randuri"></td></tr>
-            <tr><td><label for="locuri">Locuri: </label></td>
+                <td><input type="text" name="randuri" id="randuri"></td></tr>
+            <tr><td><label for="locuri" name="locuri">Locuri: </label></td>
                 <td><input type="text" id="locuri"></td></tr>
             <tr> <td><input type="submit" id="button" value="Salveaza"/></td></tr>
             </tbody>
         </table>
-
+            </form>
+          </div>
     </fieldset>
 </div>
+            <div id="rezultat">
+                </div>
 </div>
         </div>
 </body>

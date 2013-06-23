@@ -1,5 +1,10 @@
+
 $("#sub").click(function(){
-    var data = $("#form :input").serializeArray();
-    $.post($("#form").attr("action"), data, function(info) { $("#rezultat").html(info)});
+
+    $.post($("#register-form").attr("action"), $("#register-form :input").serializeArray(), function(info) { $("#rezultat").empty();$("#rezultat").html(info)});
+
 });
 
+$("#register-form").submit(function (){
+    return false;
+});

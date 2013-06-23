@@ -10,6 +10,7 @@ require_once 'config.php';
 <script>
     $(document).ready(function(){
 
+
     });
 </script>
 </head>
