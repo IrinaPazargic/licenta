@@ -2,7 +2,6 @@
 require_once 'model.php';
 require_once 'config.php';
 
-
 function test($inregistrare)
 {
     inregistrare_program();
@@ -17,53 +16,45 @@ function inregistrare_program()
     $data=$_POST['data'];
     $ora= $_POST['ora'];
     $mysqli = new mysqli(DbConfig::$host, DbConfig::$user, DbConfig::$pass, DbConfig::$db);
-
     $mysqli->autocommit(false);
-
     if ($mysqli->connect_errno) {
         die ("Nu se poate conecta...");
     }
+    $statFilm = $mysqli->prepare("SELECT idFilm FROM filme WHERE titlu = '$film'");
+    $statFilm->execute();
+    $statFilm->bind_result($resFilm);
+    $statFilm->fetch();
 
-    $stat1 = $mysqli->prepare("SELECT idFilm FROM filme WHERE titlu = '$film'");
-    $stat1->execute();
-    $stat1->bind_result($res);
-    $stat1->fetch();
+    $statCinema = $mysqli->prepare("SELECT idCinema FROM cinema WHERE nume = '$cinematograf'");
+    $statCinema->execute();
+    $statCinema->bind_result($resCinema);
+    $statCinema->fetch();
 
-    $stat2 = $mysqli->prepare("SELECT idCinema FROM cinema WHERE nume = '$cinematograf'");
-    $stat2->execute();
-    $stat2->bind_result($res1);
-    $stat2->fetch();
+    $statSala = $mysqli->prepare("SELECT idSala FROM sali WHERE nr_sala = '$sala'");
+    $statSala->execute();
+    $statSala->bind_result($resSala);
+    $statSala->fetch();
 
-    $stat3 = $mysqli->prepare("SELECT idSala FROM cinema WHERE nr_sala = '$sala'");
-    $stat3->execute();
-    $stat3->bind_result($res2);
-    $stat3->fetch();
-
-
-    if ($res > 0 && $res1 > 0 && $res2 > 0) {
-        $idFilm = $res;
-        $idCinema = $res1;
-        $idSala = $res2;
-
-        $stat4 = $mysqli->prepare("INSERT INTO program  (idFilm, idCinema, data, ora, idSala ) VALUES ('$idFilm', '$idCinema', '$data', '$ora', '$idSala')");
-       while( $success = $stat4->execute()){
-           echo "Inregistrare cu Succes!";
-       }
-        if (!$success) {
+    if ($resFilm > 0 && $resCinema > 0 && $resSala > 0) {
+        $idFilm = $resFilm;
+        $idCinema = $resCinema;
+        $idSala = $resSala;
+        $statProgram = $mysqli->prepare("INSERT INTO program  (idFilm, idCinema, data, ora, idSala ) VALUES ('$idFilm', '$idCinema', '$data', '$ora', '$idSala')");
+        if ($statProgram->execute()) {
+            $mysqli->commit();
+            echo "Inregistrare cu Succes!";
+        } else {
             $mysqli->rollback();
             die("Fail to insert a person in DB");
         }
-        $mysqli->commit();
-
-        $stat4->close();
+        $statProgram->close();
     }
-    $stat1->close();
-    $stat2->close();
-    $stat3->close();
+    $statFilm->close();
+    $statCinema->close();
+    $statSala->close();
     $mysqli->close();
-
-
 }
+#fixme irina: Remove this if not used. In fact why should one use a hello??!! I supposed it was for debug purpose.
 echo ("hello");
 
 

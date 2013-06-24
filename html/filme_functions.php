@@ -1,7 +1,7 @@
 <?php
-    require_once 'config.php';
-$target_path = "images/";
+require_once 'config.php';
 
+$target_path = "images/";
 $titlu=$_POST['titlu'];
 $gen=$_POST['gen'];
 $an=$_POST['an'];
@@ -13,18 +13,15 @@ $roluri_principale=$_POST['roluri_principale'];
 
 $query="insert into filme (titlu, gen, an, timp_desf, descriere, regia, imagine, roluri_principale)
         values ('$titlu', '$gen', '$an', '$timp_desf', '$descriere', '$regia', '$target_path_1', '$roluri_principale')";
-if(!mysql_query($query)){
-    echo("fail");
-
-}else{
-    echo ("Inserted!!!");
+if (!mysql_query($query)) {
+    echo("Fail");
+} else {
+    echo("Inserted!!!");
 }
 
-
-if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
-    echo "The file ".  basename( $_FILES['uploadedfile']['name']).
-        " has been uploaded";
-} else{
+if (move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+    $basename = basename($_FILES['uploadedfile']['name']);
+    echo "The file $basename has been uploaded";
+} else {
     echo "There was an error uploading the file, please try again!";
 }
-?>

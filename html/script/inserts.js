@@ -1,10 +1,16 @@
-
-$("#sub").click(function(){
-
-    $.post($("#register-form").attr("action"), $("#register-form :input").serializeArray(), function(info) { $("#rezultat").empty();$("#rezultat").html(info)});
-
+$("#sub").click(function () {
+    var $register = $("#register-form");
+    $.post(
+        $register.attr("action"),
+        $register.find(":input").serializeArray(),
+        function (info) {
+            var $rezultat = $("#rezultat");
+            $rezultat.empty();
+            $rezultat.html(info);
+        }
+    );
 });
 
-$("#register-form").submit(function (){
+$("#register-form").submit(function () {
     return false;
 });

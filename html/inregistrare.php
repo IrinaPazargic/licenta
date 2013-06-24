@@ -6,7 +6,6 @@ $inregistrare= new Inregistrare();
 $users= new Users();
 inregistrare($inregistrare);
 
-
 function inregistrare($inregistrare)
 {
     $idUser = salveazaSauCitesteUser();
@@ -60,33 +59,18 @@ function salveazaInregistrare($idUser)
     $mysqli = new mysqli(DbConfig::$host, DbConfig::$user, DbConfig::$pass, DbConfig::$db);
     $mysqli->autocommit(false);
 
-        $stat1 = $mysqli->prepare("INSERT INTO detalii_membri (nume, prenume, email, adresa, telefon, id_users) VALUES (?, ?, ?, ?, ?, ?)");
-        if (!$stat1) {
-            printf("Errorcode: %d\n", $mysqli->errno);
-            die("Cannot prepare statement for inser into locuri_rezervate");
-        }
-        $stat1->bind_param("ssssii", $nume, $prenume, $email, $adresa, $telefon, $idUser);
-        $success = $stat1->execute();
-        if (!$success) {
-            $mysqli->rollback();
-            die("Nu se poate salva in DB locul rezervat.");
-        }
-        $stat1->close();
-
+    $stat1 = $mysqli->prepare("INSERT INTO detalii_membri (nume, prenume, email, adresa, telefon, id_users) VALUES (?, ?, ?, ?, ?, ?)");
+    if (!$stat1) {
+        printf("Errorcode: %d\n", $mysqli->errno);
+        die("Cannot prepare statement for insert into locuri_rezervate");
+    }
+    $stat1->bind_param("ssssii", $nume, $prenume, $email, $adresa, $telefon, $idUser);
+    $success = $stat1->execute();
+    if (!$success) {
+        $mysqli->rollback();
+        die("Nu se poate salva in DB locul rezervat.");
+    }
+    $stat1->close();
     $mysqli->commit();
     $mysqli->close();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

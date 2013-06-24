@@ -1,14 +1,17 @@
 <?php
 
-class Filme{
+class Filme
+{
     public $ora;
 }
 
-
-class Sali{
+class Sali
+{
     public $nr_sala;
 }
-class Inregistrare{
+
+class Inregistrare
+{
     public $nume;
     public $prenume;
     public $email;
@@ -18,7 +21,8 @@ class Inregistrare{
 
 }
 
-class Users{
+class Users
+{
     public $username;
     public $password;
 
@@ -26,18 +30,15 @@ class Users{
     {
         $this->username = $username;
         $this->password = $password;
-
     }
 }
 
 
-
-
-class Rezervare {
+class Rezervare
+{
     public $idProgram;
     public $tipLocuri;
     public $persoana;
-
     public $film;
     public $cinema;
     public $sala;
@@ -46,7 +47,8 @@ class Rezervare {
     public $locuri;
 }
 
-class Persoana {
+class Persoana
+{
     public $nume;
     public $prenume;
     public $email;
@@ -59,14 +61,13 @@ class Persoana {
         $this->email = $email;
         $this->telefon = $telefon;
     }
-
 }
 
-class TipLocuri{
+class TipLocuri
+{
     public $nrLocuri;
     public $tip;
     public $pret;
-
 
     function __construct($tip, $nrLocuri, $pret)
     {
@@ -74,10 +75,10 @@ class TipLocuri{
         $this->nrLocuri = $nrLocuri;
         $this->pret = $pret;
     }
-
 }
 
-class TipRedurecere{
+class TipRedurecere
+{
     public $tip;
     public $pret;
 
@@ -89,9 +90,8 @@ class TipRedurecere{
 
     function __toString()
     {
-        return $this->tip . ' ' . $this->pret;
+        return "$this->tip $this->pret";
     }
-
 }
 
 
