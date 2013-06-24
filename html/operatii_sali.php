@@ -11,33 +11,23 @@ require_once 'config.php';
     <link href="administrator.css" rel="stylesheet" type="text/css"/>
     <link href="operatii.css" rel="stylesheet" type="text/css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
 
+
+<script>
+    $("#sub").click(function(){
+
+        $.post($("#myForm").attr("action"), $("#myForm :input").serializeArray(), function(info) { $("#rezultat").empty();$("#rezultat").html(info)});
+
+    });
+
+    $("#myForm").submit(function (){
+        return false;
+    });
 
 </script>
 <script>
     $(document).ready(function(){
-
-            $("#next").click(function (event) {
-                event.preventDefault();
-                var values = "call=insert";
-                $.ajax({
-                    url: "inregistrare_sala.php?",
-                    type: "post",
-                    data: values,
-                    success: function (result) {
-                        console.log("Success");
-                        $("#result").html(result);
-                    },
-                    error: function (error) {
-                        console.error("Failure");
-                        $("#result").html('there is error while submit');
-                    }
-                });
-            });
-
-        $("#vizualizare").click(function(){
-        $('#rezultat').hide();
+    $("#vizualizare").click(function(){
         $(function (){
 
             $.ajax({ //Make the Ajax Request
@@ -53,7 +43,7 @@ require_once 'config.php';
             });
 
         });
-       // document.getElementById("table_sali").innerHTML='';
+        document.getElementById("table_sali").innerHTML='';
         document.getElementById('vizualizare').style.backgroundColor='red';
     if((document.getElementById('sterge').style.backgroundColor='red') && (document.getElementById('inregistrare').style.backgroundColor='red')){
         document.getElementById('sterge').style.backgroundColor='gray';
@@ -67,10 +57,9 @@ require_once 'config.php';
         }
     });
     $("#sterge").click(function(){
-        document.getElementById("forms_div").innerHTML='<form id="form_sterge" action="sterge_sala.php" method="POST">' +
-            '<table id="table_sali"><tbody><tr><td><label for="sala">Sala: </label></td>' +
-            '<td><input type="text" name="nr_sala" id="nr_sala"></td></tr><tr>' +
-            '<td></td><td></td><td><input type="submit" id="sub_sterge" onclick="deleteSala()" value="Sterge"/></td></tr></tbody></table></form>'+
+        document.getElementById("table_sali").innerHTML='<tbody><tr><td><label for="sala">Sala: </label></td>' +
+            '<td><input type="text" id="sala"></td></tr><tr>' +
+            '<td></td><td></td><td><input type="submit" id="sterge" value="Sterge"/></td></tr>'+
             '</tbody>';
         document.getElementById('sterge').style.backgroundColor='red';
 
@@ -79,7 +68,6 @@ require_once 'config.php';
             document.getElementById('inregistrare').style.backgroundColor='gray';
         }
     });
-
     });
 </script>
 </head>
@@ -116,23 +104,23 @@ require_once 'config.php';
             <a id="vizualizare" style="background-color: gray;"><span>Vizualizare sala</span></a>
             <a id="sterge" style="background-color: gray;"><span>Stergere sala</span></a></legend>
         <div id="forms_div">
-         <form>
+         <form id="myForm" action="inregistrare_sala.php" method="POST">
         <table id="table_sali">
             <tbody>
             <tr><td><label for="sala">Sala: </label></td>
                 <td><input type="text" name="nr_sala" id="nr_sala"></td></tr>
             <tr><td><label for="randuri">Randuri: </label></td>
                 <td><input type="text" name="randuri" id="randuri"></td></tr>
-            <tr><td><label for="locuri">Locuri: </label></td>
-                <td><input type="text" id="locuri" name="locuri"></td></tr>
-            <tr> <td><input type="submit"  id="next" value="Salveaza"/></td></tr>
+            <tr><td><label for="locuri" name="locuri">Locuri: </label></td>
+                <td><input type="text" id="locuri"></td></tr>
+            <tr> <td><input type="submit" id="button" value="Salveaza"/></td></tr>
             </tbody>
         </table>
             </form>
           </div>
     </fieldset>
 </div>
-            <div id="result" style="clear:both">
+            <div id="rezultat">
                 </div>
 </div>
         </div>

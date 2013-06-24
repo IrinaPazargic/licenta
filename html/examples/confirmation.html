@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<head>
+    <meta charset="utf-8">
+    <title>dialog demo</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#dialog").dialog({ autoOpen: false });
+
+            $("#opener").click(function () {
+                $("#dialog").dialog({
+                    modal: true,
+                    title: 'Delete',
+                    zIndex: 10000,
+                    autoOpen: true,
+                    closeOnEscape: true,
+                    width: '500',
+                    draggable: false,
+                    height: 200,
+                    resizable: false,
+
+                    buttons: {
+                        Yes: function () {
+                            // do wattever you want to do here
+                            alert("The DB entry has been successfully deleted")
+
+                            //then hide the dialog
+                            $(this).dialog("close");
+                        },
+                        No: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+/*
+                    ,
+                    close: function (event, ui) {
+                        $(this).remove();
+                    }
+*/
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<button id="opener">open the dialog</button>
+<div id="dialog" title="Dialog Title">Are you sure want to remove the DB entry.</div>
+</body>
+</html>
