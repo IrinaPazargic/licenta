@@ -1,22 +1,23 @@
-#menu_program{
-	background: none repeat scroll 0 0 #373737;
-	padding: 0 0 24px;
-	width: 100%;
-	margi:0;
-}
-#menu_program ul{
-	list-style: none outside none;
-    margin: 0 0 1em 10px;
-    padding: 0;
-	text-align: left;
+#menu_program {
+    background: none repeat scroll 0 0 #373737;
+    padding: 0 0 24px;
+    width: 100%;
+    margi: 0;
 }
 
-#menu_program li{
-	display: inline;
+#menu_program ul {
+    list-style: none outside none;
+    margin: 0 0 1em 10px;
+    padding: 0;
+    text-align: left;
+}
+
+#menu_program li {
+    display: inline;
     line-height: 1.5em;
     margin: 0 2px 0 0;
     padding: 0;
-	text-align: left;
+    text-align: left;
 }
 
 #menu_program #current_prog a, #menu_program  #current_program span {
@@ -25,9 +26,8 @@
     outline: medium none;
 }
 
-
 #menu_program a {
-	 background: url("images/color_tabs_left2.gif") no-repeat scroll left bottom #474747;
+    background: url("images/color_tabs_left2.gif") no-repeat scroll left bottom #474747;
     color: #7DA5D5;
     float: left;
     margin: 0 2px 0 0;
@@ -36,9 +36,8 @@
     text-decoration: none;
 }
 
-
 .det_prog:after {
-	clear: both;
+    clear: both;
     content: ".";
     display: block;
     height: 0;
@@ -46,18 +45,18 @@
 }
 
 .det_prog {
-	width:100%;
-	display: block;
-	background: none repeat scroll 0 0 #0D0D0D;
+    width: 100%;
+    display: block;
+    background: none repeat scroll 0 0 #0D0D0D;
     border-bottom: 1px solid #000000;
     margin: 0;
     padding: 0 0 24px;
     text-align: left;
-	display: inline-table;
+    display: inline-table;
 }
 
-.leadin:after{
-	clear: both;
+.leadin:after {
+    clear: both;
     content: ".";
     display: block;
     height: auto;
@@ -65,55 +64,58 @@
 }
 
 .leadin {
-	display: block;
+    display: block;
     text-align: left;
     width: 100%;
 }
-.leadin .info:after{
-	clear: both;
+
+.leadin .info:after {
+    clear: both;
     content: ".";
     display: block;
     height: 0;
     visibility: hidden;
 }
+
 .leadin .info {
-	display: block;
-	display:inline-table;
-	float: left;
+    display: block;
+    display: inline-table;
+    float: left;
 }
 
 .leadin .rez_info {
-	float:right;
-	margin: 0;
+    float: right;
+    margin: 0;
     padding: 0;
-	text-align:left;
+    text-align: left;
 }
 
-element.style{
-	width: 190px;
-	cursor: pointer;
+element.style {
+    width: 190px;
+    cursor: pointer;
 }
 
-.leadin .info h2 a{
-	color: #F7941D;
-	font-weight: bold;
-	outline: medium none;
-	text-decoration: none;
+.leadin .info h2 a {
+    color: #F7941D;
+    font-weight: bold;
+    outline: medium none;
+    text-decoration: none;
 }
+
 .leadin .info h2 {
-	color: #D5E0E7;
-	font-size: 1em;
-	font-weight: normal;
+    color: #D5E0E7;
+    font-size: 1em;
+    font-weight: normal;
 }
 
 .italicspan {
-	display:block;
-	font-style: italic;
-	margin:0;
+    display: block;
+    font-style: italic;
+    margin: 0;
 }
 
-.leadin .info a{
-	background-image: url("images/info_button_16.png");
+.leadin .info a {
+    background-image: url("images/info_button_16.png");
     background-repeat: no-repeat;
     color: #73A3E1;
     font-size: 1.3em;
@@ -123,26 +125,25 @@ element.style{
     text-decoration: none;
 }
 
-.det_prog .leadin .info a{
-	color: #73A3E1;
+.det_prog .leadin .info a {
+    color: #73A3E1;
     text-decoration: none;
 }
 
 #program_film {
-	height:auto;
-	width:95%;
-	margin:10px auto;
+    height: auto;
+    width: 95%;
+    margin: 10px auto;
 }
 
 #news #program_film h3 {
-	letter-spacing: 1px;
-	height:2.5em;
-	font-size:1.1em;
-	text-transform: uppercase;
+    letter-spacing: 1px;
+    height: 2.5em;
+    font-size: 1.1em;
+    text-transform: uppercase;
 }
 
-
- .btn_r {
+.btn_r {
     background: url("images/btn_r.gif") repeat scroll 0 0 transparent;
     display: block;
     float: left;
@@ -155,14 +156,15 @@ element.style{
     display: none;
 }
 
-.det_prog .leadin  p{
-	margin-top:5px;
-	margin-left:10px;
+.det_prog .leadin  p {
+    margin-top: 5px;
+    margin-left: 10px;
 }
-.det_prog .leadin  em{
-	margin-left:10px;
+
+.det_prog .leadin  em {
+    margin-left: 10px;
 }
 
 #news #program_film  h3 {
-	background-color:white;
+    background-color: white;
 }

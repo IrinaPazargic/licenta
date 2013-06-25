@@ -1,6 +1,8 @@
-body {background-image: url(images/bg.jpg);}
-label
-{
+body {
+    background-image: url(images/bg.jpg);
+}
+
+label {
     width: 5.5em;
     float: left;
     text-align: right;
@@ -8,24 +10,22 @@ label
     display: block;
 }
 
-.submit input
-{
+.submit input {
     margin-left: 4.5em;
 }
 
-fieldset
-{
+fieldset {
     width: 30em;
-    margin:5px auto;
+    margin: 5px auto;
 }
 
-legend
-{
+legend {
     color: #fff;
     background: #ffa20c;
     padding: 2px 6px
 }
-#button{
+
+#button {
     background-color: #444444;
     color: #DFDFDF;
     cursor: pointer;
@@ -35,12 +35,27 @@ legend
     height: 30px;
 }
 
-#form {background-color: #fff;
-    border: 1px solid #dedede;}
+#form {
+    background-color: #fff;
+    border: 1px solid #dedede;
+}
 
-ul {list-style-type:none; padding: 5px; }
-li {float:left; padding:3px;}
-#content { margin:20px auto; width:600px; height:auto;}
+ul {
+    list-style-type: none;
+    padding: 5px;
+}
+
+li {
+    float: left;
+    padding: 3px;
+}
+
+#content {
+    margin: 20px auto;
+    width: 600px;
+    height: auto;
+}
+
 a {
     display: block;
     float: right;
@@ -59,7 +74,7 @@ a:hover {
     color: #325C38;
 }
 
-.current{
+.current {
     background-position: center top;
     color: #325C38;
 }

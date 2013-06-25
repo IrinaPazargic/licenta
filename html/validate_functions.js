@@ -45,8 +45,8 @@ function validateTelefon(field) {
     if (isNaN(field)) {
         return "Introduceti nr-ul de telefon.\n";
     }
- //   else if (field < 10 || field > 10)
- //   return "Nr  trebuie sa contina 10 cifre.\n"
+    //   else if (field < 10 || field > 10)
+    //   return "Nr  trebuie sa contina 10 cifre.\n"
     return "";
 }
 
