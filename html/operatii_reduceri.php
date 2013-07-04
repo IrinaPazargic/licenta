@@ -16,7 +16,6 @@
                         type: "GET",
                         url: "viz_reducere.php", //file name
                         data: "",
-                        // datatype: 'json',
                         success: function (data) {
                             $('#forms_div').html(data);
                         }

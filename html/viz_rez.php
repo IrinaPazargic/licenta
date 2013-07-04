@@ -1,53 +1,53 @@
 <?php
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "root";
-$dbname = "cinemadb";
-//Connect to MySQL Server
-mysql_connect($dbhost, $dbuser, $dbpass);
-//Select Database
-mysql_select_db($dbname) or die(mysql_error());
-// Retrieve data from Query String
-//$tip = $_GET['tip'];
-// Escape User Input to help prevent SQL Injection
-//$tip = mysql_real_escape_string($tip);
+require_once 'config.php';
 
 //build query
-$query="select p.nume, p.prenume, p.email, f.titlu, d.data, d.ora,  s.nr_sala, r.locuri, e.tip, l.nr_locuri, e.pret, r.id
-            from persoane p,filme f, program d, cinema c, rezervare r, reduceri e, locuri_rezervate l, sali s
-            where c.idCinema=d.idCinema and f.idFilm=d.idFilm and p.id=r.id_persoana
-            and d.idProgram=r.id_program and r.id=l.id_rezervare and s.idSala=d.idSala and e.idReducere=l.idReducere ";
+$query = "SELECT
+          p.nume, p.prenume, p.email, f.titlu, d.data, d.ora,  s.nr_sala, r.locuri, e.tip, l.nr_locuri, e.pret, r.id
+        FROM persoane p, filme f, program d, cinema c, rezervare r, reduceri e, locuri_rezervate l, sali s
+        WHERE
+          c.idCinema=d.idCinema 
+          AND f.idFilm=d.idFilm
+          AND p.id=r.id_persoana
+          AND d.idProgram=r.id_program
+          AND r.id=l.id_rezervare
+          AND s.idSala=d.idSala
+          AND e.idReducere=l.idReducere";
 
 $qry_result = mysql_query($query) or die(mysql_error());
 
 //Build Result String
-echo  "<table border='1'>";
-echo  "<tr>";
-echo  "<th bgcolor='black' style='color:white'>Nume</th>";
-echo  "<th bgcolor='black' style='color:white'>Prenume</th>";
-echo  "<th bgcolor='black' style='color:white'>Email</th>";
-echo  "<th bgcolor='black' style='color:white'>Film</th>";
-echo  "<th bgcolor='black' style='color:white'>Data</th>";
-echo  "<th bgcolor='black' style='color:white'>Ora</th>";
-echo  "<th bgcolor='black' style='color:white'>Sala</th>";
-echo  "<th bgcolor='black' style='color:white'>Locuri</th>";
-echo  "<th bgcolor='black' style='color:white'>Tip</th>";
-echo  "<th bgcolor='black' style='color:white'>Pret</th>";
-echo  "<th bgcolor='black' style='color:white'>Cod Rez</th>";
+$table_prefix = "
+    <table border='1'>
+        <tr>
+            <th bgcolor='black' style='color:white'>Nume</th>
+            <th bgcolor='black' style='color:white'>Prenume</th>
+            <th bgcolor='black' style='color:white'>Email</th>
+            <th bgcolor='black' style='color:white'>Film</th>
+            <th bgcolor='black' style='color:white'>Data</th>
+            <th bgcolor='black' style='color:white'>Ora</th>
+            <th bgcolor='black' style='color:white'>Sala</th>
+            <th bgcolor='black' style='color:white'>Locuri</th>
+            <th bgcolor='black' style='color:white'>Tip</th>
+            <th bgcolor='black' style='color:white'>Pret</th>
+            <th bgcolor='black' style='color:white'>Cod Rez</th>
+        </tr>
+";
 
-echo  "</tr>";
-
-while($result=mysql_fetch_object($qry_result)){
-    echo "<tr>";
-    foreach ($result as  $value) {
-        echo "<td> $value</td>";
+$table_content = "";
+while ($result = mysql_fetch_object($qry_result)) {
+    $table_row = "<tr>";
+    foreach ($result as $value) {
+        $table_row .= "<td>$value</td>";
     }
-    echo "<td><a href=''>Edit</a></td>";
-    echo "</tr>";
+    $table_row .= "
+            <td><a href=''>Edit</a></td>
+        </tr>
+    ";
+    $table_content .= $table_row;
 }
+// wtf json serialization is used for?
 echo json_encode($result);
-echo "</table>";
+$table_suffix = "</table>";
 
-
-
-
+echo $table_prefix . $table_content . $table_suffix;

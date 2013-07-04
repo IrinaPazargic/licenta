@@ -1,42 +1,32 @@
 <?php
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "root";
-$dbname = "cinemadb";
-//Connect to MySQL Server
-mysql_connect($dbhost, $dbuser, $dbpass);
-//Select Database
-mysql_select_db($dbname) or die(mysql_error());
-// Retrieve data from Query String
-//$tip = $_GET['tip'];
-// Escape User Input to help prevent SQL Injection
-//$tip = mysql_real_escape_string($tip);
-
-//build query
+require_once 'config.php';
 $query="select idSala, nr_sala, randuri, locuri from sali";
-
 $qry_result = mysql_query($query) or die(mysql_error());
 
-//Build Result String
-echo  "<table border='1'>";
-echo  "<tr>";
-echo  "<th bgcolor='black' style='color:white'>ID</th>";
-echo  "<th bgcolor='black' style='color:white'>Sala</th>";
-echo  "<th bgcolor='black' style='color:white'>Randuri</th>";
-echo  "<th bgcolor='black' style='color:white'>Locuri</th>";
+$table_prefix = "
+<table border='1'>
+    <tr>
+        <th bgcolor='black' style='color:white'>ID</th>
+        <th bgcolor='black' style='color:white'>Sala</th>
+        <th bgcolor='black' style='color:white'>Randuri</th>
+        <th bgcolor='black' style='color:white'>Locuri</th>
+    </tr>
+";
 
-echo  "</tr>";
-
+$table_content = "";
 while($result=mysql_fetch_object($qry_result)){
-    echo "<tr>";
+    $table_row = "<tr>";
     foreach ($result as  $value) {
-        echo "<td> $value</td>";
+        $table_row = "$table_row<td>$value</td>";
     }
-    echo "<td><a href=''>Edit</a></td>";
-    echo "</tr>";
+    $table_row = "$table_row<td><a href=''>Edit</a></td>";
+    $table_row = "$table_row</tr>";
+    $table_content = "$table_content$table_row";
 }
 //echo json_encode($result);
-echo "</table>";
+$table_suffix = "</table>";
+
+echo $table_prefix . $table_content . $table_suffix;
 
 
 
