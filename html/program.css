@@ -168,3 +168,9 @@ element.style {
 #news #program_film  h3 {
     background-color: white;
 }
+
+.h3class {
+    padding-top: 10px;
+    padding-left: 10px;
+    float: left;
+}

@@ -10,57 +10,85 @@ $other_day_1= mktime(0,0,0,date("m"),date("d") + 4 ,date("Y"));
 $other_day_2= mktime(0,0,0,date("m"),date("d") + 5 ,date("Y"));
 $other_day_3= mktime(0,0,0,date("m"),date("d") + 6 ,date("Y"));
 
-$idCinema = $_GET['idCinema'];
+
+$idCinema=$_GET['idCinema'];
+$cinema = $_GET['cinema'];
+$categorie = $_GET['categorie'];
+$titlu = $_GET['titlu'];
+
+$query_cauta = "
+                SELECT
+                  p.idProgram, f.titlu, f.gen
+                FROM
+                  program p, filme f, cinema c
+                WHERE
+                  p.idFilm = f.idFilm
+                  AND p.idCinema = c.idCinema
+                  AND c.nume='$cinema'
+                  AND f.gen='$categorie'
+                  AND f.titlu='$titlu'
+                ";
+$rez_cauta = mysql_query($query_cauta);
 
 $nume="select nume from cinema where idCinema='$idCinema'";
 $rez_nume=mysql_query($nume);
-$row_nume=mysql_fetch_assoc($rez_nume);
+$row_nume= mysql_fetch_assoc($rez_nume);
 
 $filme= new Filme();
 
-function filme_data()
+function filme_data($idCinema)
 {
     $data = $_GET['data'];
-    $query = "select p.idProgram,f.idFilm, f.titlu, f.gen, GROUP_CONCAT(p.ora SEPARATOR ', ') as ora, f.titlu from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm = f.idFilm and p.idCinema = c.idCinema and c.idCinema='" . $_GET['idCinema'] . "' and data='$data' group by f.titlu";;
+    $query = "
+                SELECT
+                    p.idProgram,f.idFilm, f.titlu, f.gen, GROUP_CONCAT(p.ora SEPARATOR ', ') as ora, f.titlu
+                FROM
+                    program p, filme f, cinema c
+                WHERE
+                    p.idFilm = f.idFilm
+                    AND p.idCinema = c.idCinema
+                    AND c.idCinema='$idCinema'
+                    AND data='$data'
+                GROUP BY f.titlu
+              ";
     $result = mysql_query($query);
     while ($row = mysql_fetch_array($result)) {
-        echo '<div class="det_prog"><div class="leadin">';
-        echo '<div class="info" style="width:314px;"><p><b>' . $row['titlu'] . '</b></p> <br/><em>' . $row['gen'] . '</em><p><br/><a href="filme.php?idFilm=' . $row['idFilm'] . '">Detalii Film..</a></p></div>';
-        echo '<div class="rez_info" style="width:190px;"><table ><tbody><tr>';
-        echo '<td style="padding:0;margin:0;">';
-        echo '<a class="btn_r" href="ReservationPage.php?idProgram=' . $row['idProgram'] . ' "  style="cursor:pointer; margin-top:5px;"><span>R </span></a>' . $row['ora'] . '';
-        echo '</td>';
-        echo '</tr></tbody></table></div>';
-        echo '</div> </div><hr/>';
+        echo "
+            <div class=\"det_prog\">
+                <div class=\"leadin\">
+                    <div class=\"info\" style=\"width:314px;\">
+                        <p><b>${row['titlu']}</b></p>
+                        <br/>
+                        <em>${row['gen']}</em>
+                        <p><br/><a href=\"filme.php?idFilm=${row['idFilm']}\">Detalii Film..</a></p>
+                    </div>
+                    <div class=\"rez_info\" style=\"width:190px;\">
+                        <table>
+                            <tr>
+                            <td style=\"padding:0;margin:0;\">
+                                <a class=\"btn_r\" href=\"ReservationPage.php?idProgram=${row['idProgram']}\" style=\"cursor:pointer; margin-top:5px;\"><span>R </span></a>${row['ora']}
+                            </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+        ";
     }
 }
 
-function detalii_film()
-{
-    $idFilm = $_GET['idFilm'];
-    $query = "SELECT p.idProgram, f.imagine, f.titlu, f.gen, f.regia, f.roluri_principale, f.timp_desf, f.descriere FROM cinemadb.filme f, cinemadb.program p, cinemadb.cinema c WHERE  p.idFilm=f.idFilm AND p.idCinema=c.idCinema AND f.idFilm='$idFilm'";
-    $result = mysql_query($query);
-    while ($row = mysql_fetch_array($result)) {
-        echo '<div class="newsList">
-                <span class="icon_hold">
-               		<img id="image" src=' . $row['imagine'] . '>
-               	</span>
-               	<h4 >Titlu: ' . $row['titlu'] . '</h4>
-               	<p><strong>Gen: ' . $row['gen'] . '</strong></p><br/>
-               	<hr class="copyright">
-               	<p class="copyright">Regia: ' . $row['regia'] . ' <br/>
-               	Detalii: ' . $row['descriere'] . '<br/>
-               	Timp desfasurare: ' . $row['timp_desf'] . ' minute<br/>
-               	Roluri principale: ' . $row['roluri_principale'] . '
-               	</p>
-               	<a  href="ReservationPage.php?idProgram=' . $row['idProgram'] . '">Rezerva Galati</a><br/>
-               	<a href="">Rezerva Bucuresti</a>
-              </div>';
-
-    }
-}
-
-$query = "select p.idProgram, f.titlu, f.idFilm, f.gen, p.ora from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c where p.idFilm = f.idFilm and p.idCinema = c.idCinema and c.idCinema='" . $idCinema . "' and data=CURDATE()";
+$query = "
+            SELECT
+                p.idProgram, f.titlu, f.idFilm, f.gen, p.ora
+            FROM
+                program p, filme f, cinema c
+            WHERE
+                p.idFilm = f.idFilm
+                AND p.idCinema = c.idCinema
+                AND c.idCinema='$idCinema'
+                AND data=CURDATE()
+            ";
 $result = mysql_query($query);
 ?>
 
@@ -71,13 +99,6 @@ $result = mysql_query($query);
     <link href="main.css" rel="stylesheet" type="text/css"/>
     <link href="program.css" rel="stylesheet" type="text/css"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#maine").click(function () {
-                document.getElementById('maine').style.backgroundColor = 'red';
-            }
-        });
-    </script>
 </head>
 <body id="feature">
     <div id="header">
@@ -98,7 +119,7 @@ $result = mysql_query($query);
                 <li><a href="" id="contactUsLink">Contact</a></li>
             </ul>
         </div>
-        <a class="selectmap" style="background: none;margin-top:10px; float:right; margin-right:5px;" href="map.php">
+        <a class="selectmap"  href="map.php">
             <img alt="" src="images/harta.png">
         </a>
     </div><!--nav-->
@@ -108,7 +129,7 @@ $result = mysql_query($query);
             <input type="text" placeholder="Search here..." required>
             <button type="submit">Search</button>
         </form>
-        <h3 style="padding-top:10px; padding-left:10px; float:left;"><strong>Acasa >></strong><strong><a href="mainprogram.php" style="text-decoration:none;">Program >></strong></a><strong><?php $locatie=$_GET['idCinema']; $query="select nume from cinema where idCinema='$locatie'"; $rez=mysql_query($query); while($row=mysql_fetch_array($rez)){echo $row['nume'];} ?></strong></h3>
+        <h3 class="h3class"><strong>Acasa >></strong><strong><a href="mainprogram.php" style="text-decoration:none;">Program >></strong></a><strong><?= $row_nume['nume']?></strong></h3>
         <div id="secondNav" class="copyright">
             <span class="icon_hold">
                 <img id="images" src="images/home_32.png">
@@ -179,6 +200,32 @@ $result = mysql_query($query);
                     </table>
                 </form>
             </div> <!--searchBody-->
+            <div id="thirdNav" class="copyright">
+                    <span class="icon_hold">
+                        <img class="images" src="images/ico_promo.gif">
+                    </span>
+                    <h3><strong>Categorii Filme</strong></h3>
+                    <ul id="film_list">
+                        <li><a href="filme.php?gen=actiune" class="filmsLink">Actiune</a></li>
+                        <li><a href="filme.php?gen=animatie" class="filmsLink">Animatie</a></li>
+                        <li><a href="filme.php?gen=aventura" class="filmsLink">Aventura</a></li>
+                        <li><a href="filme.php?gen=comedie" class="filmsLink">Comedie</a></li>
+                        <li><a href="filme.php?gen=crima" class="filmsLink">Crima</a></li>
+                        <li><a href="filme.php?gen=drama" class="filmsLink">Drama</a></li>
+                        <li><a href="filme.php?gen=familie" class="filmsLink">Familie</a></li>
+                        <li><a href="filme.php?gen=fantastic" class="filmsLink">Fantastic</a></li>
+                        <li><a href="filme.php?gen=horror" class="filmsLink">Horror</a></li>
+                        <li><a href="filme.php?gen=istoric" class="filmsLink">Istoric</a></li>
+                        <li><a href="filme.php?gen=mister" class="filmsLink">Mister</a></li>
+                        <li><a href="filme.php?gen=muzical" class="filmsLink">Muzical</a></li>
+                        <li><a href="filme.php?gen=razboi" class="filmsLink">Razboi</a></li>
+                        <li><a href="filme.php?gen=romantic" class="filmsLink">Romantic</a></li>
+                        <li><a href="filme.php?gen=sf" class="filmsLink">SF</a></li>
+                        <li><a href="filme.php?gen=thriller" class="filmsLink">Thriller</a></li>
+                        <li><a href="filme.php?gen=western" class="filmsLink">Western</a></li>
+                        <li><a href="filme.php?gen=documentar" class="filmsLink">Documentar</a></li>
+                    </ul>
+                </div> <!--thirdNav-->
         </div> <!--secondNav-->
 
         <div id="news" class="copyright">
@@ -216,8 +263,16 @@ $result = mysql_query($query);
                     </li>
                 </ul>
             </div>
+            <?php while ($row_nume=mysql_fetch_array($rez_cauta)) { ?>
+                 <div class='det_prog'>
+                <?= $row_nume['titlu']; ?>
+                    </div>
+
+           <?php } ?>
+
             <?php  while ($row = mysql_fetch_array($result)) {?>
             <div class="det_prog">
+
                 <div class="leadin">
                     <div class="info" style="width:314px;"><p><b><?= $row['titlu'] ?></b></p> <br/><p><em><?= $row['gen']?></em></p><br/><p><a href="filme.php?idFilm=<?= $row['idFilm']?>">Detalii Film..</a></p>
                     </div>
@@ -244,18 +299,18 @@ $result = mysql_query($query);
             }
             switch ($link) {
                 case '2013/05/20':
-                    filme_data();
+                    filme_data($idCinema);
                     break;
                 case '2013/05/21':
-                    filme_data();
+                    filme_data($idCinema);
                     break;
 
                 case '2013/05/22':
-                    filme_data();
+                    filme_data($idCinema);
                     break;
 
                 case '2013/05/23':
-                    filme_data();
+                    filme_data($idCinema);
                     break;
                 default:
                     echo '';
@@ -263,32 +318,7 @@ $result = mysql_query($query);
             ?>
         </div><!--programFilm-->
         </div><!--news-->
-        <div id="thirdNav" class="copyright">
-            <span class="icon_hold">
-                <img class="images" src="images/ico_promo.gif">
-            </span>
-            <h3><strong>Categorii Filme</strong></h3>
-            <ul id="film_list">
-                <li><a href="filme.php?gen=actiune" class="filmsLink">Actiune</a></li>
-                <li><a href="filme.php?gen=animatie" class="filmsLink">Animatie</a></li>
-                <li><a href="filme.php?gen=aventura" class="filmsLink">Aventura</a></li>
-                <li><a href="filme.php?gen=comedie" class="filmsLink">Comedie</a></li>
-                <li><a href="filme.php?gen=crima" class="filmsLink">Crima</a></li>
-                <li><a href="filme.php?gen=drama" class="filmsLink">Drama</a></li>
-                <li><a href="filme.php?gen=familie" class="filmsLink">Familie</a></li>
-                <li><a href="filme.php?gen=fantastic" class="filmsLink">Fantastic</a></li>
-                <li><a href="filme.php?gen=horror" class="filmsLink">Horror</a></li>
-                <li><a href="filme.php?gen=istoric" class="filmsLink">Istoric</a></li>
-                <li><a href="filme.php?gen=mister" class="filmsLink">Mister</a></li>
-                <li><a href="filme.php?gen=muzical" class="filmsLink">Muzical</a></li>
-                <li><a href="filme.php?gen=razboi" class="filmsLink">Razboi</a></li>
-                <li><a href="filme.php?gen=romantic" class="filmsLink">Romantic</a></li>
-                <li><a href="filme.php?gen=sf" class="filmsLink">SF</a></li>
-                <li><a href="filme.php?gen=thriller" class="filmsLink">Thriller</a></li>
-                <li><a href="filme.php?gen=western" class="filmsLink">Western</a></li>
-                <li><a href="filme.php?gen=documentar" class="filmsLink">Documentar</a></li>
-            </ul>
-        </div> <!--thirdNav-->
+
     </div><!--mainContent-->
     <div id="footer" class="copyright">
         <h3>Copyright</h3>
