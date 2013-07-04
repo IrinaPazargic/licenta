@@ -3,7 +3,12 @@
     <words>
       <w>adresa</w>
       <w>bilete</w>
+      <w>categorie</w>
+      <w>cauta</w>
       <w>cinematograf</w>
+      <w>descriere</w>
+      <w>desfasurare</w>
+      <w>detalii</w>
       <w>filme</w>
       <w>locuri</w>
       <w>nume</w>
@@ -14,12 +19,15 @@
       <w>randuri</w>
       <w>reducere</w>
       <w>reduceri</w>
+      <w>regia</w>
+      <w>rezerva</w>
       <w>rezervare</w>
       <w>rezervate</w>
       <w>sala</w>
       <w>sali</w>
       <w>signup</w>
       <w>telefon</w>
+      <w>timp</w>
       <w>titlu</w>
     </words>
   </dictionary>
