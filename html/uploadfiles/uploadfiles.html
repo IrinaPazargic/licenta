@@ -23,47 +23,47 @@
     </fieldset>
 </form>
 <script type="text/javascript">
-	var $id = function(a) {
-		return document.getElementById(a);
-	}
-	document.getElementById('upload').addEventListener('submit', function(evt) {
-            evt.preventDefault();
-            var files = evt.target.fileselect.files;
-            for(var i=0, l = files.length; i < l; i++) {
-                //ParseFile(f);
-                UploadFile(files[i])
-            }
-        });
-	        
-	function UploadFile(file) {
-            var xhr = new XMLHttpRequest();
-            if (xhr.upload && file.type == "image/jpeg" && file.size <= $id("MAX_FILE_SIZE").value) {
-                console.log("Uploading through js");
-                // start upload
-                xhr.open("POST", $id("upload").action, true);
-                xhr.setRequestHeader("X_FILENAME", file.name);
-                xhr.send(file);
-                console.log("Upload command has been sent to the server.");
-            }
+    var $id = function (a) {
+        return document.getElementById(a);
+    }
+    document.getElementById('upload').addEventListener('submit', function (evt) {
+        evt.preventDefault();
+        var files = evt.target.fileselect.files;
+        for (var i = 0, l = files.length; i < l; i++) {
+            //ParseFile(f);
+            UploadFile(files[i])
         }
-        function ParseFile(file) {
+    });
 
+    function UploadFile(file) {
+        var xhr = new XMLHttpRequest();
+        if (xhr.upload && file.type == "image/jpeg" && file.size <= $id("MAX_FILE_SIZE").value) {
+            console.log("Uploading through js");
+            // start upload
+            xhr.open("POST", $id("upload").action, true);
+            xhr.setRequestHeader("X_FILENAME", file.name);
+            xhr.send(file);
+            console.log("Upload command has been sent to the server.");
         }
-        function FileDragHover(e) {
+    }
+    function ParseFile(file) {
 
-        }
-        function FileSelectHandler(e) {
+    }
+    function FileDragHover(e) {
+
+    }
+    function FileSelectHandler(e) {
         console.log(e);
-	// cancel event and hover styling
-            //FileDragHover(e);
-            // fetch FileList object
-            var files = e.target.files || e.dataTransfer.files;
-            // process all File objects
-            for (var i = 0, f; f = files[i]; i++) {
-                ParseFile(f);
-                UploadFile(f);
-            }
+        // cancel event and hover styling
+        //FileDragHover(e);
+        // fetch FileList object
+        var files = e.target.files || e.dataTransfer.files;
+        // process all File objects
+        for (var i = 0, f; f = files[i]; i++) {
+            ParseFile(f);
+            UploadFile(f);
         }
-    </script>
+    }
+</script>
 </body>
 </html>

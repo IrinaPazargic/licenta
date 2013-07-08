@@ -6,13 +6,14 @@ require_once 'config.php';
 <head>
     <link href="administrator.css" rel="stylesheet" type="text/css"/>
     <link href="operatii.css" rel="stylesheet" type="text/css"/>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-
-
-    });
-</script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#detalii").click(function cautaProgram() {
+                $('#right').load("detalii_cont.php");
+            });
+        });
+    </script>
 </head>
 <body>
 <div id="content">

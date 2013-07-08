@@ -1,47 +1,40 @@
 <?php
-$dbhost = "localhost";
-$dbuser = "root";
-$dbpass = "root";
-$dbname = "cinemadb";
-//Connect to MySQL Server
-mysql_connect($dbhost, $dbuser, $dbpass);
-//Select Database
-mysql_select_db($dbname) or die(mysql_error());
-// Retrieve data from Query String
+require_once 'config.php';
+
 $titlu = $_GET['titlu'];
-// Escape User Input to help prevent SQL Injection
 $titlu = mysql_real_escape_string($titlu);
 
-//build query
-$query="select titlu, gen, an, timp_desf, descriere, regia, roluri_principale from filme where titlu='".$titlu."'";
+$query="SELECT f.titlu, f.an, f.timp_desf, f.descriere, f.regia,f.roluri_principale, g.nume_gen
+        FROM filme f, gen_film g
+        WHERE f.idGen=g.id
+        AND f.titlu='$titlu'";
 
 $qry_result = mysql_query($query) or die(mysql_error());
 
-//Build Result String
-echo  "<table border='1'>";
-echo  "<tr>";
-echo  "<th bgcolor='black' style='color:white'>Film</th>";
-echo  "<th bgcolor='black' style='color:white'>Gen</th>";
-echo  "<th bgcolor='black' style='color:white'>Anul Aparitiei</th>";
-echo  "<th bgcolor='black' style='color:white'>Durata</th>";
-echo  "<th bgcolor='black' style='color:white'>Descriere</th>";
-echo  "<th bgcolor='black' style='color:white'>Regia</th>";
-echo  "<th bgcolor='black' style='color:white'>Roluri Principale</th>";
-echo  "</tr>";
+$table = "<table border='1'>
+            <tr>
+                 <th bgcolor='black' style='color:white'>Film</th>
+                 <th bgcolor='black' style='color:white'>Gen</th>
+                 <th bgcolor='black' style='color:white'>Anul Aparitiei</th>
+                 <th bgcolor='black' style='color:white'>Durata</th>
+                 <th bgcolor='black' style='color:white'>Descriere</th>
+                 <th bgcolor='black' style='color:white'>Regia</th>
+                 <th bgcolor='black' style='color:white'>Roluri Principale</th>
+            </tr>";
 
-// Insert a new row in the table for each rezervation returned
 while($row = mysql_fetch_array($qry_result)){
 
-    echo "<tr>";
-    echo "<td>$row[titlu]</td>";
-    echo "<td>$row[gen]</td>";
-    echo "<td>$row[an]</td>";
-    echo "<td>$row[timp_desf]</td>";
-    echo "<td>$row[descriere]</td>";
-    echo "<td>$row[regia]</td>";
-    echo "<td>$row[roluri_principale]</td>";
-    echo  "</tr>";
+   $content = "<tr>
+                    <td>$row[titlu]</td>
+                    <td>$row[nume_gen]</td>
+                    <td>$row[an]</td>
+                    <td>$row[timp_desf]</td>
+                    <td>$row[descriere]</td>
+                    <td>$row[regia]</td>
+                    <td>$row[roluri_principale]</td>
+                 </tr>";
 
 }
-echo "</table>";
+$end = "</table>";
+echo $table .$content . $end;
 

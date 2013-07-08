@@ -9,13 +9,15 @@ if ($mysqli->connect_errno) {
 }
 $tip = $_POST['tip'];
 $pret = $_POST['pret'];
-$stat1 = $mysqli->prepare("INSERT INTO reduceri (tip, pret) VALUES ('$tip', '$pret')");
-$success = $stat1->execute();
+
+$stat = $mysqli->prepare("INSERT INTO reduceri (tip, pret)
+                                  VALUES ('$tip', '$pret')");
+$success = $stat->execute();
 if (!$success) {
     $mysqli->rollback();
-    die("Fail to insert a person in DB");
+    die("Inregistrare nereusita");
 } else {
-    echo "Inregistrare realizata cu succes!";
+    echo "Inregistrare realizata cu succes: Reducere cu tipul $tip si pretul $pret lei!";
 }
 $mysqli->commit();
-$stat1->close();
+$stat->close();

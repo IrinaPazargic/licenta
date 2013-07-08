@@ -21,6 +21,7 @@ foreach ($rezervare->tipLocuri as $key => $value) {
 foreach ($rezervare->tipLocuri as $key => $value) {
     $pretBilete += $value->pret;
 }
+
 ?>
 <html>
 <head>

@@ -12,7 +12,7 @@ $_SESSION['rezervare'] = $rezervare;
 <head>
     <link href="reservation.css" rel="stylesheet" type="text/css"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="validate_functions.js" ></script>
+    <script src="script/validate_functions.js" ></script>
     <script>
         function validate(form) {
             var fail = validateNume(form.nume.value)
@@ -59,12 +59,7 @@ $_SESSION['rezervare'] = $rezervare;
                         <table width="100%" cellspacing="0" cellpadding="0" border="0">
                             <tbody>
                                 <tr>
-                                    <td valign ="top" align="left">
-                                        <img style="border-width:0px;" src="images/Step1.jpg">
-                                        <img style="border-width:0px;" src="images/Step2.jpg">
-                                        <img style="border-width:0px;" src="images/OnStep3.jpg">
-                                        <img style="border-width:0px;" src="images/Step4.jpg">
-                                    </td>
+
                                     <td valign="top" align="right"></td>
                                 </tr>
                                 <tr>

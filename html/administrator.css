@@ -126,3 +126,13 @@ fieldset {
     width: 500px;
 }
 
+td input, select {
+    width: 150px;
+}
+#btn_inregistrare, #btn_cauta, #btn_sterge {
+    width: 100px;
+}
+
+#fileselect {
+    width: 200px;
+}

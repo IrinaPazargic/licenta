@@ -135,11 +135,12 @@ foreach ($locuri as $key => $value) {
                 <span>
                     <a href="ReservationPage.php?idProgram=<?php $link = $_GET['idProgram'];
                     echo $link; ?>">
-                        <img border="0" src="images/BackButton.jpg"></a>
+                        <button>
+                            <span>Pasul Urmator</span> </button></a>
                 </span>
                     <span>
                     <button>
-                        <img border="0" src="images/NextButton.jpg"></button>
+                        <span>Pasul Urmator</span></button>
                 </span>
                     </div>
                 </td>

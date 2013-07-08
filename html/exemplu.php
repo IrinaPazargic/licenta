@@ -2,7 +2,7 @@
 <head>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="script/inserts.js"></script>
-    <script src="validate_functions.js" ></script>
+    <script src="script/validate_functions.js" ></script>
     <script>
         function validate(form) {
             var fail = validateNume(form.nume.value)
@@ -30,7 +30,7 @@
 <body>
     <table class="signup" border="0" cellpadding="2" cellspacing="5" bgcolor="#eeeeee">
         <th colspan="2" align="center">Signup Form</th>
-        <form id="form" method="post" action="inregistrare.php" onSubmit="return validate(this)">
+        <form id="form" method="post" action="inregistrare_admin.php" onSubmit="return validate(this)">
             <tr>
                 <td>Nume</td>
                 <td>

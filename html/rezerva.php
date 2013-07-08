@@ -2,8 +2,6 @@
 require_once 'model.php';
 require_once 'config.php';
 
-//TODO irina: 1. get rezervare from $_SESSION. 2. Invoke this php through $.load() in sumar.php. 3. Do all rezerva method transactional. 4. Remove dummy data and code from this file. 5. Add locuri to rezervare>locuri[i]->locuri. See model.php
-
 $rezervare = $_SESSION['rezervare'];
 
 rezerva($rezervare);

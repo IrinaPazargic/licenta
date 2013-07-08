@@ -8,6 +8,7 @@ class Filme
 class Sali
 {
     public $nr_sala;
+    public $tip_sala;
 }
 
 class Inregistrare

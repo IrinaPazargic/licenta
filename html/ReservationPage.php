@@ -95,12 +95,8 @@
 						<table width="100%" cellspacing="0" cellpadding="0" border="0">
 							<tbody>
 								<tr>
-									<td valign ="top" align="left">
-										<img style="border-width:0px;" src="images/Step1.jpg">
-										<img style="border-width:0px;" src="images/OnStep2.jpg">
-										<img style="border-width:0px;" src="images/Step3.jpg">
-										<img style="border-width:0px;" src="images/Step4.jpg">
-									</td>
+
+
 									<td valign="top" align="right"></td>
 								</tr>
 								<tr>
@@ -261,9 +257,8 @@
 	
 			<tr >
 				<td align="right" style="padding-top:10px;">
-					<input id="automat" style="border-width:0px; color:transparent;" type="image" src="images/NextNoSeats.jpg"/>
-					<button id="next">
-                        <input  style="border-width:0px;" type="image" src="images/NextSeat.jpg" /></button>
+					<input type="submit" id="next" value="Pasul Urmator"/>
+
 				</td>
 			</tr>
 	</table> 

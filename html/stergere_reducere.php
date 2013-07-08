@@ -1,10 +1,26 @@
 <?php
 require_once 'config.php';
 
-if (!isset($_POST['tip'])) {
-    die("Stergeti tipul din program!");
+$mysqli = new mysqli(DbConfig::$host, DbConfig::$user, DbConfig::$pass, DbConfig::$db);
+$mysqli->autocommit(false);
+if ($mysqli->connect_errno) {
+    die ("Nu se poate conecta...");
 }
 
-$tip = mysql_real_escape_string($_POST['tip']);
-mysql_query("DELETE FROM reduceri WHERE tip = '" . $_POST['tip'] . "'") or die(mysql_error());
-echo "Stergere realizata cu succes";
+$tip=$_POST['tip'];
+
+$stat = $mysqli->prepare("DELETE FROM reduceri where tip='$tip'");
+$success = $stat->execute();
+$affRows = $mysqli->affected_rows;
+if (!$success) {
+    $mysqli->rollback();
+    die ("Stergere nereusita");
+} else if ($affRows == 0) {
+    echo "Nu s-a sters nicio reducere de tipul $tip deoarece nu exista in BD!";
+} else {
+    echo "S-a sters reducerea cu tipul $tip!";
+}
+
+$mysqli->commit();
+$stat->close();
+$mysqli->close();

@@ -65,9 +65,7 @@ Hints:
 I usually push in run configuration in github, so whoever have this IDE can run these from the combo in IDE toolbar
 (upper side of the IDE)
 
-
-
-
+/opt/ui/irina/licenta/html/uploads
 
 
 

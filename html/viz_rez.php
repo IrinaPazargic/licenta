@@ -1,7 +1,6 @@
 <?php
 require_once 'config.php';
 
-//build query
 $query = "SELECT
           p.nume, p.prenume, p.email, f.titlu, d.data, d.ora,  s.nr_sala, r.locuri, e.tip, l.nr_locuri, e.pret, r.id
         FROM persoane p, filme f, program d, cinema c, rezervare r, reduceri e, locuri_rezervate l, sali s
@@ -16,7 +15,6 @@ $query = "SELECT
 
 $qry_result = mysql_query($query) or die(mysql_error());
 
-//Build Result String
 $table_prefix = "
     <table border='1'>
         <tr>
@@ -46,8 +44,5 @@ while ($result = mysql_fetch_object($qry_result)) {
     ";
     $table_content .= $table_row;
 }
-// wtf json serialization is used for?
-echo json_encode($result);
 $table_suffix = "</table>";
-
 echo $table_prefix . $table_content . $table_suffix;

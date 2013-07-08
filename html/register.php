@@ -1,11 +1,12 @@
-
 <html>
 <head>
 <title>Registration Page</title>
 <link href="register.css" rel="stylesheet" type="text/css"/>
-    <script src="validate_functions.js" ></script>
-    <script src="script/inserts.js"></script>
-    <script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+ <!--   <script src="script/validate_functions.js" ></script>-->
+<!--    <script src="script/inserts.js"></script>-->
+    <script src="script/administrator.js" ></script>
+<!--    <script>
         function validate(form) {
             fail = validateNume(form.nume.value)
             fail += validatePrenume(form.prenume.value)
@@ -17,10 +18,7 @@
             if (fail == "") return true
             else { alert(fail); return false }
         }
-    </script>
-    <script>
-
-    </script>
+    </script>-->
 </head>
 <body>
 <div id="content">
@@ -30,7 +28,7 @@
 
 </ul>
 <div style="clear:both;" id="form">
-    <form  action="inregistrare.php" id="register-form" method="post" onSubmit="return validate(this)" >
+    <!--<form  action="inregistrare_admin.php" id="register-form" method="post" <!--onSubmit="return validate(this)"-->
             <fieldset>
                 <legend>Pagina de inregistrare</legend>
                 <p><label for="nume">Nume: </label>
@@ -46,10 +44,9 @@
                 <p><label for="username">Username: </label>
                 <input type="text" name="username" id="username" maxlength="16" ></p>
                 <p><label for="password">Password: </label>
-                <input type="input" name="password" id="password"  maxlength="12"></p>
-                <input type="submit" id="sub"  value="Register"/>
+                <input type="password" name="password" id="password"  maxlength="12"></p>
+                <input type="submit" id="btn_inregistrare"  value="Register"/>
             </fieldset>
-    </form>
 </div>
     <div id="rezultat"></div>
 </div> <!--content-->

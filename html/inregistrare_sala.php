@@ -1,52 +1,26 @@
 <?php
 require_once 'config.php';
+$mysqli = new mysqli(DbConfig::$host, DbConfig::$user, DbConfig::$pass, DbConfig::$db);
+$mysqli->autocommit(false);
 
-$call = $_POST['call'];
-if ($call == 'insert') {
-    echo insert();
-} else if ($call == 'update') {
-    echo update();
-} else if ($call == 'delete') {
-    echo delete();
-} else if ($call == 'search') {
-    echo search();
+$sala = $_POST['sala'];
+$id_tip = $_POST['id_tip'];
+if ($mysqli->connect_errno) {
+    die ("Nu se poate conecta...");
 }
 
-function update()
-{
-    return "Successfully updated";
-}
+$stat = $mysqli->prepare("INSERT INTO sali (nr_sala, idTip) VALUES ('$sala', '$id_tip' )");
+$success = $stat->execute();
+$aff_rows = $mysqli->affected_rows;
 
-function delete()
-{
-    return "Successfully deleted";
+if (!$success) {
+    $mysqli->rollback();
+    die("Fail to insert a person in DB");
+} else if ($aff_rows == 0) {
+    echo "Nu s-a putut inregistra sala $sala";
+} else {
+    echo "Inregistrare realizata cu succes!";
 }
-
-function insert()
-{
-    $mysqli = new mysqli(DbConfig::$host, DbConfig::$user, DbConfig::$pass, DbConfig::$db);
-    $mysqli->autocommit(false);
-
-    $sala = $_POST['nr_sala'];
-    $randuri = $_POST['randuri'];
-    $locuri = $_POST['locuri'];
-    if ($mysqli->connect_errno) {
-        die ("Nu se poate conecta...");
-    }
-    $stat = $mysqli->prepare("INSERT INTO sali (nr_sala, randuri, locuri) VALUES ('$sala', '$randuri', '$locuri')");
-    $success = $stat->execute();
-    if (!$success) {
-        $mysqli->rollback();
-        die("Fail to insert a person in DB");
-    } else {
-        $result = "Inregistrare realizata cu succes!";
-    }
-    $mysqli->commit();
-    $mysqli->close();
-    return $result;
-}
-
-function search()
-{
-    return "Successfully searched for...";
-}
+$mysqli->commit();
+$stat->close();
+$mysqli->close();
