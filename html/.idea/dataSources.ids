@@ -40,15 +40,23 @@
     <table name="filme" schema="" catalog="cinemadb" type="TABLE">
       <column name="idFilm" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="titlu" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12"/>
-      <column name="gen" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
       <column name="an" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="timp_desf" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="descriere" sqlType="TEXT" length="65535" precision="0" nullable="false" jdbcType="-1"/>
       <column name="regia" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
       <column name="imagine" sqlType="VARCHAR" length="50" precision="0" nullable="true" jdbcType="12"/>
       <column name="roluri_principale" sqlType="VARCHAR" length="100" precision="0" nullable="true" jdbcType="12"/>
+      <column name="idGen" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idFilm"/>
+      <foreign-key name="gen_film_ibfk_1" columns="idGen" ref-table="gen_film" ref-schema="" ref-catalog="cinemadb" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
       <exported-key name="program_ibfk_1" table="program" schema="" catalog="cinemadb" columns="idFilm"/>
+    </table>
+    <table name="gen_film" schema="" catalog="cinemadb" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nume_gen" sqlType="VARCHAR" length="15" precision="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="gen_film_ibfk_1" table="filme" schema="" catalog="cinemadb" columns="idGen"/>
+      <index name="nume_gen" unique="true" columns="nume_gen"/>
     </table>
     <table name="locuri_rezervate" schema="" catalog="cinemadb" type="TABLE">
       <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -56,8 +64,8 @@
       <column name="id_rezervare" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="nr_locuri" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="locuri_rezervate_ibfk_1" columns="id_rezervare" ref-table="rezervare" ref-schema="" ref-catalog="cinemadb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="locuri_rezervate_ibfk_2" columns="idReducere" ref-table="reduceri" ref-schema="" ref-catalog="cinemadb" ref-columns="idReducere" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="locuri_rezervate_ibfk_1" columns="id_rezervare" ref-table="rezervare" ref-schema="" ref-catalog="cinemadb" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="locuri_rezervate_ibfk_2" columns="idReducere" ref-table="reduceri" ref-schema="" ref-catalog="cinemadb" ref-columns="idReducere" update-rule="0" delete-rule="0" deferrability="2"/>
     </table>
     <table name="persoane" schema="" catalog="cinemadb" type="TABLE">
       <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -76,9 +84,9 @@
       <column name="ora" sqlType="VARCHAR" length="20" precision="0" nullable="true" jdbcType="12"/>
       <column name="idSala" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idProgram"/>
-      <foreign-key name="program_ibfk_1" columns="idFilm" ref-table="filme" ref-schema="" ref-catalog="cinemadb" ref-columns="idFilm" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="program_ibfk_2" columns="idCinema" ref-table="cinema" ref-schema="" ref-catalog="cinemadb" ref-columns="idCinema" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="program_ibfk_3" columns="idSala" ref-table="sali" ref-schema="" ref-catalog="cinemadb" ref-columns="idSala" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="program_ibfk_1" columns="idFilm" ref-table="filme" ref-schema="" ref-catalog="cinemadb" ref-columns="idFilm" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="program_ibfk_2" columns="idCinema" ref-table="cinema" ref-schema="" ref-catalog="cinemadb" ref-columns="idCinema" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="program_ibfk_3" columns="idSala" ref-table="sali" ref-schema="" ref-catalog="cinemadb" ref-columns="idSala" update-rule="0" delete-rule="0" deferrability="2"/>
       <exported-key name="rezervare_ibfk_2" table="rezervare" schema="" catalog="cinemadb" columns="id_program"/>
     </table>
     <table name="reduceri" schema="" catalog="cinemadb" type="TABLE">
@@ -94,24 +102,32 @@
       <column name="id_program" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <column name="locuri" sqlType="VARCHAR" length="200" precision="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="rezervare_ibfk_1" columns="id_persoana" ref-table="persoane" ref-schema="" ref-catalog="cinemadb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="rezervare_ibfk_2" columns="id_program" ref-table="program" ref-schema="" ref-catalog="cinemadb" ref-columns="idProgram" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="rezervare_ibfk_1" columns="id_persoana" ref-table="persoane" ref-schema="" ref-catalog="cinemadb" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="rezervare_ibfk_2" columns="id_program" ref-table="program" ref-schema="" ref-catalog="cinemadb" ref-columns="idProgram" update-rule="0" delete-rule="0" deferrability="2"/>
       <exported-key name="locuri_rezervate_ibfk_1" table="locuri_rezervate" schema="" catalog="cinemadb" columns="id_rezervare"/>
     </table>
     <table name="sali" schema="" catalog="cinemadb" type="TABLE">
       <column name="idSala" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="nr_sala" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
-      <column name="randuri" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
-      <column name="locuri" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="idTip" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idSala"/>
+      <foreign-key name="sali_ibfk_1" columns="idTip" ref-table="tip_sala" ref-schema="" ref-catalog="cinemadb" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
       <exported-key name="program_ibfk_3" table="program" schema="" catalog="cinemadb" columns="idSala"/>
-      <index name="nr_sala" unique="true" columns="nr_sala"/>
     </table>
     <table name="status_seats" schema="" catalog="cinemadb" type="TABLE">
       <column name="idSeats" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="imagine" sqlType="VARCHAR" length="60" precision="0" nullable="false" jdbcType="12"/>
       <column name="tip_loc" sqlType="VARCHAR" length="75" precision="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="idSeats"/>
+    </table>
+    <table name="tip_sala" schema="" catalog="cinemadb" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="nume_tip" sqlType="VARCHAR" length="10" precision="0" nullable="false" jdbcType="12"/>
+      <column name="randuri" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="locuri" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="sali_ibfk_1" table="sali" schema="" catalog="cinemadb" columns="idTip"/>
+      <index name="nume_tip" unique="true" columns="nume_tip"/>
     </table>
     <table name="users" schema="" catalog="cinemadb" type="TABLE">
       <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
