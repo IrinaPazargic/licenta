@@ -1,5 +1,5 @@
 <span class="icon_hold">
-                <img id="images" src="images/ico_home.gif">
+                <img id="images" src="">
             </span>
 <h3><strong>Despre Noi</strong></h3><br/>
 <div>

@@ -1,5 +1,5 @@
 <span  class="icon_hold" style="margin-top:-30px;">
-    <img id="images"  src="images/ico_contact.gif">
+    <img id="images"  src="">
 </span>
 <h3><strong>Contact</strong></h3>
 

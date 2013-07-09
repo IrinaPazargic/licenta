@@ -13,7 +13,6 @@ $other_day_3= mktime(0,0,0,date("m"),date("d") + 6 ,date("Y"));
 
 $idCinema=$_GET['idCinema'];
 
-
 $query_nume="select idCinema, nume from cinema where idCinema='$idCinema'";
 $rez=mysql_query($query_nume);
 $row_nume= mysql_fetch_assoc($rez);
@@ -76,13 +75,57 @@ function afisare_lista(){
                 AND data=CURDATE()
             ";
     $result = mysql_query($query);
+    $rows=array();
+
     while ($row = mysql_fetch_array($result)) {
+        $rows[$row['idProgram']] = $row['ora'];
        echo "<div class='det_prog'>
                 <div class='leadin'>
                     <div class='info' style=;width:314px;'>
                         <p><b>${row['titlu']}</b></p> <br/>
-                        <p><em> ${row['gen']}</em></p><br/>
-                        <p><a href='filme.php?idFilm= ${row['idFilm']}'>Detalii Film..</a></p>
+                        <p><em> ${row['nume_gen']}</em></p><br/>
+                        <p><a href='?film=${row['titlu']}'>Detalii Film..</a></p>
+                    </div>
+                <div class='rez_info' style='width:190px;'>
+                    <table>
+                        <tr>";
+                           foreach ($rows as $idProgram => $ora) :
+                            echo "<td style='margin:0;'>
+                                    <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=$idProgram'       style='cursor:pointer; margin-top:5px;'>
+                                <p style='color:white; margin-left: 20px;'>$ora</p></a></td>";
+                            endforeach;
+              echo "     </tr>
+                    </table>
+                </div>
+                </div>
+            </div><hr/> ";
+    }
+
+}
+
+//cautare program in functie de data
+
+function prgram_data(){
+    $data=$_GET['data'];
+    $query = "
+            SELECT
+                p.idProgram, f.titlu, f.idFilm, f.idGen, p.ora, g.nume_gen
+            FROM
+                program p, filme f, cinema c, gen_film g
+            WHERE
+                p.idFilm = f.idFilm
+                AND p.idCinema = c.idCinema
+                AND f.idGen = g.id
+                AND data='$data'
+            ";
+    $result = mysql_query($query);
+    while ($row = mysql_fetch_array($result)) {
+        echo "<div class='det_prog'>
+                <div class='leadin'>
+                    <div class='info' style=;width:314px;'>
+                        <p><b>${row['titlu']}</b></p> <br/>
+                        <p><em> ${row['nume_gen']}</em></p><br/>
+                        <p><a href='?film= ${row['titlu']}'>Detalii Film..</a></p>
                     </div>
                 <div class='rez_info' style='width:190px;'>
                     <table>
@@ -100,7 +143,6 @@ function afisare_lista(){
     }
 
 }
-
 
 function cauta_film(){
     $cinema = $_GET['cinema'];
@@ -147,47 +189,18 @@ function cauta_film(){
     }
 }
 ?>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-
 <div id="program_film">
                 <h3><strong> Program - <?= $row_nume['nume']; ?> </strong></h3>
                 <div id="menu_program">
                     <ul>
-                        <li id="current_program">
-                            <a id="azi">
-                                <span> <?= date("d/m/Y", $today); ?> </span>
-                            </a>
-                        </li>
-                        <li id="li_maine">
-                            <a id="maine"">
-                                <span><?= date("d/m/Y", $tomorrow); ?> </span>
-                            </a>
-                        </li>
-                        <li id="li_maine">
-                            <a id="alta_zi">
-                                <span><?= date("d/m/Y", $day_after_tomorrow); ?> </span>
-                            </a>
-                        </li>
-                        <li id="li_alta_zi">
-                            <a id="alta_zi_1">
-                                <span><?= date("d/m/Y", $other_day); ?> </span>
-                            </a>
-                        </li>
-                        <li id="li_alta_zi_2">
-                            <a id="alta_zi_2">
-                                <span><?= date("d/m/Y", $other_day_1); ?></span>
-                            </a>
-                        </li>
-                        <li id="li_alta_zi_3">
-                            <a id="alta_zi_3">
-                                <span><?= date("d/m/Y", $other_day_2); ?></span>
-                            </a>
-                        </li>
-                        <li id="li_alta_zi_4">
-                            <a id="alta_zi_4">
-                                <span><?= date("d/m/Y", $other_day_3); ?></span>
-                            </a>
+                        <li>
+                            <?php for ($i = 0; $i < 7; $i++) :
+                                $today = mktime(0, 0, 0, date("m"), date("d") + $i, date("Y"));
+                                $today_show = date("Y/m/d", $today); ?>
+                                <a class="current_data" id="<?= $today_show ?>" style="cursor: pointer;">
+                                    <span><?= $today_show ?></span>
+                                </a>
+                            <?php endfor; ?>
                         </li>
                     </ul>
                 </div>
@@ -199,7 +212,7 @@ function cauta_film(){
                         elseif (isset($_GET['cinema']) && isset($_GET['idGen'])&& isset($_GET['titlu']) && isset($_GET['data']))
                             cauta_film();
                         elseif (isset($_GET['data']))
-                           filme_data($data);?>
+                           program_data();?>
 
                 </div>
 

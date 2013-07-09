@@ -1,5 +1,15 @@
+<?php
+require_once'config.php';
+
+$query="select idCinema, nume from cinema";
+$result=mysql_query($query);
+$row=mysql_fetch_array($result);
+$rows=array();
+
+?>
+<script src="script/meniuri.js"></script>
 <span class="icon_hold">
-                <img id="images" src="images/ico_noutati.gif">
+                <img id="images" src="">
             </span>
 <h3><strong>Cinema-ul tau</strong></h3>
 <div>
@@ -24,7 +34,7 @@
         <li><a class="covasna" href="#">Covasna</a></li>
         <li><a class="bacau" href="#">Bacau</a></li>
         <li><a class="vaslui" href="#">Vaslui</a></li>
-        <li class="ocupat"><a class="galati" href="program.php?idCinema=100">Galati<span
+        <li class="ocupat"><a id="program_galati" class="galati" href="?idCinema=<?= $row['idCinema']?>">Galati<span
                     class="effect">&nbsp;</span></a></li>
         <li><a class="vrancea" href="#">Vrancea</a></li>
         <li><a class="timis" href="#">Timis</a></li>
@@ -41,7 +51,7 @@
         <li><a class="olt" href="#">Olt</a></li>
         <li><a class="teleorman" href="#">Teleorman</a></li>
         <li><a class="giurgiu" href="#">Giurgiu</a></li>
-        <li class="ocupat"><a class="ilfov" href="program.php?idCinema=101">Ilfov<span class="effect">&nbsp;</span></a>
+        <li class="ocupat"><a id=""class="ilfov" href="?idCinema=101">Ilfov<span class="effect">&nbsp;</span></a>
         </li>
         <li><a class="ialomita" href="#">Ialomita</a></li>
         <li><a class="calarasi" href="#">Calarasi</a></li>

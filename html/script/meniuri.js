@@ -157,6 +157,20 @@ $(function () {
         });
     });
 
+    $("#program_cinema").click(function () {
+        var idCinema = $(this).attr('idCinema');
+        console.log(idCinema);
+        $.ajax({
+            type: "GET",
+            url: "program.php?idCinema=" + idCinema,
+            data: "",
+            success: function (data) {
+                $('#news').html(data);
+            }
+        });
+    });
+
+
 
 });
 /**

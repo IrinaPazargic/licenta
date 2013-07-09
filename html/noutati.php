@@ -1,5 +1,5 @@
 <span class="icon_hold" style="margin-top:-30px;">
-    <img id="images" src="images/ico_noutati.gif">
+    <img id="images" src="">
 </span>
 <h3><strong>Noutati</strong></h3>
 <p>Din data de 7 decembrie, te asteptam in cel mai nou multiplex din reteaua <strong>Cinema City, Cinema City

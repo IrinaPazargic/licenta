@@ -15,15 +15,13 @@ $table_prefix = "
 $table_content = "";
 while($row=mysql_fetch_array($qry_result)){
     $table_row = "
-        <tr class='edit_tr' id=${row['idReducere']}>
-            <td class='edit_td'>
-             <span id='span_1_${row['idReducere']}' >${row['tip']}</span>
-             <input type='text' value='${row['tip']}' class='editbox' id='input_${row['idReducere']}'/>
+        <tr>
+            <td>
+             <span>${row['tip']}</span>
              </td>
 
-            <td class='edit_td'>
-            <span id='span_2_${row['idReducere']}' class='text'>${row['pret']}</span>
-            <input type='text' value='${row['pret']}' class='editbox' id='input_${row['idReducere']}'/>
+            <td>
+            <span>${row['pret']}</span>
             </td>
             <td><a id='${row['idReducere']}'>Edit</a></td>
         </tr>

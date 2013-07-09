@@ -42,6 +42,49 @@ function details_film(){
           echo "</div>";
     endwhile;
 }
+
+
+$result_gen_1 = mysql_query($query_gen);
+
+//detaliile filmelor apelate din filme.php
+
+function film_program_cinema(){
+    $idCinema=$_GET['idCinema'];
+    $query = "
+            SELECT
+                p.idProgram, f.titlu, f.idFilm, f.idGen, p.ora, g.nume_gen
+            FROM
+                program p, filme f, cinema c, gen_film g
+            WHERE
+                p.idFilm = f.idFilm
+                AND p.idCinema = c.idCinema
+                AND f.idGen = g.id
+                AND c.idCinema='$idCinema'
+            ";
+    $result = mysql_query($query);
+    while ($row = mysql_fetch_array($result)) {
+        echo "<div class='det_prog'>
+                <div class='leadin'>
+                    <div class='info' style=;width:314px;'>
+                        <p><b>${row['titlu']}</b></p> <br/>
+                        <p><em> ${row['nume_gen']}</em></p><br/>
+                        <p><a href='?film=${row['titlu']}'>Detalii Film..</a></p>
+                    </div>
+                <div class='rez_info' style='width:190px;'>
+                    <table>
+                        <tr>
+                            <td style='padding:0;margin:0;'>
+                                <a style='text-decoration: none;' class='btn_r' href='ReservationPage.php?idProgram=${row['idProgram']}'  style='cursor:pointer; margin-top:5px;'>
+                                <p style='color:white; margin-left: 20px;'>${row['ora']}</p></a>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+                </div>
+            </div><hr/> ";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -71,11 +114,11 @@ function details_film(){
     </div>
     <div id="nav" class="copyright">
         <ul id="mainNav">
-            <li><a id="noutati">Noutati</a></li>
-            <li><a id="despre_noi">Despre Noi</a></li>
-            <li><a id="politici">Politici</a></li>
-            <li><a id="preturi">Preturi</a></li>
-            <li><a id="detalii_contact">Contact</a></li>
+            <li><a id="noutati" style="cursor:pointer;">Noutati</a></li>
+            <li><a id="despre_noi" style="cursor:pointer;">Despre Noi</a></li>
+            <li><a id="politici" style="cursor:pointer;" >Politici</a></li>
+            <li><a id="preturi" style="cursor:pointer;">Preturi</a></li>
+            <li><a id="detalii_contact" style="cursor:pointer;">Contact</a></li>
         </ul>
     </div>
     <a class="selectmap" id="map" style="background: none;margin-top:10px; float:right; margin-right:5px;">
@@ -152,7 +195,7 @@ function details_film(){
                 <tr>
                     <td style="text-align:left;"></td>
                     <td style="text-align:center;">
-                        <input class="submit" type="submit" value="CAUTA" id="btn_cauta">
+                        <input style="cursor:pointer;" class="submit" type="submit" value="CAUTA" id="btn_cauta">
                     </td>
                 </tr>
                 </tbody>
@@ -184,8 +227,10 @@ function details_film(){
         <div class="newsList">
             <?php if(isset($_GET['film'])) {
                 details_film();
+            }else
+                film_program_cinema();
 
-            }?>
+            ?>
         </div>
     </div>
 </div>

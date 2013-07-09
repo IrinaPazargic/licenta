@@ -25,10 +25,6 @@
                             'red4' => new TipRedurecere($row4['tip'], $row4['pret'])
                         );
 
-
-
-
-
     $rezervare = detalii_rezervare();
 
     $_SESSION['rezervare'] = $rezervare;
@@ -39,8 +35,12 @@
 		$idProgram=$_GET['idProgram'];
 		$query="select
 		            f.titlu, p.data, p.ora, c.nume, s.nr_sala
-                from cinemadb.program p, cinemadb.filme f, cinemadb.cinema c, cinemadb.sali s
-                where p.idFilm=f.idFilm and c.idCinema=p.idCinema and p.idSala=s.idSala and p.idProgram='" . $idProgram . "'";
+                from program p, filme f, cinema c, sali s
+                where p.idFilm=f.idFilm
+                and c.idCinema=p.idCinema
+                and p.idSala=s.idSala
+                and p.idProgram='$idProgram'";
+
 		$result=mysql_query($query);
         $row = mysql_fetch_object($result);
         $rezervare = new Rezervare();
@@ -54,8 +54,6 @@
 
         return $rezervare;
     }
-
-
 ?>
 
 <html>
@@ -127,7 +125,6 @@
 				<td align="left">
 				<p>
 					<table style="width:90%; border: 1px solid black; border-collapse:collapse; background-color:gray; color:white; margin:0 auto;"  >
-						<tbody>
 							<tr style=" font-size: 12px; text-shadow: 0.01em 0.01em 0.01em #000000;">
 								<th style="border: 1px solid black;">
 									&nbsp;
@@ -142,8 +139,7 @@
 									Cantitate
 						   		</th>
 				            </tr>
-							
-							
+
 							<tr>
 								<td style="border: 1px solid black;">&nbsp;</td>
 								<td id="tip1" style="border: 1px solid black;">

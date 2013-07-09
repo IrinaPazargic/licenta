@@ -45,11 +45,9 @@ while ($r = mysql_fetch_array($rez)) {
             foreach ($rows as $idCinema => $nume) :
                 ?>
                 <tr>
-                    <td style="text-align:left;width:200px;  padding: 5px;">
-                        <a id="<?= $idCinema ?>"
-                           style="width: 150px; font-size:1.3em; text-decoration:none;text-transform: uppercase; border:1px solid black;">
-                            <strong><?= $nume ?></strong>
-                        </a>
+                    <td style="text-align:left; width:200px;  padding: 5px;">
+                        <input type="submit" id="<?= $idCinema ?>" value="<?= $nume ?>"
+                           style="width: 100px; font-size:1.3em; text-transform: uppercase; border:1px solid black;"/>
                     </td>
                 </tr>
             <?php

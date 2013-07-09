@@ -1,3 +1,6 @@
+<span class="icon_hold" style="margin-top:-30px;">
+<img id="images" src=""></span>
+<h3><strong>Promotii</strong></h3>
 <div id="selectCinema">
     Promotia de vara!!!
     <h2>&#34; C. MYCINEMA ROMÂNIA S.R.L. REGULAMENTUL CAMPANIEI PROMOTIONALE MYCINEMA &#34;Fii Star de

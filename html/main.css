@@ -529,15 +529,12 @@ q:before, q:after {
     padding: 3px;
     width: 100px;
     background-color: green;
-    border-radius: 10px 10px 10px 10px;
+    cursor:pointer;
 }
 
 #selectCinema table {
-    margin-top: 5px;
     margin-left: 10px;
 }
-
-
 
 #mainNav #current a {
     background-color: #B2F511;
