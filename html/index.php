@@ -13,16 +13,23 @@ $result_gen_1 = mysql_query($query_gen);
 function details_film(){
     $film = $_GET['film'];
 
-    $query = "SELECT f.imagine, f.titlu, g.nume_gen, f.regia, f.roluri_principale, f.timp_desf, f.descriere, p.idCinema, c.nume
-          FROM filme f, program p, gen_film g, cinema c
-          WHERE p.idFilm=f.idFilm
-            AND c.idCinema=p.idCinema
-            AND g.id=f.idGen
-            AND f.titlu='$film'";
+    $query = "SELECT
+                f.imagine, f.titlu, g.nume_gen, f.regia, f.roluri_principale, f.timp_desf, f.descriere
+              FROM filme f
+              INNER JOIN gen_film g ON f.idGen = g.id
+              WHERE
+                f.titlu='$film'";
+
+    $query1 = "SELECT
+                distinct c.idCinema, c.nume
+              FROM filme f
+              INNER JOIN program p ON f.idFilm = p.idFilm
+              INNER JOIN cinema c ON p.idCinema = c.idCinema
+              WHERE
+                f.titlu='$film'";
     $result = mysql_query($query);
-    $rows=array();
+    $result1 = mysql_query($query1);
     while ($row = mysql_fetch_array($result)) :
-        $rows[$row['idCinema']] = $row['nume'];
         echo "  <div style='border-top: 1px solid #000000; margin-bottom: 5px;'>
                 <span class='icon_hold'>
                 <img id='image' src='${row['imagine']}'>
@@ -35,11 +42,10 @@ function details_film(){
                        <b>Timp desfasurare:</b> ${row['timp_desf']} minute<br/>
                        <b>Roluri principale:</b> ${row['roluri_principale']}
                     </p>";
-
-          foreach ($rows as $idCinema => $numeCinema) :
-               echo    " <a href='?idCinema={$idCinema}'>Rezerva $numeCinema</a><br/>";
-          endforeach;
-          echo "</div>";
+        while ($row1 = mysql_fetch_array($result1)) :
+               echo    "<a href='?idCinema=${row1['idCinema']}'>Rezerva ${row1['nume']}</a><br/>";
+        endwhile;
+        echo "</div>";
     endwhile;
 }
 
