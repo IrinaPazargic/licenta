@@ -395,8 +395,6 @@ q:before, q:after {
 }
 
 .newsList p:first-line {
-    color: #999999;
-    font-weight: bold;
     overflow: hidden;
     zoom: 1;
 }
@@ -408,14 +406,12 @@ q:before, q:after {
 }
 
 .newsList a {
-    background-image: url(images/info_button_16.png);
     color: #73A3E1;
     outline: medium none;
-    font-size: 1.3em;
+    font-size: 1.5em;
     text-decoration: none;
-    background-repeat: no-repeat;
-    padding-left: 17px;
-    margin-left: 3px;
+    cursor:pointer;
+    margin-left: 5px;
 
 }
 

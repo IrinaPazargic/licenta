@@ -8,6 +8,40 @@ $query_gen="select id, nume_gen from gen_film order by nume_gen";
 $result_gen = mysql_query($query_gen);
 $result_gen_1 = mysql_query($query_gen);
 
+//detaliile filmelor apelate din filme.php
+
+function details_film(){
+    $film = $_GET['film'];
+
+    $query = "SELECT f.imagine, f.titlu, g.nume_gen, f.regia, f.roluri_principale, f.timp_desf, f.descriere, p.idCinema, c.nume
+          FROM filme f, program p, gen_film g, cinema c
+          WHERE p.idFilm=f.idFilm
+            AND c.idCinema=p.idCinema
+            AND g.id=f.idGen
+            AND f.titlu='$film'";
+    $result = mysql_query($query);
+    $rows=array();
+    while ($row = mysql_fetch_array($result)) :
+        $rows[$row['idCinema']] = $row['nume'];
+        echo "  <div style='border-top: 1px solid #000000; margin-bottom: 5px;'>
+                <span class='icon_hold'>
+                <img id='image' src='${row['imagine']}'>
+                  </span>
+                    <h4>Titlu:<strong> ${row['titlu']} </strong></h4>
+                    <p><strong>Gen: ${row['nume_gen']} </strong></p><br/>
+                    <hr/>
+                    <p><b>Regia:</b> ${row['regia']} <br/>
+                       <b>Detalii:</b> ${row['descriere']}<br/>
+                       <b>Timp desfasurare:</b> ${row['timp_desf']} minute<br/>
+                       <b>Roluri principale:</b> ${row['roluri_principale']}
+                    </p>";
+
+          foreach ($rows as $idCinema => $numeCinema) :
+               echo    " <a href='?idCinema={$idCinema}'>Rezerva $numeCinema</a><br/>";
+          endforeach;
+          echo "</div>";
+    endwhile;
+}
 ?>
 
 <!DOCTYPE html>
@@ -141,15 +175,18 @@ $result_gen_1 = mysql_query($query_gen);
         </div>
     </div>
     <div id="news" class="copyright">
-            <span class="icon_hold">
+        <span class="icon_hold">
                 <img id="image" src="images/newspaper.png">
             </span>
 
         <h3><strong>Acasa</strong></h3>
 
         <div class="newsList">
-        </div>
+            <?php if(isset($_GET['film'])) {
+                details_film();
 
+            }?>
+        </div>
     </div>
 </div>
 <div id="footer" class="copyright">
