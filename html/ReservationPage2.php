@@ -2,17 +2,8 @@
 require_once 'model.php';
 require_once 'config.php';
 
-    $query1 = "select imagine, tip_loc from cinemadb.status_seats where idSeats=1";
-    $rez1 = mysql_query($query1);
-    $row1 = mysql_fetch_assoc($rez1);
-
-    $query2 = "select imagine, tip_loc from cinemadb.status_seats where idSeats=2";
-    $rez2 = mysql_query($query2);
-    $row2 = mysql_fetch_assoc($rez2);
-
-    $query3 = "select imagine, tip_loc from cinemadb.status_seats where idSeats=3";
-    $rez3 = mysql_query($query3);
-    $row3 = mysql_fetch_assoc($rez3);
+    $query = "select imagine, tip_loc from status_seats";
+    $result = mysql_query($query);
 
 $rezervare = $_SESSION['rezervare'];
 
@@ -38,8 +29,6 @@ $_SESSION['rezervare'] = $rezervare;
 
 $nrBilete = 0;
 $pret = 0;
-
-
 
 foreach ($locuri as $key => $value) {
     $nrBilete += $value->nrLocuri;
@@ -100,16 +89,6 @@ foreach ($locuri as $key => $value) {
     <td>
         <p>
         <table width="100%" cellspacing="0" cellpadding="0" border="0">
-            <tbody>
-            <tr>
-                <td valign="top" align="left">
-                    <img style="border-width:0px;" src="images/Step1.jpg">
-                    <img style="border-width:0px;" src="images/OnStep2.jpg">
-                    <img style="border-width:0px;" src="images/Step3.jpg">
-                    <img style="border-width:0px;" src="images/Step4.jpg">
-                </td>
-                <td valign="top" align="right"></td>
-            </tr>
             <tr>
                 <td align="left">
                     <span>SELECTATI LOCURILE</span><br/>
@@ -152,12 +131,10 @@ foreach ($locuri as $key => $value) {
                     </div>
                     <div id="check">
                         <table cellspacing="0" cellpadding="5" border="0" align="center" style="margin-top:10px;">
-                            <tbody>
                             <tr>
                                 <td style="border:1px solid white;" align="center"><span>Bilete </span>
                                 </td>
                                 <td style="border:1px solid white;" align="center"><span>Pret total </span></td>
-                                <td style="border:1px solid white;" align="center"><span>Locuri selectate</span></td>
                             </tr>
                             <tr>
                                 <td style="border:1px solid white;" align="center">
@@ -166,17 +143,12 @@ foreach ($locuri as $key => $value) {
                                 <td style="border:1px solid white;" align="center">
                                     <div id="pret"> <?= $pret?> Lei</div>
                                 </td>
-                                <td style="border:1px solid white;" align="center">
-                                    <div></div>
-                                </td>
                             </tr>
-                            </tbody>
                         </table>
                         <div style="margin-left:200px;margin-top:20px;">Sala: <?= $rezervare->sala;?></div>
                     </div>
                 </td>
             </tr>
-            </tbody>
         </table>
         </p>
     </td>
@@ -186,7 +158,6 @@ foreach ($locuri as $key => $value) {
 <td align="left">
 <p>
 <table style="width:90%; border: 1px solid black; border-collapse:collapse;  color:white; margin:0 auto;">
-<tbody>
 <tr>
 <td>
 <div align="center" style="height:600px; width:100%;">
@@ -399,18 +370,13 @@ foreach ($locuri as $key => $value) {
 <div style="width:200px; height:400px; float:right; margin-top:50px; background-color:red; margin-right:100px;">
 
     <table style="margin-top:100px;">
-        <tr>
-            <td><img src='<?= $row1['imagine'] ?>'</td>
-            <td><?= $row1['tip_loc']?></td>
-        </tr>
-        <tr>
-            <td><img src='<?= $row2['imagine'] ?>'</td>
-            <td><?= $row2['tip_loc'] ?></td>
-        </tr>
-        <tr>
-            <td><img src='<?=  $row3['imagine'] ?>'</td>
-            <td><?= $row3['tip_loc']?> </td>
-        </tr>
+        <?php while ($row = mysql_fetch_array($result)) : ?>
+            <tr>
+                <td><img src='<?= $row['imagine'] ?>'</td>
+                <td><?= $row['tip_loc'] ?></td>
+            </tr>
+        <?php endwhile; ?>
+
     </table>
 </div>
 

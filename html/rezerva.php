@@ -10,16 +10,6 @@ rezerva($rezervare);
 // remove this function when the session based rezervare is available.
 
 
-function rezerva($rezervare)
-{
-    $idPersoana = salveazaSauCitestePersoana($rezervare->persoana);
-//    printf("Id persoana: %d\n", $idPersoana);
-    $idRezervare = salveazaRezervare($rezervare, $idPersoana);
-//    printf("Id rezervare: %d\n", $idRezervare);
-    salveazaLocurileRezervate($rezervare, $idRezervare);
-    print("Rezervarea s-a salvat cu succes.");
-}
-
 function salveazaSauCitestePersoana($persoana)
 {
     $mysqli = new mysqli(DbConfig::$host, DbConfig::$user, DbConfig::$pass, DbConfig::$db);
@@ -109,5 +99,20 @@ function salveazaLocurileRezervate($rezervare, $idRezervare)
     $mysqli->close();
 }
 
+?>
+
+<div style="background-color: white; margin: 50px auto; font: 1em Verdana, Arial, Helvetica, sans-serif; border: 1px solid green;">
+<?php
+    function rezerva($rezervare)
+    {
+    $idPersoana = salveazaSauCitestePersoana($rezervare->persoana);
+    //    printf("Id persoana: %d\n", $idPersoana);
+    $idRezervare = salveazaRezervare($rezervare, $idPersoana);
+    //    printf("Id rezervare: %d\n", $idRezervare);
+    salveazaLocurileRezervate($rezervare, $idRezervare);
+    print("Rezervare efectuata cu succes! Detaliile despre rezervare au fost trimise catre adresa de e-mail.</br> Pentru a reveni la pagina Acasa apasati aici <a href='index.php' style=' text-decoration: none; color: green;'>MyCinema.ro</a>");
+    }?>
+
+</div>
 
 

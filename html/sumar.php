@@ -35,11 +35,7 @@ foreach ($rezervare->tipLocuri as $key => $value) {
     </script>
 </head>
 <body>
-    <div id="rezerva"><img style="border-width:0px;" src="images/Step1.jpg">
-        <img style="border-width:0px;" src="images/Step2.jpg">
-        <img style="border-width:0px;" src="images/Step3.jpg">
-        <img style="border-width:0px;" src="images/OnStep4.jpg">
-    </div>
+   <div id="rezerva">
     <h3>VERIFICATI COMANDA DUMNEAVOASTRA</h3>
     <span style="text-align: center;">
         Biletele pe care le-ati selectat vor fi pastrate pana la 30 de minute inainte de inceperea spectacolului. Dupa aceasta perioada, aceste bilete vor putea fi cumparate de alte persone.Va recomandam sa va ridicati rezervarile cu cel putin 30 de minute inainte de spectacol.
@@ -122,5 +118,6 @@ foreach ($rezervare->tipLocuri as $key => $value) {
             </tr>
         </table>
     </div>
+</div>
 </body>
 </html>

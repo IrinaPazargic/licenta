@@ -125,13 +125,15 @@ $_SESSION['rezervare'] = $rezervare;
                             </tr>
                             <tr>
                                 <td align="right" style="padding-top:10px;">
-                                    <input type="submit" id="previous" value="Inapoi"/>
-                                    <input type="submit" id="next" value="Next" />
                                 </td>
                             </tr>
                         </table>
                     </form>
-                    <span> * = Camp obligatoriu!</span>
+                    <div style="width:100%">
+                        <span> * = Camp obligatoriu!</span>
+<!--                        <input type="submit" id="previous" value="Inapoi"/>-->
+                        <input type="submit" id="next" style="margin-right: 0px;" value="Next" />
+                    <div>
                 </td>
             </tr>
         </table>

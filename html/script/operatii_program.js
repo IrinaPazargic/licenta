@@ -42,7 +42,11 @@ $(function () {
                 dataType: "html",
                 success: function (result) {
                     $("#rezultat").html(result);
+                    $('#titlu').val('');
+                    $('#data').val('');
+                    $('#ora').val('');
                     $("#rezultat").show();
+
                 },
                 error: function() {
                     alert("Cautarea a esuat.");
@@ -69,6 +73,10 @@ $(function () {
                 success: function (result) {
                     console.log(result);
                     alert(result);
+                    $('#titlu').val('');
+                    $('#data').val('');
+                    $('#ora').val('');
+                    $('#cinema').val('');
                 },
                 error: function () {
                     alert("Stergerea a esuat.");
@@ -94,6 +102,8 @@ $(function () {
                 success: function (result) {
                     console.log(result);
                     alert(result);
+                    $('#titlu').val('');
+                    $('#ora').val('');
                 },
                 error: function () {
                     alert("Inregistrarea a esuat!.");

@@ -40,7 +40,7 @@ function filme_gen()
                 <em style='margin-left:5px;'>
                     ${row['nume_gen']}
                 </em></br>
-                <p> <a id='${row['idFilm']}' class='detailsLink'>Detalii film</a></p>
+                <p> <a href='?film=${row['titlu']}' class='detailsLink'>Detalii film..</a></p>
                 </div> ";
     }
 }
