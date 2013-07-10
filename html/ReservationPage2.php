@@ -2,38 +2,41 @@
 require_once 'model.php';
 require_once 'config.php';
 
-    $query = "select imagine, tip_loc from status_seats";
-    $result = mysql_query($query);
+$query = "select imagine, tip_loc from status_seats";
+$result = mysql_query($query);
 
 $rezervare = $_SESSION['rezervare'];
 
-$nrLocuriRed1 = $_GET['red1'];
-$nrLocuriRed2 = $_GET['red2'];
-$nrLocuriRed3 = $_GET['red3'];
-$nrLocuriRed4 = $_GET['red4'];
+$nrLocuriRed = array();
+foreach ($_GET as $key => $value) {
+    if (strpos($key, "red", 0) === 0) {
+        $nrLocuriRed[$key] = $value;
+    }
+}
 
 $tipReduceri = $_SESSION['tipReduceri'];
-
-$locuriRed1 = new TipLocuri($tipReduceri['red1']->tip, $nrLocuriRed1, $tipReduceri['red1']->pret);
-$locuriRed2 = new TipLocuri($tipReduceri['red2']->tip, $nrLocuriRed2, $tipReduceri['red2']->pret);
-$locuriRed3 = new TipLocuri($tipReduceri['red3']->tip, $nrLocuriRed3, $tipReduceri['red3']->pret);
-$locuriRed4 = new TipLocuri($tipReduceri['red4']->tip, $nrLocuriRed4, $tipReduceri['red4']->pret);
-
-$locuri = array('red1'=> $locuriRed1, 'red2'=> $locuriRed2, 'red3'=>$locuriRed3, 'red4'=>$locuriRed4);
+var_dump($tipReduceri);
+$locuri = array();
+$idx = 0;
+foreach ($nrLocuriRed as $nrLocRed) {
+    $redIdx = 'red' . ++$idx;
+    $locuriRed = new TipLocuri($tipReduceri[$redIdx]->tip, $nrLocRed, $tipReduceri[$redIdx]->pret);
+    $locuri[$redIdx] = $locuriRed;
+}
 
 $rezervare->tipLocuri = $locuri;
 
-$_SESSION['rezervare'] = $rezervare;
+var_dump($rezervare);
 
-//var_dump($_SESSION['rezervare']);
+$_SESSION['rezervare'] = $rezervare;
 
 $nrBilete = 0;
 $pret = 0;
 
 foreach ($locuri as $key => $value) {
     $nrBilete += $value->nrLocuri;
-    foreach ($tipReduceri as $key=>$value){
-        $pret =$nrBilete * $value->pret;
+    foreach ($tipReduceri as $key => $value) {
+        $pret = $nrBilete * $value->pret;
     }
 }
 ?>

@@ -1,16 +1,20 @@
 <?php
-	require_once 'model.php';
-	require_once 'config.php';
+    require_once 'model.php';
+    require_once 'config.php';
 
-    $query = "SELECT tip, pret FROM reduceri order by tip";
+    $query = "
+                SELECT tip, pret FROM reduceri order by tip
+                ";
     $rez = mysql_query($query);
+    $rez1 = mysql_query($query);
 
-    $tipReduceri = array(
-                            'red1' => new TipRedurecere($row1['tip'], $row1['pret']),
-                            'red2' => new TipRedurecere($row2['tip'], $row2['pret']),
-                            'red3' => new TipRedurecere($row3['tip'], $row3['pret']),
-                            'red4' => new TipRedurecere($row4['tip'], $row4['pret'])
-                        );
+    $idx = 0;
+    $tipReduceri = array();
+    while($row = mysql_fetch_array($rez1)) {
+        $a = ++$idx;
+        $index = "red${a}";
+        $tipReduceri[$index] = new TipRedurecere($row['tip'], $row['pret']);
+    }
 
     $rezervare = detalii_rezervare();
 
@@ -20,13 +24,15 @@
 
 	function detalii_rezervare(){
 		$idProgram=$_GET['idProgram'];
-		$query="select
+		$query="
+                select
 		            f.titlu, p.data, p.ora, c.nume, s.nr_sala
                 from program p, filme f, cinema c, sali s
                 where p.idFilm=f.idFilm
                 and c.idCinema=p.idCinema
                 and p.idSala=s.idSala
-                and p.idProgram='$idProgram'";
+                and p.idProgram='$idProgram'
+                ";
 
 		$result=mysql_query($query);
         $row = mysql_fetch_object($result);
@@ -50,20 +56,26 @@
 <script>
     $(document).ready(function () {
         $("#next").click(function () {
-            var red1 = $('#redurecere_1 :selected').text();
-            var red2 = $('#redurecere_2 :selected').text();
-            var red3 = $('#redurecere_3 :selected').text();
-            var red4 = $('#redurecere_4 :selected').text();
-            var nextPageUrl = "ReservationPage2.php?red1=" + red1 + "&red2=" + red2 + "&red3=" + red3 + "&red4=" + red4;
+            var nextPageUrl = "ReservationPage2.php?";
+            var validInput = false;
+            $('select[id^="redurecere_"] :selected').each(function(idx, value) {
+                var nrBilete = $(value).text();
+                var validInput2 = nrBilete > 0;
+                console.log("validInput2: " + validInput2);
+                validInput = validInput || validInput2;
+                console.log("validInput = " + validInput);
+                nextPageUrl += "red" + ++idx + "=" + nrBilete + "&"
+            });
+            nextPageUrl = nextPageUrl.substr(0, nextPageUrl.length - 1);
+            console.log(nextPageUrl);
 
-                if( red1==0 && red2==0 && red3==0 && red4==0 )
-                    alert("Nu ati selectat biletele.Va rugam alegeti biletele!");
-
-            else {
+            console.log("validInput = " + validInput);
+            if (validInput === false) {
+                alert("Nu ati selectat biletele.Va rugam alegeti biletele!");
+            } else {
                 console.log(nextPageUrl);
                 $("#content").load(nextPageUrl);
             }
-
         });
     });
 </script>
@@ -126,7 +138,10 @@
 									Cantitate
 						   		</th>
 				            </tr>
-                            <?php while($row = mysql_fetch_array($rez)) :?>
+                            <?php
+                                $idx = 0;
+                                while($row = mysql_fetch_array($rez)) :
+                            ?>
 							<tr>
 								<td style="border: 1px solid black;">&nbsp;</td>
 								<td id="tip1" style="border: 1px solid black;">
@@ -136,7 +151,7 @@
 								<span ><?= $row['pret']?> Lei</span>
 								</td>
 								<td style="border: 1px solid black;">
-								<select id="redurecere_1"  class="numbers">
+								<select id="redurecere_<?= ++$idx ?>"  class="numbers">
                                         <option value="0">0</option>
 										<option value="1">1</option>
 										<option value="2">2</option>
