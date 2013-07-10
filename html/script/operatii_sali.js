@@ -56,6 +56,7 @@ $(function () {
                 success: function (result) {
                     console.log(result);
                     alert(result);
+                    $('#sala').val('');
                 },
                 error: function () {
                     alert("Stergerea a esuat.");
@@ -75,6 +76,7 @@ $(function () {
                 success: function (result) {
                     console.log(result);
                     alert(result);
+                    $('#sala').val('');
                 },
                 error: function () {
                     alert("Stergerea a esuat.");

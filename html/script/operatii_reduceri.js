@@ -58,6 +58,8 @@ $(function () {
                 success: function (result) {
                     console.log(result);
                     alert(result);
+                    $('#tip').val('');
+                    $('#pret').val('');
                 },
                 error: function () {
                     alert("Stergerea a esuat.");

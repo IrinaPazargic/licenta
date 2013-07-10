@@ -85,9 +85,7 @@ q:before, q:after {
 #slideShow {
     margin: 0 auto;
     width: 996px;
-    border-radius: 3px 3px 3px 3px;
-    background-color: transparent;
-    height: 40px;
+    height: auto;
 
 }
 

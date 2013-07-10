@@ -9,7 +9,7 @@ $(function () {
     });
 
     $("#btn_cauta").click(function cautaProgram() {
-        var email = document.getElementById('email').value;
+        var email = $('#email').val();
         var queryString = "?email=" + email;
         $.ajax(
             {
@@ -19,6 +19,7 @@ $(function () {
                 success: function (result) {
                     $("#rezultat").html(result);
                     $("#rezultat").show();
+                    $('#email').val();
                 },
                 error: function () {
                     alert("Cautarea a esuat.");

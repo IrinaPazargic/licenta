@@ -39,8 +39,10 @@ $(function () {
                 url: "cauta_film_functii.php" + queryString,
                 dataType: "html",
                 success: function (result) {
+
                     $("#rezultat").html(result);
                     $("#rezultat").show();
+                    $('#titlu').val('');
                 },
                 error: function () {
                     alert("Cautarea a esuat.");
@@ -61,6 +63,7 @@ $(function () {
                 success: function (result) {
                     console.log(result);
                     alert(result);
+                    $('#titlu').val('');
                 },
                 error: function () {
                     alert("Stergerea a esuat.");

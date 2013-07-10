@@ -10,44 +10,6 @@ $result_gen_1 = mysql_query($query_gen);
 
 //detaliile filmelor apelate din filme.php
 
-function details_film(){
-    $film = $_GET['film'];
-
-    $query = "SELECT f.imagine, f.titlu, g.nume_gen, f.regia, f.roluri_principale, f.timp_desf, f.descriere, p.idCinema, c.nume
-          FROM filme f, program p, gen_film g, cinema c
-          WHERE p.idFilm=f.idFilm
-            AND c.idCinema=p.idCinema
-            AND g.id=f.idGen
-            AND f.titlu='$film'";
-    $result = mysql_query($query);
-    $rows=array();
-    while ($row = mysql_fetch_array($result)) :
-        $rows[$row['idCinema']] = $row['nume'];
-        echo "  <div style='border-top: 1px solid #000000; margin-bottom: 5px;'>
-                <span class='icon_hold'>
-                <img id='image' src='${row['imagine']}'>
-                  </span>
-                    <h4>Titlu:<strong> ${row['titlu']} </strong></h4>
-                    <p><strong>Gen: ${row['nume_gen']} </strong></p><br/>
-                    <hr/>
-                    <p><b>Regia:</b> ${row['regia']} <br/>
-                       <b>Detalii:</b> ${row['descriere']}<br/>
-                       <b>Timp desfasurare:</b> ${row['timp_desf']} minute<br/>
-                       <b>Roluri principale:</b> ${row['roluri_principale']}
-                    </p>";
-
-          foreach ($rows as $idCinema => $numeCinema) :
-               echo    " <a href='?idCinema={$idCinema}'>Rezerva $numeCinema</a><br/>";
-          endforeach;
-          echo "</div>";
-    endwhile;
-}
-
-
-$result_gen_1 = mysql_query($query_gen);
-
-//detaliile filmelor apelate din filme.php
-
 function film_program_cinema(){
     $idCinema=$_GET['idCinema'];
     $query = "
@@ -85,6 +47,13 @@ function film_program_cinema(){
             </div><hr/> ";
     }
 }
+
+
+$result_gen_1 = mysql_query($query_gen);
+
+//detaliile filmelor apelate din filme.php
+
+
 ?>
 
 <!DOCTYPE html>
@@ -92,12 +61,17 @@ function film_program_cinema(){
 <head>
     <title>MyCinema</title>
     <link href="main.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="blueberry.css" />
     <link href="program.css" rel="stylesheet" type="text/css"/>
     <link href="romania_map.css" rel="stylesheet" type="text/css"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="script/meniuri.js"></script>
-    <script>
+    <script src="script/jquery.blueberry.js"></script>
 
+    <script>
+        $(window).load(function() {
+            $('.blueberry').blueberry();
+        });
     </script>
 
 </head>
@@ -126,7 +100,17 @@ function film_program_cinema(){
     </a>
 </div>
 <!--nav-->
-<div id="slideShow">
+<div id="slideShow" style="margin:0 auto;">
+    <!-- blueberry -->
+<!--
+    <div class="blueberry" style="margin:0 auto;" >
+        <ul class="slides">
+            <li><img src="images/world_war.jpg" /></li>
+            <li><img src="images/hangover3.jpg" /></li>
+        </ul>
+    </div>-->
+
+    <!-- blueberry -->
 </div>
 <div id="mainContent">
     <div id="cale"></div>
@@ -142,19 +126,19 @@ function film_program_cinema(){
         <h3><a href="index.php"><strong>Acasa</strong></a></h3>
         <ul>
             <li><a id="program" class="homeLinks" style="cursor:pointer;">Program</a></li>
-            <li><a id="filme" class="homeLinks" style="cursor:pointer;">Filme</a></li>
+            <li><a id="filme" href="filme.php" class="homeLinks" style="cursor:pointer;">Filme</a></li>
             <li><a id="promotii" class="homeLinks" style="cursor:pointer;">Promotii</a></li>
             <li><a id="oferte" class="homeLinks" style="cursor:pointer;">Oferte</a></li>
         </ul>
 
         <div id="searchBody">
             <h3 style="margin-left:-11px;"><strong>Cauta in program</strong></h3>
+            <form action="program.php" method="get">
             <table id="search_table" width="100%" cellspacing="3" cellpadding="3" border="0" style="margin:0 auto">
-                <tbody>
                 <tr>
                     <td style="text-align:left;">Localitatea:</td>
                     <td style="text-align:left;">
-                        <select style="text-align: right; width: 113px;" name="loc" id="cinema">
+                        <select style="text-align: right; width: 113px;" name="cinema" id="cinema">
                             <?php while ($row = mysql_fetch_array($result_cinema)) : ?>
                                 <option class="textbox" value="<?= $row['idCinema'] ?>"><?= $row['nume'] ?></option>
                             <?php endwhile; ?>
@@ -198,9 +182,8 @@ function film_program_cinema(){
                         <input style="cursor:pointer;" class="submit" type="submit" value="CAUTA" id="btn_cauta">
                     </td>
                 </tr>
-                </tbody>
             </table>
-
+        </form>
         </div>
 
         <div id="thirdNav">
@@ -212,7 +195,7 @@ function film_program_cinema(){
 
             <ul id="film_list">
                 <?php while ($row = mysql_fetch_array($result_gen)) : ?>
-                <li><a  id="<?= $row['id']?>" class="filmsLink" style="cursor:pointer;"><?= $row['nume_gen'] ?></a></li>
+                <li><a href="filme.php?idGen=<?= $row['id']?>" id="<?= $row['id']?>" class="filmsLink" style="cursor:pointer;"><?= $row['nume_gen'] ?></a></li>
                 <?php endwhile; ?>
             </ul>
         </div>
@@ -225,10 +208,8 @@ function film_program_cinema(){
         <h3><strong>Acasa</strong></h3>
 
         <div class="newsList">
-            <?php if(isset($_GET['film'])) {
-                details_film();
-            }else
-                film_program_cinema();
+            <?php
+              film_program_cinema();
 
             ?>
         </div>

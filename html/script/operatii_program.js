@@ -42,10 +42,10 @@ $(function () {
                 dataType: "html",
                 success: function (result) {
                     $("#rezultat").html(result);
+                    $("#rezultat").show();
                     $('#titlu').val('');
                     $('#data').val('');
                     $('#ora').val('');
-                    $("#rezultat").show();
 
                 },
                 error: function() {

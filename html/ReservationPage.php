@@ -2,21 +2,8 @@
 	require_once 'model.php';
 	require_once 'config.php';
 
-    $query1 = "SELECT tip, pret FROM reduceri WHERE idReducere=1";
-    $rez1 = mysql_query($query1);
-    $row1 = mysql_fetch_array($rez1);
-
-    $query2 = "SELECT tip, pret FROM reduceri WHERE idReducere=2";
-    $rez2 = mysql_query($query2);
-    $row2 = mysql_fetch_array($rez2);
-
-    $query3 = "SELECT tip, pret FROM reduceri WHERE idReducere=3";
-    $rez3 = mysql_query($query3);
-    $row3 = mysql_fetch_array($rez3);
-
-    $query4 = "SELECT tip, pret FROM reduceri WHERE idReducere=4";
-    $rez4 = mysql_query($query4);
-    $row4 = mysql_fetch_array($rez4);
+    $query = "SELECT tip, pret FROM reduceri order by tip";
+    $rez = mysql_query($query);
 
     $tipReduceri = array(
                             'red1' => new TipRedurecere($row1['tip'], $row1['pret']),
@@ -139,14 +126,14 @@
 									Cantitate
 						   		</th>
 				            </tr>
-
+                            <?php while($row = mysql_fetch_array($rez)) :?>
 							<tr>
 								<td style="border: 1px solid black;">&nbsp;</td>
 								<td id="tip1" style="border: 1px solid black;">
-								<span ><?= $row1['tip'] ?></span>
+								<span ><?= $row['tip'] ?></span>
 								</td>
 								<td id="pret1" style="border: 1px solid black;">
-								<span ><?= $row1['pret']?> Lei</span>
+								<span ><?= $row['pret']?> Lei</span>
 								</td>
 								<td style="border: 1px solid black;">
 								<select id="redurecere_1"  class="numbers">
@@ -164,83 +151,7 @@
 								</select>
 								</td>
 							</tr>
-								
-							<tr>
-							    <td style="border: 1px solid black;">&nbsp;</td>
-								<td id="tip2" style="border: 1px solid black;">
-								<span><?= $row2['tip'];?></span>
-								</td>
-								<td id="pret2" style="border: 1px solid black;">
-								<span><?= $row2['pret'];?> Lei</span>
-								</td>
-								<td style="border: 1px solid black;">
-								<select  id="redurecere_2" class="numbers">
-                                        <option  value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-										<option value="9">9</option>
-										<option value="10">10</option>
-								</select>
-								</td>
-							</tr>
-							<tr>
-								<td style="border: 1px solid black;">&nbsp;</td>
-								<td id="tip3" style="border: 1px solid black;">
-								<span><?= $row3['tip'];?></span>
-								</td>
-								<td  id="pret3" style="border: 1px solid black;">
-								<span><?= $row3['pret'];?> Lei</span>
-								</td>
-								<td style="border: 1px solid black;">
-								<select  id="redurecere_3" class="numbers">
-                                        <option  value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-										<option value="9">9</option>
-										<option value="10">10</option>
-								</select>
-								</td>
-							</tr>
-							
-							<tr>
-									<td style="border: 1px solid black;">&nbsp</td>
-								<td id="tip4" style="border: 1px solid black;">
-								<span><?= $row4['tip'];?></span>
-								</td>
-								<td id="pret4" style="border: 1px solid black;">
-								<span><?= $row4['pret'];?> Lei</span>
-								</td>
-								<td style="border: 1px solid black;">
-								<select  id="redurecere_4" class="numbers">
-                                        <option value="0">0</option>
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-										<option value="4">4</option>
-										<option value="5">5</option>
-										<option value="6">6</option>
-										<option value="7">7</option>
-										<option value="8">8</option>
-										<option value="9">9</option>
-										<option value="10">10</option>
-								</select>
-								</td>
-							</tr>
-							
-
-						</tbody>
+                            <?php endwhile; ?>
 					</table>
 					</p>
 				</td>

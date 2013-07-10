@@ -46,8 +46,7 @@ while ($r = mysql_fetch_array($rez)) {
                 ?>
                 <tr>
                     <td style="text-align:left; width:200px;  padding: 5px;">
-                        <input type="submit" id="<?= $idCinema ?>" value="<?= $nume ?>"
-                           style="width: 100px; font-size:1.3em; text-transform: uppercase; border:1px solid black;"/>
+                        <a href="program.php?idCinema=<?= $idCinema ?>" id="<?= $idCinema ?>" style="width: 100px; font-size:1.3em; text-transform: uppercase; border:1px solid black;"> <?= $nume ?></a>
                     </td>
                 </tr>
             <?php

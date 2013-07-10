@@ -128,7 +128,7 @@ $(function () {
     });
 
 
-    $("#btn_cauta").click(function () {
+   /* $("#btn_cauta").click(function () {
         var cinema = $('#cinema :selected').text();
         var idGen = $('#gen :selected').prop('value');
         var titlu = $("#titlu").val();
@@ -142,7 +142,7 @@ $(function () {
                 $('#news').html(data);
             }
         });
-    });
+    });*/
 
     $(".filmsLink").click(function () {
         var idGen = $(this).attr('id');
