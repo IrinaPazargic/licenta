@@ -133,8 +133,8 @@ $result_gen_1 = mysql_query($query_gen);
 
         <div id="searchBody">
             <h3 style="margin-left:-11px;"><strong>Cauta in program</strong></h3>
-            <form action="program.php" method="get">
             <table id="search_table" width="100%" cellspacing="3" cellpadding="3" border="0" style="margin:0 auto">
+                <tbody>
                 <tr>
                     <td style="text-align:left;">Localitatea:</td>
                     <td style="text-align:left;">
@@ -182,6 +182,7 @@ $result_gen_1 = mysql_query($query_gen);
                         <input style="cursor:pointer;" class="submit" type="submit" value="CAUTA" id="btn_cauta">
                     </td>
                 </tr>
+                </tbody>
             </table>
         </form>
         </div>
