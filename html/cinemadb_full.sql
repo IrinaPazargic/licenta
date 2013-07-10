@@ -90,7 +90,7 @@ CREATE TABLE `filme` (
   PRIMARY KEY (`idFilm`),
   KEY `idGen` (`idGen`),
   CONSTRAINT `gen_film_ibfk_1` FOREIGN KEY (`idGen`) REFERENCES `gen_film` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `filme` (
 
 LOCK TABLES `filme` WRITE;
 /*!40000 ALTER TABLE `filme` DISABLE KEYS */;
-INSERT INTO `filme` VALUES (13,'True Blood',1990,120,'                            Unul dintre cele bune','dana','uploads/bg.jpg','Irina Pazargic',1),(14,'Robbin',1231,0,'                            asda','asda','uploads/bg.jpg','Irina Pazargic',2);
+INSERT INTO `filme` VALUES (13,'True Blood',1990,120,'                            Unul dintre cele bune','dana','uploads/bg.jpg','Irina Pazargic',1),(14,'Robbin',1231,0,'                            asda','asda','uploads/bg.jpg','Irina Pazargic',2),(15,'Friends',2005,200,'                            bun','Mama Mea','uploads/BackButton.jpg','Irina Pazargic',1);
 /*!40000 ALTER TABLE `filme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +206,7 @@ CREATE TABLE `program` (
   CONSTRAINT `program_ibfk_1` FOREIGN KEY (`idFilm`) REFERENCES `filme` (`idFilm`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `program_ibfk_2` FOREIGN KEY (`idCinema`) REFERENCES `cinema` (`idCinema`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `program_ibfk_3` FOREIGN KEY (`idSala`) REFERENCES `sali` (`idSala`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +215,7 @@ CREATE TABLE `program` (
 
 LOCK TABLES `program` WRITE;
 /*!40000 ALTER TABLE `program` DISABLE KEYS */;
-INSERT INTO `program` VALUES (1,13,100,'2013-07-09','12:00',1),(2,14,101,'2013-07-09','14:50',1),(3,13,101,'2013-07-09','14:50',1),(4,13,100,'2013-07-09','15:50',1),(5,14,100,'2013-07-09','20:30',1),(6,14,100,'2013-07-09','22:00',1);
+INSERT INTO `program` VALUES (1,13,100,'2013-07-10','12:00',1),(2,14,101,'2013-07-10','14:50',1),(3,13,101,'2013-07-10','14:50',1),(4,13,100,'2013-07-10','15:50',1),(5,14,100,'2013-07-10','20:30',1),(6,14,100,'2013-07-10','22:00',1),(7,13,100,'2013-07-11','20:00',1),(8,13,100,'2013-07-11','10:00',1);
 /*!40000 ALTER TABLE `program` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +231,7 @@ CREATE TABLE `reduceri` (
   `tip` varchar(55) NOT NULL,
   `pret` double DEFAULT NULL,
   PRIMARY KEY (`idReducere`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +240,7 @@ CREATE TABLE `reduceri` (
 
 LOCK TABLES `reduceri` WRITE;
 /*!40000 ALTER TABLE `reduceri` DISABLE KEYS */;
-INSERT INTO `reduceri` VALUES (3,'Pensionari',15.5),(4,'Studenti',15.5),(6,'Copii',15.5);
+INSERT INTO `reduceri` VALUES (3,'Pensionari',15.5),(4,'Studenti',15.5),(6,'Copii',15.5),(7,'Normal',18.5);
 /*!40000 ALTER TABLE `reduceri` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -387,4 +387,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-09 20:20:28
+-- Dump completed on 2013-07-10 20:45:18
