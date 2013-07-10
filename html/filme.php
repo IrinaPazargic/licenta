@@ -8,69 +8,26 @@ $query_gen="select id, nume_gen from gen_film order by nume_gen";
 $result_gen = mysql_query($query_gen);
 $result_gen_1 = mysql_query($query_gen);
 
-/*
-function details_film(){
-    $film = $_GET['film'];
-    $cinema = $_GET['loc'];
-    $gen = $_GET['gen'];
-    $data = $_GET['data'];
-
-
-    $query = "SELECT
-             f.titlu, g.nume_gen
-              FROM filme f
-              INNER JOIN gen_film g ON f.idGen = g.id
-              WHERE f.titlu='$film' and g.nume_gen='$gen'";
-
-    $query1 = "SELECT p.ore, p.data
-                  FROM filme f, cinema c
-                  INNER JOIN program p ON p.idFilm=f.idFilm
-                  INNER JOIN cinema c ON c.idCinema=p.idCinema
-                  WHERE f.titlu='$film'
-                        AND g.nume_gen='$gen'
-                        AND p.idCinema='$cinema'
-                        AND p.data='$data'";
-    $result = mysql_query($query);
-    $result1 = mysql_query($query1);
-    $rows=array();
-    while ($row = mysql_fetch_array($result)) :
-        $rows[$row['idCinema']] = $row['nume'];
-        echo "  <div style='border-top: 1px solid #000000; margin-bottom: 5px;'>
-                <span class='icon_hold'>
-                <img id='image' src='${row['imagine']}'>
-                  </span>
-                    <h4>Titlu:<strong> ${row['titlu']} </strong></h4>
-                    <p><strong>Gen: ${row['nume_gen']} </strong></p><br/>
-                    <hr/>
-                    <p><b>Regia:</b> ${row['regia']} <br/>
-                       <b>Detalii:</b> ${row['descriere']}<br/>
-                       <b>Timp desfasurare:</b> ${row['timp_desf']} minute<br/>
-                       <b>Roluri principale:</b> ${row['roluri_principale']}
-                    </p>";
-
-        foreach ($rows as $idCinema => $numeCinema) :
-            echo    " <a href='?idCinema={$idCinema}'>Rezerva $numeCinema</a><br/>";
-        endforeach;
-        echo "</div>";
-    endwhile;
-}*/
-
-
-function all_films()
+function toate_filmele()
 {
     $query = "
-            SELECT f.imagine, f.titlu, g.nume_gen, f.regia, f.roluri_principale, f.timp_desf, f.descriere
-            FROM filme f
-            INNER JOIN gen_film g ON f.idGen = g.id";
+                SELECT
+                  f.imagine, f.titlu, g.nume_gen, f.regia, f.roluri_principale, f.timp_desf, f.descriere, c.nume
+                  , GROUP_CONCAT(DISTINCT c.nume ORDER BY c.nume ASC SEPARATOR ',') as cinemas
+                FROM filme f
+                INNER JOIN program p ON f.idFilm = p.idFilm
+                INNER JOIN gen_film g ON f.idGen = g.id
+                INNER JOIN cinema c ON p.idCinema = c.idCinema
+                GROUP BY f.titlu
+                ORDER BY f.titlu
+              ";
 
-    $query1 = "
-              SELECT distinct c.idCinema, c.nume
-              FROM filme f
-              INNER JOIN program p ON f.idFilm = p.idFilm
-              INNER JOIN cinema c ON p.idCinema = c.idCinema";
+
+
     $result = mysql_query($query);
-    $result1 = mysql_query($query1);
     while ($row = mysql_fetch_array($result)) :
+        $cinemas = $row['cinemas'];
+        $cinemas_array = explode(",", $cinemas);
         echo " <div style='border-top: 1px solid #000000; margin-bottom: 5px;'>
                     <span class='icon_hold'>
                         <img id='image' src='${row['imagine']}'>
@@ -83,9 +40,9 @@ function all_films()
                 <b>Timp desfasurare:</b> ${row['timp_desf']} minute<br/>
                 <b>Roluri principale:</b> ${row['roluri_principale']}
                 </p>";
-            while ($row1 = mysql_fetch_array($result1)) :
-                echo "<a href='program.php?idCinema=${row1['idCinema']}'>Rezerva ${row1['nume']}</a><br/>";
-            endwhile;
+                foreach ($cinemas_array as $numeCinema) {
+                    echo "<a href='program.php?numeCinema=${numeCinema}&titluFilm=${row['titlu']}'>Rezerva ${numeCinema}</a><br/>";
+                }
             echo "</div>";
         endwhile;
 
@@ -306,7 +263,7 @@ function detalii_film(){
                 detalii_film();
             }
             else{
-                all_films();
+                toate_filmele();
             }
             ?>
         </div>
