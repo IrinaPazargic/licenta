@@ -78,7 +78,7 @@ class TipLocuri
     }
 }
 
-class TipRedurecere
+class TipReducere
 {
     public $tip;
     public $pret;

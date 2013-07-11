@@ -1,13 +1,6 @@
 <?php
 require_once "../lib/Mail-1.2.0/Mail.php";
 
-$username = "antonel.pazargic@gmail.com";
-$password = "<your_password>";
-$from = "antonel.pazargic@gmail.com";
-$to = "pazargic_irina@yahoo.com, danoi_90@yahoo.com";
-$subject = "Hi! This is spam.";
-$body = "Hi,\n\nHow are you? Sent through Mail.php";
-
 /**
  * @param $from
  * @param $to
@@ -34,6 +27,13 @@ function sentEmail($username, $password, $from, $to, $subject, $body)
     $mail = $smtp->send($to, $headers, $body);
     return is_bool($mail) === true && $mail == true;
 }
+
+$username = "irina.pazargic@gmail.com";
+$password = "gigel123";
+$from = "irina.pazargic@gmail.com";
+$to = "pazargic_irina@yahoo.com, antonel.pazargic@gmail.com";
+$subject = "Hi! This is spam.";
+$body = "Hi,\n\nHow are you? Sent through Mail.php";
 
 $result = sentEmail($username, $password, $from, $to, $subject, $body);
 

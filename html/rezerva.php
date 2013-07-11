@@ -1,8 +1,16 @@
 <?php
 require_once 'model.php';
 require_once 'config.php';
+require_once 'utils.php';
 
 $rezervare = $_SESSION['rezervare'];
+
+$email_username = "irina.pazargic@gmail.com";
+$email_password = "gigel123"; //encrypt this value if you get some available time
+$email_from = "irina.pazargic@gmail.com";
+$email_to = $rezervare->persoana->email;
+$email_subject = "Rezervare cinema";
+$email_body = "Aveti rezervare la filmul {$rezervare->film} la cinema 'introdu' cinema irina', la ora 'introdu' ora Irina'";
 
 rezerva($rezervare);
 
@@ -111,6 +119,15 @@ function salveazaLocurileRezervate($rezervare, $idRezervare)
     $idRezervare = salveazaRezervare($rezervare, $idPersoana);
     //    printf("Id rezervare: %d\n", $idRezervare);
     salveazaLocurileRezervate($rezervare, $idRezervare);
+
+    global $email_password;
+    global $email_username;
+    global $email_from;
+    global $email_to;
+    global $email_subject;
+    global $email_body;
+    trimite_email($email_username, $email_password, $email_from, $email_to, $email_subject, $email_body);
+
     print("Rezervare efectuata cu succes! Detaliile despre rezervare au fost trimise catre adresa de e-mail.</br> Pentru a reveni la pagina Acasa apasati aici <a href='index.php' style=' text-decoration: none; color: green;'>MyCinema.ro</a>");
     }?>
 

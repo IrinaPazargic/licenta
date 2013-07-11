@@ -20,6 +20,7 @@ $row_nume= mysql_fetch_assoc($rez);
 
 $filme= new Filme();
 
+
 function detalii_film(){
     $cinema = $_GET['cinema'];
     $film = $_GET['film'];
@@ -65,6 +66,7 @@ function detalii_film(){
     endwhile;
 
 }
+// afiseaza lista de filme ce ruleaza la un cinematograf in data curenta
 
 function afisare_lista(){
 
@@ -72,7 +74,7 @@ function afisare_lista(){
     $query= "
              SELECT
               f.titlu, g.nume_gen, c.nume, f.idFilm
-              , GROUP_CONCAT(DISTINCT CONCAT(p.ora, ' ', p.idProgram) ORDER BY p.ora ASC SEPARATOR ',') AS hours
+              , GROUP_CONCAT(DISTINCT CONCAT(p.ora, '|', p.idProgram) ORDER BY p.ora ASC SEPARATOR ',') AS hours
             FROM filme f
               INNER JOIN program p ON f.idFilm = p.idFilm
               INNER JOIN gen_film g ON f.idGen = g.id
@@ -87,6 +89,7 @@ function afisare_lista(){
     while ($row = mysql_fetch_array($result)) :
         $hours = $row['hours'];
         $hours_array = explode(",", $hours);
+        var_dump($hours_array);
        echo "<div class='det_prog'>
                 <div class='leadin'>
                     <div class='info' style=;width:314px;'>
@@ -97,11 +100,12 @@ function afisare_lista(){
                 <div class='rez_info' style='width:190px;'>
                     <table>
                         <tr>";
-        foreach ($hours_array as $ore) :
-                 echo "<td style='margin:0;'>
-                        <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=$ore' style='cursor:pointer; margin-top:5px;'>
-                       <p style='color:white; margin-left: 20px;'>$ore</p></a></td>";
-        endforeach;
+                        foreach ($hours_array as $hour) :
+                            $hour_array = explode('|', $hour);
+                            echo "<td style='margin:0;'>
+                                        <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=${hour_array[1]}' style='cursor:pointer; margin-top:5px;'>
+                                       <p style='color:white; margin-left: 20px;'>${hour_array[0]}</p></a></td>";
+                        endforeach;
               echo "     </tr>
                     </table>
                 </div>
@@ -111,7 +115,7 @@ function afisare_lista(){
 
 }
 
-//cautare program in functie de data
+//cautare program in functie de data si cinema
 
 function program_data(){
     $data=$_GET['data'];
@@ -157,6 +161,7 @@ function program_data(){
 
 }
 
+//cautare film in functie 4 criterii
 
 function cauta_film(){
     $cinema = $_GET['cinema'];

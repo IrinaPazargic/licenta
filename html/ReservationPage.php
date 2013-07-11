@@ -13,7 +13,7 @@
     while($row = mysql_fetch_array($rez1)) {
         $a = ++$idx;
         $index = "red${a}";
-        $tipReduceri[$index] = new TipRedurecere($row['tip'], $row['pret']);
+        $tipReduceri[$index] = new TipReducere($row['tip'], $row['pret']);
     }
 
     $rezervare = detalii_rezervare();
