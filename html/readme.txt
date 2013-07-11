@@ -1,3 +1,17 @@
+
+How to force kill the websocket server if it remains resident in memory
+
+1. Find out the websocket process:
+    $ sudo netstat -lntp | grep 8000
+        Returns:
+        tcp        0      0 127.0.0.1:8000          0.0.0.0:*               LISTEN      16694/php
+        see the number before php. This is the pid of the process.
+2. Kill the process
+    sudo kill -9 16694
+
+Check if the process was successfully killed using first step
+
+
 ========================================================================================================================
 How to dump db schema?
 ========================================================================================================================

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>MyCinema</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+
+        $(function() {
+
+            var connected = false;
+            var connection = null;
+
+            $("input[value='send']").click(function(e) {
+                if(connected)  {
+                    if (connection != null) {
+                        connection.send("kkmk to you stupid.")
+                    }
+                } else {
+                    alert("Disconnected from websocket server");
+                }
+            });
+
+            if ('WebSocket' in window) {
+                console.log("Hurray! Web socket is here. Irina and Dana are haunted all night by its presence...");
+                connection = new WebSocket('ws://licenta.irina.ro:8000/demo');
+                connection.onopen = function () {
+                    connected = true;
+                    console.log('Connection open!');
+                }
+                connection.onclose = function () {
+                    connected = false;
+                    console.log('Connection closed');
+                }
+
+                connection.onerror = function (error) {
+                    console.log('Error detected: ' + error);
+                }
+                connection.onmessage = function (e) {
+                    var server_message = e.data;
+                    console.log(server_message);
+                }
+            } else {
+                alert("Your browser doesn't support websocket html5 yet.");
+            }
+        });
+    </script>
+</head>
+
+    <form>
+        <input type="button" value="send"/>
+    </form>
+
+<body>
+
+</body>

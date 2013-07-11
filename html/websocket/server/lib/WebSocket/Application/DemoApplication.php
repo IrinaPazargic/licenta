@@ -29,6 +29,12 @@ class DemoApplication extends Application
     public function onData($data, $client)
     {
         print "onTextData\n";
+        //$client->send('echo=>' . $data);
+
+        foreach ($this->_clients as $c) {
+            $c->send('echo=>' . $data);
+        }
+
         var_dump($data);
         $decodedData = $this->_decodeData($data);
 		if($decodedData === false)
