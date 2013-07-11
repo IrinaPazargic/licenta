@@ -94,6 +94,7 @@ function salveazaLocurileRezervate($rezervare, $idRezervare)
             die("Nu se poate salva in DB locul rezervat.");
         }
         $stat2->close();
+
     }
     $mysqli->commit();
     $mysqli->close();

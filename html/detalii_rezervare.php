@@ -28,7 +28,7 @@ $_SESSION['rezervare'] = $rezervare;
         }
     </script>
     <script>
-        $(document).ready(function () {
+        $(function () {
             $("#next").click(function () {
                 var nume = $("#nume").val();
                 var prenume = $("#prenume").val();
@@ -55,13 +55,19 @@ $_SESSION['rezervare'] = $rezervare;
         <table cellspacing="0" cellpadding="0" style="width:100%; border-width:0px;">
             <tr>
                 <td>
-                    <p>
                         <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                            <tbody>
-                                <tr>
+                            <tr>
+                                <td valign="top" align="left">
+                                    <ul style="float:left; list-style-type: none;">
+                                        <li>Pasul 1</br>  Alegeti filmul</li>
+                                        <li>Pasul 2 </br>  Alegeti biletele</li>
+                                        <li>Pasul 3 </br> Alegeti locurile</li>
+                                        <li style="color:red;">Pasul 4 </br> Completati formularul</li>
+                                        <li>Pasul 5 </br>  Confirmare rezervare</li>
 
-                                    <td valign="top" align="right"></td>
-                                </tr>
+                                    </ul>
+                                </td>
+                            </tr>
                                 <tr>
                                     <td align="left">
                                         <span>FORMULAR DE COMANDA</span>
@@ -73,9 +79,7 @@ $_SESSION['rezervare'] = $rezervare;
                                         </span>
                                     </td>
                                 </tr>
-                            </tbody>
                         </table>
-                    </p>
                 </td>
             </tr>
             <tr>
@@ -93,7 +97,7 @@ $_SESSION['rezervare'] = $rezervare;
                                     <span>*</span>
                                 </td>
                                 <td>
-                                    <input type="text" name="prenume" id="prenume" required=""/>
+                                    <input type="text" name="prenume" id="prenume"/>
                                 </td>
                             </tr>
                             <tr>
@@ -102,7 +106,7 @@ $_SESSION['rezervare'] = $rezervare;
                                     <span>*</span>
                                 </td>
                                 <td>
-                                    <input type="text" name="nume" id="nume" required=""/>
+                                    <input type="text" name="nume" id="nume"/>
                                 </td>
                             </tr>
                             <tr>
@@ -111,7 +115,7 @@ $_SESSION['rezervare'] = $rezervare;
                                     <span>*</span>
                                 </td>
                                 <td>
-                                    <input type="text" name="telefon" id="telefon" required=""/>
+                                    <input type="text" name="telefon" id="telefon"/>
                                 </td>
                             </tr>
                             <tr>
@@ -120,7 +124,7 @@ $_SESSION['rezervare'] = $rezervare;
                                     <span>*</span>
                                 </td>
                                 <td>
-                                    <input type="text" name="email" id="email" required=""/>
+                                    <input type="text" name="email" id="email"/>
                                 </td>
                             </tr>
                             <tr>

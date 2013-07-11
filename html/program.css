@@ -22,7 +22,6 @@
 }
 
 #menu_program .current_program a, .current_program span {
-    background-color: #575757;
     color: #E2EFFF;
     outline: medium none;
 }

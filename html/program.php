@@ -70,16 +70,17 @@ function afisare_lista(){
 
     $cinema=$_GET['cinema'];
     $query= "
-            SELECT f.titlu, g.nume_gen, p.ora, c.idCinema, p.idProgram
-                  , GROUP_CONCAT(DISTINCT p.ora ORDER BY p.ora ASC SEPARATOR ',') as hours
+             SELECT
+              f.titlu, g.nume_gen, c.nume, f.idFilm
+              , GROUP_CONCAT(DISTINCT CONCAT(p.ora, ' ', p.idProgram) ORDER BY p.ora ASC SEPARATOR ',') AS hours
             FROM filme f
               INNER JOIN program p ON f.idFilm = p.idFilm
               INNER JOIN gen_film g ON f.idGen = g.id
               INNER JOIN cinema c ON p.idCinema = c.idCinema
             WHERE c.nume='$cinema'
-                AND data=CURDATE()
+                  AND data=CURDATE()
             GROUP BY f.titlu
-            ORDER BY f.titlu";
+            ";
 
     $result = mysql_query($query);
 
@@ -98,7 +99,7 @@ function afisare_lista(){
                         <tr>";
         foreach ($hours_array as $ore) :
                  echo "<td style='margin:0;'>
-                        <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=${row['idProgram']}' style='cursor:pointer; margin-top:5px;'>
+                        <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=$ore' style='cursor:pointer; margin-top:5px;'>
                        <p style='color:white; margin-left: 20px;'>$ore</p></a></td>";
         endforeach;
               echo "     </tr>
@@ -156,50 +157,6 @@ function program_data(){
 
 }
 
-
-function program_data_1(){
-    $data=$_GET['data'];
-    $cinema=$_GET['cinema'];
-    $query= "
-            SELECT f.titlu, g.nume_gen, p.ora, c.idCinema, p.idProgram
-                  , GROUP_CONCAT(DISTINCT p.ora ORDER BY p.ora ASC SEPARATOR ',') as hours
-            FROM filme f
-              INNER JOIN program p ON f.idFilm = p.idFilm
-              INNER JOIN gen_film g ON f.idGen = g.id
-              INNER JOIN cinema c ON p.idCinema = c.idCinema
-            WHERE data='$data'
-            AND c.nume='$cinema'
-            GROUP BY f.titlu
-            ORDER BY f.titlu";
-
-    $result = mysql_query($query);
-
-    while ($row = mysql_fetch_array($result)) :
-        $hours = $row['hours'];
-        $hours_array = explode(",", $hours);
-        echo "<div class='det_prog'>
-                <div class='leadin'>
-                    <div class='info' style=;width:314px;'>
-                        <p><b>${row['titlu']}</b></p> <br/>
-                        <p><em> ${row['nume_gen']}</em></p><br/>
-                        <p><a href='filme.php?film=${row['titlu']}'>Detalii Film..</a></p>
-                    </div>
-                <div class='rez_info' style='width:190px;'>
-                    <table>
-                        <tr>";
-        foreach ($hours_array as $ore) :
-            echo "<td style='margin:0;'>
-                        <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=${row['idProgram']}' style='cursor:pointer; margin-top:5px;'>
-                       <p style='color:white; margin-left: 20px;'>$ore</p></a></td>";
-        endforeach;
-        echo "     </tr>
-                    </table>
-                </div>
-                </div>
-            </div><hr/> ";
-    endwhile;
-
-}
 
 function cauta_film(){
     $cinema = $_GET['cinema'];
@@ -259,15 +216,6 @@ function cauta_film(){
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="script/commons.js"></script>
     <script src="script/meniuri.js"></script>
-    <script>
-          $(function (){
-                $(".current_data").click(event){
-                  $(event).css('backgroundColor', 'red');
-              }
-
-          });
-    </script>
-
 </head>
 <body id="feature">
 <div id="header">
@@ -393,8 +341,8 @@ function cauta_film(){
                             <?php for ($i = 0; $i < 7; $i++) :
                                 $today = mktime(0, 0, 0, date("m"), date("d") + $i, date("Y"));
                                 $today_show = date("Y/m/d", $today); ?>
-                                <li class="current_data">
-                                <a   href="?data=<?=  date("Y/m/d", $today + $i)?>&cinema=<?= $row_nume['nume']?>" id="zi_<?= $i?>" >
+                                <li>
+                                <a  href="?data=<?=  date("Y/m/d", $today + $i)?>&cinema=<?= $row_nume['nume']?>" id="zi_<?= $id ?>" style="background-color: #575757;" >
                                     <span><?= $today_show ?></span>
                                 </a>
                             </li>

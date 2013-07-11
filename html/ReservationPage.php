@@ -79,22 +79,33 @@
         });
     });
 </script>
+<style type="text/css">
+    li {
+        float:left;
+        font-size: 0.8em;
+        margin-left:5px;
+        bordeR:1px solid red;
+    }
 
+    </style>
 </head>
 <body>
-
-
 	<div id="content">
 	<table cellspacing="0" cellpadding="0" style="width:100%; border-width:0px;">
 			<tr>
 				<td>
-					<p>	
 						<table width="100%" cellspacing="0" cellpadding="0" border="0">
-							<tbody>
 								<tr>
+                                    <td valign="top" align="left">
+                                        <ul style="float:left; list-style-type: none;">
+                                            <li>Pasul 1</br>  Alegeti filmul</li>
+                                            <li style="color:red;">Pasul 2 </br>  Alegeti biletele</li>
+                                            <li>Pasul 3 </br> Alegeti locurile</li>
+                                            <li>Pasul 4 </br> Completati formularul</li>
+                                            <li>Pasul 5 </br>  Confirmare rezervare</li>
 
-
-									<td valign="top" align="right"></td>
+                                        </ul>
+                                   </td>
 								</tr>
 								<tr>
 									<td align="left">
@@ -114,9 +125,7 @@
 										</div>
 									</td>
 								</tr>
-							</tbody>
 						</table>
-					</p>
 				</td>
 			</tr>
 			

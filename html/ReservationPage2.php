@@ -15,7 +15,6 @@ foreach ($_GET as $key => $value) {
 }
 
 $tipReduceri = $_SESSION['tipReduceri'];
-var_dump($tipReduceri);
 $locuri = array();
 $idx = 0;
 foreach ($nrLocuriRed as $nrLocRed) {
@@ -26,9 +25,10 @@ foreach ($nrLocuriRed as $nrLocRed) {
 
 $rezervare->tipLocuri = $locuri;
 
-var_dump($rezervare);
 
 $_SESSION['rezervare'] = $rezervare;
+
+$link = $_GET['idProgram'];
 
 $nrBilete = 0;
 $pret = 0;
@@ -48,7 +48,7 @@ foreach ($locuri as $key => $value) {
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
     </script>
     <script>
-        $(document).ready(function () {
+        $(function () {
             var array = [];
             var original_image= 'url(images/SeatGreen.png)';
             var second_image='url(images/YellowSeat.png)';
@@ -72,10 +72,9 @@ foreach ($locuri as $key => $value) {
                     array.splice(array.indexOf(id), 1);
                 }
                 console.log(array);
+                if(array.length > <?= $nrBilete;?> ){
+                  alert("Numarul de locuri selectate este mai mare decat nr de bilete");
 
-                if(array.length > <?= $nrBilete?>){
-                  array.pop();
-                  alert("nr delocuri selectate este mai mare decat nr de bilete");
 
                 }
 
@@ -90,14 +89,26 @@ foreach ($locuri as $key => $value) {
 <table cellspacing="0" cellpadding="0" style="width:100%; border-width:0px;">
 <tr>
     <td>
-        <p>
+
         <table width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+                <td valign="top" align="left">
+                    <ul style="float:left; list-style-type: none;">
+                        <li>Pasul 1</br>  Alegeti filmul</li>
+                        <li>Pasul 2 </br>  Alegeti biletele</li>
+                        <li  style="color:red;">Pasul 3 </br> Alegeti locurile</li>
+                        <li>Pasul 4 </br> Completati formularul</li>
+                        <li>Pasul 5 </br>  Confirmare rezervare</li>
+
+                    </ul>
+                </td>
+            </tr>
+
             <tr>
                 <td align="left">
                     <span>SELECTATI LOCURILE</span><br/>
                 </td>
             </tr>
-
             <tr>
                 <td align="left">
                     <h3 style="margin-bottom:0px;"><span><b>Alegerea dumeavoastra curenta</b></span></h3>
@@ -115,10 +126,9 @@ foreach ($locuri as $key => $value) {
                 <td>
                     <div align="center">
                 <span>
-                    <a href="ReservationPage.php?idProgram=<?php $link = $_GET['idProgram'];
-                    echo $link; ?>">
+                    <a href="ReservationPage.php?idProgram=<?= $link ?>">
                         <button>
-                            <span>Pasul Urmator</span> </button></a>
+                            <span>Pasul Anterior</span> </button></a>
                 </span>
                     <span>
                     <button>
@@ -153,7 +163,6 @@ foreach ($locuri as $key => $value) {
                 </td>
             </tr>
         </table>
-        </p>
     </td>
 </tr>
 
