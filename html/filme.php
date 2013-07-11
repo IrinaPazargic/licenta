@@ -22,8 +22,6 @@ function toate_filmele()
                 ORDER BY f.titlu
               ";
 
-
-
     $result = mysql_query($query);
     while ($row = mysql_fetch_array($result)) :
         $cinemas = $row['cinemas'];
@@ -41,7 +39,7 @@ function toate_filmele()
                 <b>Roluri principale:</b> ${row['roluri_principale']}
                 </p>";
                 foreach ($cinemas_array as $numeCinema) {
-                    echo "<a href='program.php?numeCinema=${numeCinema}&titluFilm=${row['titlu']}'>Rezerva ${numeCinema}</a><br/>";
+                    echo "<a href='program.php?cinema=${numeCinema}&film=${row['titlu']}'>Rezerva ${numeCinema}</a><br/>";
                 }
             echo "</div>";
         endwhile;
@@ -51,17 +49,21 @@ function toate_filmele()
 function filme_gen()
 {
     $idGen = $_GET['idGen'];
-    $query = "SELECT f.idFilm, f.titlu, f.idGen, g.nume_gen
-             FROM filme f, gen_film g
-             WHERE g.id=f.idGen AND  f.idGen='$idGen'";
-    $query1 = "
-              SELECT distinct c.idCinema, c.nume
+    $query = "
+              SELECT f.imagine, f.titlu, g.nume_gen, f.idGen, f.regia, f.roluri_principale, f.timp_desf,f.descriere, c.nume, GROUP_CONCAT(DISTINCT c.nume ORDER BY c.nume ASC SEPARATOR ',') as cinemas
               FROM filme f
-              INNER JOIN program p ON f.idFilm = p.idFilm
-              INNER JOIN cinema c ON p.idCinema = c.idCinema";
+                  INNER JOIN program p ON f.idFilm = p.idFilm
+                  INNER JOIN gen_film g ON f.idGen = g.id
+                  INNER JOIN cinema c ON p.idCinema = c.idCinema
+                WHERE f.idGen='$idGen'
+                GROUP BY f.titlu
+                ORDER BY f.titlu
+
+              ";
     $result = mysql_query($query);
-    $result1 = mysql_query($query1);
     while ($row = mysql_fetch_array($result)) :
+        $cinemas = $row['cinemas'];
+        $cinemas_array = explode(",", $cinemas);
         echo " <div style='border-top: 1px solid #000000; margin-bottom: 5px;'>
                     <span class='icon_hold'>
                         <img id='image' src='${row['imagine']}'>
@@ -74,11 +76,12 @@ function filme_gen()
                 <b>Timp desfasurare:</b> ${row['timp_desf']} minute<br/>
                 <b>Roluri principale:</b> ${row['roluri_principale']}
                 </p>";
-        while ($row1 = mysql_fetch_array($result1)) :
-            echo "<a href='program.php?idCinema=${row1['idCinema']}'>Rezerva ${row1['nume']}</a><br/>";
-        endwhile;
+        foreach ($cinemas_array as $numeCinema) {
+            echo "<a href='program.php?cinema=${numeCinema}&film=${row['titlu']}'>Rezerva ${numeCinema}</a><br/>";
+        }
         echo "</div>";
     endwhile;
+
 
 }
 
@@ -113,7 +116,7 @@ function detalii_film(){
                 <b>Roluri principale:</b> ${row1['roluri_principale']}
                 </p>";
         while ($row2 = mysql_fetch_array($result2)) :
-            echo "<a href='program.php?idCinema=${row2['idCinema']}&film=${row1['titlu']}'>Rezerva ${row2['nume']}</a><br/>";
+            echo "<a href='program.php?cinema=${row2['nume']}&film=${row1['titlu']}'>Rezerva ${row2['nume']}</a><br/>";
         endwhile;
         echo "</div>";
     endwhile;

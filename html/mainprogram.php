@@ -22,7 +22,7 @@ while ($r = mysql_fetch_array($rez)) {
         $("#<?= $idCinema ?>").click(function () {
             $.ajax({
                 type: "GET",
-                url: "program.php?idCinema=<?= $idCinema ?>",
+                url: "program.php?cinema=<?= $nume ?>",
                 data: "",
                 success: function (data) {
                     $('#main').html(data);
@@ -46,7 +46,7 @@ while ($r = mysql_fetch_array($rez)) {
                 ?>
                 <tr>
                     <td style="text-align:left; width:200px;  padding: 5px;">
-                        <a href="program.php?idCinema=<?= $idCinema ?>" id="<?= $idCinema ?>" style="width: 100px; font-size:1.3em; text-transform: uppercase; border:1px solid black;"> <?= $nume ?></a>
+                        <a href="program.php?cinema=<?= $nume ?>" id="<?= $idCinema ?>" style="width: 100px; font-size:1.3em; text-transform: uppercase; border:1px solid black;"> <?= $nume ?></a>
                     </td>
                 </tr>
             <?php

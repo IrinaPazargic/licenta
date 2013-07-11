@@ -8,51 +8,8 @@ $query_gen="select id, nume_gen from gen_film order by nume_gen";
 $result_gen = mysql_query($query_gen);
 $result_gen_1 = mysql_query($query_gen);
 
-//detaliile filmelor apelate din filme.php
-
-function film_program_cinema(){
-    $idCinema=$_GET['idCinema'];
-    $query = "
-            SELECT
-                p.idProgram, f.titlu, f.idFilm, f.idGen, p.ora, g.nume_gen
-            FROM
-                program p, filme f, cinema c, gen_film g
-            WHERE
-                p.idFilm = f.idFilm
-                AND p.idCinema = c.idCinema
-                AND f.idGen = g.id
-                AND c.idCinema='$idCinema'
-            ";
-    $result = mysql_query($query);
-    while ($row = mysql_fetch_array($result)) {
-        echo "<div class='det_prog'>
-                <div class='leadin'>
-                    <div class='info' style=;width:314px;'>
-                        <p><b>${row['titlu']}</b></p> <br/>
-                        <p><em> ${row['nume_gen']}</em></p><br/>
-                        <p><a href='?film=${row['titlu']}'>Detalii Film..</a></p>
-                    </div>
-                <div class='rez_info' style='width:190px;'>
-                    <table>
-                        <tr>
-                            <td style='padding:0;margin:0;'>
-                                <a style='text-decoration: none;' class='btn_r' href='ReservationPage.php?idProgram=${row['idProgram']}'  style='cursor:pointer; margin-top:5px;'>
-                                <p style='color:white; margin-left: 20px;'>${row['ora']}</p></a>
-                            </td>
-                        </tr>
-
-                    </table>
-                </div>
-                </div>
-            </div><hr/> ";
-    }
-}
-
 
 $result_gen_1 = mysql_query($query_gen);
-
-//detaliile filmelor apelate din filme.php
-
 
 ?>
 
@@ -209,10 +166,6 @@ $result_gen_1 = mysql_query($query_gen);
         <h3><strong>Acasa</strong></h3>
 
         <div class="newsList">
-            <?php
-              film_program_cinema();
-
-            ?>
         </div>
     </div>
 </div>

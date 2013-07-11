@@ -2,7 +2,7 @@
     background: none repeat scroll 0 0 #373737;
     padding: 0 0 24px;
     width: 100%;
-    margi: 0;
+    margin: 0;
 }
 
 #menu_program ul {
@@ -18,9 +18,10 @@
     margin: 0 2px 0 0;
     padding: 0;
     text-align: left;
+    color:white;
 }
 
-#menu_program #current_program a, #menu_program  #current_program span {
+#menu_program .current_program a, .current_program span {
     background-color: #575757;
     color: #E2EFFF;
     outline: medium none;
