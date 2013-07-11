@@ -10,7 +10,7 @@ $email_password = "gigel123"; //encrypt this value if you get some available tim
 $email_from = "irina.pazargic@gmail.com";
 $email_to = $rezervare->persoana->email;
 $email_subject = "Rezervare cinema";
-$email_body = "Aveti rezervare la filmul {$rezervare->film} la cinema 'introdu' cinema irina', la ora 'introdu' ora Irina'";
+
 
 rezerva($rezervare);
 
@@ -125,7 +125,7 @@ function salveazaLocurileRezervate($rezervare, $idRezervare)
     global $email_from;
     global $email_to;
     global $email_subject;
-    global $email_body;
+    $email_body = "Aveti rezervare la filmul '{$rezervare->film}',cinematograful '$rezervare->cinema', ora '$rezervare->ora', in data '$rezervare->data'.CODUL REZERVARII: '{$idRezervare}'.Acest cod trebuie prezentat la casa cu cel putin 30 min inainte de inceperea filmului. In caz contrar rezervarea se pierde.Va multumim!";
     trimite_email($email_username, $email_password, $email_from, $email_to, $email_subject, $email_body);
 
     print("Rezervare efectuata cu succes! Detaliile despre rezervare au fost trimise catre adresa de e-mail.</br> Pentru a reveni la pagina Acasa apasati aici <a href='index.php' style=' text-decoration: none; color: green;'>MyCinema.ro</a>");

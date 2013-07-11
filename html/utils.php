@@ -2,10 +2,13 @@
 require_once "lib/Mail-1.2.0/Mail.php";
 
 /**
+ * @param $username
+ * @param $password
  * @param $from
  * @param $to
  * @param $subject
  * @param $body
+ * @return bool
  */
 function trimite_email($username, $password, $from, $to, $subject, $body)
 {
