@@ -65,7 +65,9 @@ foreach ($locuri as $key => $value) {
 
                 if (event.target.style.backgroundImage = original_image)
                     event.target.style.backgroundImage = second_image;
-
+                else{
+                    event.target.style.backgroundImage = original_image;
+                }
                 if (array.indexOf(id) == -1) {
                     array.push(id);
                 } else {
@@ -87,12 +89,7 @@ foreach ($locuri as $key => $value) {
 <body>
 <div id="content">
 <table cellspacing="0" cellpadding="0" style="width:100%; border-width:0px;">
-<tr>
-    <td>
-
-        <table width="100%" cellspacing="0" cellpadding="0" border="0">
-            <tr>
-                <td valign="top" align="left">
+<tr><td valign="top" align="left">
                     <ul style="float:left; list-style-type: none;">
                         <li>Pasul 1</br>  Alegeti filmul</li>
                         <li>Pasul 2 </br>  Alegeti biletele</li>
@@ -382,7 +379,7 @@ foreach ($locuri as $key => $value) {
 <span style="position:absolute; top:345; right:7;">12</span>
 </div>
 
-<div style="width:200px; height:400px; float:right; margin-top:50px; background-color:red; margin-right:100px;">
+<div style="width:200px; height:400px; float:right; margin-top:50px;margin-right:100px;">
 
     <table style="margin-top:100px;">
         <?php while ($row = mysql_fetch_array($result)) : ?>
@@ -394,7 +391,6 @@ foreach ($locuri as $key => $value) {
 
     </table>
 </div>
-
 
 </div>
 </td>

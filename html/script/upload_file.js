@@ -20,18 +20,19 @@ $(function () {
         var durata = $('#durata').val();
         var descriere = $('#descriere').val();
         var regia = $('#regia').val();
-        var imagine = $('#imagine').val();
+        var fileselect = $('#fileselect').val();
         var rol = $('#rol').val();
+        console.log(imagine);
 
         var xhr = new XMLHttpRequest();
         if (xhr.upload && file.type == "image/jpeg") {
             console.log("Uploading file " + file.name + "through js");
             // start upload
             var action = $("#upload").prop('action');
-            xhr.addEventListener("load", function () {
+           xhr.addEventListener("load", function () {
                 alert("Inregistrare cu succes!");
             }, false);
-            xhr.addEventListener("load",function () {
+            xhr.addEventListener("error",function () {
                 alert("An error occurred while transferring the file.");
             }, false);
             xhr.open("POST", action, true);
@@ -44,7 +45,7 @@ $(function () {
             data.append('durata', durata);
             data.append('descriere', descriere);
             data.append('regia', regia);
-            data.append('imagine', imagine);
+            data.append('imagine', fileselect);
             data.append('rol', rol);
             data.append('aFile', file);
             xhr.send(data);

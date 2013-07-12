@@ -85,7 +85,7 @@ $result=mysql_query($query);
                 <table id="table_films">
                     <tr>
                         <td><label for="titlu">Titlu: </label></td>
-                        <td><input type="text" name="titlu" id="titlu" required=""></td>
+                        <td><input type="text" name="titlu" id="titlu"></td>
                     </tr>
                     <tr>
                         <td><label for="gen">Gen: </label></td>
@@ -101,28 +101,28 @@ $result=mysql_query($query);
                     </tr>
                     <tr>
                         <td><label for="an">Anul aparitiei: </label></td>
-                        <td><input type="text" name="an" id="an" required=""></td>
+                        <td><input type="text" name="an" id="an"></td>
                     </tr>
                     <tr>
-                        <td><label for="timp_desf">Durata: </label></td>
-                        <td><input type="text" name="durata" id="durata" required=""></td>
+                        <td><label for="durata">Durata: </label></td>
+                        <td><input type="text" name="durata" id="durata"></td>
                     </tr>
                     <tr>
                         <td><label for="descriere">Descriere: </label></td>
-                        <td><textarea rows="4" cols="30" name="descriere" id="descriere" required="">
+                        <td><textarea rows="4" cols="30" name="descriere" id="descriere">
                             </textarea></td>
                     </tr>
                     <tr>
                         <td><label for="regia">Regia: </label></td>
-                        <td><input type="text" name="regia" id="regia" required=""></td>
+                        <td><input type="text" name="regia" id="regia"></td>
                     </tr>
                     <tr>
                         <td><label for="uploadedfile">Imagine: </label></td>
-                        <td><input type="file" id="fileselect" name="fileselect[]" required=""></td>
+                        <td><input type="file" id="fileselect" name="fileselect[]"></td>
                     </tr>
                     <tr>
-                        <td><label for="roluri_principale">Roluri principale: </label></td>
-                        <td><input type="text" name="rol" id="rol" required=""></td>
+                        <td><label for="rol">Roluri principale: </label></td>
+                        <td><input type="text" name="rol" id="rol"></td>
                     </tr>
                     <tr>
                         <td></td>
