@@ -49,39 +49,46 @@ foreach ($locuri as $key => $value) {
     </script>
     <script>
         $(function () {
-            var array = [];
-            var original_image = 'url(images/SeatGreen.png)';
-            var second_image = 'url(images/YellowSeat.png)';
+            var locuri = [];
+            var original_image = 'images/SeatGreen.png';
+            var second_image = 'images/YellowSeat.png';
 
             $("button").click(function () {
-                var locuri = array.join('|');
-                console.log(locuri);
+                var locuri = locuri.join('|');
                 $("#content").load("detalii_rezervare.php?locuri=" + locuri);
             });
 
-
             $(".seat").click(function (event) {
                 var id = $(this).attr('id');
-
-                if (event.target.style.backgroundImage = original_image)
-                    event.target.style.backgroundImage = second_image;
-                else{
-                    event.target.style.backgroundImage = original_image;
-                }
-                if (array.indexOf(id) == -1) {
-                    array.push(id);
+                var new_image;
+                if (locuri.length < <?= $nrBilete;?>) {
+                    if (isOriginalImage()) {
+                        new_image = "url(http://licenta.irina.ro/" + second_image + ")";
+                    } else {
+                        new_image = "url(http://licenta.irina.ro/" + original_image + ")";
+                    }
+                    event.target.style.backgroundImage = new_image;
+                    if (locuri.indexOf(id) == -1) {
+                        locuri.push(id);
+                    } else {
+                        locuri.splice(locuri.indexOf(id), 1);
+                    }
+                } else if (locuri.length == <?= $nrBilete;?> && isNewImage()) {
+                    locuri.splice(locuri.indexOf(id), 1);
+                    new_image = "url(http://licenta.irina.ro/" + original_image + ")";
+                    event.target.style.backgroundImage = new_image;
                 } else {
-                    array.splice(array.indexOf(id), 1);
-                }
-                console.log(array);
-                if (array.length > <?= $nrBilete;?>) {
                     alert("Numarul de locuri selectate este mai mare decat nr de bilete");
-
-
                 }
-
             });
 
+            function isOriginalImage() {
+                return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + original_image + ")";
+            }
+
+            function isNewImage() {
+                return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + second_image + ")";
+            }
         });
     </script>
 

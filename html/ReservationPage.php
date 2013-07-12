@@ -61,19 +61,13 @@
             $('select[id^="redurecere_"] :selected').each(function(idx, value) {
                 var nrBilete = $(value).text();
                 var validInput2 = nrBilete > 0;
-                console.log("validInput2: " + validInput2);
                 validInput = validInput || validInput2;
-                console.log("validInput = " + validInput);
                 nextPageUrl += "red" + ++idx + "=" + nrBilete + "&"
             });
             nextPageUrl = nextPageUrl.substr(0, nextPageUrl.length - 1);
-            console.log(nextPageUrl);
-
-            console.log("validInput = " + validInput);
             if (validInput === false) {
                 alert("Nu ati selectat biletele.Va rugam alegeti biletele!");
             } else {
-                console.log(nextPageUrl);
                 $("#content").load(nextPageUrl);
             }
         });
