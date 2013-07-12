@@ -1,77 +1,32 @@
 <link href="preturi.css" rel="stylesheet" type="text/css"/>
-
-            <span class="icon_hold">
-                <img id="images" src="">
-            </span>
-            <h3><strong>Preturi</strong></h3>
-            <h2>MyCinema Galati, Bucuresti</h2>
-            <table id="pret_tabel">
-                <tbody>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Digital</th>
-                    <th>Digital 3D</th>
-                    <th>IMAX 2D</th>
-                    <th>IMAX 3D</th>
-                    <th>IMAX nonDMR</th>
-                    <th>VIP 2D</th>
-                    <th>VIP 3D</th>
-                </tr>
-                <tr>
-                    <td>Luni-Joi</td>
-                    <td>inainte de ora 17:00 - 17.5 lei; dupa ora 17:00 - 21 lei</td>
-                    <td>inainte de ora 17:00 - 22.5 lei; dupa ora 17:00 - 24 lei</td>
-                    <td>inainte de ora 17:00 - 19.5 lei; dupa ora 17:00 - 23 lei</td>
-                    <td>inainte de ora 17:00 - 27.5 lei; dupa ora 17:00 - 29 lei</td>
-                    <td>inainte de ora 17:00 - 17.5 lei; dupa ora 17:00 - 19.5 lei</td>
-                    <td>52 lei</td>
-                    <td>57 lei</td>
-                </tr>
-                <tr>
-                    <td>Vineri-Duminica</td>
-                    <td>inainte de ora 17:00 - 24 lei; dupa ora 17:00 - 25.5 lei</td>
-                    <td>inainte de ora 17:00 - 28 lei; dupa ora 17:00 - 29.5 lei</td>
-                    <td>inainte de ora 17:00 - 26 lei; dupa ora 17:00 - 27.5 lei</td>
-                    <td>inainte de ora 17:00 - 33 lei; dupa ora 17:00 - 34.5 lei</td>
-                    <td>inainte de ora 17:00 - 23.5 lei; dupa ora 17:00 - 24.5 lei</td>
-                    <td>62 lei</td>
-                    <td>67 lei</td>
-                </tr>
-                <tr>
-                    <td>Elevi, Studenti</td>
-                    <td><b>Luni-Joi</b><br/>inainte de ora 17:00 - 15 lei; dupa ora 17:00 - 16 lei
-                        <b>Vineri-Duminica</b><br/>inainte de ora 17:00 - 16 lei; dupa ora 17:00 - 17 lei
-                    </td>
-                    <td><b>Luni-Joi</b><br/> inainte de ora 17:00 - 17.5 lei; dupa ora 17:00 - 20 lei
-                        <b>Vineri-Duminica</b><br/> inainte de ora 17:00 - 18 lei; dupa ora 17:00 - 20 lei
-                    </td>
-                    <td><b>Luni-Joi</b><br/> inainte de ora 17:00 - 17 lei; dupa ora 17:00 - 18 lei
-                        <b>Vineri-Duminica</b><br/> inainte de ora 17:00 - 18 lei; dupa ora 17:00 - 19 lei
-                    </td>
-                    <td><b>Luni-Joi</b><br/> inainte de ora 17:00 - 22.5 lei; dupa ora 17:00 - 25 lei
-                        <b>Vineri-Duminica</b><br/> inainte de ora 17:00 - 23 lei; dupa ora 17:00 - 25 lei
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>Pensionari</td>
-                    <td><b>Luni-Joi</b><br/>inainte de ora 17:00 - 15 lei; dupa ora 17:00 - 16 lei
-                        <b>Vineri-Duminica</b><br/>inainte de ora 17:00 - 16 lei; dupa ora 17:00 - 17 lei
-                    </td>
-                    <td><b>Luni-Joi</b><br/> inainte de ora 17:00 - 17.5 lei; dupa ora 17:00 - 20 lei
-                        <b>Vineri-Duminica</b><br/> inainte de ora 17:00 - 18 lei; dupa ora 17:00 - 20 lei
-                    </td>
-                    <td><b>Luni-Joi</b><br/> inainte de ora 17:00 - 17 lei; dupa ora 17:00 - 18 lei
-                        <b>Vineri-Duminica</b><br/> inainte de ora 17:00 - 18 lei; dupa ora 17:00 - 19 lei
-                    </td>
-                    <td><b>Luni-Joi</b><br/> inainte de ora 17:00 - 22.5 lei; dupa ora 17:00 - 25 lei
-                        <b>Vineri-Duminica</b><br/> inainte de ora 17:00 - 23 lei; dupa ora 17:00 - 25 lei
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
+<span class="icon_hold">
+   <img id="images" src="">
+</span>
+<h3 style="padding-top: 3px;">
+    <strong style="margin-left:20px; margin-top:10px;">Preturi</strong>
+</h3>
+<div style="margin-left:10px; margin-top:10px;font-size:1.5em;">
+    <h2><strong>MyCinema Galati, Bucuresti </strong></h2></br>
+    <table id="pret_tabel">
+        <tr>
+            <th>&nbsp;</th>
+            <th><b>Digital</b></th>
+            <th><b>Digital 3D</b></th>
+        </tr>
+        <tr>
+            <th><b>Luni-Duminica</b></th>
+            <td> 18.5 lei</td>
+            <td> 18.5 lei</td>
+        </tr>
+        <tr>
+            <th><b>Elevi, Studenti</b></th>
+            <td> 15.5 lei</td>
+            <td> 15.5 lei</td>
+        </tr>
+        <tr>
+            <td><b>Pensionari</b></td>
+            <td> 15.5 lei</td>
+            <td> 15.5 lei</td>
+        </tr>
+    </table>
+</div>

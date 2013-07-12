@@ -25,17 +25,18 @@ function detalii_film(){
     $cinema = $_GET['cinema'];
     $film = $_GET['film'];
 
-    $query= "
-            SELECT f.titlu, g.nume_gen, p.ora, c.nume, p.idProgram
-                  , GROUP_CONCAT(DISTINCT p.ora ORDER BY p.ora ASC SEPARATOR ',') as hours
+    $query= " SELECT
+              f.titlu, g.nume_gen, c.nume, f.idFilm
+              , GROUP_CONCAT(DISTINCT CONCAT(p.ora, '|', p.idProgram) ORDER BY p.ora ASC SEPARATOR ',') AS hours
             FROM filme f
               INNER JOIN program p ON f.idFilm = p.idFilm
               INNER JOIN gen_film g ON f.idGen = g.id
               INNER JOIN cinema c ON p.idCinema = c.idCinema
             WHERE c.nume='$cinema'
-                 AND f.titlu='$film'
-                AND data=CURDATE()
+                  AND f.titlu='$film'
+                  AND data=CURDATE()
             GROUP BY f.titlu
+            ORDER BY f.titlu
             ";
 
     $result = mysql_query($query);
@@ -53,10 +54,11 @@ function detalii_film(){
                 <div class='rez_info' style='width:190px;'>
                     <table>
                         <tr>";
-        foreach ($hours_array as $ore) :
+        foreach ($hours_array as $hour) :
+            $hour_array = explode('|', $hour);
             echo "<td style='margin:0;'>
-                        <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=${row['idProgram']}' style='cursor:pointer; margin-top:5px;'>
-                       <p style='color:white; margin-left: 20px;'>$ore</p></a></td>";
+                                        <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=${hour_array[1]}' style='cursor:pointer; margin-top:5px;'>
+                                       <p style='color:white; margin-left: 20px;'>${hour_array[0]}</p></a></td>";
         endforeach;
         echo "     </tr>
                     </table>
@@ -82,6 +84,7 @@ function afisare_lista(){
             WHERE c.nume='$cinema'
                   AND data=CURDATE()
             GROUP BY f.titlu
+            ORDER BY f.titlu
             ";
 
     $result = mysql_query($query);
@@ -89,7 +92,6 @@ function afisare_lista(){
     while ($row = mysql_fetch_array($result)) :
         $hours = $row['hours'];
         $hours_array = explode(",", $hours);
-        var_dump($hours_array);
        echo "<div class='det_prog'>
                 <div class='leadin'>
                     <div class='info' style=;width:314px;'>
@@ -120,66 +122,19 @@ function afisare_lista(){
 function program_data(){
     $data=$_GET['data'];
     $cinema=$_GET['cinema'];
+
     $query= "
-            SELECT f.titlu, g.nume_gen, p.ora, c.idCinema, p.idProgram
-                  , GROUP_CONCAT(DISTINCT p.ora ORDER BY p.ora ASC SEPARATOR ',') as hours
+            SELECT
+              f.titlu, g.nume_gen, c.nume, f.idFilm
+              , GROUP_CONCAT(DISTINCT CONCAT(p.ora, '|', p.idProgram) ORDER BY p.ora ASC SEPARATOR ',') AS hours
             FROM filme f
               INNER JOIN program p ON f.idFilm = p.idFilm
               INNER JOIN gen_film g ON f.idGen = g.id
               INNER JOIN cinema c ON p.idCinema = c.idCinema
             WHERE c.nume='$cinema'
-                AND data='$data'
+                  AND data='$data'
             GROUP BY f.titlu
-            ORDER BY f.titlu";
-
-    $result = mysql_query($query);
-
-    while ($row = mysql_fetch_array($result)) :
-        $hours = $row['hours'];
-        $hours_array = explode(",", $hours);
-        echo "<div class='det_prog'>
-                <div class='leadin'>
-                    <div class='info' style=;width:314px;'>
-                        <p><b>${row['titlu']}</b></p> <br/>
-                        <p><em> ${row['nume_gen']}</em></p><br/>
-                        <p><a href='filme.php?film=${row['titlu']}'>Detalii Film..</a></p>
-                    </div>
-                <div class='rez_info' style='width:190px;'>
-                    <table>
-                        <tr>";
-        foreach ($hours_array as $ore) :
-            echo "<td style='margin:0;'>
-                        <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=${row['idProgram']}' style='cursor:pointer; margin-top:5px;'>
-                       <p style='color:white; margin-left: 20px;'>$ore</p></a></td>";
-        endforeach;
-        echo "     </tr>
-                    </table>
-                </div>
-                </div>
-            </div><hr/> ";
-    endwhile;
-
-}
-
-//cautare film in functie 4 criterii
-
-function cauta_film(){
-    $cinema = $_GET['cinema'];
-    $idGen = $_GET['gen'];
-    $titlu = $_GET['titlu'];
-    $data = $_GET['data'];
-    $query= "
-            SELECT f.titlu, g.nume_gen, p.ora, c.idCinema, p.idProgram
-                  , GROUP_CONCAT(DISTINCT p.ora ORDER BY p.ora ASC SEPARATOR ',') as hours
-            FROM filme f
-              INNER JOIN program p ON f.idFilm = p.idFilm
-              INNER JOIN gen_film g ON f.idGen = g.id
-              INNER JOIN cinema c ON p.idCinema = c.idCinema
-            WHERE c.idCinema='$cinema'
-                AND p.data='$data'
-                AND f.idGen='$idGen'
-                  AND f.titlu='$titlu'
-            GROUP BY f.titlu
+            ORDER BY f.titlu
             ";
 
     $result = mysql_query($query);
@@ -197,10 +152,66 @@ function cauta_film(){
                 <div class='rez_info' style='width:190px;'>
                     <table>
                         <tr>";
-        foreach ($hours_array as $ore) :
+        foreach ($hours_array as $hour) :
+            $hour_array = explode('|', $hour);
             echo "<td style='margin:0;'>
-                        <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=${row['idProgram']}' style='cursor:pointer; margin-top:5px;'>
-                       <p style='color:white; margin-left: 20px;'>$ore</p></a></td>";
+                                        <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=${hour_array[1]}' style='cursor:pointer; margin-top:5px;'>
+                                       <p style='color:white; margin-left: 20px;'>${hour_array[0]}</p></a></td>";
+        endforeach;
+        echo "     </tr>
+                    </table>
+                </div>
+                </div>
+            </div><hr/> ";
+    endwhile;
+
+
+}
+
+//cautare film in functie 4 criterii
+
+function cauta_film(){
+    $cinema = $_GET['cinema'];
+    $gen = $_GET['gen'];
+    $film = $_GET['film'];
+    $data = $_GET['data'];
+    $query= "
+             SELECT
+              f.titlu, g.nume_gen, c.nume, f.idFilm
+              , GROUP_CONCAT(DISTINCT CONCAT(p.ora, '|', p.idProgram) ORDER BY p.ora ASC SEPARATOR ',') AS hours
+            FROM filme f
+              INNER JOIN program p ON f.idFilm = p.idFilm
+              INNER JOIN gen_film g ON f.idGen = g.id
+              INNER JOIN cinema c ON p.idCinema = c.idCinema
+            WHERE c.nume='$cinema'
+                  AND data='$data'
+                  AND f.titlu='$film'
+                  AND g.nume_gen='$gen'
+            GROUP BY f.titlu
+            ORDER BY f.titlu
+            ";
+
+
+    $result = mysql_query($query);
+
+    while ($row = mysql_fetch_array($result)) :
+        $hours = $row['hours'];
+        $hours_array = explode(",", $hours);
+        echo "<div class='det_prog'>
+                <div class='leadin'>
+                    <div class='info' style=;width:314px;'>
+                        <p><b>${row['titlu']}</b></p> <br/>
+                        <p><em> ${row['nume_gen']}</em></p><br/>
+                        <p><a href='filme.php?film=${row['titlu']}'>Detalii Film..</a></p>
+                    </div>
+                <div class='rez_info' style='width:190px;'>
+                    <table>
+                        <tr>";
+        foreach ($hours_array as $hour) :
+            $hour_array = explode('|', $hour);
+            echo "<td style='margin:0;'>
+                                        <a style='text-decoration: none; margin-right:30px;' class='btn_r' href='ReservationPage.php?idProgram=${hour_array[1]}' style='cursor:pointer; margin-top:5px;'>
+                                       <p style='color:white; margin-left: 20px;'>${hour_array[0]}</p></a></td>";
         endforeach;
         echo "     </tr>
                     </table>
@@ -265,19 +276,18 @@ function cauta_film(){
             <li><a id="program" class="homeLinks" style="cursor:pointer;">Program</a></li>
             <li><a id="filme" href="filme.php" class="homeLinks" style="cursor:pointer;">Filme</a></li>
             <li><a id="promotii" class="homeLinks" style="cursor:pointer;">Promotii</a></li>
-            <li><a id="oferte" class="homeLinks" style="cursor:pointer;">Oferte</a></li>
         </ul>
 
         <div id="searchBody">
             <h3 style="margin-left:-11px;"><strong>Cauta in program</strong></h3>
-            <form action="" method="get">
+            <form action="program.php" method="get">
             <table id="search_table" width="100%" cellspacing="3" cellpadding="3" border="0" style="margin:0 auto">
                 <tr>
                     <td style="text-align:left;">Localitatea:</td>
                     <td style="text-align:left;">
                         <select style="text-align: right; width: 113px;" name="cinema" id="cinema">
                             <?php while ($row = mysql_fetch_array($result_cinema)) : ?>
-                                <option class="textbox" value="<?= $row['idCinema'] ?>"><?= $row['nume'] ?></option>
+                                <option class="textbox" value="<?= $row['nume'] ?>"><?= $row['nume'] ?></option>
                             <?php endwhile; ?>
                         </select>
                     </td>
@@ -288,7 +298,7 @@ function cauta_film(){
                         <select name="gen" id="gen" style=" text-align: right;"><?php
                             while($row=mysql_fetch_array($result_gen_1)) {
                                 ?>
-                                <option value="<?= $row['id'] ?>"><?= $row['nume_gen']?></option>
+                                <option value="<?= $row['nume_gen'] ?>"><?= $row['nume_gen']?></option>
 
                             <?php  }?>
                         </select>
@@ -297,7 +307,7 @@ function cauta_film(){
                 <tr>
                     <td style="text-align:left;">Titlu:</td>
                     <td style="text-align:left;">
-                        <input style=" width: 108px;" type="text" value="" style="width:90px" name="titlu" id="titlu"
+                        <input style=" width: 108px;" type="text" value="" style="width:90px" name="film" id="film"
                                size="11">
                     </td>
                 </tr>
@@ -332,7 +342,7 @@ function cauta_film(){
 
             <ul id="film_list">
                 <?php while ($row = mysql_fetch_array($result_gen)) : ?>
-                    <li><a  href="filme.php?idGen=<?= $row['id']?>" id="<?= $row['id']?>" class="filmsLink" style="cursor:pointer;"><?= $row['nume_gen'] ?></a></li>
+                    <li><a  href="filme.php?idGen=<?= $row['id']?>" id="<?= $row['id']?>" class="filmsLink" style=" background-image: url(images/star_16.png); cursor:pointer;"><?= $row['nume_gen'] ?></a></li>
                 <?php endwhile; ?>
             </ul>
         </div>
@@ -359,7 +369,7 @@ function cauta_film(){
                 <div id="change">
 
                     <?php
-                    if (isset($_GET['cinema']) && isset($_GET['gen'])&& isset($_GET['titlu']) && isset($_GET['data']))
+                    if (isset($_GET['cinema']) && isset($_GET['gen'])&& isset($_GET['film']) && isset($_GET['data']))
                         cauta_film();
                     elseif (isset($_GET['data']) && isset($_GET['cinema'])) {
                         program_data();

@@ -85,19 +85,18 @@ $result_gen_1 = mysql_query($query_gen);
             <li><a id="program" class="homeLinks" style="cursor:pointer;">Program</a></li>
             <li><a id="filme" href="filme.php" class="homeLinks" style="cursor:pointer;">Filme</a></li>
             <li><a id="promotii" class="homeLinks" style="cursor:pointer;">Promotii</a></li>
-            <li><a id="oferte" class="homeLinks" style="cursor:pointer;">Oferte</a></li>
         </ul>
 
         <div id="searchBody">
             <h3 style="margin-left:-11px;"><strong>Cauta in program</strong></h3>
+            <form action="program.php" method="get">
             <table id="search_table" width="100%" cellspacing="3" cellpadding="3" border="0" style="margin:0 auto">
-                <tbody>
                 <tr>
                     <td style="text-align:left;">Localitatea:</td>
                     <td style="text-align:left;">
                         <select style="text-align: right; width: 113px;" name="cinema" id="cinema">
                             <?php while ($row = mysql_fetch_array($result_cinema)) : ?>
-                                <option class="textbox" value="<?= $row['idCinema'] ?>"><?= $row['nume'] ?></option>
+                                <option class="textbox" value="<?= $row['nume'] ?>"><?= $row['nume'] ?></option>
                             <?php endwhile; ?>
                         </select>
                     </td>
@@ -108,7 +107,7 @@ $result_gen_1 = mysql_query($query_gen);
                         <select name="gen" id="gen" style=" text-align: right;"><?php
                             while($row=mysql_fetch_array($result_gen_1)) {
                                 ?>
-                                <option value="<?= $row['id'] ?>"><?= $row['nume_gen']?></option>
+                                <option value="<?= $row['nume_gen'] ?>"><?= $row['nume_gen']?></option>
 
                             <?php  }?>
                         </select>
@@ -117,7 +116,7 @@ $result_gen_1 = mysql_query($query_gen);
                 <tr>
                     <td style="text-align:left;">Titlu:</td>
                     <td style="text-align:left;">
-                        <input style=" width: 108px;" type="text" value="" style="width:90px" name="titlu" id="titlu"
+                        <input style=" width: 108px;" type="text" value="" style="width:90px" name="film" id="film"
                                size="11">
                     </td>
                 </tr>
@@ -139,7 +138,6 @@ $result_gen_1 = mysql_query($query_gen);
                         <input style="cursor:pointer;" class="submit" type="submit" value="CAUTA" id="btn_cauta">
                     </td>
                 </tr>
-                </tbody>
             </table>
         </form>
         </div>
@@ -153,7 +151,7 @@ $result_gen_1 = mysql_query($query_gen);
 
             <ul id="film_list">
                 <?php while ($row = mysql_fetch_array($result_gen)) : ?>
-                <li><a href="filme.php?idGen=<?= $row['id']?>" id="<?= $row['id']?>" class="filmsLink" style="cursor:pointer;"><?= $row['nume_gen'] ?></a></li>
+                <li><a href="filme.php?idGen=<?= $row['id']?>" id="<?= $row['id']?>" class="filmsLink" style="cursor:pointer; background-image: url(images/star_16.png);" ><?= $row['nume_gen'] ?> </a></li>
                 <?php endwhile; ?>
             </ul>
         </div>

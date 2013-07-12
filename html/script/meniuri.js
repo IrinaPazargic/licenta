@@ -127,16 +127,16 @@ $(function () {
         });
     });
 
-
-   /* $("#btn_cauta").click(function () {
+/*
+    $("#btn_cauta").click(function () {
         var cinema = $('#cinema :selected').text();
-        var idGen = $('#gen :selected').prop('value');
-        var titlu = $("#titlu").val();
+        var gen = $('#gen :selected').text();
+        var film = $("#titlu").val();
         var data = $('#data :selected').text();
         console.log(cinema + idGen + titlu + data);
         $.ajax({
             type: "GET",
-            url: "program.php?cinema=" + cinema + "&idGen=" + idGen + "&titlu=" + titlu + "&data=" + data,
+            url: "program.php?cinema=" + cinema + "&gen=" + gen + "&film=" + film + "&data=" + data,
             data: "",
             success: function (data) {
                 $('#news').html(data);
