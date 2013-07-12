@@ -15,7 +15,7 @@ require_once 'config.php';
             <li><a id="login" class="current" href="login.php">Log in</a></li>
         </ul>
         <div style="clear:both;" id="form">
-            <form action="check_login.php" method="post" id="myform" enctype="multipart/form-data">
+            <form action="check_login.php" method="post" id="myform">
                 <fieldset>
                     <legend>Pagina de logare</legend>
                     <p>

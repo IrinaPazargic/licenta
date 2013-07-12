@@ -12,18 +12,17 @@ if ($mysqli->connect_errno) {
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$stat1 = $mysqli->prepare("SELECT id FROM users WHERE username = '$username' AND password =                              md5('$password')");
-$stat1->execute();
-$stat1->bind_result($resUser);
-$stat1->fetch();
+$stat1 = $mysqli->query("SELECT id FROM users WHERE username ='$username'");
+$count = $stat1->num_rows;
 
-if ($resUser > 0) {
-    echo "User $username existent!";
+var_dump($count);
 
+if ($count == 1) {
+    echo "User $username existent. Incercat altceva!";
 }
+
 $stat1->close();
 
-$idUser = $resUser;
 $stat2 = $mysqli->prepare("INSERT INTO users (username, password) VALUES ('$username', md5('$password'))");
 $success = $stat2->execute();
 if (!$success) {
@@ -31,7 +30,6 @@ if (!$success) {
     die("Inregistrare user esuata!");
 }
 $idUser = $stat2->insert_id;
-$mysqli->commit();
 $stat2->close();
 
 $nume = $_POST['nume'];
@@ -49,12 +47,9 @@ if (!$success) {
 } else if ($affRows == 0) {
     echo "Nu s-a putut inregistra administratorul cu Numele $nume si user-ul $username";
 }else {
-    echo "Administratorul cu username-ul $username s-a salvat cu succes! Conectati-va la pagina de administrare accesand meniu Log in!";
+    echo "Administratorul cu username-ul $username s-a salvat cu succes! Conectati-va la pagina de administrare accesand meniu <a href='login.php' style='text-decoration: none; color:blue;'> Log in </a>!";
 }
 
 $mysqli->commit();
 $stat3->close();
-$mysqli->close();
-
-$stat1->close();
 $mysqli->close();

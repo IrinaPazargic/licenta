@@ -35,7 +35,7 @@
       <column name="telefon" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
       <column name="id_users" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="users_ibfk_1" columns="id_users" ref-table="users" ref-schema="" ref-catalog="cinemadb" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="detalii_membri_ibfk_1" columns="id_users" ref-table="users" ref-schema="" ref-catalog="cinemadb" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
     </table>
     <table name="filme" schema="" catalog="cinemadb" type="TABLE">
       <column name="idFilm" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -132,9 +132,10 @@
     <table name="users" schema="" catalog="cinemadb" type="TABLE">
       <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="username" sqlType="VARCHAR" length="40" precision="0" nullable="false" jdbcType="12"/>
-      <column name="password" sqlType="VARCHAR" length="30" precision="0" nullable="true" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" length="150" precision="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="users_ibfk_1" table="detalii_membri" schema="" catalog="cinemadb" columns="id_users"/>
+      <exported-key name="detalii_membri_ibfk_1" table="detalii_membri" schema="" catalog="cinemadb" columns="id_users"/>
+      <index name="username" unique="true" columns="username"/>
     </table>
   </data-source>
 </component>
