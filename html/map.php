@@ -4,14 +4,19 @@ require_once'config.php';
 $query="select idCinema, nume from cinema";
 $result=mysql_query($query);
 $row=mysql_fetch_array($result);
-$rows=array();
 
+$judete =  array(
+    "satuMare" => "Satu Mare",
+    "maramures" => "Maramures",
+);
 ?>
+
 <script src="script/meniuri.js"></script>
 <span class="icon_hold">
                 <img id="images" src="">
             </span>
 <h3><strong>Cinema-ul tau</strong></h3>
+
 <div>
     <ul id="map_block" class="mapRomania">
         <li><a class="satuMare" href="#">Satu Mare</a></li>
@@ -59,3 +64,29 @@ $rows=array();
         <li><a class="tulcea" href="#">Tulcea</a></li>
     </ul>
 </div>
+
+
+<div>
+    <ul id="map_block" class="mapRomania">
+        <?php
+        foreach ($judete as $class => $name) {
+            $href = "#";
+            if (existaCinemaInOras($name)) {
+                $href = "?cinema=$name";
+                echo "<li class='ocupat'><a class='${class}' href='${href}'>$name<span class='effect'>&nbsp;</span></a></li>";
+            } else {
+                echo "<li><a class='${class}' href='${href}'>$name</a></li>";
+            }
+        }
+
+        function existaCinemaInOras($numeCinema)
+        {
+            $query = "SELECT nume FROM cinema WHERE nume = '$numeCinema'";
+            $result = mysql_query($query);
+            return mysql_num_rows($result) == 1;
+        }
+        ?>
+    </ul>
+</div>
+
+
