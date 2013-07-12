@@ -56,8 +56,8 @@ CREATE TABLE `detalii_membri` (
   `id_users` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_users` (`id_users`),
-  CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+  CONSTRAINT `detalii_membri_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `detalii_membri` (
 
 LOCK TABLES `detalii_membri` WRITE;
 /*!40000 ALTER TABLE `detalii_membri` DISABLE KEYS */;
-INSERT INTO `detalii_membri` VALUES (11,'irina','PAZARGIC','chitbulitza2005@yahoo.com','micro 17, barbu 1',743032157,13),(12,'dana','matei','chinesse_dana@yahoo.com','c34dfgvgf',73435343,14),(14,'boeru','aida','chinesse_dana@yahoo.com','Para mare, nr 5',NULL,15),(15,'boeru','aida','chinesse_dana@yahoo.com','Para mare, nr 5',NULL,15),(16,'boeru','aida','chinesse_dana@yahoo.com','Para mare, nr 5',NULL,15),(19,'mama','mea','chinesse_dana@yahoo.com','micro 17, barbu 1',NULL,18),(39,'antonel','aida','chinesse_dana@yahoo.com','Para mare, nr 5',743032157,38),(40,'antonel','aida','chinesse_dana@yahoo.com','Para mare, nr 5',743032157,39);
+INSERT INTO `detalii_membri` VALUES (45,'Pazargic','Irina','pazargic_irina@yahoo.com','Galati, Micro 17, Str. Barbosi, Nr. 61, Bl. B1',743032157,44),(46,'Boeru','Aida','aida_gaby@yahoo.com','Galati, Micro 17, Str. Barbosi, Nr. 61, Bl. B1',743032157,45),(47,'Pazargic','Antonel','antonel.pazargic@gmail.com','Galati, Micro 17, Str. Barbosi, Nr. 61, Bl. B1',743032157,46);
 /*!40000 ALTER TABLE `detalii_membri` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +90,7 @@ CREATE TABLE `filme` (
   PRIMARY KEY (`idFilm`),
   KEY `idGen` (`idGen`),
   CONSTRAINT `gen_film_ibfk_1` FOREIGN KEY (`idGen`) REFERENCES `gen_film` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `filme` (
 
 LOCK TABLES `filme` WRITE;
 /*!40000 ALTER TABLE `filme` DISABLE KEYS */;
-INSERT INTO `filme` VALUES (13,'True Blood',1990,120,'                            Unul dintre cele bune','dana','uploads/bg.jpg','Irina Pazargic',1),(14,'Robbin',1231,0,'                            asda','asda','uploads/bg.jpg','Irina Pazargic',2),(15,'Friends',2005,200,'                            bun','Mama Mea','uploads/BackButton.jpg','Irina Pazargic',1);
+INSERT INTO `filme` VALUES (13,'True Blood',1990,120,'                            Unul dintre cele bune','dana','uploads/bg.jpg','Irina Pazargic',1),(14,'Robbin',1231,0,'                            asda','asda','uploads/bg.jpg','Irina Pazargic',2),(15,'Friends',2005,200,'                            bun','Mama Mea','uploads/BackButton.jpg','Irina Pazargic',1),(16,'Hangover 3',2013,110,'                            Comedie buna','Mama ','uploads/lone_ranger.jpg','Dana matei',4),(17,'Toy story',2009,110,'Desene animate','Robbin williams','uploads/snitch-landscape_s.jpg','Dana matei',2),(18,'Godzilla',2001,120,'                            as','Robbin williams','uploads/world_war.jpg','Irina Pazargic',1),(19,'Mummy',2001,100,'                            asda','Dana','uploads/top_navi.jpg','Irina Pazargic',9),(20,'',0,0,'                            ','','uploads/top_navi.jpg','',1),(21,'',0,0,'                            ','','uploads/top_navi.jpg','',1),(22,'',0,0,'                            ','','uploads/top_navi.jpg','',1),(23,'',0,0,'                            ','','uploads/top_navi.jpg','',1),(24,'',0,0,'                            ','','uploads/top_navi.jpg','',1),(25,'',0,0,'                            ','','uploads/top_navi.jpg','',1),(26,'',0,0,'                            ','','uploads/top_navi.jpg','',1),(27,'',0,0,'                            ','','uploads/top_navi.jpg','',1),(28,'',0,0,'                            ','','uploads/top_navi.jpg','',1);
 /*!40000 ALTER TABLE `filme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +145,7 @@ CREATE TABLE `locuri_rezervate` (
   KEY `idReducere` (`idReducere`),
   CONSTRAINT `locuri_rezervate_ibfk_1` FOREIGN KEY (`id_rezervare`) REFERENCES `rezervare` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `locuri_rezervate_ibfk_2` FOREIGN KEY (`idReducere`) REFERENCES `reduceri` (`idReducere`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +154,7 @@ CREATE TABLE `locuri_rezervate` (
 
 LOCK TABLES `locuri_rezervate` WRITE;
 /*!40000 ALTER TABLE `locuri_rezervate` DISABLE KEYS */;
-INSERT INTO `locuri_rezervate` VALUES (1,3,1,4);
+INSERT INTO `locuri_rezervate` VALUES (1,3,1,4),(2,6,2,2),(3,6,3,2),(4,6,4,3);
 /*!40000 ALTER TABLE `locuri_rezervate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,7 +172,7 @@ CREATE TABLE `persoane` (
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `telefon` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -181,7 +181,7 @@ CREATE TABLE `persoane` (
 
 LOCK TABLES `persoane` WRITE;
 /*!40000 ALTER TABLE `persoane` DISABLE KEYS */;
-INSERT INTO `persoane` VALUES (1,'pazargic','irina','chitbulitza2005@yahoo.com','0743032157'),(2,'paza','iri','chitbulitza2005@yahoo.com','466778'),(3,'irina','pazargic','chitbulitza2005@yahoo.com','2234333'),(4,'pazargic','valeria','chinesse_dana@yahoo.com','0234242'),(5,'','','','');
+INSERT INTO `persoane` VALUES (1,'pazargic','irina','chitbulitza2005@yahoo.com','0743032157'),(2,'paza','iri','chitbulitza2005@yahoo.com','466778'),(3,'irina','pazargic','chitbulitza2005@yahoo.com','2234333'),(4,'pazargic','valeria','chinesse_dana@yahoo.com','0234242'),(5,'','','',''),(6,'aaaaa','aa','antonel.pazargic@gmail.com','aaaaa'),(7,'a','a','antonel.pazargic@gmail.com','a');
 /*!40000 ALTER TABLE `persoane` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +206,7 @@ CREATE TABLE `program` (
   CONSTRAINT `program_ibfk_1` FOREIGN KEY (`idFilm`) REFERENCES `filme` (`idFilm`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `program_ibfk_2` FOREIGN KEY (`idCinema`) REFERENCES `cinema` (`idCinema`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `program_ibfk_3` FOREIGN KEY (`idSala`) REFERENCES `sali` (`idSala`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +215,7 @@ CREATE TABLE `program` (
 
 LOCK TABLES `program` WRITE;
 /*!40000 ALTER TABLE `program` DISABLE KEYS */;
-INSERT INTO `program` VALUES (1,13,100,'2013-07-10','12:00',1),(2,14,101,'2013-07-10','14:50',1),(3,13,101,'2013-07-10','14:50',1),(4,13,100,'2013-07-10','15:50',1),(5,14,100,'2013-07-10','20:30',1),(6,14,100,'2013-07-10','22:00',1),(7,13,100,'2013-07-11','20:00',1),(8,13,100,'2013-07-11','10:00',1);
+INSERT INTO `program` VALUES (1,13,100,'2013-07-12','12:00',1),(2,14,101,'2013-07-12','14:50',1),(3,13,101,'2013-07-12','14:50',1),(4,13,100,'2013-07-12','15:50',1),(5,14,100,'2013-07-12','20:30',1),(6,14,100,'2013-07-12','22:00',1),(7,13,100,'2013-07-13','20:00',1),(8,13,100,'2013-07-13','10:00',1),(9,15,100,'2013-07-13','12:00',1),(10,17,100,'2013-07-13','12:00',1),(11,14,101,'2013-07-13','12:00',1),(12,14,100,'2013-07-12','12:00',1);
 /*!40000 ALTER TABLE `program` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -261,7 +261,7 @@ CREATE TABLE `rezervare` (
   KEY `id_program` (`id_program`),
   CONSTRAINT `rezervare_ibfk_1` FOREIGN KEY (`id_persoana`) REFERENCES `persoane` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `rezervare_ibfk_2` FOREIGN KEY (`id_program`) REFERENCES `program` (`idProgram`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -270,7 +270,7 @@ CREATE TABLE `rezervare` (
 
 LOCK TABLES `rezervare` WRITE;
 /*!40000 ALTER TABLE `rezervare` DISABLE KEYS */;
-INSERT INTO `rezervare` VALUES (1,5,1,'');
+INSERT INTO `rezervare` VALUES (1,5,1,''),(2,6,8,'1_1|1_2'),(3,7,9,'1_1|1_2'),(4,1,9,'1_1|1_2|1_3');
 /*!40000 ALTER TABLE `rezervare` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -363,9 +363,10 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(40) NOT NULL,
-  `password` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+  `password` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -374,7 +375,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (13,'rubita','gigiiarba'),(14,'dana','123'),(15,'gigel','gigel123'),(18,'irina','26ecc99f7200903c5a5637281e2b83'),(19,'dana123','1fe6653445e194a899d99f46451fdd'),(23,'irinuca','1fe6653445e194a899d99f46451fdd'),(24,'irinuca','1fe6653445e194a899d99f46451fdd'),(28,'mamaia','1fe6653445e194a899d99f46451fdd'),(29,'mamaia','1fe6653445e194a899d99f46451fdd'),(38,'dana','202cb962ac59075b964b07152d234b'),(39,'dana','202cb962ac59075b964b07152d234b');
+INSERT INTO `users` VALUES (44,'DanaMatei','1fe6653445e194a899d99f46451fdd64'),(45,'AidaBoeru','1fe6653445e194a899d99f46451fdd64'),(46,'AntonelPazargic','95d5f157f46c2d45b3b661830782575c');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -387,4 +388,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-10 20:45:18
+-- Dump completed on 2013-07-12 23:39:43
