@@ -51,9 +51,9 @@ $result=mysql_query($query);
                     <fieldset>
                         <legend>
                             <a id="inregistrare" href="operatii_filme.php"
-                               style="background-color: red; text-decoration: none; color:black;"><span>Inregistrare film</span></a>
-                            <a id="cauta" style="background-color: gray;"><span>Cauta film</span></a>
-                            <a id="sterge" style="background-color: gray;"><span>Sterge film</span></a>
+                               style="background-color:#009933; text-decoration: none; color:black;"><span>Inregistrare film</span></a>
+                            <a id="cauta" style="background-color: #B0B0B0 ;"><span>Cauta film</span></a>
+                            <a id="sterge" style="background-color: #B0B0B0 ;"><span>Sterge film</span></a>
                         </legend>
                         <div id="div_content" style="visibility: visible">
                             <!-- Tabs content will be displayed here -->

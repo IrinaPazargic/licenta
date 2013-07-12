@@ -1,4 +1,13 @@
 $(function () {
+    var aNoutati = $("a[id='noutati']");
+    var aDespreNoi = $("a[id='despre_noi']");
+    var aPolitici = $("a[id='politici']");
+    var aContact = $("a[id='detalii_contact']");
+    var aPreturi = $("a[id='preturi']");
+
+    var buttonsArray = [aNoutati, aDespreNoi, aPolitici, aContact, aPreturi];
+
+
     $("#searchBody").show();
     $("#thirdNav").show();
 
@@ -39,18 +48,7 @@ $(function () {
             }
         });
     });
-    $("#oferte").click(function () {
-        $("#searchBody").hide();
-        $("#thirdNav").hide();
-        $.ajax({
-            type: "GET",
-            url: "oferte.php",
-            data: "",
-            success: function (data) {
-                $('#news').html(data);
-            }
-        });
-    });
+
     $("#map").click(function () {
         $("#searchBody").hide();
         $("#thirdNav").hide();
@@ -64,7 +62,9 @@ $(function () {
         });
     });
 
-    $("#noutati").click(function () {
+    aNoutati.click(function () {
+        highlightCurrentElement(buttonsArray, aNoutati);
+
         $("#searchBody").hide();
         $("#thirdNav").hide();
         $.ajax({
@@ -77,7 +77,8 @@ $(function () {
         });
     });
 
-    $("#despre_noi").click(function () {
+    aDespreNoi.click(function () {
+        highlightCurrentElement(buttonsArray, aDespreNoi);
         $("#searchBody").hide();
         $("#thirdNav").hide();
         $.ajax({
@@ -89,7 +90,8 @@ $(function () {
             }
         });
     });
-    $("#politici").click(function () {
+    aPolitici.click(function () {
+        highlightCurrentElement(buttonsArray, aPolitici);
         $("#searchBody").hide();
         $("#thirdNav").hide();
         $.ajax({
@@ -102,7 +104,8 @@ $(function () {
         });
     });
 
-    $("#preturi").click(function () {
+    aPreturi.click(function () {
+        highlightCurrentElement(buttonsArray, aPreturi);
         $("#searchBody").hide();
         $("#thirdNav").hide();
         $.ajax({
@@ -116,7 +119,8 @@ $(function () {
 
     });
 
-    $("#detalii_contact").click(function () {
+    aContact.click(function () {
+        highlightCurrentElement(buttonsArray, aContact);
         $.ajax({
             type: "GET",
             url: "contact.php",

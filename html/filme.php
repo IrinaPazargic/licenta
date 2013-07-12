@@ -130,26 +130,42 @@ function detalii_film(){
     <title>MyCinema</title>
     <link href="main.css" rel="stylesheet" type="text/css"/>
     <link href="program.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="blueberry.css" type="text/css" />
     <link href="romania_map.css" rel="stylesheet" type="text/css"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="script/meniuri.js"></script>
+    <script src="script/jquery.blueberry.js"></script>
+    <script src="script/commons.js"></script>
     <script>
-
+        $(window).load(function () {
+            $('.blueberry').blueberry();
+        });
     </script>
+<style>
+        #doc {
+            margin: 10px 0;
+        }
 
+        #content {
+            margin: 0 auto;
+            min-width: 740px;
+            max-width: 1140px;
+        }
+
+        .blueberry {
+            max-width: 800px;
+        }
+</style>
 </head>
 <body id="feature">
 <div id="header">
-    <div id="contact" class="copyright">
-        <p>Bine ati venit
-
-        <p>
-            <span class="icon_hold">
-                <img id="images" src="images/Phone-Icon-cinema.png">
-            </span>
-        <h4>0236 466 962</h4>
+        <span>
+            <img type="img" src="images/logo_1.gif">
+        </span>
+    <div id="contact">
+        <p><strong>Bine ati venit!</strong></p>
     </div>
-    <div id="nav" class="copyright">
+    <div id="nav">
         <ul id="mainNav">
             <li><a id="noutati" style="cursor:pointer;">Noutati</a></li>
             <li><a id="despre_noi" style="cursor:pointer;">Despre Noi</a></li>
@@ -158,19 +174,33 @@ function detalii_film(){
             <li><a id="detalii_contact" style="cursor:pointer;">Contact</a></li>
         </ul>
     </div>
-    <a class="selectmap" id="map" style="background: none;margin-top:10px; float:right; margin-right:5px;">
-        <img alt="" src="images/harta.png">
-    </a>
+    <div style="float:right; margin-top:-15px;">
+        <a class="selectmap" id="map" style="margin-right:5px;">
+            <img alt="" src="images/harta.png">
+        </a>
+    </div>
+
 </div>
 <!--nav-->
-<div id="slideShow">
+<div id="doc">
+    <div id="content">
+        <!-- blueberry -->
+        <div class="blueberry" >
+            <ul class="slides">
+                <li><img src="images/world_war.jpg" /></li>
+                <li><img src="images/hangover3.jpg" /></li>
+            </ul>
+        </div>
+
+        <!-- blueberry -->
+    </div>
 </div>
 <div id="mainContent">
-    <div id="cale"></div>
-    <form class="form-wrapper cf">
-        <input type="text" placeholder="Search here..." required>
-        <button type="submit">Search</button>
-    </form>
+    <div id="cale">
+    <h3 style="padding-top:10px; padding-left:10px; float:left; font-size:1.3em;">
+        <strong><a href="index.php" style="text-decoration:none;">Acasa >></a></strong>
+        <strong>Filme </strong></h3>
+    </div>
     <div id="secondNav" class="copyright">
             <span class="icon_hold">
                 <img id="images" src="images/home_32.png">

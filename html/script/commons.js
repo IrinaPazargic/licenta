@@ -1,9 +1,9 @@
 function highlightCurrentElement(buttonsArray, target) {
     $.each(buttonsArray, function(index, value) {
         if (value[0].id == target[0].id) {
-            $(value[0]).css('backgroundColor', 'red');
+            $(value[0]).css('backgroundColor', '#009933');
         } else {
-            $(value[0]).css('backgroundColor', 'gray');
+            $(value[0]).css('backgroundColor', '#B0B0B0  ');
         }
     });
 }

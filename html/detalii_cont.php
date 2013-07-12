@@ -3,7 +3,7 @@
     require_once 'config.php';
 
     $username=$_SESSION['username'];
-    $query="select d.nume, d.prenume, d.email, d.adresa, d.telefon, u.username, u.password from detalii_membri d, users u where u.id=d.id_users and u.username='$username'";
+    $query="select d.nume, d.prenume, d.email, d.adresa, d.telefon, u.username from detalii_membri d, users u where u.id=d.id_users and u.username='$username'";
     $rez=mysql_query($query);
     $row=mysql_fetch_assoc($rez);
 ?>
@@ -12,7 +12,6 @@
     <fieldset>
         <legend>Detalii cont</legend>
         <table>
-            <tbody>
             <tr>
                 <th>Nume:</th>
                 <td><?= $row['nume'] ?></td>
@@ -37,11 +36,6 @@
                 <th>Username:</th>
                 <td><?= $row['username'] ?></td>
             </tr>
-            <tr>
-                <th>Password:</th>
-                <td><?= $row['password'] ?></td>
-            </tr>
-            </tbody>
         </table>
     </fieldset>
 </div>

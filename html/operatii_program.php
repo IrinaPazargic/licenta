@@ -47,9 +47,9 @@ $rez_1 = mysql_query($query_cinema);
                 </ul>
                 <div style="width: 500px; float:left;">
                     <fieldset>
-                        <legend><a id="inregistrare" href="operatii_program.php" style="background-color: red; text-decoration: none; color:black;"><span>Inregistrare program</span></a>
-                        <a id="cauta" style="background-color: gray;"><span>Cauta in program</span></a>
-                        <a id="sterge" style="background-color: gray;"><span>Sterge program</span></a></legend>
+                        <legend><a id="inregistrare" href="operatii_program.php" style="background-color:#009933; text-decoration: none; color:black;"><span>Inregistrare program</span></a>
+                        <a id="cauta" style="background-color: #B0B0B0 ;"><span>Cauta in program</span></a>
+                        <a id="sterge" style="background-color: #B0B0B0 ;"><span>Sterge program</span></a></legend>
                         <div id="div_content" style="visibility: visible">
 
                         </div>

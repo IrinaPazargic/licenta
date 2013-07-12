@@ -40,13 +40,13 @@ while ($r = mysql_fetch_array($rez)) {
             minute inainte de inceperea filmului, in caz contrar vor fi anulate.<br/>
             Pentru a evita aglomeratia de la case, va rugam sa ridicati rezervarile anticipat.</h2>
         <h3><strong>Selectati cinematograful:</strong></h3>
-        <table style="width:100%">
+        <table style= "padding: 5px;" >
             <?php
             foreach ($rows as $idCinema => $nume) :
                 ?>
-                <tr>
-                    <td style="text-align:left; width:200px;  padding: 5px;">
-                        <a href="program.php?cinema=<?= $nume ?>" id="<?= $idCinema ?>" style="width: 100px; font-size:1.3em; text-transform: uppercase; border:1px solid black;"> <?= $nume ?></a>
+                <tr >
+                    <td style="text-align:left; width: 100px; ">
+                        <p style= "border:1px solid black; background-color: #197419;"><a href="program.php?cinema=<?= $nume ?>" id="<?= $idCinema ?>" style="text-decoration:none; color: #CCCC00; font-size:1.3em; text-transform: uppercase;"> <?= $nume ?></a></p>
                     </td>
                 </tr>
             <?php

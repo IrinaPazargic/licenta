@@ -45,9 +45,9 @@ $rez= mysql_query($query);
                 <div style="width: 500px; float:left;">
                     <fieldset>
                         <legend>
-                            <a id="inregistrare" href="operatii_sali.php" style="background-color: red; text-decoration: none; color:black;"><span>Inregistrare sala</span></a>
-                            <a id="vizualizare" style="background-color: gray;"><span>Vizualizare sala</span></a>
-                            <a id="sterge" style="background-color: gray;"><span>Stergere sala</span></a>
+                            <a id="inregistrare" href="operatii_sali.php" style="background-color: #009933; text-decoration: none; color:black;"><span>Inregistrare sala</span></a>
+                            <a id="vizualizare" style="background-color: #B0B0B0 ;"><span>Vizualizare sala</span></a>
+                            <a id="sterge" style="background-color: #B0B0B0 ;"><span>Stergere sala</span></a>
                         </legend>
                         <div id="div_content" style="visibility: visible">
                             <!-- Tabs content will be displayed here -->
