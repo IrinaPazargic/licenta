@@ -2,21 +2,182 @@
 <html>
 <head>
     <title>Tests</title>
+    <link rel="stylesheet" href="stylesheet.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery.extend(jQuery.validator.messages, {
+            required: "Introduceti cel putin un caracter.",
+            remote: "Please fix this field.",
+            email: "Va rugam sa introduceti o adresa de email valida.",
+            url: "Va rugam sa introduceti un URL valid.",
+            date: "Va rugam sa introduceti o data valida",
+            dateISO: "Va rugam sa introduceti o data valida (ISO).",
+            number: "Va rugam sa introduceti un numar valid.",
+            digits: "Introduceti numai cifre.",
+            creditcard: "Introduceti informatii despre cardul de credit.",
+            equalTo: "Please enter the same value again.",
+            accept: "Please enter a value with a valid extension.",
+            maxlength: jQuery.validator.format("Va rugam sa introduceti cel mult {0} caractere."),
+            minlength: jQuery.validator.format("Va rugam sa introduceti cel putin {0} caractere."),
+            rangelength: jQuery.validator.format("Va  {0} and {1} characters long."),
+            range:
+                    jQuery.validator.format("Please enter a value betweenrugam sa introduceti o valoare care are min {0} caractere si maxim {1} caractere."),
+            max: jQuery.validator.format("O valoare mai mica decat {0}."),
+            min: jQuery.validator.format("O valoare mai mare decat {0}.")
+        });
+    </script>
+
     <script type="text/javascript">
         $(function() {
-            var locuri = "1_1|1_2".split("|");
+/*            var locuri = "1_1|1_2".split("|");
             $.each(locuri, function(idx, loc) {
                 console.log("loc = " + loc);
                 var locator = '#' + loc;
                 console.log("locator " + locator);
                 $(locator).hide();
             });
+
+            $("#form_detalii_1").submit(function (e) {
+
+                e.preventDefault();
+
+                console.log("on submit: " + e);
+
+                console.log(e.selector);
+
+//                validate(e.data.selector);
+
+                return false;
+            });*/
         });
     </script>
 </head>
 <body>
-    <div id="1_1">1_1</div>
-    <div id="1_2">1_2</div>
+    <!--<div id="1_1">1_1</div>-->
+    <!--<div id="1_2">1_2</div>-->
+
+    <div class="error" style="display:none;">
+      <img src="images/warning.gif" alt="Warning!" width="24" height="24" style="float:left; margin: -5px 10px 0px 0px; " />
+
+      <span></span>.<br clear="all"/>
+    </div>
+
+    <form class="cmxform" id="commentForm" method="get" action="">
+        <table>
+
+            <tr>
+                <td class="label"><label for="fname">First name:</label></td>
+                <td class="field">
+                    <input maxlength="10" id="fname" name="fname" style="width: 100px" type="text" cla
+                           ss="required zipcode"
+                           tabindex="9" value=""/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><label for="lname">Last name:</label></td>
+                <td class="field">
+                    <input id="lname" maxlength="5" name="lname" type="text" class="required phone" tabi
+                           ndex="10"
+                           value=""/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><label for="zip">Zip:</label></td>
+                <td class="field">
+                    <input maxlength="10" id="zip" name="zip" style="width: 100px" type="text" class="required zipcode"
+                           tabindex="9" value=""/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><label for="phone">Phone:</label></td>
+                <td class="field">
+                    <input id="phone" maxlength="5" name="phone" type="text" class="required phone" tabindex="10"
+                           value=""/>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="2">
+                    <h2 style="border-bottom: 1px solid #CCCCCC;">Login Information</h2>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="label"><label for="email">Email:</label></td>
+                <td class="field">
+                    <input id="email" class="required email" remote="emails.action" maxlength="40" name="email"
+                           size="20"
+                           type="text" tabindex="11" value=""/>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="label"><label for="password1">Password:</label></td>
+                <td class="field">
+                    <input id="password1" class="required password" maxlength="40" name="password1" size="20"
+                           type="password" tabindex="12" value=""/>
+                </td>
+            </tr>
+            <tr>
+                <td class="label"><label for="password2">Retype Password:</label></td>
+                <td class="field">
+                    <input id="password2" class="required" equalTo="#password1" maxlength="40" name="password2"
+                           size="20"
+                           type="password" tabindex="13" value=""/>
+
+                    <div class="formError"></div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <div class="buttonSubmit">
+                        <span></span>
+                        <input class="formButton" type="submit" value="Next" style="width: 140px" tabindex="14"/>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+    <script>
+    $("#commentForm").validate({
+        rules: {
+            fname: {
+                required: true,
+                minlength: 3
+            },
+            lname: "required",
+            phone: "required",
+            zip: "required",
+            email: "required"
+        },
+        messages: {
+            fname: "Enter your first name, min 3 caractere",
+            lname: "Enter your last name",
+            phone: "Enter your phone",
+            zip: "Enter your zip",
+            email: {
+                required: "Introduceti adresa de email",
+                email: "Va rugam sa introduceti o adresa de email valida."
+            }
+        }
+    });
+    $("#commentForm").submit(function(e){
+        var valid = $("#commentForm").valid();
+        console.log("Is form valid? " + valid);
+        if(valid) {
+            alert("Valid form, Submitted");
+        } else {
+            alert("Invalid form");
+            return false;
+        }
+    });
+    </script>
+
 </body>
 </html>
