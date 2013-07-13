@@ -41,9 +41,7 @@ foreach ($locuri as $key => $value) {
 }
 ?>
 
-<html>
-<head>
-    <link href="reservation.css" rel="stylesheet" type="text/css"/>
+   <link href="reservation.css" rel="stylesheet" type="text/css"/>
     <link href="seat.css" rel="stylesheet" type="text/css"/>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
     </script>
@@ -93,8 +91,6 @@ foreach ($locuri as $key => $value) {
         });
     </script>
 
-</head>
-<body>
 <div id="content">
 <table cellspacing="0" cellpadding="0" style="width:100%; border-width:0px;">
 <tr><td valign="top" align="left">
@@ -402,10 +398,5 @@ foreach ($locuri as $key => $value) {
 </div>
 </td>
 </tr>
-
 </table>
-
-
 </div>
-</body>
-</html>

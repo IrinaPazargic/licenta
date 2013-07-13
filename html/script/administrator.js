@@ -1,5 +1,6 @@
 $(function (){
     $("#btn_inregistrare").click(function () {
+
         var nume = $('#nume').val();
         var prenume = $('#prenume').val();
         var email = $('#email').val();

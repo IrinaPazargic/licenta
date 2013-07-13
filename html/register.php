@@ -3,11 +3,13 @@
 <title>Registration Page</title>
 <link href="register.css" rel="stylesheet" type="text/css"/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<!-- <script src="script/validate_functions.js" ></script>-->
+<script src="script/validate_functions.js" ></script>
 <!--    <script src="script/inserts.js"></script>-->
     <script src="script/administrator.js" ></script>
-<!--    <script>
+    <script>
         function validate(form) {
+            form.preventDefault();
+
             fail = validateNume(form.nume.value)
             fail += validatePrenume(form.prenume.value)
             fail += validateAdresa(form.adresa.value)
@@ -28,7 +30,7 @@
 
 </ul>
 <div style="clear:both;" id="form">
-    <form  action="inregistrare_admin.php" id="register-form" method="post" onSubmit="return validate(this)">
+   <form  action="inregistrare_admin.php" id="register-form" method="post" onSubmit="return validate(this)">
             <fieldset>
                 <legend>Pagina de inregistrare</legend>
                 <p><label for="nume">Nume: </label>

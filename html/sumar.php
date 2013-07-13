@@ -13,7 +13,7 @@ $rezervare->persoana = $persoana;
 $_SESSION['rezervare'] = $rezervare;
 
 $nrBilete = 0;
-$pretBilete=0;
+$pretBilete = 0;
 
 foreach ($rezervare->tipLocuri as $key => $value) {
     $nrBilete += $value->nrLocuri;
@@ -23,46 +23,43 @@ foreach ($rezervare->tipLocuri as $key => $value) {
 }
 
 ?>
-<html>
-<head>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#submit").click(function () {
-                $("#rezerva").load("rezerva.php");
-            });
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#submit").click(function () {
+            $("#rezerva").load("rezerva.php");
         });
-    </script>
-    <style type="text/css">
-        li {
-            float: left;
-            font-size: 0.8em;
-            margin-left: 5px;
-            bordeR: 1px solid red;
-        }
+    });
+</script>
+<style type="text/css">
+    li {
+        float: left;
+        font-size: 0.8em;
+        margin-left: 5px;
+        bordeR: 1px solid red;
+    }
 
-    </style>
-</head>
-<body>
-   <div id="rezerva">
-   <table>
-       <tr>
-           <td valign="top" align="left">
-               <ul style="float:left; list-style-type: none;">
-                   <li>Pasul 1</br>  Alegeti filmul</li>
-                   <li>Pasul 2 </br>  Alegeti biletele</li>
-                   <li>Pasul 3 </br> Alegeti locurile</li>
-                   <li>Pasul 4 </br> Completati formularul</li>
-                   <li style="color:red;">Pasul 5 </br>  Confirmare rezervare</li>
+</style>
+<div id="rezerva">
+    <table>
+        <tr>
+            <td valign="top" align="left">
+                <ul style="float:left; list-style-type: none;">
+                    <li>Pasul 1</br>  Alegeti filmul</li>
+                    <li>Pasul 2 </br>  Alegeti biletele</li>
+                    <li>Pasul 3 </br> Alegeti locurile</li>
+                    <li>Pasul 4 </br> Completati formularul</li>
+                    <li style="color:red;">Pasul 5 </br>  Confirmare rezervare</li>
 
-               </ul>
-           </td>
-       </tr>
+                </ul>
+            </td>
+        </tr>
     </table>
     <h3>VERIFICATI COMANDA DUMNEAVOASTRA</h3>
     <span style="text-align: center;">
         Biletele pe care le-ati selectat vor fi pastrate pana la 30 de minute inainte de inceperea spectacolului. Dupa aceasta perioada, aceste bilete vor putea fi cumparate de alte persone.Va recomandam sa va ridicati rezervarile cu cel putin 30 de minute inainte de spectacol.
     </span>
+
     <div>
         <table style="width: 100%; padding: 3px; border:2px solid white;">
 
@@ -89,20 +86,20 @@ foreach ($rezervare->tipLocuri as $key => $value) {
                 <td>Cantitate</td>
                 <td>Pret Bilet</td>
             </tr>
-        <?php
+            <?php
             foreach ($rezervare->tipLocuri as $key => $value) :
                 if ($value->nrLocuri > 0) :
-        ?>
-            <tr style="padding:3px;">
-                <td></td>
-                <td><?= $value->tip; ?></td>
-                <td><?= $value->nrLocuri; ?></td>
-                <td><?= $value->pret; ?> Lei</td>
-            </tr>
-        <?php
+                    ?>
+                    <tr style="padding:3px;">
+                        <td></td>
+                        <td><?= $value->tip; ?></td>
+                        <td><?= $value->nrLocuri; ?></td>
+                        <td><?= $value->pret; ?> Lei</td>
+                    </tr>
+                <?php
                 endif;
             endforeach;
-        ?>
+            ?>
             <tr style="padding:3px;">
                 <td>Total bilete</td>
                 <td></td>
@@ -143,5 +140,3 @@ foreach ($rezervare->tipLocuri as $key => $value) {
         </table>
     </div>
 </div>
-</body>
-</html>
