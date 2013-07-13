@@ -39,7 +39,6 @@ $_SESSION['rezervare'] = $rezervare;
                     url: "sumar.php",
                     data: "nume=" + nume + "&prenume=" + prenume + "&email=" + email + "&telefon=" + telefon,
                     success: function (result) {
-                        console.log('success: ' + result);
                         $("#content").html(result);
                     },
                     error: function (error) {

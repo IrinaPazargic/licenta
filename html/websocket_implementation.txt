@@ -1,28 +1,57 @@
 
 
-1. Start websocket when the user enter in seats reservation wizard page.
+* [V] Start websocket when the user enter in seats reservation wizard page (ReservationPage.php).
 
-2. Stop websocket when user:
-    - finish reservation;
-    - close the browser;
-    - cancel the wizard - is this currently supported?
+* [V] Stop websocket when user:
+    - [V] finish reservation;
+    - [V] close the browser;
+    - [V] close the browser tab;
+    - [X] cancel the wizard - is this currently supported?
 
-3. When a seat is marked as taken:
-    - user finish the wizard;
+* [V] When a seat is marked as taken:
+    - [V] user finish the wizard;
 
-3. When a seat is not marked as taken:
-    - user close the browser;
-    - user cancel the wizard - is this currently supported?
-
-4. [Optional] When a seat is marked as temporarily taken:
+* [X] [Optional] When a seat is marked as temporarily taken:
     - user select a seat;
 
-4. [Optional] When a seat is not marked as temporarily taken:
+* [X] [Optional] When a seat is not marked as temporarily taken:
     - user deselect a seat;
     - user close the browser;
-    - user cancel the wizard - is this currently supported?
+    - [X] user cancel the wizard - is this currently supported?
+
+To do:
+    - when there is taken seats conflict and neither users have seats wizard page open. Then:
+        - which user press first rezerva wins;
+        - for 2nd user, before inserting in db the reservation info, check if his seats are already in db as taken
+         seats. If so pop a error message and then open wizard again;
+    - when there is taken seats conflict and one user register his seats and the other is in seats wizard page. Then:
+        - mark the taken seats as such and remove it from user's seats array.
+
+Issues:
+    - now seats are marked as taken regardless of hour and cinema room. Fix this as soon as possible.
 
 
+Technical details:
 
+    JS
 
+        var data = {
+            locuri: '1_1|1_2'
+        };
+        var data = {
+            locuri: '1_1|1_2',
+            session_id : time,
+            username : 'username_' + time
+        };
+        socket.send(JSON.stringify(data));
+
+        var data = JSON.parse(e.data);
+
+    php
+
+        json_encode(array('locuri' => '1'))
+
+        json_encode(array('locuri' => '1', 'user' => $data->username, 'msg' => $data->msg))
+
+        $data = json_decode($data);
 

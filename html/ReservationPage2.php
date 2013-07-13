@@ -50,8 +50,8 @@ foreach ($locuri as $key => $value) {
     <script>
         $(function () {
             var locuri_array = [];
-            var original_image = 'images/SeatGreen.png';
-            var second_image = 'images/YellowSeat.png';
+//            var original_image = 'images/SeatGreen.png';
+//            var second_image = 'images/YellowSeat.png';
 
             $("#urmatorul_pas").click(function () {
                 var locuri = locuri_array.join('|');
@@ -59,8 +59,9 @@ foreach ($locuri as $key => $value) {
             });
 
             $(".seat").click(function (event) {
-                if (window.connection) {
-                    window.connection.send("User clicked a seat.");
+                var conn = window.connection;
+                if (conn) {
+                    conn.send("User clicked a seat.");
                 } else {
                     alert("Your browser doesn't support websocket html5 yet. So you came across the seat was taken " +
                         "while trying to finish reservation. Sorry but your browser is ancient.");
@@ -89,13 +90,13 @@ foreach ($locuri as $key => $value) {
                 }
             });
 
-            function isOriginalImage() {
+/*            function isOriginalImage() {
                 return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + original_image + ")";
             }
 
             function isNewImage() {
                 return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + second_image + ")";
-            }
+            }*/
         });
     </script>
 
