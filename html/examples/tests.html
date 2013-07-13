@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tests</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            var locuri = "1_1|1_2".split("|");
+            $.each(locuri, function(idx, loc) {
+                console.log("loc = " + loc);
+                var locator = '#' + loc;
+                console.log("locator " + locator);
+                $(locator).hide();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="1_1">1_1</div>
+    <div id="1_2">1_2</div>
+</body>
+</html>
