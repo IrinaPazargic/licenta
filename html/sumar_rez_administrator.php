@@ -3,11 +3,12 @@ require_once 'model.php';
 require_once 'config.php';
 
 $codRezervare = $_POST['cod'];
+
 $query = "SELECT
             p.nume, p.prenume, p.email, f.titlu, d.data, d.ora, c.nume, s.nr_sala, r.locuri, e.tip, l.nr_locuri, e.pret
           FROM
             persoane p
-            INNER JOIN rezervare r ON p.id = r.id_persoana
+            INNER JOIN rezervare r ON p.id= r.id_persoana
             INNER JOIN program d ON r.id_program = d.idProgram
             INNER JOIN filme f ON d.idFilm = f.idFilm
             INNER JOIN cinema c ON d.idCinema = c.idCinema
@@ -16,13 +17,22 @@ $query = "SELECT
             INNER JOIN sali s ON d.idSala = s.idSala
           WHERE
             l.id_rezervare = '$codRezervare'";
+
+
+
 $rezultat = mysql_query($query);
-$row = mysql_fetch_assoc($rezultat);
+
+$row = mysql_fetch_array($rezultat);
+
+$pret = $row['pret'];
+var_dump($pret);
 $nrBilete = $row['nr_locuri'];
-$pretBilete = 0;
-if ($nrBilete > 0) {
-    $pretBilete = $nrBilete * $row['pret'];
-}
+var_dump($nrBilete);
+$tipReduceri = $row['tip'];
+
+$pretTotal = $nrBilete * $pret;
+
+
 ?>
 
 <html>
@@ -58,24 +68,18 @@ if ($nrBilete > 0) {
                 <td>Pret Bilet</td>
             </tr>
         <?php
-            foreach ($row as $key => $value) :
-                if ($row['nr_locuri'] != 0) :
         ?>
             <tr style="padding:3px;">
                 <td></td>
-                <td><?= $row['tip']; ?></td>
-                <td><?= $row['nr_locuri']; ?></td>
-                <td><?= $row['pret']; ?> Lei</td>
+                <td><?= $tipReduceri ?></td>
+                <td><?= $nrBilete ?></td>
+                <td><?= $pret ?> Lei</td>
             </tr>
-        <?php
-                endif;
-            endforeach;
-        ?>
             <tr style="padding:3px;">
                 <td>Total bilete</td>
                 <td></td>
-                <td><?= $row['nr_locuri'] ?> </td>
-                <td>Total: <?= $pretBilete ?> Lei</td>
+                <td><?= $nrBilete?> </td>
+                <td>Total: <?= $pretTotal ?> Lei</td>
             </tr>
             <tr style="padding:3px;">
                 <td><strong><em>Informatii despre locuri</em></strong></td>

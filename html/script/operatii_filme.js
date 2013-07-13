@@ -39,9 +39,7 @@ $(function () {
                 url: "cauta_film_functii.php" + queryString,
                 dataType: "html",
                 success: function (result) {
-
                     $("#rezultat").html(result);
-                    $("#rezultat").show();
                     $('#titlu').val('');
                 },
                 error: function () {
@@ -51,9 +49,7 @@ $(function () {
     });
 
     $("#btn_sterge").click(function () {
-        $("#rezultat").hide();
         var titlu = $('#titlu').val();
-        console.log(titlu);
         $.ajax(
             {
                 type: "POST",
@@ -61,7 +57,6 @@ $(function () {
                 dataType: "html",
                 data: "titlu=" + titlu,
                 success: function (result) {
-                    console.log(result);
                     alert(result);
                     $('#titlu').val('');
                 },

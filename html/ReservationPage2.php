@@ -49,32 +49,33 @@ foreach ($locuri as $key => $value) {
     </script>
     <script>
         $(function () {
-            var locuri = [];
+            var locuri_array = [];
             var original_image = 'images/SeatGreen.png';
             var second_image = 'images/YellowSeat.png';
 
-            $("button").click(function () {
-                var locuri = locuri.join('|');
+            $("#urmatorul_pas").click(function () {
+                var locuri = locuri_array.join('|');
                 $("#content").load("detalii_rezervare.php?locuri=" + locuri);
             });
 
             $(".seat").click(function (event) {
                 var id = $(this).attr('id');
                 var new_image;
-                if (locuri.length < <?= $nrBilete;?>) {
+
+                if (locuri_array.length < <?= $nrBilete;?>) {
                     if (isOriginalImage()) {
                         new_image = "url(http://licenta.irina.ro/" + second_image + ")";
                     } else {
                         new_image = "url(http://licenta.irina.ro/" + original_image + ")";
                     }
                     event.target.style.backgroundImage = new_image;
-                    if (locuri.indexOf(id) == -1) {
-                        locuri.push(id);
+                    if (locuri_array.indexOf(id) == -1) {
+                        locuri_array.push(id);
                     } else {
                         locuri.splice(locuri.indexOf(id), 1);
                     }
-                } else if (locuri.length == <?= $nrBilete;?> && isNewImage()) {
-                    locuri.splice(locuri.indexOf(id), 1);
+                } else if (locuri_array.length == <?= $nrBilete;?> && isNewImage()) {
+                    locuri_array.splice(locuri_array.indexOf(id), 1);
                     new_image = "url(http://licenta.irina.ro/" + original_image + ")";
                     event.target.style.backgroundImage = new_image;
                 } else {
@@ -135,8 +136,7 @@ foreach ($locuri as $key => $value) {
                                 </a>
                 </span>
                     <span>
-                    <button>
-                        <span>Pasul Urmator</span></button>
+                    <input type="submit" id="urmatorul_pas" value="Urmatorul Pas"/>
                 </span>
                     </div>
                 </td>
