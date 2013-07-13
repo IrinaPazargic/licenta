@@ -15,12 +15,15 @@ if ($count == 1 && $row['password'] == md5($password)) {
     $_SESSION['username'] = $username;
     $_SESSION['password'] = $password;
     header("location: administrator.php");
-} else {
+}else if($username == "" && $password == ""){
+    echo "Nu ati completat niciun camp";
+}else if($username == "" ){
+    echo ("Completati campul username!");
+}else if ($password == ""){
+    echo ("Completati campul password!");
+}else {
     $_SESSION['username'] = $username;
     $_SESSION['password'] = $password;
     echo "Wrong username or password";
 }
 ob_end_flush();
-
-var_dump($_SESSION['username']);
-var_dump($_SESSION['password']);

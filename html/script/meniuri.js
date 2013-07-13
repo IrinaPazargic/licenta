@@ -12,6 +12,12 @@ $(function () {
     $("#thirdNav").show();
 
     $("#program").click(function () {
+        aNoutati.css("backgroundColor", "#B0B0B0");
+        aPolitici.css("backgroundColor", "#B0B0B0");
+        aDespreNoi.css("backgroundColor", "#B0B0B0");
+        aContact.css("backgroundColor", "#B0B0B0");
+        aPreturi.css("backgroundColor", "#B0B0B0");
+
         $("#searchBody").show();
         $("#thirdNav").show();
         $.ajax({
@@ -25,6 +31,7 @@ $(function () {
     });
 
     $("#filme").click(function () {
+
         $("#searchBody").show();
         $("#thirdNav").show();
         $.ajax({
@@ -37,6 +44,12 @@ $(function () {
         });
     });
     $("#promotii").click(function () {
+        aNoutati.css("backgroundColor", "#B0B0B0");
+        aPolitici.css("backgroundColor", "#B0B0B0");
+        aDespreNoi.css("backgroundColor", "#B0B0B0");
+        aContact.css("backgroundColor", "#B0B0B0");
+        aPreturi.css("backgroundColor", "#B0B0B0");
+
         $("#searchBody").hide();
         $("#thirdNav").hide();
         $.ajax({
@@ -50,6 +63,12 @@ $(function () {
     });
 
     $("#map").click(function () {
+        aNoutati.css("backgroundColor", "#B0B0B0");
+        aPolitici.css("backgroundColor", "#B0B0B0");
+        aDespreNoi.css("backgroundColor", "#B0B0B0");
+        aContact.css("backgroundColor", "#B0B0B0");
+        aPreturi.css("backgroundColor", "#B0B0B0");
+
         $("#searchBody").hide();
         $("#thirdNav").hide();
         $.ajax({

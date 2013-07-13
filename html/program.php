@@ -240,6 +240,17 @@ function cauta_film(){
             $('.blueberry').blueberry();
         });
     </script>
+    <script>
+        $(function (){
+            <?php
+                for ($i=0; $i<7; $i++) : ?>
+                $("#zi_<?= $i ?>").click( function (){
+                    $("#li_<?= $i ?>").addClass("current_program");
+            });
+            <?php endfor; ?>
+        });
+    </script>
+
 <style>
         #doc {
             margin: 10px 0;
@@ -391,11 +402,11 @@ function cauta_film(){
                             <?php for ($i = 0; $i < 7; $i++) :
                                 $today = mktime(0, 0, 0, date("m"), date("d") + $i, date("Y"));
                                 $today_show = date("Y/m/d", $today); ?>
-                                <li>
-                                <a  href="?data=<?=  date("Y/m/d", $today + $i)?>&cinema=<?= $row_nume['nume']?>" id="zi_<?= $id ?>" style="background-color: #575757;" >
-                                    <span><?= $today_show ?></span>
-                                </a>
-                            </li>
+                                <li id="li_<?= $i ?>">
+                                    <a  href="?data=<?=  date("Y/m/d", $today + $i)?>&cinema=<?= $row_nume['nume']?>" id="zi_<?= $id ?>" style="background-color: #575757;" >
+                                        <span><?= $today_show ?></span>
+                                    </a>
+                                </li>
                             <?php endfor; ?>
 
                     </ul>
