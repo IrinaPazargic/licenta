@@ -1,0 +1,28 @@
+
+
+1. Start websocket when the user enter in seats reservation wizard page.
+
+2. Stop websocket when user:
+    - finish reservation;
+    - close the browser;
+    - cancel the wizard - is this currently supported?
+
+3. When a seat is marked as taken:
+    - user finish the wizard;
+
+3. When a seat is not marked as taken:
+    - user close the browser;
+    - user cancel the wizard - is this currently supported?
+
+4. [Optional] When a seat is marked as temporarily taken:
+    - user select a seat;
+
+4. [Optional] When a seat is not marked as temporarily taken:
+    - user deselect a seat;
+    - user close the browser;
+    - user cancel the wizard - is this currently supported?
+
+
+
+
+

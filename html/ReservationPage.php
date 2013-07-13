@@ -4,7 +4,7 @@
 
     $query = "
                 SELECT tip, pret FROM reduceri order by tip
-                ";
+              ";
     $rez = mysql_query($query);
     $rez1 = mysql_query($query);
 
@@ -36,51 +36,81 @@
 
 		$result=mysql_query($query);
         $row = mysql_fetch_object($result);
+
         $rezervare = new Rezervare();
         $rezervare->idProgram = $idProgram;
-
         $rezervare->film = $row->titlu;
         $rezervare->cinema = $row->nume;
         $rezervare->data = $row->data;
         $rezervare->ora=$row->ora;
         $rezervare->sala=$row->nr_sala;
-
         return $rezervare;
     }
 ?>
 
 <html>
 <head>
-<link href="reservation.css" rel="stylesheet" type="text/css"/>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#next").click(function () {
-            var nextPageUrl = "ReservationPage2.php?";
-            var validInput = false;
-            $('select[id^="redurecere_"] :selected').each(function(idx, value) {
-                var nrBilete = $(value).text();
-                var validInput2 = nrBilete > 0;
-                validInput = validInput || validInput2;
-                nextPageUrl += "red" + ++idx + "=" + nrBilete + "&"
-            });
-            nextPageUrl = nextPageUrl.substr(0, nextPageUrl.length - 1);
-            if (validInput === false) {
-                alert("Nu ati selectat biletele.Va rugam alegeti biletele!");
-            } else {
-                $("#content").load(nextPageUrl);
-            }
-        });
-    });
-</script>
-<style type="text/css">
-    li {
-        float:left;
-        font-size: 0.8em;
-        margin-left:5px;
-        bordeR:1px solid red;
-    }
+    <link href="reservation.css" rel="stylesheet" type="text/css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+//        var connection;
+        function openWebsocket() {
+            var connected = false;
+            var connection = null;
+            if ('WebSocket' in window) {
+                console.log("Hurray! Web socket is here. Irina and Dana are haunted all night by its presence...");
+                connection = new WebSocket('ws://licenta.irina.ro:8000/demo');
+                connection.onopen = function () {
+                    connected = true;
+                    console.log('Connection open!');
+                }
+                connection.onclose = function () {
+                    connected = false;
+                    console.log('Connection closed');
+                }
 
+                connection.onerror = function (error) {
+                    console.log('Error detected: ' + error);
+                }
+                connection.onmessage = function (e) {
+                    var server_message = e.data;
+                    console.log(server_message);
+                }
+            } else {
+                alert("Your browser doesn't support websocket html5 yet.");
+            }
+            return connection;
+        }
+
+
+        $(function () {
+            window.connection = openWebsocket();
+
+            $("#next").click(function () {
+                var nextPageUrl = "ReservationPage2.php?";
+                var validInput = false;
+                $('select[id^="redurecere_"] :selected').each(function(idx, value) {
+                    var nrBilete = $(value).text();
+                    var validInput2 = nrBilete > 0;
+                    validInput = validInput || validInput2;
+                    nextPageUrl += "red" + ++idx + "=" + nrBilete + "&"
+                });
+                nextPageUrl = nextPageUrl.substr(0, nextPageUrl.length - 1);
+                if (validInput === false) {
+                    alert("Nu ati selectat biletele.Va rugam alegeti biletele!");
+                } else {
+                    $("#content").load(nextPageUrl);
+                }
+            });
+        });
+    </script>
+    <style type="text/css">
+        li {
+            float: left;
+            font-size: 0.8em;
+            margin-left: 5px;
+            border: 1px solid red;
+        }
     </style>
 </head>
 <body>

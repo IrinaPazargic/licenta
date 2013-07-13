@@ -59,6 +59,12 @@ foreach ($locuri as $key => $value) {
             });
 
             $(".seat").click(function (event) {
+                if (window.connection) {
+                    window.connection.send("User clicked a seat.");
+                } else {
+                    alert("Your browser doesn't support websocket html5 yet. So you came across the seat was taken " +
+                        "while trying to finish reservation. Sorry but your browser is ancient.");
+                }
                 var id = $(this).attr('id');
                 var new_image;
                 if (locuri.length < <?= $nrBilete;?>) {

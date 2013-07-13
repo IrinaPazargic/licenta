@@ -36,7 +36,7 @@ class DemoApplication extends Application
         }
 
         var_dump($data);
-        $decodedData = $this->_decodeData($data);
+/*        $decodedData = $this->_decodeData($data);
 		if($decodedData === false)
 		{
 			// @todo: invalid request trigger error...
@@ -46,7 +46,7 @@ class DemoApplication extends Application
 		if(method_exists($this, $actionName))
 		{
 			call_user_func(array($this, $actionName), $decodedData['data']);
-		}
+		}*/
     }
 
 	public function onBinaryData($data, $client)
