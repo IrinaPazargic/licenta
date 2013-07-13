@@ -2,14 +2,6 @@ body {
     background-image: url(images/bg.jpg);
 }
 
-label {
-    width: 5.5em;
-    float: left;
-    text-align: right;
-    margin-right: 1.5em;
-    display: block;
-}
-
 .submit input {
     margin-left: 4.5em;
 }
@@ -63,9 +55,7 @@ a {
     text-decoration: none;
     font: bold 14px "Trebuchet MS", Arial, Helvetica, sans-serif;
     padding: 5px 25px;
-    background-image: url(images/bg_nav.png);
-    background-repeat: repeat-x;
-    background-position: center bottom;
+    background: url(images/bg_nav.png) repeat-x center bottom;
     border-style: none;
 }
 
