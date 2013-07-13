@@ -2,18 +2,23 @@
   <dictionary name="jtonic">
     <words>
       <w>adresa</w>
+      <w>alegeti</w>
       <w>bilete</w>
+      <w>biletele</w>
       <w>categorie</w>
       <w>cauta</w>
       <w>cinematograf</w>
       <w>danoi</w>
+      <w>decat</w>
       <w>descriere</w>
       <w>desfasurare</w>
       <w>detalii</w>
+      <w>este</w>
       <w>filme</w>
       <w>gmail</w>
       <w>judete</w>
       <w>locuri</w>
+      <w>numarul</w>
       <w>nume</w>
       <w>ocupat</w>
       <w>persoana</w>
@@ -27,8 +32,11 @@
       <w>rezerva</w>
       <w>rezervare</w>
       <w>rezervate</w>
+      <w>rugam</w>
       <w>sala</w>
       <w>sali</w>
+      <w>selectat</w>
+      <w>selectate</w>
       <w>signup</w>
       <w>telefon</w>
       <w>timp</w>
