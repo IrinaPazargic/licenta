@@ -5,7 +5,7 @@
 
 - fix AJAX based upload files
 
-- on displaying the seats wizard page all DB taken seats must be displayed as such (taken);
+- [V] on displaying the seats wizard page all DB taken seats must be displayed as such (taken);
 
 - [V] now seats are marked as taken regardless of hour and cinema room. Fix this as soon as possible.
 
