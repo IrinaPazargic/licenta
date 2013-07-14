@@ -196,10 +196,3 @@ $(function () {
 
 
 });
-/**
- * Created with IntelliJ IDEA.
- * User: irina
- * Date: 7/5/13
- * Time: 6:24 PM
- * To change this template use File | Settings | File Templates.
- */
