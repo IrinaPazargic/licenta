@@ -1,11 +1,13 @@
 
-- fix validation issues;
+- [>] fix validation issues;
+    [V] Register admin
+    [>] Login
 
 - fix AJAX based upload files
 
 - on displaying the seats wizard page all DB taken seats must be displayed as such (taken);
 
-- now seats are marked as taken regardless of hour and cinema room. Fix this as soon as possible.
+- [V] now seats are marked as taken regardless of hour and cinema room. Fix this as soon as possible.
 
 - when there is taken seats conflict and neither users have seats wizard page open. Then:
     - which user press first rezerva wins;

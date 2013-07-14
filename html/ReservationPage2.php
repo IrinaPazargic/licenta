@@ -57,9 +57,7 @@ foreach ($locuri as $key => $value) {
 
             $(".seat").click(function (event) {
                 var conn = window.connection;
-                if (conn) {
-                    conn.send("User clicked a seat.");
-                } else {
+                if (!conn) {
                     alert("Your browser doesn't support websocket html5 yet. So you came across the seat was taken " +
                         "while trying to finish reservation. Sorry but your browser is ancient.");
                 }

@@ -29,7 +29,8 @@ foreach ($rezervare->tipLocuri as $key => $value) {
                 $("#rezerva").load("rezerva.php");
                 var conn = window.connection;
                 var data =  {
-                                locuri: '<?= $rezervare->locuri ?>'
+                                locuri: '<?= $rezervare->locuri ?>',
+                                idProgram: '<?= $rezervare->idProgram ?>'
                             };
                 conn.send(JSON.stringify(data));
                 conn.close();

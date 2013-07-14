@@ -1,5 +1,6 @@
-
-How to force kill the websocket server if it remains resident in memory
+========================================================================================================================
+How to force kill the websocket server if it is still resident in memory
+========================================================================================================================
 
 1. Find out the websocket process:
     $ sudo netstat -lntp | grep 8000
@@ -7,10 +8,30 @@ How to force kill the websocket server if it remains resident in memory
         tcp        0      0 127.0.0.1:8000          0.0.0.0:*               LISTEN      16694/php
         see the number before php. This is the pid of the process.
 2. Kill the process
-    sudo kill -9 16694
+    $ sudo kill -9 16694
 
 Check if the process was successfully killed using first step
 
+========================================================================================================================
+How to test if web socket is correctly running
+========================================================================================================================
+    $ telnet localhost 8000
+
+    La success trebuie sa fie:
+        Trying ::1...
+        Trying 127.0.0.1...
+        Connected to localhost.
+        Escape character is '^]'.
+    La eroare:
+        Trying ::1...
+        Trying 127.0.0.1...
+        telnet: Unable to connect to remote host: Connection refused
+
+========================================================================================================================
+If changes in css (style sheets) are not reflected in browser, even after refresh (or enter), then
+========================================================================================================================
+    Empty the browser cache.
+    In Chrome press Ctrl+Shift+Delete and check only "Empty the cache".
 
 ========================================================================================================================
 How to dump db schema?

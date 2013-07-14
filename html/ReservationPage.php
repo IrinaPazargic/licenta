@@ -63,7 +63,6 @@
                 console.log("loc = " + loc);
                 var locator = '#' + loc;
                 console.log("locator " + locator);
-//                $(locator).hide();
                 var new_image = "url(http://licenta.irina.ro/" + taken_seat_image + ")";
                 $(locator).css("background-image", new_image);
             });
@@ -77,18 +76,18 @@
             return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + second_image + ")";
         }
 
-        //        var connection;
         function doOnOpen(e) {
-            // get the seats. E.g.: 1_1|1_2
-            // split => 1_1, 1_2
-            // get divs with these ids
-            // mark them as not taken
         }
         function doOnMessage(e) {
             console.log("data: " + e.data);
             try {
                 // get the seats. E.g.: 1_1|1_2
                 var data = JSON.parse(e.data);
+                if (data.idProgram != <?= $_GET['idProgram'] ?>) {
+                    // s-a facut o rezervare la alt program
+                    return;
+                }
+                // s-a facut o rezervare la acelasi program. Deci trebuie sa marcam locurile ca si ocupate.
                 var locuri = data.locuri.split("|");
                 console.log("locuri: " + locuri);
                 marcheazaLocurileCaOcupate(locuri);
