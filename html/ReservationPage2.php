@@ -30,6 +30,7 @@ $_SESSION['rezervare'] = $rezervare;
 
 $link = $_GET['idProgram'];
 
+
 $nrBilete = 0;
 $pret = 0;
 
@@ -48,8 +49,8 @@ foreach ($locuri as $key => $value) {
     <script>
         $(function () {
             var locuri_array = [];
-//            var original_image = 'images/SeatGreen.png';
-//            var second_image = 'images/YellowSeat.png';
+            /*var original_image = 'images/SeatGreen.png';
+            var second_image = 'images/YellowSeat.png';*/
 
             $("#urmatorul_pas").click(function () {
                 var locuri = locuri_array.join('|');
@@ -77,7 +78,7 @@ foreach ($locuri as $key => $value) {
                     if (locuri_array.indexOf(id) == -1) {
                         locuri_array.push(id);
                     } else {
-                        locuri.splice(locuri.indexOf(id), 1);
+                        locuri_array.splice(locuri_array.indexOf(id), 1);
                     }
                 } else if (locuri_array.length == <?= $nrBilete;?> && isNewImage()) {
                     locuri_array.splice(locuri_array.indexOf(id), 1);
@@ -88,13 +89,13 @@ foreach ($locuri as $key => $value) {
                 }
             });
 
-/*            function isOriginalImage() {
+              function isOriginalImage() {
                 return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + original_image + ")";
             }
 
             function isNewImage() {
                 return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + second_image + ")";
-            }*/
+            }
         });
     </script>
 

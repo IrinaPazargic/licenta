@@ -23,9 +23,6 @@ foreach ($rezervare->tipLocuri as $key => $value) {
 }
 
 ?>
-<html>
-<head>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
         $(function () {
             $("#submit").click(function () {
@@ -47,7 +44,7 @@ foreach ($rezervare->tipLocuri as $key => $value) {
             border: 1px solid red;
         }
 
-</style>
+    </style>
 <div id="rezerva">
     <table>
         <tr>
@@ -148,5 +145,3 @@ foreach ($rezervare->tipLocuri as $key => $value) {
         </table>
     </div>
 </div>
-</body>
-</html>

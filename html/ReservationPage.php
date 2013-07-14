@@ -126,7 +126,7 @@
                 connection.onerror = function (error) {
                     connected = false;
                     console.log('Error detected: ' + error);
-                    doOnError(e);
+                    doOnError(error);
                 }
                 connection.onmessage = function (e) {
                     var server_message = e.data;

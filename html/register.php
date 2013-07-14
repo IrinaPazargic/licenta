@@ -8,8 +8,6 @@
     <script src="script/administrator.js" ></script>
     <script>
         function validate(form) {
-            form.preventDefault();
-
             fail = validateNume(form.nume.value)
             fail += validatePrenume(form.prenume.value)
             fail += validateAdresa(form.adresa.value)

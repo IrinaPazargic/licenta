@@ -37,7 +37,7 @@ $result_gen_1 = mysql_query($query_gen);
         max-width: 1140px;
     }
 
-    .blueberry { max-width: 800px; }
+    .blueberry { max-width: 950px; }
 </style>
 </head>
 <body id="feature">
@@ -70,8 +70,8 @@ $result_gen_1 = mysql_query($query_gen);
     <!-- blueberry -->
     <div class="blueberry" >
         <ul class="slides">
-            <li><img src="images/world_war.jpg" /></li>
-            <li><img src="images/hangover3.jpg" /></li>
+            <li><img src="images/alerta_de_gradul0.png" /></li>
+            <li><img src="images/cercul_de_foc.png" /></li>
         </ul>
     </div>
 

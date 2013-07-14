@@ -55,7 +55,7 @@ q:before, q:after {
 }
 
 #feature {
-    background: url("images/body-bg.jpg") repeat scroll 0 0 #FFFFFF;
+    background: url("images/background_cinema.png") repeat #FFFFFF;
     margin: 20px auto;
     font: 62.5% Verdana, Arial, Helvetica, sans-serif;
     width: 1000px;
