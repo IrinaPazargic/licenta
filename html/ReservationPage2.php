@@ -49,8 +49,6 @@ foreach ($locuri as $key => $value) {
     <script>
         $(function () {
             var locuri_array = [];
-            /*var original_image = 'images/SeatGreen.png';
-            var second_image = 'images/YellowSeat.png';*/
 
             $("#urmatorul_pas").click(function () {
                 var locuri = locuri_array.join('|');
@@ -88,14 +86,6 @@ foreach ($locuri as $key => $value) {
                     alert("Numarul de locuri selectate este mai mare decat nr de bilete");
                 }
             });
-
-              function isOriginalImage() {
-                return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + original_image + ")";
-            }
-
-            function isNewImage() {
-                return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + second_image + ")";
-            }
         });
     </script>
 
