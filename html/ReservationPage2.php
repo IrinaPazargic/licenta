@@ -67,6 +67,9 @@ foreach ($locuri as $key => $value) {
                 if (locuri_array.length < <?= $nrBilete;?>) {
                     if (isOriginalImage()) {
                         new_image = "url(http://licenta.irina.ro/" + second_image + ")";
+                    } else if (isTakenSeatImage()) {
+                        alert ("Locul selectat este deja rezervat");
+                        return;
                     } else {
                         new_image = "url(http://licenta.irina.ro/" + original_image + ")";
                     }
@@ -83,7 +86,7 @@ foreach ($locuri as $key => $value) {
                 } else {
                     alert("Numarul de locuri selectate este mai mare decat nr de bilete");
                 }
-            });
+            })
         });
     </script>
 

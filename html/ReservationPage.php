@@ -76,6 +76,10 @@
             return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + second_image + ")";
         }
 
+        function isTakenSeatImage() {
+            return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + taken_seat_image + ")";
+        }
+
         function doOnOpen(e) {
         }
         function doOnMessage(e) {
