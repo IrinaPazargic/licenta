@@ -1,24 +1,11 @@
 <html>
 <head>
-<title>Registration Page</title>
-<link href="register.css" rel="stylesheet" type="text/css"/>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="script/validate_functions.js" ></script>
-<!--    <script src="script/inserts.js"></script>-->
+    <title>Registration Page</title>
+    <link href="register.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="stylesheet.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script src="script/administrator.js" ></script>
-    <script>
-        function validate(form) {
-            fail = validateNume(form.nume.value)
-            fail += validatePrenume(form.prenume.value)
-            fail += validateAdresa(form.adresa.value)
-            fail += validatePassword(form.password.value)
-            fail += validateUsername(form.username.value)
-            fail += validateTelefon(form.telefon.value)
-            fail += validateEmail(form.email.value)
-            if (fail == "") return true
-            else { alert(fail); return false }
-        }
-    </script>-->
 </head>
 <body>
 <div id="content">
@@ -27,28 +14,86 @@
     <li><a id="login" href="login.php">Log in</a></li>
 
 </ul>
-<div style="clear:both;" id="form">
-   <form  action="inregistrare_admin.php" id="register-form" method="post" onSubmit="return validate(this)">
-            <fieldset>
-                <legend>Pagina de inregistrare</legend>
-                <p><label for="nume">Nume: </label>
-                <input type="text" name="nume" id="nume"></p>
-                <p><label for="prenume">Prenume: </label>
-                <input type="text" name="prenume" id="prenume"></p>
-                <p><label for="email">E-mail: </label>
-                <input type="text" name="email" id="email"></p>
-                <p><label for="tel">Telefon: </label>
-                <input type="text" name="telefon" id="telefon"></p>
-                <p><label for="adresa">Adresa: </label>
-                <input type="text" name="adresa"  id="adresa"></p>
-                <p><label for="username">Username: </label>
-                <input type="text" name="username" id="username" ></p>
-                <p><label for="password">Password: </label>
-                <input type="password" name="password" id="password"></p>
-                <input type="submit" id="btn_inregistrare"  value="Register"/>
-            </fieldset>
-</div>
+    <div id="form">
+    <form id="register-form" class="cmxform" action="inregistrare_admin.php" method="post"
+        <fieldset>
+            <legend>Pagina de inregistrare</legend>
+            <table>
+                <tr>
+                    <td class="label"><label for="nume">Nume:</label></td>
+                    <td class="field">
+                        <input id="nume" name="nume" style="width: 300px" type="text" tabindex="9"
+                               value=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="prenume">Prenume:</label></td>
+                    <td class="field">
+                        <input id="prenume" name="prenume" style="width: 300px" type="text"
+                               tabindex="9" value=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="email">E-mail:</label></td>
+                    <td class="field">
+                        <input id="email" name="email" style="width: 300px" type="text"
+                               tabindex="9" value=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="telefon">Telefon:</label></td>
+                    <td class="field">
+                        <input id="telefon" name="telefon" style="width: 300px" type="text" class="required phone"
+                               tabindex="9" value=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="adresa">Adresa:</label></td>
+                    <td class="field">
+                        <input id="adresa" name="adresa" style="width: 400px" type="text" class="required"
+                               tabindex="9" value=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="username">Nume utilizator:</label></td>
+                    <td class="field">
+                        <input id="username" name="username" style="width: 150px" type="text" class="required"
+                               tabindex="9" value=""/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="label"><label for="password">Parola:</label></td>
+                    <td class="field">
+                        <input id="password" class="required password" maxlength="40" name="password" size="20"
+                               type="password" tabindex="12" value=""/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="label"><label for="password1">Testeaza parola:</label></td>
+                    <td class="field">
+                        <input id="password1" class="required" equalTo="#password" maxlength="40" name="password1"
+                               size="20"
+                               type="password" tabindex="13" value=""/>
+                        <div class="formError"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <div class="buttonSubmit">
+                            <span></span>
+                            <input class="formButton" type="submit" value="Register" id="btn_inregistrare" style="width: 140px"
+                                   tabindex="14"/>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
     <div id="rezultat"></div>
 </div> <!--content-->
+
 </body>
 </html>
