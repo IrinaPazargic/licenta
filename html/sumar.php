@@ -23,21 +23,29 @@ foreach ($rezervare->tipLocuri as $key => $value) {
 }
 
 ?>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#submit").click(function () {
-            $("#rezerva").load("rezerva.php");
+<html>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#submit").click(function () {
+                $("#rezerva").load("rezerva.php");
+                var conn = window.connection;
+                var data =  {
+                                locuri: '<?= $rezervare->locuri ?>'
+                            };
+                conn.send(JSON.stringify(data));
+                conn.close();
+            });
         });
-    });
-</script>
-<style type="text/css">
-    li {
-        float: left;
-        font-size: 0.8em;
-        margin-left: 5px;
-        bordeR: 1px solid red;
-    }
+    </script>
+    <style type="text/css">
+        li {
+            float: left;
+            font-size: 0.8em;
+            margin-left: 5px;
+            border: 1px solid red;
+        }
 
 </style>
 <div id="rezerva">
@@ -140,3 +148,5 @@ foreach ($rezervare->tipLocuri as $key => $value) {
         </table>
     </div>
 </div>
+</body>
+</html>

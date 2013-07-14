@@ -1,9 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="simple_test_server.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/websocket/client/simple_test_server.php">
-    <RunnerSettings RunnerId="PhpRunner" />
-    <RunnerSettings RunnerId="PhpScriptDebugRunner" />
-    <ConfigurationWrapper RunnerId="PhpRunner" />
-    <ConfigurationWrapper RunnerId="PhpScriptDebugRunner" />
-    <method />
-  </configuration>
-</component>

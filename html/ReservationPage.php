@@ -4,7 +4,7 @@
 
     $query = "
                 SELECT tip, pret FROM reduceri order by tip
-                ";
+              ";
     $rez = mysql_query($query);
     $rez1 = mysql_query($query);
 
@@ -36,51 +36,138 @@
 
 		$result=mysql_query($query);
         $row = mysql_fetch_object($result);
+
         $rezervare = new Rezervare();
         $rezervare->idProgram = $idProgram;
-
         $rezervare->film = $row->titlu;
         $rezervare->cinema = $row->nume;
         $rezervare->data = $row->data;
         $rezervare->ora=$row->ora;
         $rezervare->sala=$row->nr_sala;
-
         return $rezervare;
     }
 ?>
 
 <html>
 <head>
-<link href="reservation.css" rel="stylesheet" type="text/css"/>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#next").click(function () {
-            var nextPageUrl = "ReservationPage2.php?";
-            var validInput = false;
-            $('select[id^="redurecere_"] :selected').each(function(idx, value) {
-                var nrBilete = $(value).text();
-                var validInput2 = nrBilete > 0;
-                validInput = validInput || validInput2;
-                nextPageUrl += "red" + ++idx + "=" + nrBilete + "&"
-            });
-            nextPageUrl = nextPageUrl.substr(0, nextPageUrl.length - 1);
-            if (validInput === false) {
-                alert("Nu ati selectat biletele.Va rugam alegeti biletele!");
-            } else {
-                $("#content").load(nextPageUrl);
-            }
-        });
-    });
-</script>
-<style type="text/css">
-    li {
-        float:left;
-        font-size: 0.8em;
-        margin-left:5px;
-        bordeR:1px solid red;
-    }
+    <link href="reservation.css" rel="stylesheet" type="text/css"/>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
 
+        var original_image = 'images/SeatGreen.png';
+        var second_image = 'images/YellowSeat.png';
+        var taken_seat_image = 'images/GraySeat.png';
+
+        function marcheazaLocurileCaOcupate(locuri) {
+            $.each(locuri, function(idx, loc) {
+                console.log("loc = " + loc);
+                var locator = '#' + loc;
+                console.log("locator " + locator);
+//                $(locator).hide();
+                var new_image = "url(http://licenta.irina.ro/" + taken_seat_image + ")";
+                $(locator).css("background-image", new_image);
+            });
+        }
+
+        function isOriginalImage() {
+            return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + original_image + ")";
+        }
+
+        function isNewImage() {
+            return event.target.style.backgroundImage == "url(http://licenta.irina.ro/" + second_image + ")";
+        }
+
+        //        var connection;
+        function doOnOpen(e) {
+            // get the seats. E.g.: 1_1|1_2
+            // split => 1_1, 1_2
+            // get divs with these ids
+            // mark them as not taken
+        }
+        function doOnMessage(e) {
+            console.log("data: " + e.data);
+            try {
+                // get the seats. E.g.: 1_1|1_2
+                var data = JSON.parse(e.data);
+                var locuri = data.locuri.split("|");
+                console.log("locuri: " + locuri);
+                marcheazaLocurileCaOcupate(locuri);
+            } catch (err) {
+                console.log(err);
+                console.log("Do nothing if the message has not supported format.");
+            }
+        }
+        function doOnClose(e) {
+            // get the seats. E.g.: 1_1|1_2
+            // split => 1_1, 1_2
+            // get divs with these ids
+            // mark them as not taken
+        }
+        function doOnError(e) {
+            // nothing for the moment
+        }
+        function openWebsocket() {
+            var connected = false;
+            var connection = null;
+            if ('WebSocket' in window) {
+                console.log("Hurray! Web socket is here. Irina and Dana are haunted all night by its presence...");
+                connection = new WebSocket('ws://licenta.irina.ro:8000/demo');
+                connection.onopen = function (e) {
+                    connected = true;
+                    console.log('Connection open');
+                    doOnOpen(e);
+                }
+                connection.onclose = function (e) {
+                    connected = false;
+                    console.log('Connection closed');
+                    doOnClose(e);
+                }
+
+                connection.onerror = function (error) {
+                    connected = false;
+                    console.log('Error detected: ' + error);
+                    doOnError(e);
+                }
+                connection.onmessage = function (e) {
+                    var server_message = e.data;
+                    console.log(server_message);
+                    doOnMessage(e);
+                }
+            } else {
+                alert("Your browser doesn't support websocket html5 yet.");
+            }
+            return connection;
+        }
+
+
+        $(function () {
+            window.connection = openWebsocket();
+
+            $("#next").click(function () {
+                var nextPageUrl = "ReservationPage2.php?";
+                var validInput = false;
+                $('select[id^="redurecere_"] :selected').each(function(idx, value) {
+                    var nrBilete = $(value).text();
+                    var validInput2 = nrBilete > 0;
+                    validInput = validInput || validInput2;
+                    nextPageUrl += "red" + ++idx + "=" + nrBilete + "&"
+                });
+                nextPageUrl = nextPageUrl.substr(0, nextPageUrl.length - 1);
+                if (validInput === false) {
+                    alert("Nu ati selectat biletele.Va rugam alegeti biletele!");
+                } else {
+                    $("#content").load(nextPageUrl);
+                }
+            });
+        });
+    </script>
+    <style type="text/css">
+        li {
+            float: left;
+            font-size: 0.8em;
+            margin-left: 5px;
+            border: 1px solid red;
+        }
     </style>
 </head>
 <body>

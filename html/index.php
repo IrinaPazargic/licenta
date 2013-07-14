@@ -25,7 +25,7 @@ $result_gen_1 = mysql_query($query_gen);
     <script src="script/jquery.blueberry.js"></script>
     <script src="script/commons.js"></script>
     <script>
-        $(window).load(function() {
+        $(function () {
             $('.blueberry').blueberry();
         });
     </script>

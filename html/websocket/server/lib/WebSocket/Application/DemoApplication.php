@@ -29,14 +29,12 @@ class DemoApplication extends Application
     public function onData($data, $client)
     {
         print "onTextData\n";
-        //$client->send('echo=>' . $data);
-
-        foreach ($this->_clients as $c) {
-            $c->send('echo=>' . $data);
-        }
-
         var_dump($data);
-        $decodedData = $this->_decodeData($data);
+        foreach ($this->_clients as $c) {
+            $c->send($data);
+        }
+//        var_dump($data);
+/*        $decodedData = $this->_decodeData($data);
 		if($decodedData === false)
 		{
 			// @todo: invalid request trigger error...
@@ -46,7 +44,7 @@ class DemoApplication extends Application
 		if(method_exists($this, $actionName))
 		{
 			call_user_func(array($this, $actionName), $decodedData['data']);
-		}
+		}*/
     }
 
 	public function onBinaryData($data, $client)
